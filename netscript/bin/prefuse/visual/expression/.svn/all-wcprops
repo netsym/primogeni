@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression
+END
+HoverPredicate.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression/HoverPredicate.java
+END
+InGroupPredicate.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression/InGroupPredicate.java
+END
+QueryExpression.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression/QueryExpression.java
+END
+SearchPredicate.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression/SearchPredicate.java
+END
+GroupExpression.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression/GroupExpression.java
+END
+StartVisiblePredicate.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression/StartVisiblePredicate.java
+END
+GroupSizeFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression/GroupSizeFunction.java
+END
+ValidatedPredicate.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression/ValidatedPredicate.java
+END
+VisiblePredicate.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression/VisiblePredicate.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/visual/expression/package.html
+END

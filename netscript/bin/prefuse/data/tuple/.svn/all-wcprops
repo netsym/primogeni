@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/tuple
+END
+TableTuple.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/tuple/TableTuple.java
+END
+TupleManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/tuple/TupleManager.java
+END
+TupleSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/tuple/TupleSet.java
+END
+CompositeTupleSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/tuple/CompositeTupleSet.java
+END
+AbstractTupleSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/tuple/AbstractTupleSet.java
+END
+DefaultTupleSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/tuple/DefaultTupleSet.java
+END
+TableEdge.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/tuple/TableEdge.java
+END
+TableNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/tuple/TableNode.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/tuple/package.html
+END

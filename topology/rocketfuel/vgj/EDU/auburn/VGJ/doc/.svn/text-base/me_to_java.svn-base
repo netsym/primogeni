@@ -1,0 +1,7 @@
+#!/bin/csh
+
+foreach file ($argv)
+	sed 's/a href="java/a href="http:\/\/java.sun.com\/JDK-1.0\/api\/java/g' $file > me_to_java.tmp
+	mv $file $file.BACK
+	mv me_to_java.tmp $file
+end

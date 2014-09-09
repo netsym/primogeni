@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate
+END
+AxisLabelAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate/AxisLabelAnimator.java
+END
+FontAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate/FontAnimator.java
+END
+PolarLocationAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate/PolarLocationAnimator.java
+END
+VisibilityAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate/VisibilityAnimator.java
+END
+LocationAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate/LocationAnimator.java
+END
+QualityControlAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate/QualityControlAnimator.java
+END
+SizeAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate/SizeAnimator.java
+END
+ArrayAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate/ArrayAnimator.java
+END
+ColorAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate/ColorAnimator.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/action/animate/package.html
+END

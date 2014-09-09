@@ -1,0 +1,17 @@
+K 10
+svn:ignore
+V 137
+doxy_predef.cfg
+Makefile
+doxygen
+.ssf_done
+.ssfnet_done
+.slingshot_done
+.controller_done
+.jprime_done
+*.tag
+*.doxyfile
+debug.txt
+web.tgz
+
+END

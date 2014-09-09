@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/1933/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32
+END
+setpath.nsi
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32/setpath.nsi
+END
+openvpn.nsi.in
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/primex/!svn/ver/1933/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32/openvpn.nsi.in
+END
+sample.ovpn
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32/sample.ovpn
+END
+buildopensslpath.bat
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32/buildopensslpath.bat
+END
+prebuild
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32/prebuild
+END
+.svnignore
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32/.svnignore
+END
+openssl.bat
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32/openssl.bat
+END
+preconfig.patch
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32/preconfig.patch
+END
+u2d.c
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32/u2d.c
+END
+openvpn.nsi
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/install-win32/openvpn.nsi
+END

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repos/primex/!svn/ver/2305/trunk/netscript/src/jprime/Traffic
+END
+ITrafficAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/primex/!svn/ver/459/trunk/netscript/src/jprime/Traffic/ITrafficAlias.java
+END
+ITraffic.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/primex/!svn/ver/2305/trunk/netscript/src/jprime/Traffic/ITraffic.java
+END
+TrafficAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/primex/!svn/ver/2300/trunk/netscript/src/jprime/Traffic/TrafficAlias.java
+END
+TrafficAliasReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/2300/trunk/netscript/src/jprime/Traffic/TrafficAliasReplica.java
+END
+Traffic.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/primex/!svn/ver/2300/trunk/netscript/src/jprime/Traffic/Traffic.java
+END
+TrafficReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/2300/trunk/netscript/src/jprime/Traffic/TrafficReplica.java
+END

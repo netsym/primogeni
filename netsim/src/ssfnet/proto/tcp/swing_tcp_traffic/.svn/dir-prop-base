@@ -1,0 +1,10 @@
+K 10
+svn:ignore
+V 69
+swing_client.h
+swing_server.h
+swing_tcp_traffic.h
+*.m.extracted
+*.oo
+
+END

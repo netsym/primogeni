@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys
+END
+dh1024.pem
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/dh1024.pem
+END
+pkcs12.p12
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/pkcs12.p12
+END
+client.crt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/client.crt
+END
+client.key
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/client.key
+END
+ca.crt
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/ca.crt
+END
+ca.key
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/ca.key
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/README
+END
+pass.crt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/pass.crt
+END
+pass.key
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/pass.key
+END
+server.crt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/server.crt
+END
+server.key
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-keys/server.key
+END

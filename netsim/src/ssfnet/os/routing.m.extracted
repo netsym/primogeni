@@ -1,0 +1,65 @@
+state_configuration {
+	__PRIME__T1__="RoutingSphere";
+	__PRIME__T2__="BaseEntity";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__="";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/os/routing.h";
+
+		shared configurable uint32_t nix_vec_cache_size {
+			type=INT;
+			default_value="1000";
+			doc_string="The maximum number of nix vector cache entries for this sphere.";
+			visualized=true;
+		};
+		shared configurable uint32_t local_dst_cache_size {
+			type=INT;
+			default_value="1000";
+			doc_string="The maximum number of local dst cache entries for this sphere.";
+			visualized=true;
+		};
+		child_type<RouteTable> default_route_table {
+			min_count = 0;
+			max_count = 1;
+			doc_string = "default routing table";
+		};
+
+		HostSrcRankListPairMap sub_edge_iface_map;
+	};
+state_configuration {
+	__PRIME__T1__="GhostRoutingSphere";
+	__PRIME__T2__="RoutingSphere";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__="";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/os/routing.h";
+
+		configurable UID_t community_id {
+			type = INT;
+			default_value =  "0" ;
+			doc_string = "the id of the community where the real sphere is";
+			visualized=true;
+		};
+	};
+state_configuration {
+	__PRIME__T1__="RouteTable";
+	__PRIME__T2__="BaseEntity";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__="";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/os/routing.h";
+
+		shared configurable EdgeInterfaceList edge_ifaces {
+			type=OBJECT;
+			default_value="[]";
+			doc_string="A comma separated list of edge ifaces";
+		};
+
+		shared RTREE routemap ;
+
+		EdgeInterfaceList my_edge_ifaces ;
+
+	};

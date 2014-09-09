@@ -1,0 +1,11 @@
+K 10
+svn:ignore
+V 39
+*.a
+*.oo
+*.o
+Makefile
+*.ssf.oo
+*.ssf.o
+
+END

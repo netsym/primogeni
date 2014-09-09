@@ -1,0 +1,26 @@
+state_configuration {
+	__PRIME__T1__="CBR";
+	__PRIME__T2__="ApplicationSession";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__="
+	convert_protonum_to_typeid(SSFNET_PROTOCOL_TYPE_CBR)";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/proto/udp/test/cbr.h";
+
+		shared configurable int listening_port {
+			type=INT;
+			default_value="5001";
+			doc_string="Listening port port UDP datagrams.";
+		};
+		configurable uint32_t total_bytes_received {
+			type=INT;
+			default_value="0";
+			doc_string="Number of bytes received from all sessions";
+		};
+		configurable uint32_t total_bytes_sent {
+			type=INT;
+			default_value="0";
+			doc_string="Number of bytes sent from all sessions";
+		};
+	};

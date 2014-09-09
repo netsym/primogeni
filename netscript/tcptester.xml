@@ -1,0 +1,138 @@
+<?xml version="1.0" ?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance" xsi:noNamespaceSchemaLocation="primex.xsd">
+	<node name="topnet" type="Net" >
+		<!-- RoutingSphere name=_rsphere_ numRoutes=42  -->
+		<node name="_viz_agg_" type="VizAggregate" >
+			<attribute name="var_id" value="161" symbol="false" />
+		</node>
+		<node name="router1" type="Router" >
+			<node name="r_2" type="Interface" >
+			</node>
+			<node name="ifh0" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+			</node>
+			<node name="ifh1" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+			</node>
+			<node name="ifh2" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+			</node>
+		</node>
+		<node name="router2" type="Router" >
+			<node name="r_1" type="Interface" >
+			</node>
+			<node name="ifh0" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+			</node>
+			<node name="ifh1" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+			</node>
+			<node name="ifh2" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+			</node>
+		</node>
+		<node name="toplink" type="Link" >
+			<attribute name="bandwidth" value="1000000000000" symbol="false" />
+			<attribute name="delay" value="0.01" symbol="false" />
+			<ref name="InterfaceAlias_13" path="..:router1:r_2" />
+			<ref name="InterfaceAlias_16" path="..:router2:r_1" />
+		</node>
+		<node name="l0" type="Host" >
+			<node name="if0" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+				<node name="OpenVPNEmulation_30" type="OpenVPNEmulation" >
+				</node>
+			</node>
+		</node>
+		<node name="r0" type="Host" >
+			<node name="if0" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+				<node name="OpenVPNEmulation_36" type="OpenVPNEmulation" >
+				</node>
+			</node>
+		</node>
+		<node name="ll0" type="Link" >
+			<attribute name="bandwidth" value="1000000000000" symbol="false" />
+			<attribute name="delay" value="0.01" symbol="false" />
+			<ref name="InterfaceAlias_41" path="..:l0:if0" />
+			<ref name="InterfaceAlias_43" path="..:router1:ifh0" />
+		</node>
+		<node name="rl0" type="Link" >
+			<attribute name="bandwidth" value="1000000000000" symbol="false" />
+			<attribute name="delay" value="0.01" symbol="false" />
+			<ref name="InterfaceAlias_48" path="..:r0:if0" />
+			<ref name="InterfaceAlias_50" path="..:router2:ifh0" />
+		</node>
+		<node name="l1" type="Host" >
+			<node name="if0" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+			</node>
+		</node>
+		<node name="r1" type="Host" >
+			<node name="if0" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+			</node>
+		</node>
+		<node name="ll1" type="Link" >
+			<attribute name="bandwidth" value="1000000000000" symbol="false" />
+			<attribute name="delay" value="0.01" symbol="false" />
+			<ref name="InterfaceAlias_73" path="..:l1:if0" />
+			<ref name="InterfaceAlias_75" path="..:router1:ifh1" />
+		</node>
+		<node name="rl1" type="Link" >
+			<attribute name="bandwidth" value="1000000000000" symbol="false" />
+			<attribute name="delay" value="0.01" symbol="false" />
+			<ref name="InterfaceAlias_80" path="..:r1:if0" />
+			<ref name="InterfaceAlias_82" path="..:router2:ifh1" />
+		</node>
+		<node name="l2" type="Host" >
+			<node name="if0" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+			</node>
+		</node>
+		<node name="r2" type="Host" >
+			<node name="if0" type="Interface" >
+				<attribute name="bit_rate" value="1000000000000" symbol="false" />
+				<attribute name="buffer_size" value="64000" symbol="false" />
+				<attribute name="latency" value="0.0" symbol="false" />
+			</node>
+		</node>
+		<node name="ll2" type="Link" >
+			<attribute name="bandwidth" value="1000000000000" symbol="false" />
+			<attribute name="delay" value="0.01" symbol="false" />
+			<ref name="InterfaceAlias_105" path="..:l2:if0" />
+			<ref name="InterfaceAlias_107" path="..:router1:ifh2" />
+		</node>
+		<node name="rl2" type="Link" >
+			<attribute name="bandwidth" value="1000000000000" symbol="false" />
+			<attribute name="delay" value="0.01" symbol="false" />
+			<ref name="InterfaceAlias_112" path="..:r2:if0" />
+			<ref name="InterfaceAlias_114" path="..:router2:ifh2" />
+		</node>
+		<node name="__dynamic_traffics__" type="Traffic" >
+		</node>
+		<node name="3" type="ShortestPath" />
+	</node>
+</model>

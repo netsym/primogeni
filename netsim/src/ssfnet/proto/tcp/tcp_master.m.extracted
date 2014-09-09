@@ -1,0 +1,45 @@
+state_configuration {
+	__PRIME__T1__="TCPMaster";
+	__PRIME__T2__="ProtocolSession";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__="convert_protonum_to_typeid(SSFNET_PROTOCOL_TYPE_TCP)";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/proto/tcp/tcp_master.h";
+
+		shared configurable SSFNET_STRING tcpCA {
+			type=STRING;
+			default_value="bic";
+			doc_string="Congestion control algorithm.";
+		};
+		shared configurable int mss {
+			type=INT;
+			default_value="1400";
+			doc_string="maximum segment size in bytes.";
+		};
+		shared configurable int sndWndSize {
+			type=INT;
+			default_value="1000000000";
+			doc_string="maximum sending window size of TCP protocol in bytes.";
+		};
+		shared configurable int sndBufSize {
+			type=INT;
+			default_value="2000000000";
+			doc_string="maximum size of the buffer for sending bytes.";
+		};
+		shared configurable int rcvWndSize {
+			type=INT;
+			default_value="1000000000";
+			doc_string="maximum receiving window size of TCP protocol in bytes.";
+		};//Restore to life
+		shared configurable float samplingInterval {
+			type=FLOAT;
+			default_value="10000";
+			doc_string="Interval between consecutive sampling of TCP variables.";
+		};
+		shared configurable int iss {
+			type=INT;
+			default_value="1";
+			doc_string="Initial sequence number of TCP protocol.";
+		};
+	};

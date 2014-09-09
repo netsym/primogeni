@@ -1,0 +1,14 @@
+#get the ssf vars (which includes all of the env vars and user options)
+ifneq ($(INCLUDED_INC), true)
+include @NETSIM_DIR@/Makefile.inc 
+endif
+
+EXTRACT_VPNCONF_EXE = @NETSIM_DIR@/extract_vpnconf
+VPNSCRIPT_PL = @NETSIM_DIR@/vpnscript.pl -d @NETSIM_DIR@/src/emuproxy/openvpn
+
+JPRIME_JAR = @NETSCRIPT_DIR@/dist/jprime.jar
+
+JPRIME_DRIVER_CMD = java -classpath $(JPRIME_JAR) test.Driver -outdir $(CURDIR) create $(MODEL_NAME)
+
+$(JPRIME_JAR):
+	cd @NETSCRIPT_DIR@ && ant jar

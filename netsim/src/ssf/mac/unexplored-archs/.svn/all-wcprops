@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/primex/!svn/ver/1310/trunk/netsim/src/ssf/mac/unexplored-archs
+END
+x86-64-cygwin.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/primex/!svn/ver/1310/trunk/netsim/src/ssf/mac/unexplored-archs/x86-64-cygwin.h
+END
+x86-windows.cc
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/1310/trunk/netsim/src/ssf/mac/unexplored-archs/x86-windows.cc
+END
+x86-windows.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/primex/!svn/ver/1310/trunk/netsim/src/ssf/mac/unexplored-archs/x86-windows.h
+END
+x86-64-cygwin.cc
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/1310/trunk/netsim/src/ssf/mac/unexplored-archs/x86-64-cygwin.cc
+END

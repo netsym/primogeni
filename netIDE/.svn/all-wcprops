@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/repos/primex/!svn/ver/2531/trunk/netIDE
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/primex/!svn/ver/2304/trunk/netIDE/.classpath
+END
+slingshot_linux_64.product
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repos/primex/!svn/ver/1959/trunk/netIDE/slingshot_linux_64.product
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/primex/!svn/ver/538/trunk/netIDE/.project
+END
+plugin_customization.ini
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repos/primex/!svn/ver/899/trunk/netIDE/plugin_customization.ini
+END
+FIU_logo.png
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/primex/!svn/ver/786/trunk/netIDE/FIU_logo.png
+END
+lib
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/repos/primex/!svn/ver/947/trunk/netIDE/lib
+END
+splash.bmp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/primex/!svn/ver/1907/trunk/netIDE/splash.bmp
+END
+slingshot.product
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/primex/!svn/ver/1956/trunk/netIDE/slingshot.product
+END
+slingshot_mac.product
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repos/primex/!svn/ver/1959/trunk/netIDE/slingshot_mac.product
+END
+build.properties
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repos/primex/!svn/ver/1898/trunk/netIDE/build.properties
+END
+.pydevproject
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/primex/!svn/ver/542/trunk/netIDE/.pydevproject
+END
+slingshot_linux_32.product
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repos/primex/!svn/ver/1959/trunk/netIDE/slingshot_linux_32.product
+END
+plugin.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/primex/!svn/ver/2329/trunk/netIDE/plugin.xml
+END
+plugins-required.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repos/primex/!svn/ver/1185/trunk/netIDE/plugins-required.txt
+END

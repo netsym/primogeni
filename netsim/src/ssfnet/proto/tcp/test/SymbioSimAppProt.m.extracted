@@ -1,0 +1,12 @@
+
+state_configuration {
+	__PRIME__T1__="SymbioSimAppProt";
+	__PRIME__T2__="ProtocolSession";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__=" convert_protonum_to_typeid(SSFNET_PROTOCOL_SYMBIOSIM_APP)";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/proto/tcp/test/SymbioSimAppProt.h";
+
+	__PRIME__EMPTY__;
+	};

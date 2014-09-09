@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/EmulationProtocol
+END
+EmulationProtocol.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/primex/!svn/ver/1850/trunk/netscript/src/jprime/EmulationProtocol/EmulationProtocol.java
+END
+EmulationProtocolReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/primex/!svn/ver/1850/trunk/netscript/src/jprime/EmulationProtocol/EmulationProtocolReplica.java
+END
+IEmulationProtocolAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/primex/!svn/ver/499/trunk/netscript/src/jprime/EmulationProtocol/IEmulationProtocolAlias.java
+END
+IEmulationProtocol.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/primex/!svn/ver/499/trunk/netscript/src/jprime/EmulationProtocol/IEmulationProtocol.java
+END
+EmulationProtocolAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/EmulationProtocol/EmulationProtocolAlias.java
+END
+EmulationProtocolAliasReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/EmulationProtocol/EmulationProtocolAliasReplica.java
+END

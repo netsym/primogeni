@@ -1,0 +1,36 @@
+state_configuration {
+	__PRIME__T1__="PPBPTraffic";
+	__PRIME__T2__="StaticTrafficType";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__=" PPBP_TRAFFIC";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/proto/udp/test/ppbp_traffic.h";
+
+		shared configurable uint32_t dst_port {
+			type=INT;
+			default_value="5001";
+			doc_string="The destination port for an CBR connection.";
+		};
+		configurable uint32_t bytes_to_send_per_interval {
+			type=INT;
+			default_value="1000000";
+			doc_string="The number of bytes to send each time interval.";
+		};
+		configurable uint32_t avg_sessions {
+			type=INT;
+			default_value="1";
+			doc_string="Average number of sessions (default: 0 means unset).";
+		};
+		configurable float hurst {
+			type=FLOAT;
+			default_value="0.8";
+			doc_string="The hurst parameter indicates the presence of LRD (Long-Range Dependence).";
+		};
+		configurable float stop {
+			type=FLOAT;
+			default_value="1000000";
+			doc_string="The traffic stops starting new traffic flows after stop time.";
+		};
+
+	};

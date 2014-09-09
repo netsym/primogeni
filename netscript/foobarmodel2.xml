@@ -1,0 +1,157 @@
+<?xml version="1.0" ?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance" xsi:noNamespaceSchemaLocation="primex.xsd">
+	<node name="top" type="Net" >
+		<attribute name="sub_edge_ifaces" value="[[108, 129], [268, 289]]" symbol="false" />
+		<!-- RoutingSphere name=_rsphere_ numRoutes=2  -->
+		<node name="_viz_agg_" type="VizAggregate" >
+			<attribute name="var_id" value="161" symbol="false" />
+		</node>
+		<node name="left" type="Net" >
+			<!-- RoutingSphere name=_rsphere_ numRoutes=12  -->
+			<node name="_viz_agg_" type="VizAggregate" >
+				<attribute name="var_id" value="161" symbol="false" />
+			</node>
+			<node name="h1" type="Host" >
+				<node name="if0" type="Interface" >
+				</node>
+			</node>
+			<node name="h2" type="Host" >
+				<node name="if0" type="Interface" >
+				</node>
+			</node>
+			<node name="h3" type="Host" >
+				<node name="if0" type="Interface" >
+				</node>
+			</node>
+			<node name="h4" type="Host" >
+				<node name="if0" type="Interface" >
+				</node>
+			</node>
+			<node name="r" type="Router" >
+				<node name="if1" type="Interface" >
+				</node>
+				<node name="if2" type="Interface" >
+				</node>
+				<node name="if3" type="Interface" >
+				</node>
+				<node name="if4" type="Interface" >
+				</node>
+				<node name="if0" type="Interface" >
+				</node>
+			</node>
+			<node name="Link_22" type="Link" >
+				<ref name="InterfaceAlias_23" path="..:h1:if0" />
+				<ref name="InterfaceAlias_25" path="..:r:if1" />
+			</node>
+			<node name="Link_26" type="Link" >
+				<ref name="InterfaceAlias_27" path="..:h2:if0" />
+				<ref name="InterfaceAlias_29" path="..:r:if2" />
+			</node>
+			<node name="Link_30" type="Link" >
+				<ref name="InterfaceAlias_31" path="..:h3:if0" />
+				<ref name="InterfaceAlias_33" path="..:r:if3" />
+			</node>
+			<node name="Link_34" type="Link" >
+				<ref name="InterfaceAlias_35" path="..:h4:if0" />
+				<ref name="InterfaceAlias_37" path="..:r:if4" />
+			</node>
+			<node name="__dynamic_traffics__" type="Traffic" >
+			</node>
+			<node name="8" type="ShortestPath" />
+		</node>
+		<node name="right_net" type="Net" >
+			<!-- RoutingSphere name=_rsphere_ numRoutes=12  -->
+			<node name="_viz_agg_" type="VizAggregate" >
+				<attribute name="var_id" value="161" symbol="false" />
+			</node>
+			<node name="h1" type="Host" >
+				<node name="if0" type="Interface" >
+				</node>
+			</node>
+			<node name="h2" type="Host" >
+				<node name="if0" type="Interface" >
+				</node>
+			</node>
+			<node name="h3" type="Host" >
+				<node name="if0" type="Interface" >
+				</node>
+			</node>
+			<node name="h4" type="Host" >
+				<node name="if0" type="Interface" >
+				</node>
+			</node>
+			<node name="r" type="Router" >
+				<node name="if1" type="Interface" >
+				</node>
+				<node name="if2" type="Interface" >
+				</node>
+				<node name="if3" type="Interface" >
+				</node>
+				<node name="if4" type="Interface" >
+				</node>
+				<node name="if0" type="Interface" >
+				</node>
+			</node>
+			<node name="Link_22" type="Link" >
+				<ref name="InterfaceAlias_23" path="..:h1:if0" />
+				<ref name="InterfaceAlias_25" path="..:r:if1" />
+			</node>
+			<node name="Link_26" type="Link" >
+				<ref name="InterfaceAlias_27" path="..:h2:if0" />
+				<ref name="InterfaceAlias_29" path="..:r:if2" />
+			</node>
+			<node name="Link_30" type="Link" >
+				<ref name="InterfaceAlias_31" path="..:h3:if0" />
+				<ref name="InterfaceAlias_33" path="..:r:if3" />
+			</node>
+			<node name="Link_34" type="Link" >
+				<ref name="InterfaceAlias_35" path="..:h4:if0" />
+				<ref name="InterfaceAlias_37" path="..:r:if4" />
+			</node>
+			<node name="__dynamic_traffics__" type="Traffic" >
+			</node>
+			<node name="38" type="ShortestPath" />
+		</node>
+		<node name="toplink" type="Link" >
+			<ref name="InterfaceAlias_70" path="..:left:r:if0" />
+			<ref name="InterfaceAlias_72" path="..:right_net:r:if0" />
+		</node>
+		<node name="Traffic_73" type="Traffic" >
+			<node name="TCPTraffic_74" type="TCPTraffic" >
+				<attribute name="dsts" value="01021
+001064
+Host01023
+189" symbol="false" />
+				<attribute name="mapping" value="one2one" symbol="false" />
+				<attribute name="srcs" value="01021
+001064
+Host01022
+29" symbol="false" />
+				<attribute name="start_time" value="10.0" symbol="false" />
+				<attribute name="file_size" value="1000000000" symbol="false" />
+				<attribute name="number_of_sessions" value="1" symbol="false" />
+				<attribute name="interval" value="1.0" symbol="false" />
+				<attribute name="interval_exponential" value="false" symbol="false" />
+			</node>
+			<node name="TCPTraffic_75" type="TCPTraffic" >
+				<attribute name="dsts" value="01021
+001064
+Host01023
+189" symbol="false" />
+				<attribute name="mapping" value="one2one" symbol="false" />
+				<attribute name="srcs" value="01021
+001064
+Host01022
+52" symbol="false" />
+				<attribute name="start_time" value="13.0" symbol="false" />
+				<attribute name="file_size" value="10000000000" symbol="false" />
+				<attribute name="number_of_sessions" value="2" symbol="false" />
+				<attribute name="interval" value="1.0" symbol="false" />
+				<attribute name="interval_exponential" value="false" symbol="false" />
+			</node>
+		</node>
+		<node name="__dynamic_traffics__" type="Traffic" >
+		</node>
+		<node name="3" type="ShortestPath" />
+	</node>
+</model>

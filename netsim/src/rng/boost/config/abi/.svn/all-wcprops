@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repos/primex/!svn/ver/105/trunk/netsim/src/rng/boost/config/abi
+END
+msvc_suffix.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/primex/!svn/ver/97/trunk/netsim/src/rng/boost/config/abi/msvc_suffix.hpp
+END
+borland_prefix.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/97/trunk/netsim/src/rng/boost/config/abi/borland_prefix.hpp
+END
+borland_suffix.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/97/trunk/netsim/src/rng/boost/config/abi/borland_suffix.hpp
+END
+msvc_prefix.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/primex/!svn/ver/97/trunk/netsim/src/rng/boost/config/abi/msvc_prefix.hpp
+END

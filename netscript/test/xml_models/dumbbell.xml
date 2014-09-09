@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance"
+	xsi:noNamespaceSchemaLocation="primex.xsd">
+	<!--
+	   This is an example xml to build the following topology
+          ========================================
+          |              %topNet%                |
+          |	============          ============= |
+          |	|  %sub1%   |         |  %sub2%   | |
+          |	| h1        |         |       h1  | |
+          |	|    \      |         |     /     | |
+          |	|      r < ============= > r      | |
+          |	|    /      |         |     \     | |
+          |	| h2        |         |       h2  | |
+          |	============          ============= |
+          |========================================
+	 -->
+	<node name="topNet" type="Net">
+		<node name="routing" type="ShortestPath" />
+		<node name="sub1" type="Net">
+			<node name="routing" type="ShortestPath" />
+			<node name="h1" type="Host">
+				<node name="if_0" type="Interface" >
+					<attribute name="bit_rate" value="100000000" />
+					<attribute name="latency" value="0" />
+				</node>
+			</node>
+			<node name="h2" type="Host">
+				<node name="if_0" type="Interface" >
+					<attribute name="bit_rate" value="100000000" />
+					<attribute name="latency" value="0" />
+				</node>
+			</node>
+			<node name="r" type="Router">
+				<node name="if_h1" type="Interface" >
+					<attribute name="bit_rate" value="100000000" />
+					<attribute name="latency" value="0" />				
+				</node>
+				<node name="if_h2" type="Interface" >
+					<attribute name="bit_rate" value="100000000" />
+					<attribute name="latency" value="0" />				
+				</node>
+				<node name="if_gateway" type="Interface" >
+					<attribute name="bit_rate" value="100000000" />
+					<attribute name="latency" value="0" />				
+				</node>
+			</node>
+			<node name="l_h1" type="Link">
+				<attribute name="bandwidth" value="100000000" />
+				<attribute name="delay" value="1" />
+				<ref name="r"  path="..:r:if_h1" />
+				<ref name="h1"  path="..:h1:if_0" />
+			</node>
+			<node name="l_h2" type="Link">
+				<attribute name="bandwidth" value="100000000" />
+				<attribute name="delay" value="1" />
+				<ref name="r" path="..:r:if_h2" />
+				<ref name="h2" path="..:h2:if_0" />
+			</node>
+		</node>
+		<replica name="sub2" path="sub1" />
+ 		<!--node name="r" type="Router">
+			<node name="if_sub1" type="Interface" >
+				<attribute name="bit_rate" value="100000000" />
+				<attribute name="latency" value="0" />
+			</node>
+			<node name="if_sub2" type="Interface" >
+				<attribute name="bit_rate" value="100000000" />
+				<attribute name="latency" value="0" />
+			</node>
+		</node>
+		<node name="l_sub1" type="Link">
+			<attribute name="bandwidth" value="100000000" />
+			<attribute name="delay" value="1" />
+			<ref name="sub1" path="..:sub1:r:if_gateway" />
+			<ref name="r" path="..:r:if_sub1" />
+		</node>
+		<node name="l_sub2" type="Link">
+			<attribute name="bandwidth" value="100000000" />
+			<attribute name="delay" value="1" />
+			<ref name="r" path="..:r:if_sub2" />
+			<ref name="sub2" path="..:sub2:r:if_gateway" />
+		</node-->
+		<node name="l_sub1_sub2" type="Link">
+			<attribute name="bandwidth" value="100000000" />
+			<attribute name="delay" value="1" />
+			<ref name="r" path="..:sub1:r:if_gateway" />
+			<ref name="r" path="..:sub2:r:if_gateway" />
+		</node>
+	</node>
+</model>

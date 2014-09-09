@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Tue Aug 19 13:45:12 EDT 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0147-ef5f-636c-00000334abd0 
+on database directory /tmp/primex  with class loader sun.misc.Launcher$AppClassLoader@25753d 
+Loaded from file:/home/obaida/Desktop/pgc2vega/primex/netscript/dist//lib/derby.jar
+java.vendor=Sun Microsystems Inc.
+java.runtime.version=1.6.0_31-b31
+user.dir=/home/obaida/Desktop/pgc2vega/primex/netscript
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

@@ -1,0 +1,28 @@
+#!/bin/csh
+
+setenv CLASSPATH "/home/www/department/cse/research/graph_drawing:$CLASSPATH"
+
+echo `which javadoc`
+
+javadoc EDU.auburn.VGJ EDU.auburn.VGJ.algorithm.tree \
+	EDU.auburn.VGJ.algorithm.shawn \
+	EDU.auburn.VGJ.algorithm.cartegw \
+	EDU.auburn.VGJ.algorithm \
+	EDU.auburn.VGJ.algorithm.cgd \
+	EDU.auburn.VGJ.examplealg EDU.auburn.VGJ.graph EDU.auburn.VGJ.gui \
+	EDU.auburn.VGJ.util
+	
+
+me_to_java *.html
+rm *.BACK
+
+chmod 755 *
+
+cd /home/www/department/cse/research
+rm /home/ftp/pub/larrybar/VGJ.zip
+zip -r /home/ftp/pub/larrybar/VGJ.zip graph_drawing
+chmod 755 /home/ftp/pub/larrybar/VGJ.zip
+
+rm /home/ftp/pub/larrybar/VGJ.tar
+tar cfp /home/ftp/pub/larrybar/VGJ.tar graph_drawing
+chmod 755 /home/ftp/pub/larrybar/VGJ.tar

@@ -1,0 +1,5 @@
+fad-getad.c
+fad-gifc.c
+fad-glifc.c
+fad-null.c
+fad-win32.c

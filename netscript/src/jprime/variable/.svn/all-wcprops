@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable
+END
+OpaqueVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable/OpaqueVariable.java
+END
+ResourceIdentifierVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable/ResourceIdentifierVariable.java
+END
+ListVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable/ListVariable.java
+END
+IntegerVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable/IntegerVariable.java
+END
+BooleanVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable/BooleanVariable.java
+END
+Dataset.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable/Dataset.java
+END
+SymbolVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable/SymbolVariable.java
+END
+FloatingPointNumberVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable/FloatingPointNumberVariable.java
+END
+ModelNodeVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable/ModelNodeVariable.java
+END
+StringVariable.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/primex/!svn/ver/2512/trunk/netscript/src/jprime/variable/StringVariable.java
+END

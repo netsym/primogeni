@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repos/primex/!svn/ver/2404/trunk/netscript/src/jprime/Monitor
+END
+IMonitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/primex/!svn/ver/2404/trunk/netscript/src/jprime/Monitor/IMonitor.java
+END
+MonitorAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/primex/!svn/ver/2404/trunk/netscript/src/jprime/Monitor/MonitorAlias.java
+END
+MonitorAliasReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/2404/trunk/netscript/src/jprime/Monitor/MonitorAliasReplica.java
+END
+Monitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/primex/!svn/ver/2404/trunk/netscript/src/jprime/Monitor/Monitor.java
+END
+MonitorReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/2404/trunk/netscript/src/jprime/Monitor/MonitorReplica.java
+END
+IMonitorAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/primex/!svn/ver/2404/trunk/netscript/src/jprime/Monitor/IMonitorAlias.java
+END

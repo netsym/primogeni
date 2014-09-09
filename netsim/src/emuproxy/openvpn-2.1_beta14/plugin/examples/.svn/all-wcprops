@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/primex/!svn/ver/1933/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/plugin/examples
+END
+build
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/plugin/examples/build
+END
+simple.def
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/plugin/examples/simple.def
+END
+simple.c
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/primex/!svn/ver/1933/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/plugin/examples/simple.c
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/plugin/examples/README
+END
+winbuild
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/plugin/examples/winbuild
+END

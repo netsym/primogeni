@@ -1,0 +1,3303 @@
+<?xml version="1.0" ?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="primex.xsd">
+<node name="topnet" type="Net">
+ <node name="routing" type="ShortestPath"/>
+ <node name="sub0" type="Net">
+  <node name="routing" type="ShortestPath"/>
+  <node name="r10" type="Router">
+   <node name="if23_r18" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00276"/>
+   </node>
+   <node name="if24_r16" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00183"/>
+   </node>
+   <node name="if29_r13" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00098"/>
+   </node>
+   <node name="if222_sub2_r66" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00249"/>
+   </node>
+  </node>
+  <node name="r11" type="Router">
+   <node name="if25_r18" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0002"/>
+   </node>
+   <node name="if26_r19" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00028"/>
+   </node>
+   <node name="if28_r12" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00357"/>
+   </node>
+   <node name="if31_r14" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00106"/>
+   </node>
+  </node>
+  <node name="r12" type="Router">
+   <node name="if27_r16" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00125"/>
+   </node>
+   <node name="if28_r11" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00357"/>
+   </node>
+   <node name="if220_sub1_r30" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00113"/>
+   </node>
+   <node name="if223_sub3_r52" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00264"/>
+   </node>
+  </node>
+  <node name="r13" type="Router">
+   <node name="if29_r10" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00098"/>
+   </node>
+   <node name="if30_r17" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00198"/>
+   </node>
+   <node name="if38_r16" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00087"/>
+   </node>
+   <node name="if225_sub5_r108" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00276"/>
+   </node>
+  </node>
+  <node name="r14" type="Router">
+   <node name="if31_r11" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00106"/>
+   </node>
+   <node name="if32_r18" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00099"/>
+   </node>
+   <node name="if33_r15" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00012"/>
+   </node>
+   <node name="if36_r17" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00184"/>
+   </node>
+   <node name="if37_r16" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00159"/>
+   </node>
+  </node>
+  <node name="r15" type="Router">
+   <node name="if33_r14" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00012"/>
+   </node>
+   <node name="if34_r18" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00111"/>
+   </node>
+   <node name="if35_r17" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00173"/>
+   </node>
+   <node name="if226_sub6_r21" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00158"/>
+   </node>
+  </node>
+  <node name="r16" type="Router">
+   <node name="if19_r19" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00215"/>
+   </node>
+   <node name="if22_r18" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00239"/>
+   </node>
+   <node name="if24_r10" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00183"/>
+   </node>
+   <node name="if27_r12" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00125"/>
+   </node>
+   <node name="if37_r14" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00159"/>
+   </node>
+   <node name="if38_r13" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00087"/>
+   </node>
+  </node>
+  <node name="r17" type="Router">
+   <node name="if20_r19" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0026"/>
+   </node>
+   <node name="if30_r13" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00198"/>
+   </node>
+   <node name="if35_r15" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00173"/>
+   </node>
+   <node name="if36_r14" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00184"/>
+   </node>
+   <node name="if228_sub7_r89" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00134"/>
+   </node>
+  </node>
+  <node name="r18" type="Router">
+   <node name="if21_r19" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00024"/>
+   </node>
+   <node name="if22_r16" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00239"/>
+   </node>
+   <node name="if23_r10" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00276"/>
+   </node>
+   <node name="if25_r11" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0002"/>
+   </node>
+   <node name="if32_r14" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00099"/>
+   </node>
+   <node name="if34_r15" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00111"/>
+   </node>
+  </node>
+  <node name="r19" type="Router">
+   <node name="if19_r16" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00215"/>
+   </node>
+   <node name="if20_r17" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0026"/>
+   </node>
+   <node name="if21_r18" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00024"/>
+   </node>
+   <node name="if26_r11" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00028"/>
+   </node>
+  </node>
+  <node name="r19_r16_19" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00215"/>
+   <ref name="r19" path="..:r19:if19_r16"/>
+   <ref name="r16" path="..:r16:if19_r19"/>
+  </node>
+  <node name="r19_r17_20" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.0026"/>
+   <ref name="r19" path="..:r19:if20_r17"/>
+   <ref name="r17" path="..:r17:if20_r19"/>
+  </node>
+  <node name="r18_r19_21" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00024"/>
+   <ref name="r18" path="..:r18:if21_r19"/>
+   <ref name="r19" path="..:r19:if21_r18"/>
+  </node>
+  <node name="r18_r16_22" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00239"/>
+   <ref name="r18" path="..:r18:if22_r16"/>
+   <ref name="r16" path="..:r16:if22_r18"/>
+  </node>
+  <node name="r10_r18_23" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00276"/>
+   <ref name="r10" path="..:r10:if23_r18"/>
+   <ref name="r18" path="..:r18:if23_r10"/>
+  </node>
+  <node name="r10_r16_24" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00183"/>
+   <ref name="r10" path="..:r10:if24_r16"/>
+   <ref name="r16" path="..:r16:if24_r10"/>
+  </node>
+  <node name="r11_r18_25" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.0002"/>
+   <ref name="r11" path="..:r11:if25_r18"/>
+   <ref name="r18" path="..:r18:if25_r11"/>
+  </node>
+  <node name="r11_r19_26" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00028"/>
+   <ref name="r11" path="..:r11:if26_r19"/>
+   <ref name="r19" path="..:r19:if26_r11"/>
+  </node>
+  <node name="r12_r16_27" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00125"/>
+   <ref name="r12" path="..:r12:if27_r16"/>
+   <ref name="r16" path="..:r16:if27_r12"/>
+  </node>
+  <node name="r12_r11_28" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00357"/>
+   <ref name="r12" path="..:r12:if28_r11"/>
+   <ref name="r11" path="..:r11:if28_r12"/>
+  </node>
+  <node name="r13_r10_29" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00098"/>
+   <ref name="r13" path="..:r13:if29_r10"/>
+   <ref name="r10" path="..:r10:if29_r13"/>
+  </node>
+  <node name="r13_r17_30" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00198"/>
+   <ref name="r13" path="..:r13:if30_r17"/>
+   <ref name="r17" path="..:r17:if30_r13"/>
+  </node>
+  <node name="r14_r11_31" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00106"/>
+   <ref name="r14" path="..:r14:if31_r11"/>
+   <ref name="r11" path="..:r11:if31_r14"/>
+  </node>
+  <node name="r14_r18_32" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00099"/>
+   <ref name="r14" path="..:r14:if32_r18"/>
+   <ref name="r18" path="..:r18:if32_r14"/>
+  </node>
+  <node name="r15_r14_33" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00012"/>
+   <ref name="r15" path="..:r15:if33_r14"/>
+   <ref name="r14" path="..:r14:if33_r15"/>
+  </node>
+  <node name="r15_r18_34" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00111"/>
+   <ref name="r15" path="..:r15:if34_r18"/>
+   <ref name="r18" path="..:r18:if34_r15"/>
+  </node>
+  <node name="r17_r15_35" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00173"/>
+   <ref name="r17" path="..:r17:if35_r15"/>
+   <ref name="r15" path="..:r15:if35_r17"/>
+  </node>
+  <node name="r17_r14_36" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00184"/>
+   <ref name="r17" path="..:r17:if36_r14"/>
+   <ref name="r14" path="..:r14:if36_r17"/>
+  </node>
+  <node name="r16_r14_37" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00159"/>
+   <ref name="r16" path="..:r16:if37_r14"/>
+   <ref name="r14" path="..:r14:if37_r16"/>
+  </node>
+  <node name="r16_r13_38" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00087"/>
+   <ref name="r16" path="..:r16:if38_r13"/>
+   <ref name="r13" path="..:r13:if38_r16"/>
+  </node>
+ </node>
+ <node name="sub6" type="Net">
+  <node name="routing" type="ShortestPath"/>
+  <node name="r20" type="Router">
+   <node name="if39_r23" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00152"/>
+   </node>
+   <node name="if41_r22" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00159"/>
+   </node>
+   <node name="if43_r25" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00065"/>
+   </node>
+   <node name="if50_r26" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00083"/>
+   </node>
+   <node name="if57_r29" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00166"/>
+   </node>
+   <node name="if58_r24" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00113"/>
+   </node>
+  </node>
+  <node name="r21" type="Router">
+   <node name="if40_r23" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00306"/>
+   </node>
+   <node name="if55_r26" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00213"/>
+   </node>
+   <node name="if56_r25" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00168"/>
+   </node>
+   <node name="if226_sub0_r15" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00158"/>
+   </node>
+  </node>
+  <node name="r22" type="Router">
+   <node name="if41_r20" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00159"/>
+   </node>
+   <node name="if42_r23" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00126"/>
+   </node>
+   <node name="if45_r24" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00054"/>
+   </node>
+   <node name="if231_sub5_r101" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00247"/>
+   </node>
+  </node>
+  <node name="r23" type="Router">
+   <node name="if39_r20" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00152"/>
+   </node>
+   <node name="if40_r21" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00306"/>
+   </node>
+   <node name="if42_r22" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00126"/>
+   </node>
+   <node name="if44_r25" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00154"/>
+   </node>
+   <node name="if47_r27" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00177"/>
+   </node>
+  </node>
+  <node name="r24" type="Router">
+   <node name="if45_r22" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00054"/>
+   </node>
+   <node name="if46_r25" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00167"/>
+   </node>
+   <node name="if48_r27" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00293"/>
+   </node>
+   <node name="if58_r20" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00113"/>
+   </node>
+  </node>
+  <node name="r25" type="Router">
+   <node name="if43_r20" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00065"/>
+   </node>
+   <node name="if44_r23" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00154"/>
+   </node>
+   <node name="if46_r24" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00167"/>
+   </node>
+   <node name="if49_r26" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00142"/>
+   </node>
+   <node name="if52_r29" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00102"/>
+   </node>
+   <node name="if53_r28" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00095"/>
+   </node>
+   <node name="if56_r21" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00168"/>
+   </node>
+  </node>
+  <node name="r26" type="Router">
+   <node name="if49_r25" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00142"/>
+   </node>
+   <node name="if50_r20" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00083"/>
+   </node>
+   <node name="if55_r21" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00213"/>
+   </node>
+  </node>
+  <node name="r27" type="Router">
+   <node name="if47_r23" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00177"/>
+   </node>
+   <node name="if48_r24" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00293"/>
+   </node>
+   <node name="if51_r29" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00109"/>
+   </node>
+  </node>
+  <node name="r28" type="Router">
+   <node name="if53_r25" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00095"/>
+   </node>
+   <node name="if54_r29" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0002"/>
+   </node>
+   <node name="if221_sub4_r73" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00237"/>
+   </node>
+  </node>
+  <node name="r29" type="Router">
+   <node name="if51_r27" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00109"/>
+   </node>
+   <node name="if52_r25" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00102"/>
+   </node>
+   <node name="if54_r28" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0002"/>
+   </node>
+   <node name="if57_r20" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00166"/>
+   </node>
+  </node>
+  <node name="r23_r20_39" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00152"/>
+   <ref name="r23" path="..:r23:if39_r20"/>
+   <ref name="r20" path="..:r20:if39_r23"/>
+  </node>
+  <node name="r23_r21_40" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00306"/>
+   <ref name="r23" path="..:r23:if40_r21"/>
+   <ref name="r21" path="..:r21:if40_r23"/>
+  </node>
+  <node name="r22_r20_41" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00159"/>
+   <ref name="r22" path="..:r22:if41_r20"/>
+   <ref name="r20" path="..:r20:if41_r22"/>
+  </node>
+  <node name="r22_r23_42" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00126"/>
+   <ref name="r22" path="..:r22:if42_r23"/>
+   <ref name="r23" path="..:r23:if42_r22"/>
+  </node>
+  <node name="r25_r20_43" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00065"/>
+   <ref name="r25" path="..:r25:if43_r20"/>
+   <ref name="r20" path="..:r20:if43_r25"/>
+  </node>
+  <node name="r25_r23_44" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00154"/>
+   <ref name="r25" path="..:r25:if44_r23"/>
+   <ref name="r23" path="..:r23:if44_r25"/>
+  </node>
+  <node name="r24_r22_45" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00054"/>
+   <ref name="r24" path="..:r24:if45_r22"/>
+   <ref name="r22" path="..:r22:if45_r24"/>
+  </node>
+  <node name="r24_r25_46" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00167"/>
+   <ref name="r24" path="..:r24:if46_r25"/>
+   <ref name="r25" path="..:r25:if46_r24"/>
+  </node>
+  <node name="r27_r23_47" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00177"/>
+   <ref name="r27" path="..:r27:if47_r23"/>
+   <ref name="r23" path="..:r23:if47_r27"/>
+  </node>
+  <node name="r27_r24_48" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00293"/>
+   <ref name="r27" path="..:r27:if48_r24"/>
+   <ref name="r24" path="..:r24:if48_r27"/>
+  </node>
+  <node name="r26_r25_49" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00142"/>
+   <ref name="r26" path="..:r26:if49_r25"/>
+   <ref name="r25" path="..:r25:if49_r26"/>
+  </node>
+  <node name="r26_r20_50" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00083"/>
+   <ref name="r26" path="..:r26:if50_r20"/>
+   <ref name="r20" path="..:r20:if50_r26"/>
+  </node>
+  <node name="r29_r27_51" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00109"/>
+   <ref name="r29" path="..:r29:if51_r27"/>
+   <ref name="r27" path="..:r27:if51_r29"/>
+  </node>
+  <node name="r29_r25_52" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00102"/>
+   <ref name="r29" path="..:r29:if52_r25"/>
+   <ref name="r25" path="..:r25:if52_r29"/>
+  </node>
+  <node name="r28_r25_53" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00095"/>
+   <ref name="r28" path="..:r28:if53_r25"/>
+   <ref name="r25" path="..:r25:if53_r28"/>
+  </node>
+  <node name="r28_r29_54" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.0002"/>
+   <ref name="r28" path="..:r28:if54_r29"/>
+   <ref name="r29" path="..:r29:if54_r28"/>
+  </node>
+  <node name="r21_r26_55" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00213"/>
+   <ref name="r21" path="..:r21:if55_r26"/>
+   <ref name="r26" path="..:r26:if55_r21"/>
+  </node>
+  <node name="r21_r25_56" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00168"/>
+   <ref name="r21" path="..:r21:if56_r25"/>
+   <ref name="r25" path="..:r25:if56_r21"/>
+  </node>
+  <node name="r20_r29_57" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00166"/>
+   <ref name="r20" path="..:r20:if57_r29"/>
+   <ref name="r29" path="..:r29:if57_r20"/>
+  </node>
+  <node name="r20_r24_58" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00113"/>
+   <ref name="r20" path="..:r20:if58_r24"/>
+   <ref name="r24" path="..:r24:if58_r20"/>
+  </node>
+ </node>
+ <node name="sub1" type="Net">
+  <node name="routing" type="ShortestPath"/>
+  <node name="r30" type="Router">
+   <node name="if73_r36" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00028"/>
+   </node>
+   <node name="if74_r35" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00131"/>
+   </node>
+   <node name="if220_sub0_r12" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00113"/>
+   </node>
+   <node name="if234_sub4_r72" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00267"/>
+   </node>
+  </node>
+  <node name="r31" type="Router">
+   <node name="if71_r39" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00231"/>
+   </node>
+   <node name="if72_r37" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00282"/>
+   </node>
+   <node name="if75_r34" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0034"/>
+   </node>
+   <node name="if233_sub5_r108" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00015"/>
+   </node>
+  </node>
+  <node name="r32" type="Router">
+   <node name="if59_r34" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00085"/>
+   </node>
+   <node name="if60_r35" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00154"/>
+   </node>
+   <node name="if64_r38" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00298"/>
+   </node>
+   <node name="if68_r36" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00061"/>
+   </node>
+   <node name="if235_sub7_r80" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00296"/>
+   </node>
+  </node>
+  <node name="r33" type="Router">
+   <node name="if61_r35" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00083"/>
+   </node>
+   <node name="if62_r34" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00195"/>
+   </node>
+   <node name="if63_r38" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00163"/>
+   </node>
+   <node name="if69_r37" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00108"/>
+   </node>
+   <node name="if236_sub9_r98" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00122"/>
+   </node>
+  </node>
+  <node name="r34" type="Router">
+   <node name="if59_r32" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00085"/>
+   </node>
+   <node name="if62_r33" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00195"/>
+   </node>
+   <node name="if65_r39" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00257"/>
+   </node>
+   <node name="if75_r31" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0034"/>
+   </node>
+   <node name="if76_r36" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00094"/>
+   </node>
+  </node>
+  <node name="r35" type="Router">
+   <node name="if60_r32" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00154"/>
+   </node>
+   <node name="if61_r33" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00083"/>
+   </node>
+   <node name="if66_r39" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00057"/>
+   </node>
+   <node name="if67_r36" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00109"/>
+   </node>
+   <node name="if74_r30" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00131"/>
+   </node>
+   <node name="if77_r37" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00042"/>
+   </node>
+   <node name="if78_r38" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00246"/>
+   </node>
+  </node>
+  <node name="r36" type="Router">
+   <node name="if67_r35" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00109"/>
+   </node>
+   <node name="if68_r32" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00061"/>
+   </node>
+   <node name="if70_r37" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00079"/>
+   </node>
+   <node name="if73_r30" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00028"/>
+   </node>
+   <node name="if76_r34" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00094"/>
+   </node>
+  </node>
+  <node name="r37" type="Router">
+   <node name="if69_r33" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00108"/>
+   </node>
+   <node name="if70_r36" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00079"/>
+   </node>
+   <node name="if72_r31" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00282"/>
+   </node>
+   <node name="if77_r35" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00042"/>
+   </node>
+  </node>
+  <node name="r38" type="Router">
+   <node name="if63_r33" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00163"/>
+   </node>
+   <node name="if64_r32" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00298"/>
+   </node>
+   <node name="if78_r35" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00246"/>
+   </node>
+   <node name="if230_sub3_r59" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0016"/>
+   </node>
+   <node name="if237_sub8_r46" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00082"/>
+   </node>
+  </node>
+  <node name="r39" type="Router">
+   <node name="if65_r34" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00257"/>
+   </node>
+   <node name="if66_r35" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00057"/>
+   </node>
+   <node name="if71_r31" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00231"/>
+   </node>
+   <node name="if232_sub2_r61" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00195"/>
+   </node>
+  </node>
+  <node name="r32_r34_59" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00085"/>
+   <ref name="r32" path="..:r32:if59_r34"/>
+   <ref name="r34" path="..:r34:if59_r32"/>
+  </node>
+  <node name="r32_r35_60" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00154"/>
+   <ref name="r32" path="..:r32:if60_r35"/>
+   <ref name="r35" path="..:r35:if60_r32"/>
+  </node>
+  <node name="r33_r35_61" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00083"/>
+   <ref name="r33" path="..:r33:if61_r35"/>
+   <ref name="r35" path="..:r35:if61_r33"/>
+  </node>
+  <node name="r33_r34_62" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00195"/>
+   <ref name="r33" path="..:r33:if62_r34"/>
+   <ref name="r34" path="..:r34:if62_r33"/>
+  </node>
+  <node name="r38_r33_63" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00163"/>
+   <ref name="r38" path="..:r38:if63_r33"/>
+   <ref name="r33" path="..:r33:if63_r38"/>
+  </node>
+  <node name="r38_r32_64" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00298"/>
+   <ref name="r38" path="..:r38:if64_r32"/>
+   <ref name="r32" path="..:r32:if64_r38"/>
+  </node>
+  <node name="r39_r34_65" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00257"/>
+   <ref name="r39" path="..:r39:if65_r34"/>
+   <ref name="r34" path="..:r34:if65_r39"/>
+  </node>
+  <node name="r39_r35_66" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00057"/>
+   <ref name="r39" path="..:r39:if66_r35"/>
+   <ref name="r35" path="..:r35:if66_r39"/>
+  </node>
+  <node name="r36_r35_67" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00109"/>
+   <ref name="r36" path="..:r36:if67_r35"/>
+   <ref name="r35" path="..:r35:if67_r36"/>
+  </node>
+  <node name="r36_r32_68" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00061"/>
+   <ref name="r36" path="..:r36:if68_r32"/>
+   <ref name="r32" path="..:r32:if68_r36"/>
+  </node>
+  <node name="r37_r33_69" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00108"/>
+   <ref name="r37" path="..:r37:if69_r33"/>
+   <ref name="r33" path="..:r33:if69_r37"/>
+  </node>
+  <node name="r37_r36_70" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00079"/>
+   <ref name="r37" path="..:r37:if70_r36"/>
+   <ref name="r36" path="..:r36:if70_r37"/>
+  </node>
+  <node name="r31_r39_71" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00231"/>
+   <ref name="r31" path="..:r31:if71_r39"/>
+   <ref name="r39" path="..:r39:if71_r31"/>
+  </node>
+  <node name="r31_r37_72" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00282"/>
+   <ref name="r31" path="..:r31:if72_r37"/>
+   <ref name="r37" path="..:r37:if72_r31"/>
+  </node>
+  <node name="r30_r36_73" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00028"/>
+   <ref name="r30" path="..:r30:if73_r36"/>
+   <ref name="r36" path="..:r36:if73_r30"/>
+  </node>
+  <node name="r30_r35_74" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00131"/>
+   <ref name="r30" path="..:r30:if74_r35"/>
+   <ref name="r35" path="..:r35:if74_r30"/>
+  </node>
+  <node name="r34_r31_75" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.0034"/>
+   <ref name="r34" path="..:r34:if75_r31"/>
+   <ref name="r31" path="..:r31:if75_r34"/>
+  </node>
+  <node name="r34_r36_76" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00094"/>
+   <ref name="r34" path="..:r34:if76_r36"/>
+   <ref name="r36" path="..:r36:if76_r34"/>
+  </node>
+  <node name="r35_r37_77" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00042"/>
+   <ref name="r35" path="..:r35:if77_r37"/>
+   <ref name="r37" path="..:r37:if77_r35"/>
+  </node>
+  <node name="r35_r38_78" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00246"/>
+   <ref name="r35" path="..:r35:if78_r38"/>
+   <ref name="r38" path="..:r38:if78_r35"/>
+  </node>
+ </node>
+ <node name="sub8" type="Net">
+  <node name="routing" type="ShortestPath"/>
+  <node name="r40" type="Router">
+   <node name="if83_r49" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00264"/>
+   </node>
+   <node name="if84_r48" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00033"/>
+   </node>
+   <node name="if87_r46" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00132"/>
+   </node>
+   <node name="if91_r44" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00255"/>
+   </node>
+  </node>
+  <node name="r41" type="Router">
+   <node name="if85_r49" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00029"/>
+   </node>
+   <node name="if86_r48" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00292"/>
+   </node>
+   <node name="if92_r44" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00178"/>
+   </node>
+   <node name="if229_sub4_r78" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00281"/>
+   </node>
+  </node>
+  <node name="r42" type="Router">
+   <node name="if79_r49" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00141"/>
+   </node>
+   <node name="if80_r48" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00172"/>
+   </node>
+   <node name="if82_r43" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0025"/>
+   </node>
+   <node name="if93_r45" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00133"/>
+   </node>
+  </node>
+  <node name="r43" type="Router">
+   <node name="if81_r48" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00097"/>
+   </node>
+   <node name="if82_r42" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0025"/>
+   </node>
+   <node name="if90_r47" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00011"/>
+   </node>
+   <node name="if219_sub9_r97" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00039"/>
+   </node>
+  </node>
+  <node name="r44" type="Router">
+   <node name="if91_r40" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00255"/>
+   </node>
+   <node name="if92_r41" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00178"/>
+   </node>
+   <node name="if95_r49" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00152"/>
+   </node>
+  </node>
+  <node name="r45" type="Router">
+   <node name="if93_r42" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00133"/>
+   </node>
+   <node name="if94_r49" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00264"/>
+   </node>
+   <node name="if98_r48" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00175"/>
+   </node>
+  </node>
+  <node name="r46" type="Router">
+   <node name="if87_r40" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00132"/>
+   </node>
+   <node name="if88_r49" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00186"/>
+   </node>
+   <node name="if97_r48" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00163"/>
+   </node>
+   <node name="if237_sub1_r38" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00082"/>
+   </node>
+  </node>
+  <node name="r47" type="Router">
+   <node name="if89_r48" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00096"/>
+   </node>
+   <node name="if90_r43" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00011"/>
+   </node>
+   <node name="if96_r49" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00342"/>
+   </node>
+  </node>
+  <node name="r48" type="Router">
+   <node name="if80_r42" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00172"/>
+   </node>
+   <node name="if81_r43" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00097"/>
+   </node>
+   <node name="if84_r40" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00033"/>
+   </node>
+   <node name="if86_r41" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00292"/>
+   </node>
+   <node name="if89_r47" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00096"/>
+   </node>
+   <node name="if97_r46" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00163"/>
+   </node>
+   <node name="if98_r45" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00175"/>
+   </node>
+  </node>
+  <node name="r49" type="Router">
+   <node name="if79_r42" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00141"/>
+   </node>
+   <node name="if83_r40" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00264"/>
+   </node>
+   <node name="if85_r41" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00029"/>
+   </node>
+   <node name="if88_r46" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00186"/>
+   </node>
+   <node name="if94_r45" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00264"/>
+   </node>
+   <node name="if95_r44" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00152"/>
+   </node>
+   <node name="if96_r47" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00342"/>
+   </node>
+  </node>
+  <node name="r42_r49_79" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00141"/>
+   <ref name="r42" path="..:r42:if79_r49"/>
+   <ref name="r49" path="..:r49:if79_r42"/>
+  </node>
+  <node name="r42_r48_80" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00172"/>
+   <ref name="r42" path="..:r42:if80_r48"/>
+   <ref name="r48" path="..:r48:if80_r42"/>
+  </node>
+  <node name="r43_r48_81" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00097"/>
+   <ref name="r43" path="..:r43:if81_r48"/>
+   <ref name="r48" path="..:r48:if81_r43"/>
+  </node>
+  <node name="r43_r42_82" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.0025"/>
+   <ref name="r43" path="..:r43:if82_r42"/>
+   <ref name="r42" path="..:r42:if82_r43"/>
+  </node>
+  <node name="r40_r49_83" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00264"/>
+   <ref name="r40" path="..:r40:if83_r49"/>
+   <ref name="r49" path="..:r49:if83_r40"/>
+  </node>
+  <node name="r40_r48_84" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00033"/>
+   <ref name="r40" path="..:r40:if84_r48"/>
+   <ref name="r48" path="..:r48:if84_r40"/>
+  </node>
+  <node name="r41_r49_85" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00029"/>
+   <ref name="r41" path="..:r41:if85_r49"/>
+   <ref name="r49" path="..:r49:if85_r41"/>
+  </node>
+  <node name="r41_r48_86" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00292"/>
+   <ref name="r41" path="..:r41:if86_r48"/>
+   <ref name="r48" path="..:r48:if86_r41"/>
+  </node>
+  <node name="r46_r40_87" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00132"/>
+   <ref name="r46" path="..:r46:if87_r40"/>
+   <ref name="r40" path="..:r40:if87_r46"/>
+  </node>
+  <node name="r46_r49_88" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00186"/>
+   <ref name="r46" path="..:r46:if88_r49"/>
+   <ref name="r49" path="..:r49:if88_r46"/>
+  </node>
+  <node name="r47_r48_89" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00096"/>
+   <ref name="r47" path="..:r47:if89_r48"/>
+   <ref name="r48" path="..:r48:if89_r47"/>
+  </node>
+  <node name="r47_r43_90" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00011"/>
+   <ref name="r47" path="..:r47:if90_r43"/>
+   <ref name="r43" path="..:r43:if90_r47"/>
+  </node>
+  <node name="r44_r40_91" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00255"/>
+   <ref name="r44" path="..:r44:if91_r40"/>
+   <ref name="r40" path="..:r40:if91_r44"/>
+  </node>
+  <node name="r44_r41_92" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00178"/>
+   <ref name="r44" path="..:r44:if92_r41"/>
+   <ref name="r41" path="..:r41:if92_r44"/>
+  </node>
+  <node name="r45_r42_93" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00133"/>
+   <ref name="r45" path="..:r45:if93_r42"/>
+   <ref name="r42" path="..:r42:if93_r45"/>
+  </node>
+  <node name="r45_r49_94" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00264"/>
+   <ref name="r45" path="..:r45:if94_r49"/>
+   <ref name="r49" path="..:r49:if94_r45"/>
+  </node>
+  <node name="r49_r44_95" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00152"/>
+   <ref name="r49" path="..:r49:if95_r44"/>
+   <ref name="r44" path="..:r44:if95_r49"/>
+  </node>
+  <node name="r49_r47_96" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00342"/>
+   <ref name="r49" path="..:r49:if96_r47"/>
+   <ref name="r47" path="..:r47:if96_r49"/>
+  </node>
+  <node name="r48_r46_97" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00163"/>
+   <ref name="r48" path="..:r48:if97_r46"/>
+   <ref name="r46" path="..:r46:if97_r48"/>
+  </node>
+  <node name="r48_r45_98" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00175"/>
+   <ref name="r48" path="..:r48:if98_r45"/>
+   <ref name="r45" path="..:r45:if98_r48"/>
+  </node>
+ </node>
+ <node name="sub3" type="Net">
+  <node name="routing" type="ShortestPath"/>
+  <node name="r50" type="Router">
+   <node name="if100_r55" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00198"/>
+   </node>
+   <node name="if101_r54" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00181"/>
+   </node>
+   <node name="if109_r58" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00117"/>
+   </node>
+   <node name="if117_r56" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00095"/>
+   </node>
+   <node name="if118_r57" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00184"/>
+   </node>
+  </node>
+  <node name="r51" type="Router">
+   <node name="if99_r55" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00028"/>
+   </node>
+   <node name="if102_r54" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00222"/>
+   </node>
+   <node name="if107_r59" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00098"/>
+   </node>
+   <node name="if112_r57" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00136"/>
+   </node>
+   <node name="if115_r58" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0011"/>
+   </node>
+   <node name="if116_r53" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00162"/>
+   </node>
+  </node>
+  <node name="r52" type="Router">
+   <node name="if105_r54" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00142"/>
+   </node>
+   <node name="if106_r53" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00243"/>
+   </node>
+   <node name="if223_sub0_r12" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00264"/>
+   </node>
+  </node>
+  <node name="r53" type="Router">
+   <node name="if103_r55" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00178"/>
+   </node>
+   <node name="if104_r54" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00101"/>
+   </node>
+   <node name="if106_r52" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00243"/>
+   </node>
+   <node name="if116_r51" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00162"/>
+   </node>
+  </node>
+  <node name="r54" type="Router">
+   <node name="if101_r50" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00181"/>
+   </node>
+   <node name="if102_r51" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00222"/>
+   </node>
+   <node name="if104_r53" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00101"/>
+   </node>
+   <node name="if105_r52" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00142"/>
+   </node>
+   <node name="if111_r57" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00091"/>
+   </node>
+   <node name="if114_r56" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00093"/>
+   </node>
+  </node>
+  <node name="r55" type="Router">
+   <node name="if99_r51" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00028"/>
+   </node>
+   <node name="if100_r50" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00198"/>
+   </node>
+   <node name="if103_r53" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00178"/>
+   </node>
+   <node name="if108_r59" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00112"/>
+   </node>
+   <node name="if110_r58" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00087"/>
+   </node>
+   <node name="if113_r56" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00169"/>
+   </node>
+  </node>
+  <node name="r56" type="Router">
+   <node name="if113_r55" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00169"/>
+   </node>
+   <node name="if114_r54" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00093"/>
+   </node>
+   <node name="if117_r50" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00095"/>
+   </node>
+  </node>
+  <node name="r57" type="Router">
+   <node name="if111_r54" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00091"/>
+   </node>
+   <node name="if112_r51" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00136"/>
+   </node>
+   <node name="if118_r50" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00184"/>
+   </node>
+  </node>
+  <node name="r58" type="Router">
+   <node name="if109_r50" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00117"/>
+   </node>
+   <node name="if110_r55" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00087"/>
+   </node>
+   <node name="if115_r51" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0011"/>
+   </node>
+  </node>
+  <node name="r59" type="Router">
+   <node name="if107_r51" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00098"/>
+   </node>
+   <node name="if108_r55" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00112"/>
+   </node>
+   <node name="if230_sub1_r38" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0016"/>
+   </node>
+  </node>
+  <node name="r55_r51_99" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00028"/>
+   <ref name="r55" path="..:r55:if99_r51"/>
+   <ref name="r51" path="..:r51:if99_r55"/>
+  </node>
+  <node name="r55_r50_100" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00198"/>
+   <ref name="r55" path="..:r55:if100_r50"/>
+   <ref name="r50" path="..:r50:if100_r55"/>
+  </node>
+  <node name="r54_r50_101" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00181"/>
+   <ref name="r54" path="..:r54:if101_r50"/>
+   <ref name="r50" path="..:r50:if101_r54"/>
+  </node>
+  <node name="r54_r51_102" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00222"/>
+   <ref name="r54" path="..:r54:if102_r51"/>
+   <ref name="r51" path="..:r51:if102_r54"/>
+  </node>
+  <node name="r53_r55_103" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00178"/>
+   <ref name="r53" path="..:r53:if103_r55"/>
+   <ref name="r55" path="..:r55:if103_r53"/>
+  </node>
+  <node name="r53_r54_104" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00101"/>
+   <ref name="r53" path="..:r53:if104_r54"/>
+   <ref name="r54" path="..:r54:if104_r53"/>
+  </node>
+  <node name="r52_r54_105" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00142"/>
+   <ref name="r52" path="..:r52:if105_r54"/>
+   <ref name="r54" path="..:r54:if105_r52"/>
+  </node>
+  <node name="r52_r53_106" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00243"/>
+   <ref name="r52" path="..:r52:if106_r53"/>
+   <ref name="r53" path="..:r53:if106_r52"/>
+  </node>
+  <node name="r59_r51_107" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00098"/>
+   <ref name="r59" path="..:r59:if107_r51"/>
+   <ref name="r51" path="..:r51:if107_r59"/>
+  </node>
+  <node name="r59_r55_108" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00112"/>
+   <ref name="r59" path="..:r59:if108_r55"/>
+   <ref name="r55" path="..:r55:if108_r59"/>
+  </node>
+  <node name="r58_r50_109" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00117"/>
+   <ref name="r58" path="..:r58:if109_r50"/>
+   <ref name="r50" path="..:r50:if109_r58"/>
+  </node>
+  <node name="r58_r55_110" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00087"/>
+   <ref name="r58" path="..:r58:if110_r55"/>
+   <ref name="r55" path="..:r55:if110_r58"/>
+  </node>
+  <node name="r57_r54_111" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00091"/>
+   <ref name="r57" path="..:r57:if111_r54"/>
+   <ref name="r54" path="..:r54:if111_r57"/>
+  </node>
+  <node name="r57_r51_112" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00136"/>
+   <ref name="r57" path="..:r57:if112_r51"/>
+   <ref name="r51" path="..:r51:if112_r57"/>
+  </node>
+  <node name="r56_r55_113" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00169"/>
+   <ref name="r56" path="..:r56:if113_r55"/>
+   <ref name="r55" path="..:r55:if113_r56"/>
+  </node>
+  <node name="r56_r54_114" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00093"/>
+   <ref name="r56" path="..:r56:if114_r54"/>
+   <ref name="r54" path="..:r54:if114_r56"/>
+  </node>
+  <node name="r51_r58_115" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.0011"/>
+   <ref name="r51" path="..:r51:if115_r58"/>
+   <ref name="r58" path="..:r58:if115_r51"/>
+  </node>
+  <node name="r51_r53_116" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00162"/>
+   <ref name="r51" path="..:r51:if116_r53"/>
+   <ref name="r53" path="..:r53:if116_r51"/>
+  </node>
+  <node name="r50_r56_117" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00095"/>
+   <ref name="r50" path="..:r50:if117_r56"/>
+   <ref name="r56" path="..:r56:if117_r50"/>
+  </node>
+  <node name="r50_r57_118" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00184"/>
+   <ref name="r50" path="..:r50:if118_r57"/>
+   <ref name="r57" path="..:r57:if118_r50"/>
+  </node>
+ </node>
+ <node name="sub2" type="Net">
+  <node name="routing" type="ShortestPath"/>
+  <node name="r60" type="Router">
+   <node name="if133_r65" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00017"/>
+   </node>
+   <node name="if134_r62" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00069"/>
+   </node>
+   <node name="if137_r69" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00188"/>
+   </node>
+  </node>
+  <node name="r61" type="Router">
+   <node name="if131_r65" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00048"/>
+   </node>
+   <node name="if132_r62" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00105"/>
+   </node>
+   <node name="if136_r68" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00216"/>
+   </node>
+   <node name="if232_sub1_r39" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00195"/>
+   </node>
+  </node>
+  <node name="r62" type="Router">
+   <node name="if129_r63" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00174"/>
+   </node>
+   <node name="if130_r68" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00321"/>
+   </node>
+   <node name="if132_r61" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00105"/>
+   </node>
+   <node name="if134_r60" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00069"/>
+   </node>
+   <node name="if138_r69" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00233"/>
+   </node>
+  </node>
+  <node name="r63" type="Router">
+   <node name="if127_r64" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00209"/>
+   </node>
+   <node name="if128_r67" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0003"/>
+   </node>
+   <node name="if129_r62" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00174"/>
+   </node>
+   <node name="if227_sub4_r74" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0024"/>
+   </node>
+  </node>
+  <node name="r64" type="Router">
+   <node name="if119_r68" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00396"/>
+   </node>
+   <node name="if120_r69" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0031"/>
+   </node>
+   <node name="if121_r65" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00143"/>
+   </node>
+   <node name="if127_r63" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00209"/>
+   </node>
+  </node>
+  <node name="r65" type="Router">
+   <node name="if121_r64" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00143"/>
+   </node>
+   <node name="if122_r69" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00171"/>
+   </node>
+   <node name="if125_r67" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00113"/>
+   </node>
+   <node name="if131_r61" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00048"/>
+   </node>
+   <node name="if133_r60" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00017"/>
+   </node>
+  </node>
+  <node name="r66" type="Router">
+   <node name="if123_r69" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.002"/>
+   </node>
+   <node name="if124_r68" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00271"/>
+   </node>
+   <node name="if222_sub0_r10" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00249"/>
+   </node>
+   <node name="if224_sub7_r80" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00319"/>
+   </node>
+  </node>
+  <node name="r67" type="Router">
+   <node name="if125_r65" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00113"/>
+   </node>
+   <node name="if126_r69" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00225"/>
+   </node>
+   <node name="if128_r63" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0003"/>
+   </node>
+   <node name="if135_r68" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00283"/>
+   </node>
+  </node>
+  <node name="r68" type="Router">
+   <node name="if119_r64" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00396"/>
+   </node>
+   <node name="if124_r66" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00271"/>
+   </node>
+   <node name="if130_r62" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00321"/>
+   </node>
+   <node name="if135_r67" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00283"/>
+   </node>
+   <node name="if136_r61" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00216"/>
+   </node>
+  </node>
+  <node name="r69" type="Router">
+   <node name="if120_r64" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0031"/>
+   </node>
+   <node name="if122_r65" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00171"/>
+   </node>
+   <node name="if123_r66" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.002"/>
+   </node>
+   <node name="if126_r67" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00225"/>
+   </node>
+   <node name="if137_r60" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00188"/>
+   </node>
+   <node name="if138_r62" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00233"/>
+   </node>
+  </node>
+  <node name="r64_r68_119" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00396"/>
+   <ref name="r64" path="..:r64:if119_r68"/>
+   <ref name="r68" path="..:r68:if119_r64"/>
+  </node>
+  <node name="r64_r69_120" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.0031"/>
+   <ref name="r64" path="..:r64:if120_r69"/>
+   <ref name="r69" path="..:r69:if120_r64"/>
+  </node>
+  <node name="r65_r64_121" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00143"/>
+   <ref name="r65" path="..:r65:if121_r64"/>
+   <ref name="r64" path="..:r64:if121_r65"/>
+  </node>
+  <node name="r65_r69_122" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00171"/>
+   <ref name="r65" path="..:r65:if122_r69"/>
+   <ref name="r69" path="..:r69:if122_r65"/>
+  </node>
+  <node name="r66_r69_123" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.002"/>
+   <ref name="r66" path="..:r66:if123_r69"/>
+   <ref name="r69" path="..:r69:if123_r66"/>
+  </node>
+  <node name="r66_r68_124" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00271"/>
+   <ref name="r66" path="..:r66:if124_r68"/>
+   <ref name="r68" path="..:r68:if124_r66"/>
+  </node>
+  <node name="r67_r65_125" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00113"/>
+   <ref name="r67" path="..:r67:if125_r65"/>
+   <ref name="r65" path="..:r65:if125_r67"/>
+  </node>
+  <node name="r67_r69_126" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00225"/>
+   <ref name="r67" path="..:r67:if126_r69"/>
+   <ref name="r69" path="..:r69:if126_r67"/>
+  </node>
+  <node name="r63_r64_127" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00209"/>
+   <ref name="r63" path="..:r63:if127_r64"/>
+   <ref name="r64" path="..:r64:if127_r63"/>
+  </node>
+  <node name="r63_r67_128" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.0003"/>
+   <ref name="r63" path="..:r63:if128_r67"/>
+   <ref name="r67" path="..:r67:if128_r63"/>
+  </node>
+  <node name="r62_r63_129" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00174"/>
+   <ref name="r62" path="..:r62:if129_r63"/>
+   <ref name="r63" path="..:r63:if129_r62"/>
+  </node>
+  <node name="r62_r68_130" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00321"/>
+   <ref name="r62" path="..:r62:if130_r68"/>
+   <ref name="r68" path="..:r68:if130_r62"/>
+  </node>
+  <node name="r61_r65_131" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00048"/>
+   <ref name="r61" path="..:r61:if131_r65"/>
+   <ref name="r65" path="..:r65:if131_r61"/>
+  </node>
+  <node name="r61_r62_132" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00105"/>
+   <ref name="r61" path="..:r61:if132_r62"/>
+   <ref name="r62" path="..:r62:if132_r61"/>
+  </node>
+  <node name="r60_r65_133" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00017"/>
+   <ref name="r60" path="..:r60:if133_r65"/>
+   <ref name="r65" path="..:r65:if133_r60"/>
+  </node>
+  <node name="r60_r62_134" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00069"/>
+   <ref name="r60" path="..:r60:if134_r62"/>
+   <ref name="r62" path="..:r62:if134_r60"/>
+  </node>
+  <node name="r68_r67_135" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00283"/>
+   <ref name="r68" path="..:r68:if135_r67"/>
+   <ref name="r67" path="..:r67:if135_r68"/>
+  </node>
+  <node name="r68_r61_136" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00216"/>
+   <ref name="r68" path="..:r68:if136_r61"/>
+   <ref name="r61" path="..:r61:if136_r68"/>
+  </node>
+  <node name="r69_r60_137" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00188"/>
+   <ref name="r69" path="..:r69:if137_r60"/>
+   <ref name="r60" path="..:r60:if137_r69"/>
+  </node>
+  <node name="r69_r62_138" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00233"/>
+   <ref name="r69" path="..:r69:if138_r62"/>
+   <ref name="r62" path="..:r62:if138_r69"/>
+  </node>
+ </node>
+ <node name="sub4" type="Net">
+  <node name="routing" type="ShortestPath"/>
+  <node name="r70" type="Router">
+   <node name="if140_r76" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00093"/>
+   </node>
+   <node name="if146_r79" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00057"/>
+   </node>
+   <node name="if151_r74" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00053"/>
+   </node>
+   <node name="if155_r77" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00169"/>
+   </node>
+   <node name="if156_r75" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00079"/>
+   </node>
+  </node>
+  <node name="r71" type="Router">
+   <node name="if139_r76" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00117"/>
+   </node>
+   <node name="if142_r77" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00094"/>
+   </node>
+   <node name="if144_r78" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00254"/>
+   </node>
+   <node name="if154_r75" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00118"/>
+   </node>
+   <node name="if157_r79" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00117"/>
+   </node>
+   <node name="if158_r72" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00161"/>
+   </node>
+  </node>
+  <node name="r72" type="Router">
+   <node name="if147_r77" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00067"/>
+   </node>
+   <node name="if148_r76" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00251"/>
+   </node>
+   <node name="if158_r71" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00161"/>
+   </node>
+   <node name="if234_sub1_r30" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00267"/>
+   </node>
+  </node>
+  <node name="r73" type="Router">
+   <node name="if149_r78" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00186"/>
+   </node>
+   <node name="if150_r79" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00206"/>
+   </node>
+   <node name="if221_sub6_r28" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00237"/>
+   </node>
+  </node>
+  <node name="r74" type="Router">
+   <node name="if151_r70" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00053"/>
+   </node>
+   <node name="if152_r77" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00151"/>
+   </node>
+   <node name="if227_sub2_r63" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0024"/>
+   </node>
+  </node>
+  <node name="r75" type="Router">
+   <node name="if153_r79" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00035"/>
+   </node>
+   <node name="if154_r71" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00118"/>
+   </node>
+   <node name="if156_r70" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00079"/>
+   </node>
+  </node>
+  <node name="r76" type="Router">
+   <node name="if139_r71" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00117"/>
+   </node>
+   <node name="if140_r70" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00093"/>
+   </node>
+   <node name="if141_r77" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00189"/>
+   </node>
+   <node name="if143_r78" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00206"/>
+   </node>
+   <node name="if145_r79" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00058"/>
+   </node>
+   <node name="if148_r72" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00251"/>
+   </node>
+  </node>
+  <node name="r77" type="Router">
+   <node name="if141_r76" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00189"/>
+   </node>
+   <node name="if142_r71" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00094"/>
+   </node>
+   <node name="if147_r72" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00067"/>
+   </node>
+   <node name="if152_r74" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00151"/>
+   </node>
+   <node name="if155_r70" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00169"/>
+   </node>
+  </node>
+  <node name="r78" type="Router">
+   <node name="if143_r76" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00206"/>
+   </node>
+   <node name="if144_r71" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00254"/>
+   </node>
+   <node name="if149_r73" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00186"/>
+   </node>
+   <node name="if229_sub8_r41" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00281"/>
+   </node>
+  </node>
+  <node name="r79" type="Router">
+   <node name="if145_r76" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00058"/>
+   </node>
+   <node name="if146_r70" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00057"/>
+   </node>
+   <node name="if150_r73" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00206"/>
+   </node>
+   <node name="if153_r75" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00035"/>
+   </node>
+   <node name="if157_r71" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00117"/>
+   </node>
+  </node>
+  <node name="r76_r71_139" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00117"/>
+   <ref name="r76" path="..:r76:if139_r71"/>
+   <ref name="r71" path="..:r71:if139_r76"/>
+  </node>
+  <node name="r76_r70_140" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00093"/>
+   <ref name="r76" path="..:r76:if140_r70"/>
+   <ref name="r70" path="..:r70:if140_r76"/>
+  </node>
+  <node name="r77_r76_141" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00189"/>
+   <ref name="r77" path="..:r77:if141_r76"/>
+   <ref name="r76" path="..:r76:if141_r77"/>
+  </node>
+  <node name="r77_r71_142" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00094"/>
+   <ref name="r77" path="..:r77:if142_r71"/>
+   <ref name="r71" path="..:r71:if142_r77"/>
+  </node>
+  <node name="r78_r76_143" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00206"/>
+   <ref name="r78" path="..:r78:if143_r76"/>
+   <ref name="r76" path="..:r76:if143_r78"/>
+  </node>
+  <node name="r78_r71_144" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00254"/>
+   <ref name="r78" path="..:r78:if144_r71"/>
+   <ref name="r71" path="..:r71:if144_r78"/>
+  </node>
+  <node name="r79_r76_145" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00058"/>
+   <ref name="r79" path="..:r79:if145_r76"/>
+   <ref name="r76" path="..:r76:if145_r79"/>
+  </node>
+  <node name="r79_r70_146" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00057"/>
+   <ref name="r79" path="..:r79:if146_r70"/>
+   <ref name="r70" path="..:r70:if146_r79"/>
+  </node>
+  <node name="r72_r77_147" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00067"/>
+   <ref name="r72" path="..:r72:if147_r77"/>
+   <ref name="r77" path="..:r77:if147_r72"/>
+  </node>
+  <node name="r72_r76_148" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00251"/>
+   <ref name="r72" path="..:r72:if148_r76"/>
+   <ref name="r76" path="..:r76:if148_r72"/>
+  </node>
+  <node name="r73_r78_149" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00186"/>
+   <ref name="r73" path="..:r73:if149_r78"/>
+   <ref name="r78" path="..:r78:if149_r73"/>
+  </node>
+  <node name="r73_r79_150" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00206"/>
+   <ref name="r73" path="..:r73:if150_r79"/>
+   <ref name="r79" path="..:r79:if150_r73"/>
+  </node>
+  <node name="r74_r70_151" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00053"/>
+   <ref name="r74" path="..:r74:if151_r70"/>
+   <ref name="r70" path="..:r70:if151_r74"/>
+  </node>
+  <node name="r74_r77_152" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00151"/>
+   <ref name="r74" path="..:r74:if152_r77"/>
+   <ref name="r77" path="..:r77:if152_r74"/>
+  </node>
+  <node name="r75_r79_153" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00035"/>
+   <ref name="r75" path="..:r75:if153_r79"/>
+   <ref name="r79" path="..:r79:if153_r75"/>
+  </node>
+  <node name="r75_r71_154" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00118"/>
+   <ref name="r75" path="..:r75:if154_r71"/>
+   <ref name="r71" path="..:r71:if154_r75"/>
+  </node>
+  <node name="r70_r77_155" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00169"/>
+   <ref name="r70" path="..:r70:if155_r77"/>
+   <ref name="r77" path="..:r77:if155_r70"/>
+  </node>
+  <node name="r70_r75_156" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00079"/>
+   <ref name="r70" path="..:r70:if156_r75"/>
+   <ref name="r75" path="..:r75:if156_r70"/>
+  </node>
+  <node name="r71_r79_157" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00117"/>
+   <ref name="r71" path="..:r71:if157_r79"/>
+   <ref name="r79" path="..:r79:if157_r71"/>
+  </node>
+  <node name="r71_r72_158" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00161"/>
+   <ref name="r71" path="..:r71:if158_r72"/>
+   <ref name="r72" path="..:r72:if158_r71"/>
+  </node>
+ </node>
+ <node name="sub7" type="Net">
+  <node name="routing" type="ShortestPath"/>
+  <node name="r80" type="Router">
+   <node name="if165_r86" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00138"/>
+   </node>
+   <node name="if166_r85" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00209"/>
+   </node>
+   <node name="if224_sub2_r66" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00319"/>
+   </node>
+   <node name="if235_sub1_r32" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00296"/>
+   </node>
+  </node>
+  <node name="r81" type="Router">
+   <node name="if163_r87" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00228"/>
+   </node>
+   <node name="if164_r84" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00293"/>
+   </node>
+   <node name="if169_r82" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0016"/>
+   </node>
+   <node name="if176_r85" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00202"/>
+   </node>
+  </node>
+  <node name="r82" type="Router">
+   <node name="if169_r81" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0016"/>
+   </node>
+   <node name="if170_r85" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00102"/>
+   </node>
+   <node name="if178_r84" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00167"/>
+   </node>
+  </node>
+  <node name="r83" type="Router">
+   <node name="if167_r84" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00103"/>
+   </node>
+   <node name="if168_r86" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00184"/>
+   </node>
+   <node name="if171_r89" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00011"/>
+   </node>
+   <node name="if175_r85" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00268"/>
+   </node>
+  </node>
+  <node name="r84" type="Router">
+   <node name="if159_r87" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00105"/>
+   </node>
+   <node name="if162_r86" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00137"/>
+   </node>
+   <node name="if164_r81" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00293"/>
+   </node>
+   <node name="if167_r83" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00103"/>
+   </node>
+   <node name="if172_r89" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00108"/>
+   </node>
+   <node name="if177_r88" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00237"/>
+   </node>
+   <node name="if178_r82" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00167"/>
+   </node>
+  </node>
+  <node name="r85" type="Router">
+   <node name="if160_r87" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00264"/>
+   </node>
+   <node name="if166_r80" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00209"/>
+   </node>
+   <node name="if170_r82" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00102"/>
+   </node>
+   <node name="if173_r88" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00032"/>
+   </node>
+   <node name="if175_r83" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00268"/>
+   </node>
+   <node name="if176_r81" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00202"/>
+   </node>
+  </node>
+  <node name="r86" type="Router">
+   <node name="if161_r87" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00151"/>
+   </node>
+   <node name="if162_r84" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00137"/>
+   </node>
+   <node name="if165_r80" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00138"/>
+   </node>
+   <node name="if168_r83" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00184"/>
+   </node>
+   <node name="if174_r88" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00113"/>
+   </node>
+  </node>
+  <node name="r87" type="Router">
+   <node name="if159_r84" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00105"/>
+   </node>
+   <node name="if160_r85" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00264"/>
+   </node>
+   <node name="if161_r86" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00151"/>
+   </node>
+   <node name="if163_r81" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00228"/>
+   </node>
+  </node>
+  <node name="r88" type="Router">
+   <node name="if173_r85" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00032"/>
+   </node>
+   <node name="if174_r86" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00113"/>
+   </node>
+   <node name="if177_r84" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00237"/>
+   </node>
+  </node>
+  <node name="r89" type="Router">
+   <node name="if171_r83" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00011"/>
+   </node>
+   <node name="if172_r84" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00108"/>
+   </node>
+   <node name="if228_sub0_r17" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00134"/>
+   </node>
+  </node>
+  <node name="r87_r84_159" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00105"/>
+   <ref name="r87" path="..:r87:if159_r84"/>
+   <ref name="r84" path="..:r84:if159_r87"/>
+  </node>
+  <node name="r87_r85_160" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00264"/>
+   <ref name="r87" path="..:r87:if160_r85"/>
+   <ref name="r85" path="..:r85:if160_r87"/>
+  </node>
+  <node name="r86_r87_161" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00151"/>
+   <ref name="r86" path="..:r86:if161_r87"/>
+   <ref name="r87" path="..:r87:if161_r86"/>
+  </node>
+  <node name="r86_r84_162" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00137"/>
+   <ref name="r86" path="..:r86:if162_r84"/>
+   <ref name="r84" path="..:r84:if162_r86"/>
+  </node>
+  <node name="r81_r87_163" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00228"/>
+   <ref name="r81" path="..:r81:if163_r87"/>
+   <ref name="r87" path="..:r87:if163_r81"/>
+  </node>
+  <node name="r81_r84_164" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00293"/>
+   <ref name="r81" path="..:r81:if164_r84"/>
+   <ref name="r84" path="..:r84:if164_r81"/>
+  </node>
+  <node name="r80_r86_165" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00138"/>
+   <ref name="r80" path="..:r80:if165_r86"/>
+   <ref name="r86" path="..:r86:if165_r80"/>
+  </node>
+  <node name="r80_r85_166" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00209"/>
+   <ref name="r80" path="..:r80:if166_r85"/>
+   <ref name="r85" path="..:r85:if166_r80"/>
+  </node>
+  <node name="r83_r84_167" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00103"/>
+   <ref name="r83" path="..:r83:if167_r84"/>
+   <ref name="r84" path="..:r84:if167_r83"/>
+  </node>
+  <node name="r83_r86_168" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00184"/>
+   <ref name="r83" path="..:r83:if168_r86"/>
+   <ref name="r86" path="..:r86:if168_r83"/>
+  </node>
+  <node name="r82_r81_169" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.0016"/>
+   <ref name="r82" path="..:r82:if169_r81"/>
+   <ref name="r81" path="..:r81:if169_r82"/>
+  </node>
+  <node name="r82_r85_170" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00102"/>
+   <ref name="r82" path="..:r82:if170_r85"/>
+   <ref name="r85" path="..:r85:if170_r82"/>
+  </node>
+  <node name="r89_r83_171" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00011"/>
+   <ref name="r89" path="..:r89:if171_r83"/>
+   <ref name="r83" path="..:r83:if171_r89"/>
+  </node>
+  <node name="r89_r84_172" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00108"/>
+   <ref name="r89" path="..:r89:if172_r84"/>
+   <ref name="r84" path="..:r84:if172_r89"/>
+  </node>
+  <node name="r88_r85_173" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00032"/>
+   <ref name="r88" path="..:r88:if173_r85"/>
+   <ref name="r85" path="..:r85:if173_r88"/>
+  </node>
+  <node name="r88_r86_174" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00113"/>
+   <ref name="r88" path="..:r88:if174_r86"/>
+   <ref name="r86" path="..:r86:if174_r88"/>
+  </node>
+  <node name="r85_r83_175" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00268"/>
+   <ref name="r85" path="..:r85:if175_r83"/>
+   <ref name="r83" path="..:r83:if175_r85"/>
+  </node>
+  <node name="r85_r81_176" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00202"/>
+   <ref name="r85" path="..:r85:if176_r81"/>
+   <ref name="r81" path="..:r81:if176_r85"/>
+  </node>
+  <node name="r84_r88_177" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00237"/>
+   <ref name="r84" path="..:r84:if177_r88"/>
+   <ref name="r88" path="..:r88:if177_r84"/>
+  </node>
+  <node name="r84_r82_178" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00167"/>
+   <ref name="r84" path="..:r84:if178_r82"/>
+   <ref name="r82" path="..:r82:if178_r84"/>
+  </node>
+ </node>
+ <node name="sub9" type="Net">
+  <node name="routing" type="ShortestPath"/>
+  <node name="r90" type="Router">
+   <node name="if193_r95" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00123"/>
+   </node>
+   <node name="if194_r91" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00217"/>
+   </node>
+   <node name="if197_r99" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00248"/>
+   </node>
+  </node>
+  <node name="r91" type="Router">
+   <node name="if191_r99" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00133"/>
+   </node>
+   <node name="if192_r95" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00111"/>
+   </node>
+   <node name="if194_r90" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00217"/>
+   </node>
+   <node name="if196_r98" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00102"/>
+   </node>
+  </node>
+  <node name="r92" type="Router">
+   <node name="if185_r96" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00128"/>
+   </node>
+   <node name="if186_r93" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00236"/>
+   </node>
+   <node name="if187_r95" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00088"/>
+   </node>
+   <node name="if190_r94" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00003"/>
+   </node>
+   <node name="if198_r99" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00121"/>
+   </node>
+  </node>
+  <node name="r93" type="Router">
+   <node name="if183_r99" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00273"/>
+   </node>
+   <node name="if184_r96" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00108"/>
+   </node>
+   <node name="if186_r92" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00236"/>
+   </node>
+  </node>
+  <node name="r94" type="Router">
+   <node name="if189_r99" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00119"/>
+   </node>
+   <node name="if190_r92" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00003"/>
+   </node>
+   <node name="if195_r98" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00279"/>
+   </node>
+  </node>
+  <node name="r95" type="Router">
+   <node name="if187_r92" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00088"/>
+   </node>
+   <node name="if188_r96" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00054"/>
+   </node>
+   <node name="if192_r91" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00111"/>
+   </node>
+   <node name="if193_r90" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00123"/>
+   </node>
+  </node>
+  <node name="r96" type="Router">
+   <node name="if179_r98" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00224"/>
+   </node>
+   <node name="if180_r99" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00184"/>
+   </node>
+   <node name="if181_r97" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00299"/>
+   </node>
+   <node name="if184_r93" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00108"/>
+   </node>
+   <node name="if185_r92" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00128"/>
+   </node>
+   <node name="if188_r95" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00054"/>
+   </node>
+  </node>
+  <node name="r97" type="Router">
+   <node name="if181_r96" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00299"/>
+   </node>
+   <node name="if182_r99" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00288"/>
+   </node>
+   <node name="if219_sub8_r43" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00039"/>
+   </node>
+  </node>
+  <node name="r98" type="Router">
+   <node name="if179_r96" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00224"/>
+   </node>
+   <node name="if195_r94" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00279"/>
+   </node>
+   <node name="if196_r91" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00102"/>
+   </node>
+   <node name="if236_sub1_r33" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00122"/>
+   </node>
+  </node>
+  <node name="r99" type="Router">
+   <node name="if180_r96" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00184"/>
+   </node>
+   <node name="if182_r97" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00288"/>
+   </node>
+   <node name="if183_r93" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00273"/>
+   </node>
+   <node name="if189_r94" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00119"/>
+   </node>
+   <node name="if191_r91" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00133"/>
+   </node>
+   <node name="if197_r90" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00248"/>
+   </node>
+   <node name="if198_r92" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00121"/>
+   </node>
+  </node>
+  <node name="r96_r98_179" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00224"/>
+   <ref name="r96" path="..:r96:if179_r98"/>
+   <ref name="r98" path="..:r98:if179_r96"/>
+  </node>
+  <node name="r96_r99_180" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00184"/>
+   <ref name="r96" path="..:r96:if180_r99"/>
+   <ref name="r99" path="..:r99:if180_r96"/>
+  </node>
+  <node name="r97_r96_181" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00299"/>
+   <ref name="r97" path="..:r97:if181_r96"/>
+   <ref name="r96" path="..:r96:if181_r97"/>
+  </node>
+  <node name="r97_r99_182" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00288"/>
+   <ref name="r97" path="..:r97:if182_r99"/>
+   <ref name="r99" path="..:r99:if182_r97"/>
+  </node>
+  <node name="r93_r99_183" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00273"/>
+   <ref name="r93" path="..:r93:if183_r99"/>
+   <ref name="r99" path="..:r99:if183_r93"/>
+  </node>
+  <node name="r93_r96_184" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00108"/>
+   <ref name="r93" path="..:r93:if184_r96"/>
+   <ref name="r96" path="..:r96:if184_r93"/>
+  </node>
+  <node name="r92_r96_185" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00128"/>
+   <ref name="r92" path="..:r92:if185_r96"/>
+   <ref name="r96" path="..:r96:if185_r92"/>
+  </node>
+  <node name="r92_r93_186" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00236"/>
+   <ref name="r92" path="..:r92:if186_r93"/>
+   <ref name="r93" path="..:r93:if186_r92"/>
+  </node>
+  <node name="r95_r92_187" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00088"/>
+   <ref name="r95" path="..:r95:if187_r92"/>
+   <ref name="r92" path="..:r92:if187_r95"/>
+  </node>
+  <node name="r95_r96_188" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00054"/>
+   <ref name="r95" path="..:r95:if188_r96"/>
+   <ref name="r96" path="..:r96:if188_r95"/>
+  </node>
+  <node name="r94_r99_189" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00119"/>
+   <ref name="r94" path="..:r94:if189_r99"/>
+   <ref name="r99" path="..:r99:if189_r94"/>
+  </node>
+  <node name="r94_r92_190" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00003"/>
+   <ref name="r94" path="..:r94:if190_r92"/>
+   <ref name="r92" path="..:r92:if190_r94"/>
+  </node>
+  <node name="r91_r99_191" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00133"/>
+   <ref name="r91" path="..:r91:if191_r99"/>
+   <ref name="r99" path="..:r99:if191_r91"/>
+  </node>
+  <node name="r91_r95_192" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00111"/>
+   <ref name="r91" path="..:r91:if192_r95"/>
+   <ref name="r95" path="..:r95:if192_r91"/>
+  </node>
+  <node name="r90_r95_193" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00123"/>
+   <ref name="r90" path="..:r90:if193_r95"/>
+   <ref name="r95" path="..:r95:if193_r90"/>
+  </node>
+  <node name="r90_r91_194" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00217"/>
+   <ref name="r90" path="..:r90:if194_r91"/>
+   <ref name="r91" path="..:r91:if194_r90"/>
+  </node>
+  <node name="r98_r94_195" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00279"/>
+   <ref name="r98" path="..:r98:if195_r94"/>
+   <ref name="r94" path="..:r94:if195_r98"/>
+  </node>
+  <node name="r98_r91_196" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00102"/>
+   <ref name="r98" path="..:r98:if196_r91"/>
+   <ref name="r91" path="..:r91:if196_r98"/>
+  </node>
+  <node name="r99_r90_197" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00248"/>
+   <ref name="r99" path="..:r99:if197_r90"/>
+   <ref name="r90" path="..:r90:if197_r99"/>
+  </node>
+  <node name="r99_r92_198" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00121"/>
+   <ref name="r99" path="..:r99:if198_r92"/>
+   <ref name="r92" path="..:r92:if198_r99"/>
+  </node>
+ </node>
+ <node name="sub5" type="Net">
+  <node name="routing" type="ShortestPath"/>
+  <node name="r100" type="Router">
+   <node name="if199_r103" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00161"/>
+   </node>
+   <node name="if200_r102" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00321"/>
+   </node>
+   <node name="if201_r101" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00216"/>
+   </node>
+   <node name="if203_r108" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00067"/>
+   </node>
+   <node name="if205_r109" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00104"/>
+   </node>
+  </node>
+  <node name="r101" type="Router">
+   <node name="if201_r100" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00216"/>
+   </node>
+   <node name="if202_r102" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00214"/>
+   </node>
+   <node name="if206_r109" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00162"/>
+   </node>
+   <node name="if231_sub6_r22" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00247"/>
+   </node>
+  </node>
+  <node name="r102" type="Router">
+   <node name="if200_r100" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00321"/>
+   </node>
+   <node name="if202_r101" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00214"/>
+   </node>
+   <node name="if208_r106" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00159"/>
+   </node>
+   <node name="if212_r104" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00187"/>
+   </node>
+   <node name="if215_r107" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00086"/>
+   </node>
+   <node name="if216_r105" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0026"/>
+   </node>
+  </node>
+  <node name="r103" type="Router">
+   <node name="if199_r100" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00161"/>
+   </node>
+   <node name="if204_r108" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00226"/>
+   </node>
+   <node name="if217_r104" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00143"/>
+   </node>
+   <node name="if218_r109" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00086"/>
+   </node>
+  </node>
+  <node name="r104" type="Router">
+   <node name="if211_r109" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00072"/>
+   </node>
+   <node name="if212_r102" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00187"/>
+   </node>
+   <node name="if217_r103" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00143"/>
+   </node>
+  </node>
+  <node name="r105" type="Router">
+   <node name="if213_r106" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00148"/>
+   </node>
+   <node name="if214_r109" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00082"/>
+   </node>
+   <node name="if216_r102" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.0026"/>
+   </node>
+  </node>
+  <node name="r106" type="Router">
+   <node name="if207_r109" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00074"/>
+   </node>
+   <node name="if208_r102" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00159"/>
+   </node>
+   <node name="if209_r107" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00074"/>
+   </node>
+   <node name="if213_r105" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00148"/>
+   </node>
+  </node>
+  <node name="r107" type="Router">
+   <node name="if209_r106" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00074"/>
+   </node>
+   <node name="if210_r109" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00132"/>
+   </node>
+   <node name="if215_r102" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00086"/>
+   </node>
+  </node>
+  <node name="r108" type="Router">
+   <node name="if203_r100" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00067"/>
+   </node>
+   <node name="if204_r103" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00226"/>
+   </node>
+   <node name="if225_sub0_r13" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00276"/>
+   </node>
+   <node name="if233_sub1_r31" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00015"/>
+   </node>
+  </node>
+  <node name="r109" type="Router">
+   <node name="if205_r100" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00104"/>
+   </node>
+   <node name="if206_r101" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00162"/>
+   </node>
+   <node name="if207_r106" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00074"/>
+   </node>
+   <node name="if210_r107" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00132"/>
+   </node>
+   <node name="if211_r104" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00072"/>
+   </node>
+   <node name="if214_r105" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00082"/>
+   </node>
+   <node name="if218_r103" type="Interface">
+    <attribute name="bit_rate" value="100000000"/>
+    <attribute name="latency" value="0.00086"/>
+   </node>
+  </node>
+  <node name="r100_r103_199" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00161"/>
+   <ref name="r100" path="..:r100:if199_r103"/>
+   <ref name="r103" path="..:r103:if199_r100"/>
+  </node>
+  <node name="r100_r102_200" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00321"/>
+   <ref name="r100" path="..:r100:if200_r102"/>
+   <ref name="r102" path="..:r102:if200_r100"/>
+  </node>
+  <node name="r101_r100_201" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00216"/>
+   <ref name="r101" path="..:r101:if201_r100"/>
+   <ref name="r100" path="..:r100:if201_r101"/>
+  </node>
+  <node name="r101_r102_202" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00214"/>
+   <ref name="r101" path="..:r101:if202_r102"/>
+   <ref name="r102" path="..:r102:if202_r101"/>
+  </node>
+  <node name="r108_r100_203" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00067"/>
+   <ref name="r108" path="..:r108:if203_r100"/>
+   <ref name="r100" path="..:r100:if203_r108"/>
+  </node>
+  <node name="r108_r103_204" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00226"/>
+   <ref name="r108" path="..:r108:if204_r103"/>
+   <ref name="r103" path="..:r103:if204_r108"/>
+  </node>
+  <node name="r109_r100_205" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00104"/>
+   <ref name="r109" path="..:r109:if205_r100"/>
+   <ref name="r100" path="..:r100:if205_r109"/>
+  </node>
+  <node name="r109_r101_206" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00162"/>
+   <ref name="r109" path="..:r109:if206_r101"/>
+   <ref name="r101" path="..:r101:if206_r109"/>
+  </node>
+  <node name="r106_r109_207" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00074"/>
+   <ref name="r106" path="..:r106:if207_r109"/>
+   <ref name="r109" path="..:r109:if207_r106"/>
+  </node>
+  <node name="r106_r102_208" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00159"/>
+   <ref name="r106" path="..:r106:if208_r102"/>
+   <ref name="r102" path="..:r102:if208_r106"/>
+  </node>
+  <node name="r107_r106_209" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00074"/>
+   <ref name="r107" path="..:r107:if209_r106"/>
+   <ref name="r106" path="..:r106:if209_r107"/>
+  </node>
+  <node name="r107_r109_210" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00132"/>
+   <ref name="r107" path="..:r107:if210_r109"/>
+   <ref name="r109" path="..:r109:if210_r107"/>
+  </node>
+  <node name="r104_r109_211" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00072"/>
+   <ref name="r104" path="..:r104:if211_r109"/>
+   <ref name="r109" path="..:r109:if211_r104"/>
+  </node>
+  <node name="r104_r102_212" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00187"/>
+   <ref name="r104" path="..:r104:if212_r102"/>
+   <ref name="r102" path="..:r102:if212_r104"/>
+  </node>
+  <node name="r105_r106_213" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00148"/>
+   <ref name="r105" path="..:r105:if213_r106"/>
+   <ref name="r106" path="..:r106:if213_r105"/>
+  </node>
+  <node name="r105_r109_214" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00082"/>
+   <ref name="r105" path="..:r105:if214_r109"/>
+   <ref name="r109" path="..:r109:if214_r105"/>
+  </node>
+  <node name="r102_r107_215" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00086"/>
+   <ref name="r102" path="..:r102:if215_r107"/>
+   <ref name="r107" path="..:r107:if215_r102"/>
+  </node>
+  <node name="r102_r105_216" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.0026"/>
+   <ref name="r102" path="..:r102:if216_r105"/>
+   <ref name="r105" path="..:r105:if216_r102"/>
+  </node>
+  <node name="r103_r104_217" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00143"/>
+   <ref name="r103" path="..:r103:if217_r104"/>
+   <ref name="r104" path="..:r104:if217_r103"/>
+  </node>
+  <node name="r103_r109_218" type="Link">
+   <attribute name="bandwidth" value="100000000"/>
+   <attribute name="delay" value="0.00086"/>
+   <ref name="r103" path="..:r103:if218_r109"/>
+   <ref name="r109" path="..:r109:if218_r103"/>
+  </node>
+ </node>
+ <node name="sub9_sub8_219" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00039"/>
+  <ref name="sub9" path="..:sub9:r97:if219_sub8_r43"/>
+  <ref name="sub8" path="..:sub8:r43:if219_sub9_r97"/>
+ </node>
+ <node name="sub1_sub0_220" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00113"/>
+  <ref name="sub1" path="..:sub1:r30:if220_sub0_r12"/>
+  <ref name="sub0" path="..:sub0:r12:if220_sub1_r30"/>
+ </node>
+ <node name="sub6_sub4_221" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00237"/>
+  <ref name="sub6" path="..:sub6:r28:if221_sub4_r73"/>
+  <ref name="sub4" path="..:sub4:r73:if221_sub6_r28"/>
+ </node>
+ <node name="sub2_sub0_222" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00249"/>
+  <ref name="sub2" path="..:sub2:r66:if222_sub0_r10"/>
+  <ref name="sub0" path="..:sub0:r10:if222_sub2_r66"/>
+ </node>
+ <node name="sub3_sub0_223" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00264"/>
+  <ref name="sub3" path="..:sub3:r52:if223_sub0_r12"/>
+  <ref name="sub0" path="..:sub0:r12:if223_sub3_r52"/>
+ </node>
+ <node name="sub7_sub2_224" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00319"/>
+  <ref name="sub7" path="..:sub7:r80:if224_sub2_r66"/>
+  <ref name="sub2" path="..:sub2:r66:if224_sub7_r80"/>
+ </node>
+ <node name="sub5_sub0_225" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00276"/>
+  <ref name="sub5" path="..:sub5:r108:if225_sub0_r13"/>
+  <ref name="sub0" path="..:sub0:r13:if225_sub5_r108"/>
+ </node>
+ <node name="sub0_sub6_226" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00158"/>
+  <ref name="sub0" path="..:sub0:r15:if226_sub6_r21"/>
+  <ref name="sub6" path="..:sub6:r21:if226_sub0_r15"/>
+ </node>
+ <node name="sub4_sub2_227" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.0024"/>
+  <ref name="sub4" path="..:sub4:r74:if227_sub2_r63"/>
+  <ref name="sub2" path="..:sub2:r63:if227_sub4_r74"/>
+ </node>
+ <node name="sub0_sub7_228" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00134"/>
+  <ref name="sub0" path="..:sub0:r17:if228_sub7_r89"/>
+  <ref name="sub7" path="..:sub7:r89:if228_sub0_r17"/>
+ </node>
+ <node name="sub8_sub4_229" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00281"/>
+  <ref name="sub8" path="..:sub8:r41:if229_sub4_r78"/>
+  <ref name="sub4" path="..:sub4:r78:if229_sub8_r41"/>
+ </node>
+ <node name="sub3_sub1_230" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.0016"/>
+  <ref name="sub3" path="..:sub3:r59:if230_sub1_r38"/>
+  <ref name="sub1" path="..:sub1:r38:if230_sub3_r59"/>
+ </node>
+ <node name="sub6_sub5_231" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00247"/>
+  <ref name="sub6" path="..:sub6:r22:if231_sub5_r101"/>
+  <ref name="sub5" path="..:sub5:r101:if231_sub6_r22"/>
+ </node>
+ <node name="sub2_sub1_232" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00195"/>
+  <ref name="sub2" path="..:sub2:r61:if232_sub1_r39"/>
+  <ref name="sub1" path="..:sub1:r39:if232_sub2_r61"/>
+ </node>
+ <node name="sub5_sub1_233" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00015"/>
+  <ref name="sub5" path="..:sub5:r108:if233_sub1_r31"/>
+  <ref name="sub1" path="..:sub1:r31:if233_sub5_r108"/>
+ </node>
+ <node name="sub4_sub1_234" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00267"/>
+  <ref name="sub4" path="..:sub4:r72:if234_sub1_r30"/>
+  <ref name="sub1" path="..:sub1:r30:if234_sub4_r72"/>
+ </node>
+ <node name="sub7_sub1_235" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00296"/>
+  <ref name="sub7" path="..:sub7:r80:if235_sub1_r32"/>
+  <ref name="sub1" path="..:sub1:r32:if235_sub7_r80"/>
+ </node>
+ <node name="sub9_sub1_236" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00122"/>
+  <ref name="sub9" path="..:sub9:r98:if236_sub1_r33"/>
+  <ref name="sub1" path="..:sub1:r33:if236_sub9_r98"/>
+ </node>
+ <node name="sub8_sub1_237" type="Link">
+  <attribute name="bandwidth" value="100000000"/>
+  <attribute name="delay" value="0.00082"/>
+  <ref name="sub8" path="..:sub8:r46:if237_sub1_r38"/>
+  <ref name="sub1" path="..:sub1:r38:if237_sub8_r46"/>
+ </node>
+</node>
+</model>

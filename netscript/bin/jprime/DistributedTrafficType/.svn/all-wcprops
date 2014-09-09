@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/DistributedTrafficType
+END
+DistributedTrafficType.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/primex/!svn/ver/1850/trunk/netscript/src/jprime/DistributedTrafficType/DistributedTrafficType.java
+END
+DistributedTrafficTypeReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/primex/!svn/ver/1850/trunk/netscript/src/jprime/DistributedTrafficType/DistributedTrafficTypeReplica.java
+END
+IDistributedTrafficTypeAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/primex/!svn/ver/459/trunk/netscript/src/jprime/DistributedTrafficType/IDistributedTrafficTypeAlias.java
+END
+IDistributedTrafficType.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/primex/!svn/ver/418/trunk/netscript/src/jprime/DistributedTrafficType/IDistributedTrafficType.java
+END
+DistributedTrafficTypeAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/DistributedTrafficType/DistributedTrafficTypeAlias.java
+END
+DistributedTrafficTypeAliasReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/DistributedTrafficType/DistributedTrafficTypeAliasReplica.java
+END

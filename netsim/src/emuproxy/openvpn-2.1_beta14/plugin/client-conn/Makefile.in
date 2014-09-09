@@ -1,0 +1,30 @@
+#
+# Build the OpenVPN client-conn plugin module.
+#
+
+# This directory is where we will look for openvpn-plugin.h
+INCLUDES = -I../..
+
+TARGET = @TARGET@
+CFLAGS = @CFLAGS@
+
+ifeq ($(TARGET), TARGET_DARWIN)
+SONAME = openvpn-client-conn.dynlib
+LFLAGS = -dynamiclib -current_version 1.0.0 -install_name ../../../../$(SONAME)
+else
+SONAME = openvpn-client-conn.so
+CFLAGS += -fPIC
+LFLAGS = -shared -Wl,-soname,$(SONAME)
+endif
+
+$(SONAME): client-conn.o
+	gcc ${CFLAGS} $(LFLAGS) -o $@ $< -lc
+ifeq ($(TARGET), TARGET_DARWIN)
+	ln -sf $(SONAME) openvpn-client-conn.so
+endif
+
+client-conn.o : client-conn.c
+	gcc ${CFLAGS} -c ${INCLUDES} $<
+
+clean :
+	rm -f *.o $(SONAME)

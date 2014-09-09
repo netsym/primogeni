@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/ProtocolSession
+END
+ProtocolSessionAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/ProtocolSession/ProtocolSessionAlias.java
+END
+ProtocolSessionAliasReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/ProtocolSession/ProtocolSessionAliasReplica.java
+END
+ProtocolSession.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/primex/!svn/ver/1850/trunk/netscript/src/jprime/ProtocolSession/ProtocolSession.java
+END
+ProtocolSessionReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/primex/!svn/ver/1850/trunk/netscript/src/jprime/ProtocolSession/ProtocolSessionReplica.java
+END
+IProtocolSessionAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/primex/!svn/ver/459/trunk/netscript/src/jprime/ProtocolSession/IProtocolSessionAlias.java
+END
+IProtocolSession.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/primex/!svn/ver/418/trunk/netscript/src/jprime/ProtocolSession/IProtocolSession.java
+END

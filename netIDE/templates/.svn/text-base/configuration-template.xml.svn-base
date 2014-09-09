@@ -1,0 +1,4 @@
+<prime-config>
+	<num-machines>1</num-machines>
+	<sim-time>30</sim-time>
+</prime-config>

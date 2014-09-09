@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files
+END
+tls-office.conf
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/tls-office.conf
+END
+server.conf
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/server.conf
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/README
+END
+openvpn-startup.sh
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/openvpn-startup.sh
+END
+loopback-server
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/loopback-server
+END
+static-home.conf
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/static-home.conf
+END
+xinetd-server-config
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/xinetd-server-config
+END
+client.conf
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/client.conf
+END
+static-office.conf
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/static-office.conf
+END
+loopback-client
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/loopback-client
+END
+openvpn-shutdown.sh
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/openvpn-shutdown.sh
+END
+xinetd-client-config
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/xinetd-client-config
+END
+home.up
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/home.up
+END
+tls-home.conf
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/tls-home.conf
+END
+office.up
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/office.up
+END
+firewall.sh
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/primex/!svn/ver/531/trunk/netsim/src/emuproxy/openvpn-2.1_beta14/sample-config-files/firewall.sh
+END

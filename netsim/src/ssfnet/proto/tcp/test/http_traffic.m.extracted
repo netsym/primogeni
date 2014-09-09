@@ -1,0 +1,45 @@
+state_configuration {
+	__PRIME__T1__="TCPTraffic";
+	__PRIME__T2__="StaticTrafficType";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__=" TCP_TRAFFIC";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/proto/tcp/test/http_traffic.h";
+
+		shared configurable uint32_t dst_port {
+			type=INT;
+			default_value="80";
+			doc_string="The destination port for an HTTP connection.";
+		};
+		shared configurable uint64_t file_size {
+			type=INT;
+			default_value="1024000";
+			doc_string="The size to request to the server.";
+		};
+		shared configurable bool file_pareto{
+			type=BOOL;
+			default_value="false";
+			doc_string="Whether the file size are modeled by a concatenation of bounded Weibull and Pareto distributions";
+		};
+		shared configurable bool to_emulated {
+			type=BOOL;
+			default_value="false";
+			doc_string="Whether this host will request packets from a simulated or emulated entity.";
+		};
+		shared configurable uint32_t number_of_sessions{
+			type=INT;
+			default_value="1";
+			doc_string="Number of session.";
+		};
+		shared configurable uint32_t connections_per_session{
+			type=INT;
+			default_value="1";
+			doc_string="Number of connections within a session.";
+		};
+		shared configurable float session_timeout{
+			type=INT;
+			default_value="30.0";
+			doc_string="Session timeout in seconds.";
+		};
+	};

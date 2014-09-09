@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repos/primex/!svn/ver/1793/trunk/netscript/src/provisioner_scripts
+END
+make_call.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/primex/!svn/ver/1769/trunk/netscript/src/provisioner_scripts/make_call.py
+END
+get_issuer.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/primex/!svn/ver/1623/trunk/netscript/src/provisioner_scripts/get_issuer.py
+END

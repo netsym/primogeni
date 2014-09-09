@@ -1,0 +1,12 @@
+
+state_configuration {
+	__PRIME__T1__="TAPEmulation";
+	__PRIME__T2__="EmulationProtocol";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__="";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/os/emu/tap_emu_proto.h";
+
+	__PRIME__EMPTY__;
+	};

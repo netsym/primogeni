@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repos/primex/!svn/ver/1012/trunk/netscript/old/test/jmetis
+END
+graph.metis
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/primex/!svn/ver/1012/trunk/netscript/old/test/jmetis/graph.metis
+END
+simple.metis
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/primex/!svn/ver/1012/trunk/netscript/old/test/jmetis/simple.metis
+END
+simple_10.metis
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/primex/!svn/ver/1012/trunk/netscript/old/test/jmetis/simple_10.metis
+END
+simple_11.metis
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/primex/!svn/ver/1012/trunk/netscript/old/test/jmetis/simple_11.metis
+END

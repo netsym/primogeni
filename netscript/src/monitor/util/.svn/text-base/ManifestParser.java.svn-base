@@ -1,0 +1,634 @@
+package monitor.util;
+
+/*
+ * Copyright (c) 2011 Florida International University.
+ *
+ * Permission is hereby granted, free of charge, to any individual or
+ * institution obtaining a copy of this software and associated
+ * documentation files (the "software"), to use, copy, modify, and
+ * distribute without restriction.
+ *
+ * The software is provided "as is", without warranty of any kind,
+ * express or implied, including but not limited to the warranties of
+ * merchantability, fitness for a particular purpose and
+ * non-infringement.  In no event shall Florida International
+ * University be liable for any claim, damages or other liability,
+ * whether in an action of contract, tort or otherwise, arising from,
+ * out of or in connection with the software or the use or other
+ * dealings in the software.
+ *
+ * This software is developed and maintained by
+ *
+ *   Modeling and Networking Systems Research Group
+ *   School of Computing and Information Sciences
+ *   Florida International University
+ *   Miami, Florida 33199, USA
+ *
+ * You can find our research at http://www.primessf.net/.
+ */
+
+import java.io.File;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+/**
+ * @author Nathanael Van Vorst
+ * 
+ * a class to parse a protogeni rspec
+ * 
+ * for now we only care about links and nodes.
+ * later we may support other types of information.
+ *
+ */
+public class ManifestParser {
+	public static interface ManifestNode {
+		abstract boolean errors(ArrayList<String> errs);
+		abstract String getString(String tab);
+		abstract String getURN();
+	}
+	public static class User implements ManifestNode {
+		public final String username;
+		public final String authentication;
+		public User(Node n) {
+			if(n.getNodeName().compareTo("login")!=0) {
+				throw new RuntimeException("invalid node type '"+n.getNodeName()+"'. Expected 'login'.");
+			}
+			String auth = null, user=null;
+			NamedNodeMap node_attrs = n.getAttributes();
+			if(null != node_attrs) {
+				for(int i=0;i<node_attrs.getLength();i++) {
+					Node a = node_attrs.item(i);
+					if(a.getNodeName().equals("username")) user=a.getNodeValue();
+					else if(a.getNodeName().equals("authentication")) auth=a.getNodeValue();
+				}
+			}
+			this.username = user==null?"":user;
+			this.authentication = auth==null?"":auth;
+		}
+		public boolean errors(ArrayList<String> errs) {
+			if(0 == username.length() || 0 == authentication.length()) {
+				if(0 == username.length())
+					errs.add("Expected attribute 'username' to be present and have a length greater than 0!");
+				if(0 == authentication.length())
+					errs.add("Expected attribute 'authentication' to be present and have a length greater than 0!");
+				return true;
+			}
+			return false;
+		}
+		public String getURN() {
+			return username;
+		}
+		public String toString() {
+			return getString("");
+		}
+		public String getString(String tab) {
+			return tab+"<User username=\""+username+"\" authentication=\" "+authentication+"\" />";
+		}
+	}
+	public static class NIC implements ManifestNode {
+		public final String virtual_id;
+		public final String component_id;
+		public final String urn;
+		public NIC_ref ref = null; //will be set during resolution phase
+		public GeniNode parent;
+		public NIC(Node n, GeniNode parent) {
+			if(n.getNodeName().compareTo("interface")!=0) {
+				throw new RuntimeException("invalid node type '"+n.getNodeName()+"'. Expected 'interface'.");
+			}
+			this.parent=parent;
+			String vid = null, cid=null;
+			NamedNodeMap node_attrs = n.getAttributes();
+			if(null != node_attrs) {
+				for(int i=0;i<node_attrs.getLength();i++) {
+					Node a = node_attrs.item(i);
+					if(a.getNodeName().equals("component_id")) cid=a.getNodeValue();
+					else if(a.getNodeName().equals("virtual_id")) vid=a.getNodeValue();
+				}
+			}
+			this.virtual_id = vid==null?"":vid;
+			if(cid == null) throw new RuntimeException("invalid nic");
+			this.component_id = cid;
+			this.urn = parent.getURN().replace("+node+", "+interface+")+":"+this.component_id;
+		}
+		public boolean errors(ArrayList<String> errs) {
+			if(0 == virtual_id.length() || 0 == component_id.length()) {
+				if(0 == virtual_id.length())
+					errs.add("Expected attribute 'virtual_id' to be present and have a length greater than 0!");
+				if(0 == component_id.length())
+					errs.add("Expected attribute 'component_id' to be present and have a length greater than 0!");
+				return true;
+			}
+			return false;
+		}
+		public String getURN() {
+			return urn;
+		}
+		public String toString() {
+			return getString("");
+		}
+		public String getString(String tab) {
+			String mac = (ref == null)?null:ref.attrs.get("MAC");
+			if(mac ==null)mac = "unknown";
+			String ip = (ref == null)?null:ref.attrs.get("IP");
+			if(ip ==null)ip = "unknown";
+			
+			return tab+"<NIC> virtual_id=\""+virtual_id+"\" component_id=\""+component_id+"\" urn="+urn+" ip=\""+ip+"\", mac=\""+mac+"\" />";
+		}
+	}
+	public static class NIC_ref implements ManifestNode {
+		public final static String[] attr_names={
+			"virtual_node_id",
+			"virtual_interface_id",
+			"component_urn",
+			"sliver_uuid",
+			"sliver_urn",
+			"IP",
+			"MAC"};
+		public final HashMap<String,String> attrs;
+		public final GeniNodeLink parent;
+		public NIC nic=null;
+		public NIC_ref(Node n, GeniNodeLink parent) {
+			if(n.getNodeName().compareTo("interface_ref")!=0) {
+				throw new RuntimeException("invalid node type '"+n.getNodeName()+"'. Expected 'interface_ref'.");
+			}
+			this.parent=parent;
+			this.attrs = new HashMap<String, String>();
+			NamedNodeMap node_attrs = n.getAttributes();
+			if(null != node_attrs) {
+				for(int i=0;i<node_attrs.getLength();i++) {
+					Node a = node_attrs.item(i);
+					attrs.put(a.getNodeName(),a.getNodeValue());
+				}
+			}
+		}
+		public boolean errors(ArrayList<String> errs) {
+			boolean rv = false;
+			for(String s:attr_names) {
+				if(!attrs.containsKey(s)) {
+					errs.add("Expected attribute '"+s+"' to be present!");
+					rv=true;
+				}
+				else if(attrs.get(s).length()==0) {
+					errs.add("Expected attribute '"+s+"' to be present and have a length greater than 0!");
+					rv=true;
+				}
+			}
+			return rv;
+		}
+		public String getURN() {
+			if(attrs.containsKey("component_urn"))
+				return attrs.get("component_urn");
+			return "[component_urn not found]";
+		}
+		public String toString() {
+			return getString("");
+		}
+		public String getString(String tab) {
+			String rv =tab+"<NIC_ref ";
+			for(Entry<String, String> s : attrs.entrySet()) {
+				rv+=" "+s.getKey()+"=\""+s.getValue()+"\"";
+			}
+			String vid=parent.attrs.get("virtual_id");
+			if(vid==null)vid="<unknown>";
+			rv+=" link_vid=\""+vid+"\"";
+			rv+=" resolved="+(nic==null?"false":"true");
+			return rv+" />";
+		}
+	}
+	public static class GeniNode implements ManifestNode {
+		public final static String[] attr_names={
+			"virtual_id",
+			"component_manager_uuid",
+			"virtualization_type",
+			"virtualization_subtype",
+			"component_urn",
+			"component_uuid",
+			"component_manager_urn",
+			"hostname",
+			"sliver_uuid",
+			"sliver_urn",
+			"disk_image"};
+		public final HashMap<String,String> attrs;
+		public final List<NIC> nics;
+		public final List<User> users;
+		/*
+		 Example node to parse
+		<node virtual_id="node3-lan1"
+			component_manager_uuid="28a10955-aa00-11dd-ad1f-001143e453fe"
+			virtualization_type="emulab-vnode"
+			startup_command=""
+			exclusive="1"
+			virtualization_subtype="raw"
+			component_urn="urn:publicid:IDN+emulab.net+node+pc355"
+			component_uuid="dea00a1d-773e-102b-8eb4-001143e453fe"
+			component_manager_urn="urn:publicid:IDN+emulab.net+authority+cm"
+			hostname="pc355.emulab.net"
+			sshdport="22"
+			sliver_uuid="3804bfd7-d8cc-11e0-b47a-001143e453fe"
+			sliver_urn="urn:publicid:IDN+emulab.net+sliver+54384">
+			
+			<interface  .../>
+			<interface  .../>
+			<interface  .../>
+			<interface  .../>
+			<disk_image name="urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU10-64-STD"/>
+			<services>
+				<login authentication="ssh-keys" hostname="pc355.emulab.net" port="22" username="vanvorst"/>
+			</services>
+		</node>
+		*/
+		public GeniNode(Node n) {
+			if(n.getNodeName().compareTo("node")!=0) {
+				throw new RuntimeException("invalid node type '"+n.getNodeName()+"'. Expected 'node'.");
+			}
+			this.attrs=new HashMap<String, String>();
+			this.nics = new ArrayList<ManifestParser.NIC>();
+			this.users = new  ArrayList<ManifestParser.User>();
+			NamedNodeMap node_attrs = n.getAttributes();
+			if(null != node_attrs) {
+				for(int i=0;i<node_attrs.getLength();i++) {
+					Node a = node_attrs.item(i);
+					attrs.put(a.getNodeName(),a.getNodeValue());
+				}
+			}
+			NodeList nodeLst = n.getChildNodes();
+			if(nodeLst.getLength()>0) {
+				for (int i = 0; i < nodeLst.getLength(); i++) {
+					n = nodeLst.item(i);
+					if(n == null || n.getNodeName()==null) continue;
+					if(n.getNodeName().compareTo("interface")==0) {
+						try {
+							nics.add(new NIC(n, this));
+						}
+						catch(Exception e) {}
+					}
+					else if(n.getNodeName().compareTo("disk_image")==0) {
+						node_attrs = n.getAttributes();
+						if(null != node_attrs) {
+							for(int j=0;j<node_attrs.getLength();j++) {
+								Node a = node_attrs.item(j);
+								if(a.getNodeName().compareTo("name")==0) {
+									attrs.put("disk_image",a.getNodeValue());
+								}
+							}
+						}
+					}
+					else if(n.getNodeName().compareTo("services")==0) {
+						NodeList nodeLst1 = n.getChildNodes();
+						if(nodeLst1.getLength()>0) {
+							for (int j = 0; j < nodeLst1.getLength(); j++) {
+								Node n1 = nodeLst.item(j);
+								if(n1 == null || n1.getNodeName()==null) continue;
+								if(n1.getNodeName().compareTo("login")==0) {
+									users.add(new User(n1));
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		public String getURN() {
+			if(attrs.containsKey("component_urn"))
+				return attrs.get("component_urn");
+			return "[component_urn not found]";
+		}
+		public boolean errors(ArrayList<String> all_errs) {
+			boolean rv = false;
+			boolean added_p=false;
+			ArrayList<String> errs=new ArrayList<String>();
+			for(String s:attr_names) {
+				if(!attrs.containsKey(s)) {
+					if(s.compareTo("disk_image") == 0) {
+						errs.add("\tExpected child node 'disk_image' with attribute 'name' to be present!\n");
+					}
+					else {
+						if(!added_p) { added_p=true;}
+						errs.add("\tExpected attribute '"+s+"' to be present!\n");
+					}
+					rv=true;
+				}
+			}
+			for(NIC nic:nics) {
+				ArrayList<String> errs1 = new ArrayList<String>();
+				rv = rv || nic.errors(errs1);
+				if(errs1.size()>0) {
+					errs.add("\tErrors NIC '"+nic.getURN()+"'\n");
+					for(String s:errs1) {
+						errs.add("\t\t"+s+"\n");
+					}
+				}
+			}
+			for(User user:users) {
+				ArrayList<String> errs1 = new ArrayList<String>();
+				rv = rv || user.errors(errs1);
+				if(errs1.size()>0) {
+					errs.add("\tErrors User '"+user.getURN()+"'\n");
+					for(String s:errs1) {
+						errs.add("\t\t"+s+"\n");
+					}
+				}
+			}
+			if(errs.size()>0) {
+				all_errs.add("\tErrors Parsing node element!");				
+				all_errs.addAll(errs);			
+			}
+			return rv;
+		}
+		public String toString() {
+			return getString("");
+		}
+		public String getString(String tab) {
+			String rv =tab+"<GeniNode";
+			for(Entry<String, String> s : attrs.entrySet()) {
+				rv+="\n"+tab+"\t "+s.getKey()+"=\""+s.getValue()+"\"";
+			}
+			rv+=" >\n";
+			for(NIC nic : nics) {
+				rv+=nic.getString(tab+"\t")+"\n";
+			}
+			for(User user : users) {
+				rv+=user.getString(tab+"\t")+"\n";
+			}
+			rv+=tab+"</GeniNode>";
+			return rv;
+		}
+	}
+	
+	public static class GeniNodeLink implements ManifestNode {
+		public final static String[] attr_names={
+			"virtual_id",
+			"sliver_uuid",
+			"sliver_urn",
+			"vlantag"};
+		public final HashMap<String,String> attrs;
+		public final List<NIC_ref> refs;
+		/*
+		<link
+			virtual_id="lan1-prime"
+			sliver_uuid="3fc79e4a-d8cc-11e0-b47a-001143e453fe"
+			sliver_urn="urn:publicid:IDN+emulab.net+sliver+54396"
+			vlantag="565">
+				<interface_ref ... />
+				<interface_ref ... />
+				<interface_ref ... />
+		</link>
+		 */
+		public GeniNodeLink(Node n) {
+			if(n.getNodeName().compareTo("link")!=0) {
+				throw new RuntimeException("invalid node type '"+n.getNodeName()+"'. Expected 'link'.");
+			}
+			this.attrs=new HashMap<String, String>();
+			this.refs = new ArrayList<ManifestParser.NIC_ref>();
+			NamedNodeMap node_attrs = n.getAttributes();
+			if(null != node_attrs) {
+				for(int i=0;i<node_attrs.getLength();i++) {
+					Node a = node_attrs.item(i);
+					attrs.put(a.getNodeName(),a.getNodeValue());
+				}
+			}
+			NodeList nodeLst = n.getChildNodes();
+			if(nodeLst.getLength()>0) {
+				for (int i = 0; i < nodeLst.getLength(); i++) {
+					n = nodeLst.item(i);
+					if(n == null || n.getNodeName()==null) continue;
+					if(n.getNodeName().compareTo("interface_ref")==0) {
+						refs.add(new NIC_ref(n, this));
+					}
+				}
+			}
+		}
+		public String getURN() {
+			if(attrs.containsKey("virtual_id"))
+				return attrs.get("virtual_id");
+			return "[virtual_id not found]";
+		}
+		public boolean errors(ArrayList<String> errs) {
+			boolean rv = false;
+			for(String s:attr_names) {
+				if(!attrs.containsKey(s)) {
+					errs.add("Expected attribute '"+s+"' to be present!");
+					rv=true;
+				}
+			}
+			if(refs.size()==0) {
+				errs.add("Expected at least one network interface reference. Found 0!");
+				rv=true;
+			}
+			else {
+				for(NIC_ref ref:refs) {
+					ArrayList<String> errs1 = new ArrayList<String>();
+					rv = rv || ref.errors(errs1);
+					if(errs1.size()>0) {
+						errs.add("Errors NIC_ref '"+ref.getURN()+"'");
+						for(String s:errs1) {
+							errs.add("\t"+s);
+						}
+					}
+				}
+			}
+			return rv;
+		}
+		public String toString() {
+			return getString("");
+		}
+		public String getString(String tab) {
+			String rv =tab+"<GeniNodeLink";
+			for(Entry<String, String> s : attrs.entrySet()) {
+				rv+="\n"+tab+"\t"+s.getKey()+"=\""+s.getValue()+"\"";
+			}
+			rv+=" >\n";
+			for(NIC_ref nic : refs) {
+				rv+=nic.getString(tab+"\t")+"\n";
+			}
+			rv+=tab+"</GeniNodeLink>";
+			return rv;
+		}
+
+	}
+	HashMap<String, ArrayList<NIC>> nics = new HashMap<String, ArrayList<ManifestParser.NIC>>();
+	private final ArrayList<NIC_ref> refs = new ArrayList<ManifestParser.NIC_ref>();
+	private final ArrayList<ManifestNode> skipped = new ArrayList<ManifestParser.ManifestNode>();
+	private final ArrayList<GeniNode> compute_nodes = new ArrayList<ManifestParser.GeniNode>();
+	private final ArrayList<GeniNodeLink> compute_node_links = new ArrayList<ManifestParser.GeniNodeLink>();
+	private final ArrayList<String> errs = new ArrayList<String>();
+	public ManifestParser(List<File> files) {
+		if(files.size()==0) {
+			throw new RuntimeException("There must be at least one manifest to parse. Found 0!");
+		}
+		for(File f : files) {
+			parseFile(f);
+		}
+		resolve();
+	}
+	public ManifestParser(File file) {
+		parseFile(file);
+		resolve();
+	}
+	private void parseFile(File file) {
+		Document doc = null;
+		try {
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			doc = db.parse(file);
+			doc.getDocumentElement().normalize();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		NodeList nodeLst = doc.getChildNodes();
+		ArrayList<Node> cs = new ArrayList<Node>();
+		ArrayList<Node> ls = new ArrayList<Node>();
+		for (int i = 0; i < nodeLst.getLength(); i++) {
+			Node n = nodeLst.item(i);
+			if(n == null || n.getNodeName()==null) continue;
+			if(n.getNodeName().compareTo("rspec")==0) {
+				NodeList nodeLst2 = n.getChildNodes();
+				for (int j = 0; j < nodeLst2.getLength(); j++) {
+					Node nn = nodeLst2.item(j);
+					if(nn == null || nn.getNodeName()==null) continue;
+					if(nn.getNodeName().compareTo("node")==0) {
+						cs.add(nn);
+					}
+					else if(nn.getNodeName().compareTo("link")==0) {
+						ls.add(nn);
+					}
+				}
+			}
+			if(n.getNodeName().compareTo("node")==0) {
+				cs.add(n);
+			}
+			else if(n.getNodeName().compareTo("link")==0) {
+				ls.add(n);
+			}
+		}
+		for(Node n : cs) {
+			GeniNode c = new GeniNode(n);
+			ArrayList<String> errs1 = new ArrayList<String>();
+			if(c.errors(errs1)) {
+				errs.add("Errors GeniNode '"+c.getURN()+"'");
+				for(String e:errs1) {
+					errs.add("\t"+e);
+				}
+				skipped.add(c);
+			}
+			else {
+				compute_nodes.add(c);
+				for(NIC nic : c.nics) {
+					String curn = nic.getURN();
+					ArrayList<NIC> nl = null;
+					if(!nics.containsKey(curn)) {
+						nl = new ArrayList<ManifestParser.NIC>();
+						nics.put(curn,nl);
+					}
+					else {
+						nl = nics.get(curn);
+					}
+					nl.add(nic);
+				}
+			}
+		}
+		for(Node n : ls) {
+			GeniNodeLink l = new GeniNodeLink(n);
+			ArrayList<String> errs1 = new ArrayList<String>();
+			if(l.errors(errs1)) {
+				errs.add("Errors GeniNodeLink '"+l.getURN()+"'");
+				for(String e:errs1) {
+					errs.add("\t"+e);
+				}
+				skipped.add(l);
+			}
+			else {
+				compute_node_links.add(l);
+				refs.addAll(l.refs);
+			}
+		}
+	}
+	
+	private void resolve() {
+		for(NIC_ref ref : refs) {
+			if(nics.containsKey(ref.getURN())) {
+				for(NIC nic : nics.get(ref.getURN())) {
+					nic.ref=ref;
+					ref.nic=nic;
+				}
+			}
+			else {
+				errs.add("Unable to find interface '"+ref.getURN()+"' referred to by:");
+				errs.add(ref.getString("\t"));
+			}
+		}
+		
+		for(Entry<String, ArrayList<NIC>> e : nics.entrySet()) {
+			if(e.getValue().size()==1) {
+				for(NIC nic : e.getValue()) {
+					if(nic.ref == null) {
+						errs.add("Could not find reference for interface '"+nic.getURN()+"':");
+						errs.add(nic.getString("\t"));
+					}
+				}
+			}
+			else {
+				errs.add("The component URN "+e.getKey()+" mapped to "+e.getValue().size()+" interfaces! Interfaces:");
+				for(NIC nic : e.getValue()) {
+					errs.add(nic.getString("\t"));
+				}
+			}
+		}
+	}
+	
+	public ArrayList<String> getParseErrors() {
+		return errs;
+	}
+	
+	public ArrayList<GeniNode> getNodes() {
+		return compute_nodes;
+	}
+	
+	public ArrayList<GeniNodeLink> getLinks() {
+		return compute_node_links;
+	}
+
+	public void print(PrintStream out) {
+		if(skipped.size()>0) {
+			out.println("Skipped:");
+			for(ManifestNode n: skipped) {
+				out.println(n.getString("\t"));
+			}
+		}
+		out.println("Nodes:");
+		for(GeniNode c: compute_nodes) {
+			out.println(c.getString("\t"));
+		}
+		out.println("Links:");
+		for(GeniNodeLink l: compute_node_links) {
+			out.println(l.getString("\t"));
+		}
+	}
+	
+	public static final void main(String args[]) {
+		ArrayList<File> files = new ArrayList<File>();
+		for(int i=0;i<args.length;i++) {
+			System.out.println("Adding '"+args[i]+"' to the parse set.");
+			files.add(new File(args[i]));
+		}
+		ManifestParser p = new ManifestParser(files);
+		if(p.getParseErrors().size()>0) {
+			System.out.println("WARNING: There were problems parsing 1 or more xml elements in the manifest(s). The errors follow.");
+			for(String e : p.getParseErrors()) {
+				System.out.println("\t"+e);
+			}
+		}
+		p.print(System.out);
+	}
+}

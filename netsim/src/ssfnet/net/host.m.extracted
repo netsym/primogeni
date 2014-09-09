@@ -1,0 +1,85 @@
+state_configuration {
+	__PRIME__T1__="Host";
+	__PRIME__T2__="ProtocolGraph";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__="";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/net/host.h";
+
+		shared configurable int host_seed {
+			type=INT;
+			default_value = "0" ;
+			doc_string = "host's seed";
+		};
+
+		shared configurable float time_skew {
+			type=FLOAT;
+			default_value = 1.0;
+			doc_string = "host's time skew (ratio of host time over absolute time)";
+		};
+
+		shared configurable VirtualTime time_offset {
+			type= OBJECT; // could be set as default if not primitive type
+			default_value= "0.0";
+			doc_string= "host's time offset (relative to absolute time zero)";
+		};
+
+		configurable float traffic_intensity {
+			type= FLOAT;
+			default_value="0";
+			doc_string="max  [ for each nic: (bits_out/bit_rate) ]";
+			visualized=true;
+			statistic=true;
+		};
+
+		/** A map from IP address to interface. */
+		IP2IFACE_MAP ip2iface;
+
+		/** Caching the default IP address of this host. */
+		IPAddress default_ip = IPAddress::IPADDR_INVALID;
+
+		/** Timer queue for managing all timers. */
+		HostTimerQueue* tmr_queue = 0;
+
+		/** Mapping from timer handle to timer data. */
+		SSFNET_INT2PTR_MAP* tmr_map = 0;
+
+		/** The timer handle that has been used last time. */
+		int tmr_handle = 0;
+
+		/**
+		 * The random number generator, per host. Each host is expected to
+		 * maintain a unique random stream, seeded initially as a function
+		 * of the host's default ip address (or UID).
+		 */
+		prime::rng::Random* rng = 0;
+
+		/**
+		 * If it's not zero, this is the random seed used by protocol
+		 * sessions to initialize their random streams; if it's zero, all
+		 * protocol sessions will shared the same random stream (rng).
+		 */
+		int rng_seed = 0;
+
+		PortalIfaceTable* portals = 0;
+		
+		child_type<Interface> nics {
+			min_count = 0;
+			max_count = 0; // infinity
+			is_aliased = false; // by default it is false
+			doc_string = "network interfaces on this host";
+		};
+	};
+
+state_configuration {
+	__PRIME__T1__="Router";
+	__PRIME__T2__="Host";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__="";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/net/host.h";
+
+	__PRIME__EMPTY__;
+	};

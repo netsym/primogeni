@@ -1,0 +1,15 @@
+state_configuration {
+	__PRIME__T1__="UDPMaster";
+	__PRIME__T2__="ProtocolSession";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__="convert_protonum_to_typeid(SSFNET_PROTOCOL_TYPE_UDP)";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/proto/udp/udp_master.h";
+
+		shared configurable int max_datagram_size {
+			type=INT;
+			default_value="1470";
+			doc_string="maximum datagram size.";
+		};
+	};

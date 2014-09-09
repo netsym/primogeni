@@ -1,0 +1,16 @@
+K 10
+svn:ignore
+V 118
+.pydevproject
+*.tlv
+build
+dist
+drop_tables.sh
+primex.properties
+primex.script
+bin
+primex*.tmp
+primex
+build.properties
+
+END

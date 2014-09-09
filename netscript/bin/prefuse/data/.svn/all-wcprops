@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/repos/primex/!svn/ver/2220/trunk/netscript/src/prefuse/data
+END
+Tree.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/Tree.java
+END
+CascadedTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/CascadedTable.java
+END
+Schema.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/Schema.java
+END
+ITable.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/ITable.java
+END
+Graph.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/Graph.java
+END
+Edge.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/Edge.java
+END
+Node.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/Node.java
+END
+DataReadOnlyException.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/DataReadOnlyException.java
+END
+Table.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/Table.java
+END
+Tuple.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/Tuple.java
+END
+DataTypeException.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/DataTypeException.java
+END
+SpanningTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/SpanningTree.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/package.html
+END

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/query
+END
+ObjectRangeModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/query/ObjectRangeModel.java
+END
+DynamicQueryBinding.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/query/DynamicQueryBinding.java
+END
+NumberRangeModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/query/NumberRangeModel.java
+END
+SearchQueryBinding.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/query/SearchQueryBinding.java
+END
+ListModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/query/ListModel.java
+END
+ListQueryBinding.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/query/ListQueryBinding.java
+END
+RangeQueryBinding.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/query/RangeQueryBinding.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/query/package.html
+END

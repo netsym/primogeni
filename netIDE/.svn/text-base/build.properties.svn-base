@@ -1,0 +1,23 @@
+output.. = bin/
+bin.includes = plugin.xml,\
+               .,\
+               META-INF/,\
+               splash.bmp,\
+               icons/,\
+               templates/,\
+               schema/,\
+               build.properties,\
+               plugin_customization.ini,\
+               lib/jython.jar,\
+               lib/dom4j-1.6.1.jar,\
+               lib/derby.jar,\
+               lib/jaxen-1.1-beta-6.jar,\
+               lib/jdom.jar,\
+               lib/lucene-1.4.3.jar,\
+               FIU_logo.png,\
+               lib/Minaorg21.jar,\
+               lib/LiveGraph.2.0.beta01.Complete.jar,\
+               lib/SoftNetConsultUtils.2.01.slim.jar,\
+               jprime/
+jars.compile.order = .
+source.. = src/

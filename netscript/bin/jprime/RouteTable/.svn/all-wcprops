@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/primex/!svn/ver/2375/trunk/netscript/src/jprime/RouteTable
+END
+IRouteTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/1933/trunk/netscript/src/jprime/RouteTable/IRouteTable.java
+END
+RouteTableAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/1933/trunk/netscript/src/jprime/RouteTable/RouteTableAlias.java
+END
+RouteTableAliasReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/primex/!svn/ver/1933/trunk/netscript/src/jprime/RouteTable/RouteTableAliasReplica.java
+END
+RouteTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/primex/!svn/ver/2375/trunk/netscript/src/jprime/RouteTable/RouteTable.java
+END
+RouteTableReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/primex/!svn/ver/2375/trunk/netscript/src/jprime/RouteTable/RouteTableReplica.java
+END
+IRouteTableAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/1933/trunk/netscript/src/jprime/RouteTable/IRouteTableAlias.java
+END

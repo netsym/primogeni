@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repos/primex/!svn/ver/2505/trunk/netIDE/src/slingshot/visualization
+END
+ForceDirectedLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/primex/!svn/ver/2306/trunk/netIDE/src/slingshot/visualization/ForceDirectedLayout.java
+END
+OverlayWizard.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/visualization/OverlayWizard.java
+END
+AggregateLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/visualization/AggregateLayout.java
+END
+NetworkView.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/primex/!svn/ver/2404/trunk/netIDE/src/slingshot/visualization/NetworkView.java
+END
+AggregateDragControl.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/2313/trunk/netIDE/src/slingshot/visualization/AggregateDragControl.java
+END
+TableAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/visualization/TableAdapter.java
+END
+VizVisitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/2473/trunk/netIDE/src/slingshot/visualization/VizVisitor.java
+END
+WrappedNet.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/2505/trunk/netIDE/src/slingshot/visualization/WrappedNet.java
+END
+AddOverlay.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/visualization/AddOverlay.java
+END
+ResetRowVisitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/visualization/ResetRowVisitor.java
+END
+PortalNetwork.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/2477/trunk/netIDE/src/slingshot/visualization/PortalNetwork.java
+END
+LiveGraphManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/visualization/LiveGraphManager.java
+END
+LabelLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/visualization/LabelLayout.java
+END

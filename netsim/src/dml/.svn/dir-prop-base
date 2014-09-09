@@ -1,0 +1,14 @@
+K 10
+svn:ignore
+V 77
+*.oo
+*.o
+*.a
+dml-lex.cc
+dml-syntax.cc
+dml-syntax.h
+Makefile
+*.dml.o
+*.dml.oo
+
+END

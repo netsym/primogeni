@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repos/primex/!svn/ver/1216/trunk/topology/brite/src/brite/importer
+END
+BriteImport.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/1216/trunk/topology/brite/src/brite/importer/BriteImport.java
+END
+GTImport.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/primex/!svn/ver/1216/trunk/topology/brite/src/brite/importer/GTImport.java
+END
+NLANRImport.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/1216/trunk/topology/brite/src/brite/importer/NLANRImport.java
+END
+ImportConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/primex/!svn/ver/1216/trunk/topology/brite/src/brite/importer/ImportConstants.java
+END
+InetImport.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/primex/!svn/ver/1216/trunk/topology/brite/src/brite/importer/InetImport.java
+END
+GTTSImport.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/primex/!svn/ver/1216/trunk/topology/brite/src/brite/importer/GTTSImport.java
+END
+r10-0.alt
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repos/primex/!svn/ver/1216/trunk/topology/brite/src/brite/importer/r10-0.alt
+END

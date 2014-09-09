@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/primex/!svn/ver/2318/trunk/netIDE/src/slingshot/wizards/creation
+END
+SlingshotNewFolderWizard.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/wizards/creation/SlingshotNewFolderWizard.java
+END
+SlingshotNewFileWizard.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/wizards/creation/SlingshotNewFileWizard.java
+END
+WizardNewFolderCreationPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/primex/!svn/ver/2318/trunk/netIDE/src/slingshot/wizards/creation/WizardNewFolderCreationPage.java
+END
+SlingshotNewProjectWizard.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/wizards/creation/SlingshotNewProjectWizard.java
+END
+WizardNewFileCreationPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/primex/!svn/ver/2318/trunk/netIDE/src/slingshot/wizards/creation/WizardNewFileCreationPage.java
+END

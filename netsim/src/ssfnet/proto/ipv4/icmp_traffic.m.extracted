@@ -1,0 +1,43 @@
+state_configuration {
+	__PRIME__T1__="ICMPTraffic";
+	__PRIME__T2__="StaticTrafficType";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__=" GENERIC_ICMPv4_TRAFFIC";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/proto/ipv4/icmp_traffic.h";
+
+			shared configurable SSFNET_STRING version {
+				type=STRING;
+				default_value="4";
+				doc_string="The version of ICMP protocol.";
+			};
+		};
+state_configuration {
+	__PRIME__T1__="PingTraffic";
+	__PRIME__T2__="ICMPTraffic";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__=" ICMPv4_PING_TRAFFIC";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/proto/ipv4/icmp_traffic.h";
+
+		//XXX, SSFNET_CONFIG_PROPERTY_DECL(UNamePatternList, srcs)
+		shared configurable uint32_t payload_size {
+			type=INT;
+			default_value="56";
+			doc_string="The number of bytes in the payload to be sent (default: 56).";
+		};
+
+		shared configurable uint64_t count {
+			type=INT;
+			default_value="1";
+			doc_string="The number of requests to send (default: 1).";
+		};
+
+		shared configurable float rtt {
+			type=FLOAT;
+			default_value="0";
+			doc_string="The rtt calculated by the ping traffic";
+		};
+	};

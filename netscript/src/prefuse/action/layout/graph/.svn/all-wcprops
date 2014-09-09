@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/primex/!svn/ver/528/trunk/netscript/src/prefuse/action/layout/graph
+END
+ForceDirectedLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/primex/!svn/ver/528/trunk/netscript/src/prefuse/action/layout/graph/ForceDirectedLayout.java
+END
+FruchtermanReingoldLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/primex/!svn/ver/528/trunk/netscript/src/prefuse/action/layout/graph/FruchtermanReingoldLayout.java
+END
+NodeLinkTreeLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/primex/!svn/ver/528/trunk/netscript/src/prefuse/action/layout/graph/NodeLinkTreeLayout.java
+END
+BalloonTreeLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/primex/!svn/ver/528/trunk/netscript/src/prefuse/action/layout/graph/BalloonTreeLayout.java
+END
+SquarifiedTreeMapLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/primex/!svn/ver/528/trunk/netscript/src/prefuse/action/layout/graph/SquarifiedTreeMapLayout.java
+END
+RadialTreeLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/primex/!svn/ver/528/trunk/netscript/src/prefuse/action/layout/graph/RadialTreeLayout.java
+END
+TreeLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/primex/!svn/ver/528/trunk/netscript/src/prefuse/action/layout/graph/TreeLayout.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/528/trunk/netscript/src/prefuse/action/layout/graph/package.html
+END

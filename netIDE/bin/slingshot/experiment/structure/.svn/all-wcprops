@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/experiment/structure
+END
+SlingshotExperimentElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/experiment/structure/SlingshotExperimentElement.java
+END
+SlingshotExperimentParent.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/experiment/structure/SlingshotExperimentParent.java
+END
+SlingshotExperimentFolder.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/experiment/structure/SlingshotExperimentFolder.java
+END
+ExperimentRunsFolderGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/experiment/structure/ExperimentRunsFolderGenerator.java
+END
+SlingshotExperimentFile.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/experiment/structure/SlingshotExperimentFile.java
+END
+SlingshotExperimentRunFolder.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/experiment/structure/SlingshotExperimentRunFolder.java
+END
+ISlingshotExperimentElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/primex/!svn/ver/2228/trunk/netIDE/src/slingshot/experiment/structure/ISlingshotExperimentElement.java
+END

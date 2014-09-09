@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/primex/!svn/ver/2240/trunk/topology/brite
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repos/primex/!svn/ver/1217/trunk/topology/brite/.classpath
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repos/primex/!svn/ver/1214/trunk/topology/brite/.project
+END
+make_seed_file.sh
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repos/primex/!svn/ver/1218/trunk/topology/brite/make_seed_file.sh
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/primex/!svn/ver/1224/trunk/topology/brite/build.xml
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repos/primex/!svn/ver/1987/trunk/netsim/src/libpcap/packaging/old
+END
+doit
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/primex/!svn/ver/1987/trunk/netsim/src/libpcap/packaging/old/doit
+END
+pcap.spec.IN
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/primex/!svn/ver/1987/trunk/netsim/src/libpcap/packaging/old/pcap.spec.IN
+END
+check-files
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/primex/!svn/ver/1987/trunk/netsim/src/libpcap/packaging/old/check-files
+END

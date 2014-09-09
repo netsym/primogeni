@@ -1,0 +1,21 @@
+#! /bin/sh
+
+# This script is used to bootstrap PRIMEX. It's especially useful when
+# the source tree has just been checked out from the SVN server.
+
+echo 'bootstrapping primex...'
+
+rm -rf `find . -name autom4te.cache -print`
+rm -f aclocal.m4 acinclude.m4 configure Makefile
+
+: ${ACLOCAL=aclocal}
+: ${AUTOCONF=autoconf}
+: ${AUTOHEADER=autoheader}
+
+acfiles="primex.m4"
+for file in $acfiles; do
+  cat $file >> ./acinclude.m4
+done
+$ACLOCAL
+$AUTOCONF
+$AUTOHEADER

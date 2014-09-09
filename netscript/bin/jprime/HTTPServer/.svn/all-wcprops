@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/HTTPServer
+END
+IHTTPServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/primex/!svn/ver/848/trunk/netscript/src/jprime/HTTPServer/IHTTPServer.java
+END
+HTTPServerAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/HTTPServer/HTTPServerAlias.java
+END
+HTTPServerAliasReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/primex/!svn/ver/1946/trunk/netscript/src/jprime/HTTPServer/HTTPServerAliasReplica.java
+END
+HTTPServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/primex/!svn/ver/1850/trunk/netscript/src/jprime/HTTPServer/HTTPServer.java
+END
+HTTPServerReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/primex/!svn/ver/1850/trunk/netscript/src/jprime/HTTPServer/HTTPServerReplica.java
+END
+IHTTPServerAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/848/trunk/netscript/src/jprime/HTTPServer/IHTTPServerAlias.java
+END

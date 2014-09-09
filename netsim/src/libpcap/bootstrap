@@ -1,0 +1,131 @@
+#!/bin/sh
+
+# This is where I keep the versioning information.  It is transfered to files
+# in this hierarchy.  The REVISION file contains the year, month, and date of
+# the tcpdump.org distribution.  The REVISION variable below is associated with
+# the revision component of autoconf versioning information.
+
+CURRENT=0
+REVISION=9	# this is not the contents of the file REVISION
+AGE=2		# this version is backward compatible with 0.7
+x=.8
+VERSION=$CURRENT.$REVISION${x}
+# This kludge makes install generate the version found on recent debian systems
+RMAJOR=0
+RMINOR=9
+RREVISION=8
+
+echo $VERSION > .VERSION
+if test ! -f VERSION; then touch VERSION; fi
+if diff .VERSION VERSION ; then
+  : # clean as a whistle
+else
+  echo Changing VERSION `cat VERSION` to `cat .VERSION`
+  mv .VERSION VERSION
+fi
+rm -f .VERSION
+if test ! -f beenthere; then
+  ls -l /usr/lib/libpcap* | grep -- '->' | sed -e 's/^.*\/usr\/lib\///' -e 's/ -.*//' | while read older; do echo ln -s /usr/lib/libpcap-0.9.8 $older; done > beenthere
+fi
+
+REV=`cat REVISION`
+cp configure.ac configure.ac.bak
+sed < configure.ac.bak > configure.ac \
+-e 's/AM_INIT_AUTOMAKE(libpcap,.*)/AM_INIT_AUTOMAKE(libpcap,'"$VERSION.$REV"')/'
+diff configure.ac.bak configure.ac
+
+cp Makefile.am Makefile.am.bak
+sed < Makefile.am.bak > Makefile.am \
+  -e 's/^CURRENT.*=.*/CURRENT		= '$CURRENT'/' \
+  -e 's/^REVISION.*=.*/REVISION		= '$REVISION'/' \
+  -e 's/^AGE.*=.*/AGE			= '$AGE'/' \
+  -e 's/^RMAJOR.*=.*/RMAJOR		= '$RMAJOR'/' \
+  -e 's/^RMINOR.*=.*/RMINOR		= '$RMINOR'/' \
+  -e 's/^RREVISION.*=.*/RREVISION	= '$RREVISION'/'
+
+[ -f configure.in ] && mv configure.in configure.inx
+[ -f acconfig.h ] && mv acconfig.h acconfig.hx
+
+CONFIG=config
+
+echo "Hopefully, you have installed: libtool automake autoconf flex bison"
+echo "If you have problems, rm -rf config and re-issue the bootstrap program"
+echo -n "Ok to proceed?[N/y] "; read N
+if test "$N" != "y"; then
+  cat <<EOF
+
+  bootstrap canceled.  When ready re-issue the bootstrap command and
+  answer with a lower case 'y'.
+
+EOF
+  exit 1
+fi
+rm -f config.h.in
+if [ ! -d $CONFIG ]; then
+  mkdir $CONFIG
+  libtoolize
+fi
+
+aclocal -I config
+err=$?
+if test $err != 0; then
+  echo aclocal, wtf! >&2
+  exit 1
+fi
+autoheader
+err=$?
+if test $err != 0; then
+  echo autoheader, wtf! >&2
+  exit 1
+fi
+automake --gnu --add-missing 
+err=$?
+if test $err != 0; then
+  echo automake, wtf! >&2
+  exit 1
+fi
+if grep datarootdir Makefile.in >&2; then
+:
+else
+   echo "automake did not create datarootdir, forcing inclusion in Makefile.in" >&2
+   cp Makefile.in .in
+   sed < .in > Makefile.in \
+   -e '/^prefix = @prefix@/a\datarootdir = @datarootdir@'
+fi
+autoconf
+err=$?
+if test $err != 0; then
+  echo autoconf, wtf! >&2
+  exit 1
+fi
+if test -f .warrantee; then echo Check out file .warrantee; exit 0; fi
+cat <<EOF > .warrantee
+
+Bootstrap complete.  It's time to run configure.  If you are just messing
+around then:
+
+  ./configure
+  make clean
+  make
+
+is sufficient.  A static library will be found in file "libpcap.a".
+
+If you want to build libpcap as a shared library, then:
+
+  ./configure --enable-shared
+  make clean
+  make
+
+You will find the shared library in the .libs directory.
+
+Finally, if you want to install the library in /usr/lib, then:
+
+  ./configure --prefix=/usr --enable-shared
+  make clean
+  make install
+  ldconfig
+
+Good luck.  And remember, there is no warrantee.  You are basically on 
+your own.  Check out README.ring for possible help.
+EOF
+cat .warrantee

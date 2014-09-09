@@ -1,0 +1,51 @@
+state_configuration {
+	__PRIME__T1__="Link";
+	__PRIME__T2__="BaseEntity";
+	__PRIME__T1_TPL__="";
+	__PRIME__T2_TPL__="";
+	__PRIME__TYPEID__="";
+	__PRIME__ALIAS__="";
+	__PRIME__FILENAME__="/home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/net/link.h";
+
+		shared configurable float delay  {
+			type= FLOAT;
+			default_value="0.001";
+			doc_string="link delay";
+			visualized=true;
+		};
+		shared configurable float bandwidth {
+			type= FLOAT;
+			default_value="1e8";
+			doc_string="link bandwidth";
+			visualized=true;
+		};
+		shared configurable int8_t ip_prefix_len {
+			type= INT;
+			default_value="-1";
+			doc_string="The n in W.X.Y.Z/n";
+		};
+		configurable IPPrefix ip_prefix {
+			type= OBJECT;
+			default_value="0.0.0.0/0";
+			doc_string="ip prefix of this Link";
+		};
+
+		/**
+		 * each community has a different view of links via a linkinfo.
+		 * This is a map from community id to its linkinfo of this link
+		 */
+		LinkInfo::Map com_id2link_info;
+
+		/** A map from IP address to interface. */
+		IP2IFACE_MAP ip2iface;
+
+		/** A map from UID to interface. */
+		MAC2IFACE_MAP mac2iface;
+
+		child_type<BaseInterface> attachments {
+			min_count = 0;
+			max_count = 0; // infinity
+			is_aliased = true; // by default it is false
+			doc_string = "network interfaces attached to this link";
+		};
+	};

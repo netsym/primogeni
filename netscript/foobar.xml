@@ -1,0 +1,800 @@
+<?xml version="1.0" ?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance" xsi:noNamespaceSchemaLocation="primex.xsd">
+	<node name="topnet" type="Net" >
+		<attribute name="sub_edge_ifaces" value="[[13388, 13413], [8, 31], [13386, 13413], [10, 31], [45, 74], [13384, 13413], [49, 74], [47, 74], [26723, 26752], [26725, 26752], [26727, 26752], [26731, 26752]]" symbol="false" />
+		<!-- RoutingSphere name=RoutingSphere_4 numRoutes=44  -->
+		<node name="group_0" type="Net" >
+			<attribute name="sub_edge_ifaces" value="[[43, 72], [45, 72], [47, 72], [49, 72], [51, 72], [13382, 13411], [13384, 13411], [13386, 13411], [13388, 13411], [13390, 13411], [26721, 26750], [26723, 26750], [26725, 26750], [26727, 26750], [26729, 26750]]" symbol="false" />
+			<!-- RoutingSphere name=RoutingSphere_8 numRoutes=24  -->
+			<node name="group_router" type="Router" >
+				<node name="next_net" type="Interface" >
+				</node>
+				<node name="next_router" type="Interface" >
+				</node>
+				<node name="prev_router" type="Interface" >
+				</node>
+			</node>
+			<node name="campus_0" type="Net" >
+				<attribute name="sub_edge_ifaces" value="[[306, 331], [308, 331], [281, 302], [279, 302], [14, 43], [16, 43], [18, 43], [20, 43], [22, 43], [348, 373], [375, 400], [7965, 7992], [7936, 7963]]" symbol="false" />
+				<!-- RoutingSphere name=RoutingSphere_13 numRoutes=81  -->
+				<node name="net01" type="Net" >
+					<attribute name="sub_edge_ifaces" value="[[70, 95], [10, 41], [45, 68], [12, 41], [14, 41], [16, 41], [18, 41], [20, 41], [115, 136]]" symbol="false" />
+					<!-- RoutingSphere name=RoutingSphere_17 numRoutes=55  -->
+					<node name="net0" type="Net" >
+						<!-- RoutingSphere name=RoutingSphere_21 numRoutes=13  -->
+						<node name="r0" type="Router" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if1" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if2" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if3" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if4" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if5" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if6" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if7" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+						</node>
+						<node name="r1" type="Router" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if1" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if2" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+						</node>
+						<node name="r2" type="Router" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if1" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if2" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+						</node>
+						<node name="r0_r1" type="Link" >
+							<attribute name="delay" value="0.004999999888241291" symbol="false" />
+							<ref name="InterfaceAlias_42" path="..:r0:if1" />
+							<ref name="InterfaceAlias_43" path="..:r1:if2" />
+						</node>
+						<node name="r1_r2" type="Link" >
+							<attribute name="delay" value="0.004999999888241291" symbol="false" />
+							<ref name="InterfaceAlias_45" path="..:r1:if0" />
+							<ref name="InterfaceAlias_46" path="..:r2:if1" />
+						</node>
+						<node name="r0_r2" type="Link" >
+							<attribute name="delay" value="0.004999999888241291" symbol="false" />
+							<ref name="InterfaceAlias_48" path="..:r0:if0" />
+							<ref name="InterfaceAlias_49" path="..:r2:if2" />
+						</node>
+						<node name="20" type="ShortestPath" />
+					</node>
+					<node name="net1" type="Net" >
+						<!-- RoutingSphere name=RoutingSphere_51 numRoutes=15  -->
+						<node name="r0" type="Router" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if1" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if2" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if3" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+						</node>
+						<node name="r1" type="Router" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if1" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if2" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+						</node>
+						<node name="h2" type="Host" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="TCPMaster_65" type="TCPMaster" >
+								<attribute name="sndWndSize" value="512" symbol="false" />
+								<attribute name="rcvWndSize" value="512" symbol="false" />
+								<attribute name="mss" value="1000" symbol="false" />
+								<attribute name="iss" value="10000" symbol="false" />
+							</node>
+							<node name="HTTPServer_66" type="HTTPServer" >
+							</node>
+							<node name="UDPMaster_67" type="UDPMaster" >
+								<attribute name="max_datagram_size" value="10000" symbol="false" />
+							</node>
+						</node>
+						<node name="h3" type="Host" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="TCPMaster_70" type="TCPMaster" >
+								<attribute name="sndWndSize" value="512" symbol="false" />
+								<attribute name="rcvWndSize" value="512" symbol="false" />
+								<attribute name="mss" value="1000" symbol="false" />
+								<attribute name="iss" value="10000" symbol="false" />
+							</node>
+							<node name="HTTPServer_71" type="HTTPServer" >
+							</node>
+							<node name="UDPMaster_72" type="UDPMaster" >
+								<attribute name="max_datagram_size" value="10000" symbol="false" />
+							</node>
+						</node>
+						<node name="h4" type="Host" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="TCPMaster_75" type="TCPMaster" >
+								<attribute name="sndWndSize" value="512" symbol="false" />
+								<attribute name="rcvWndSize" value="512" symbol="false" />
+								<attribute name="mss" value="1000" symbol="false" />
+								<attribute name="iss" value="10000" symbol="false" />
+							</node>
+							<node name="HTTPServer_76" type="HTTPServer" >
+							</node>
+							<node name="UDPMaster_77" type="UDPMaster" >
+								<attribute name="max_datagram_size" value="10000" symbol="false" />
+							</node>
+						</node>
+						<node name="h5" type="Host" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="2.0E9" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="TCPMaster_80" type="TCPMaster" >
+								<attribute name="sndWndSize" value="512" symbol="false" />
+								<attribute name="rcvWndSize" value="512" symbol="false" />
+								<attribute name="mss" value="1000" symbol="false" />
+								<attribute name="iss" value="10000" symbol="false" />
+							</node>
+							<node name="HTTPServer_81" type="HTTPServer" >
+							</node>
+							<node name="UDPMaster_82" type="UDPMaster" >
+								<attribute name="max_datagram_size" value="10000" symbol="false" />
+							</node>
+						</node>
+						<node name="r0_r1" type="Link" >
+							<attribute name="delay" value="0.0010000000474974513" symbol="false" />
+							<ref name="InterfaceAlias_84" path="..:r0:if2" />
+							<ref name="InterfaceAlias_85" path="..:r1:if0" />
+						</node>
+						<node name="r0_h2" type="Link" >
+							<attribute name="delay" value="0.0010000000474974513" symbol="false" />
+							<ref name="InterfaceAlias_87" path="..:r0:if0" />
+							<ref name="InterfaceAlias_88" path="..:h2:if0" />
+						</node>
+						<node name="r0_h3" type="Link" >
+							<attribute name="delay" value="0.0010000000474974513" symbol="false" />
+							<ref name="InterfaceAlias_90" path="..:r0:if1" />
+							<ref name="InterfaceAlias_91" path="..:h3:if0" />
+						</node>
+						<node name="r1_h4" type="Link" >
+							<attribute name="delay" value="0.0010000000474974513" symbol="false" />
+							<ref name="InterfaceAlias_93" path="..:r1:if1" />
+							<ref name="InterfaceAlias_94" path="..:h4:if0" />
+						</node>
+						<node name="r1_h5" type="Link" >
+							<attribute name="delay" value="0.0010000000474974513" symbol="false" />
+							<ref name="InterfaceAlias_96" path="..:r1:if2" />
+							<ref name="InterfaceAlias_97" path="..:h5:if0" />
+						</node>
+						<node name="50" type="ShortestPath" />
+					</node>
+					<node name="r4" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="2.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="2.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if3" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r5" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="2.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if3" type="Interface" >
+							<attribute name="bit_rate" value="2.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r4_r5" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_109" path="..:r4:if1" />
+						<ref name="InterfaceAlias_110" path="..:r5:if3" />
+					</node>
+					<node name="net0_r4" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_112" path="..:net0:r0:if2" />
+						<ref name="InterfaceAlias_113" path="..:r4:if0" />
+					</node>
+					<node name="net0_r5" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_115" path="..:net0:r1:if1" />
+						<ref name="InterfaceAlias_116" path="..:r5:if0" />
+					</node>
+					<node name="net0_net1" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_118" path="..:net0:r2:if0" />
+						<ref name="InterfaceAlias_119" path="..:net1:r0:if3" />
+					</node>
+					<node name="16" type="ShortestPath" />
+				</node>
+				<node name="net2" type="Net" >
+					<attribute name="sub_edge_ifaces" value="[[220, 249], [1273, 1302], [2326, 2355], [3379, 3408], [4432, 4461], [5485, 5514], [6538, 6567]]" symbol="false" />
+					<!-- RoutingSphere name=RoutingSphere_121 numRoutes=114  -->
+					<node name="r0" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r1" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r2" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if3" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r3" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if3" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r4" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r5" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r6" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if3" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r0_r1" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_155" path="..:r0:if1" />
+						<ref name="InterfaceAlias_156" path="..:r1:if2" />
+					</node>
+					<node name="r0_r2" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_158" path="..:r0:if2" />
+						<ref name="InterfaceAlias_159" path="..:r2:if0" />
+					</node>
+					<node name="r2_r3" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_161" path="..:r2:if1" />
+						<ref name="InterfaceAlias_162" path="..:r3:if3" />
+					</node>
+					<node name="r2_r4" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_164" path="..:r2:if2" />
+						<ref name="InterfaceAlias_165" path="..:r4:if0" />
+					</node>
+					<node name="r1_r3" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_167" path="..:r1:if1" />
+						<ref name="InterfaceAlias_168" path="..:r3:if0" />
+					</node>
+					<node name="r3_r5" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_170" path="..:r3:if2" />
+						<ref name="InterfaceAlias_171" path="..:r5:if0" />
+					</node>
+					<node name="r5_r6" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_173" path="..:r5:if2" />
+						<ref name="InterfaceAlias_174" path="..:r6:if0" />
+					</node>
+					<node name="lan0" type="Net" >
+						<!-- RoutingSphere name=RoutingSphere_176 numRoutes=126  -->
+						<node name="r0" type="Router" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="1.0E8" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="if3" type="Interface" >
+							</node>
+							<node name="if4" type="Interface" >
+							</node>
+							<node name="if5" type="Interface" >
+							</node>
+							<node name="if6" type="Interface" >
+							</node>
+						</node>
+						<node name="h1" type="Host" >
+							<node name="if0" type="Interface" >
+								<attribute name="bit_rate" value="1.0E8" symbol="false" />
+								<attribute name="latency" value="0.0" symbol="false" />
+							</node>
+							<node name="TCPMaster_187" type="TCPMaster" >
+								<attribute name="sndWndSize" value="512" symbol="false" />
+								<attribute name="rcvWndSize" value="512" symbol="false" />
+								<attribute name="mss" value="1000" symbol="false" />
+								<attribute name="iss" value="10000" symbol="false" />
+							</node>
+							<node name="UDPMaster_188" type="UDPMaster" >
+								<attribute name="max_datagram_size" value="10000" symbol="false" />
+							</node>
+						</node>
+						<replica name="h2" path="h1" />
+						<replica name="h3" path="h1" />
+						<replica name="h4" path="h1" />
+						<replica name="h5" path="h1" />
+						<replica name="h6" path="h1" />
+						<replica name="h7" path="h1" />
+						<replica name="h8" path="h1" />
+						<replica name="h9" path="h1" />
+						<replica name="h10" path="h1" />
+						<replica name="h11" path="h1" />
+						<replica name="h12" path="h1" />
+						<replica name="h13" path="h1" />
+						<replica name="h14" path="h1" />
+						<replica name="h15" path="h1" />
+						<replica name="h16" path="h1" />
+						<replica name="h17" path="h1" />
+						<replica name="h18" path="h1" />
+						<replica name="h19" path="h1" />
+						<replica name="h20" path="h1" />
+						<replica name="h21" path="h1" />
+						<replica name="h22" path="h1" />
+						<replica name="h23" path="h1" />
+						<replica name="h24" path="h1" />
+						<replica name="h25" path="h1" />
+						<replica name="h26" path="h1" />
+						<replica name="h27" path="h1" />
+						<replica name="h28" path="h1" />
+						<replica name="h29" path="h1" />
+						<replica name="h30" path="h1" />
+						<replica name="h31" path="h1" />
+						<replica name="h32" path="h1" />
+						<replica name="h33" path="h1" />
+						<replica name="h34" path="h1" />
+						<replica name="h35" path="h1" />
+						<replica name="h36" path="h1" />
+						<replica name="h37" path="h1" />
+						<replica name="h38" path="h1" />
+						<replica name="h39" path="h1" />
+						<replica name="h40" path="h1" />
+						<replica name="h41" path="h1" />
+						<replica name="h42" path="h1" />
+						<node name="l1" type="Link" >
+							<attribute name="delay" value="0.0010000000474974513" symbol="false" />
+							<ref name="InterfaceAlias_354" path="..:r0:if3" />
+							<ref name="InterfaceAlias_355" path="..:h1:if0" />
+							<ref name="InterfaceAlias_356" path="..:h2:if0" />
+							<ref name="InterfaceAlias_357" path="..:h3:if0" />
+							<ref name="InterfaceAlias_358" path="..:h4:if0" />
+							<ref name="InterfaceAlias_359" path="..:h5:if0" />
+							<ref name="InterfaceAlias_360" path="..:h6:if0" />
+							<ref name="InterfaceAlias_361" path="..:h7:if0" />
+							<ref name="InterfaceAlias_362" path="..:h8:if0" />
+							<ref name="InterfaceAlias_363" path="..:h9:if0" />
+							<ref name="InterfaceAlias_364" path="..:h10:if0" />
+						</node>
+						<node name="l2" type="Link" >
+							<attribute name="delay" value="0.0010000000474974513" symbol="false" />
+							<ref name="InterfaceAlias_366" path="..:r0:if4" />
+							<ref name="InterfaceAlias_367" path="..:h11:if0" />
+							<ref name="InterfaceAlias_368" path="..:h12:if0" />
+							<ref name="InterfaceAlias_369" path="..:h13:if0" />
+							<ref name="InterfaceAlias_370" path="..:h14:if0" />
+							<ref name="InterfaceAlias_371" path="..:h15:if0" />
+							<ref name="InterfaceAlias_372" path="..:h16:if0" />
+							<ref name="InterfaceAlias_373" path="..:h17:if0" />
+							<ref name="InterfaceAlias_374" path="..:h18:if0" />
+							<ref name="InterfaceAlias_375" path="..:h19:if0" />
+							<ref name="InterfaceAlias_376" path="..:h20:if0" />
+						</node>
+						<node name="l3" type="Link" >
+							<attribute name="delay" value="0.0010000000474974513" symbol="false" />
+							<ref name="InterfaceAlias_378" path="..:r0:if5" />
+							<ref name="InterfaceAlias_379" path="..:h21:if0" />
+							<ref name="InterfaceAlias_380" path="..:h22:if0" />
+							<ref name="InterfaceAlias_381" path="..:h23:if0" />
+							<ref name="InterfaceAlias_382" path="..:h24:if0" />
+							<ref name="InterfaceAlias_383" path="..:h25:if0" />
+							<ref name="InterfaceAlias_384" path="..:h26:if0" />
+							<ref name="InterfaceAlias_385" path="..:h27:if0" />
+							<ref name="InterfaceAlias_386" path="..:h28:if0" />
+							<ref name="InterfaceAlias_387" path="..:h29:if0" />
+							<ref name="InterfaceAlias_388" path="..:h30:if0" />
+						</node>
+						<node name="l4" type="Link" >
+							<attribute name="delay" value="0.0010000000474974513" symbol="false" />
+							<ref name="InterfaceAlias_390" path="..:r0:if6" />
+							<ref name="InterfaceAlias_391" path="..:h31:if0" />
+							<ref name="InterfaceAlias_392" path="..:h32:if0" />
+							<ref name="InterfaceAlias_393" path="..:h33:if0" />
+							<ref name="InterfaceAlias_394" path="..:h34:if0" />
+							<ref name="InterfaceAlias_395" path="..:h35:if0" />
+							<ref name="InterfaceAlias_396" path="..:h36:if0" />
+							<ref name="InterfaceAlias_397" path="..:h37:if0" />
+							<ref name="InterfaceAlias_398" path="..:h38:if0" />
+							<ref name="InterfaceAlias_399" path="..:h39:if0" />
+							<ref name="InterfaceAlias_400" path="..:h40:if0" />
+							<ref name="InterfaceAlias_401" path="..:h41:if0" />
+							<ref name="InterfaceAlias_402" path="..:h42:if0" />
+						</node>
+						<node name="175" type="ShortestPath" />
+					</node>
+					<node name="lan0_r2" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_404" path="..:lan0:r0:if0" />
+						<ref name="InterfaceAlias_405" path="..:r2:if3" />
+					</node>
+					<replica name="lan1" path="lan0" />
+					<node name="lan1_r4" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_634" path="..:lan1:r0:if0" />
+						<ref name="InterfaceAlias_635" path="..:r4:if1" />
+					</node>
+					<replica name="lan2" path="lan0" />
+					<node name="lan2_r3" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_864" path="..:lan2:r0:if0" />
+						<ref name="InterfaceAlias_865" path="..:r3:if1" />
+					</node>
+					<replica name="lan3" path="lan0" />
+					<node name="lan3_r5" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_1094" path="..:lan3:r0:if0" />
+						<ref name="InterfaceAlias_1095" path="..:r5:if1" />
+					</node>
+					<replica name="lan4" path="lan0" />
+					<node name="lan4_r6" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_1324" path="..:lan4:r0:if0" />
+						<ref name="InterfaceAlias_1325" path="..:r6:if3" />
+					</node>
+					<replica name="lan5" path="lan0" />
+					<node name="lan5_r6" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_1554" path="..:lan5:r0:if0" />
+						<ref name="InterfaceAlias_1555" path="..:r6:if2" />
+					</node>
+					<replica name="lan6" path="lan0" />
+					<node name="lan6_r6" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_1784" path="..:lan6:r0:if0" />
+						<ref name="InterfaceAlias_1785" path="..:r6:if1" />
+					</node>
+					<node name="120" type="ShortestPath" />
+				</node>
+				<node name="net3" type="Net" >
+					<attribute name="sub_edge_ifaces" value="[[132, 161], [1185, 1214], [2238, 2267], [3291, 3320], [4344, 4373]]" symbol="false" />
+					<!-- RoutingSphere name=RoutingSphere_1787 numRoutes=52  -->
+					<node name="r0" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if3" type="Interface" >
+						</node>
+					</node>
+					<node name="r1" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if3" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r2" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r3" type="Router" >
+						<node name="if0" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if1" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if2" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+						<node name="if3" type="Interface" >
+							<attribute name="bit_rate" value="1.0E9" symbol="false" />
+							<attribute name="latency" value="0.0" symbol="false" />
+						</node>
+					</node>
+					<node name="r0_r1" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_1810" path="..:r0:if1" />
+						<ref name="InterfaceAlias_1811" path="..:r1:if3" />
+					</node>
+					<node name="r1_r2" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_1813" path="..:r1:if2" />
+						<ref name="InterfaceAlias_1814" path="..:r2:if0" />
+					</node>
+					<node name="r2_r3" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_1816" path="..:r2:if1" />
+						<ref name="InterfaceAlias_1817" path="..:r3:if3" />
+					</node>
+					<node name="r1_r3" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_1819" path="..:r1:if1" />
+						<ref name="InterfaceAlias_1820" path="..:r3:if0" />
+					</node>
+					<replica name="lan0" path="..:net2:lan0" />
+					<node name="lan0_r0" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_2049" path="..:lan0:r0:if0" />
+						<ref name="InterfaceAlias_2050" path="..:r0:if3" />
+					</node>
+					<replica name="lan1" path="..:net2:lan0" />
+					<node name="lan1_r0" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_2279" path="..:lan1:r0:if0" />
+						<ref name="InterfaceAlias_2280" path="..:r0:if2" />
+					</node>
+					<replica name="lan2" path="..:net2:lan0" />
+					<node name="lan2_r2" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_2509" path="..:lan2:r0:if0" />
+						<ref name="InterfaceAlias_2510" path="..:r2:if2" />
+					</node>
+					<replica name="lan3" path="..:net2:lan0" />
+					<node name="lan3_r3" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_2739" path="..:lan3:r0:if0" />
+						<ref name="InterfaceAlias_2740" path="..:r3:if2" />
+					</node>
+					<replica name="lan4" path="..:net2:lan0" />
+					<node name="lan4_r3" type="Link" >
+						<attribute name="delay" value="0.004999999888241291" symbol="false" />
+						<ref name="InterfaceAlias_2969" path="..:lan4:r0:if0" />
+						<ref name="InterfaceAlias_2970" path="..:r3:if1" />
+					</node>
+					<node name="1786" type="ShortestPath" />
+				</node>
+				<node name="r4_net2_1" type="Link" >
+					<attribute name="delay" value="0.004999999888241291" symbol="false" />
+					<ref name="InterfaceAlias_2972" path="..:net01:r4:if2" />
+					<ref name="InterfaceAlias_2973" path="..:net2:r1:if0" />
+				</node>
+				<node name="r4_net2_2" type="Link" >
+					<attribute name="delay" value="0.004999999888241291" symbol="false" />
+					<ref name="InterfaceAlias_2975" path="..:net01:r4:if3" />
+					<ref name="InterfaceAlias_2976" path="..:net2:r0:if0" />
+				</node>
+				<node name="r5_net3_1" type="Link" >
+					<attribute name="delay" value="0.004999999888241291" symbol="false" />
+					<ref name="InterfaceAlias_2978" path="..:net01:r5:if2" />
+					<ref name="InterfaceAlias_2979" path="..:net3:r0:if0" />
+				</node>
+				<node name="r5_net3_2" type="Link" >
+					<attribute name="delay" value="0.004999999888241291" symbol="false" />
+					<ref name="InterfaceAlias_2981" path="..:net01:r5:if1" />
+					<ref name="InterfaceAlias_2982" path="..:net3:r1:if0" />
+				</node>
+				<node name="12" type="ShortestPath" />
+			</node>
+			<replica name="campus_1" path="campus_0" />
+			<replica name="campus_2" path="campus_0" />
+			<node name="gl_0" type="Link" >
+				<attribute name="delay" value="0.20000000298023224" symbol="false" />
+				<ref name="InterfaceAlias_8913" path="..:group_router:next_net" />
+				<ref name="InterfaceAlias_8914" path="..:campus_0:net01:net0:r0:if6" />
+			</node>
+			<node name="gl_1" type="Link" >
+				<attribute name="delay" value="0.20000000298023224" symbol="false" />
+				<ref name="InterfaceAlias_8916" path="..:campus_0:net01:net0:r0:if7" />
+				<ref name="InterfaceAlias_8917" path="..:campus_1:net01:net0:r0:if6" />
+			</node>
+			<node name="gl_2" type="Link" >
+				<attribute name="delay" value="0.20000000298023224" symbol="false" />
+				<ref name="InterfaceAlias_8919" path="..:campus_1:net01:net0:r0:if7" />
+				<ref name="InterfaceAlias_8920" path="..:campus_2:net01:net0:r0:if6" />
+			</node>
+			<node name="__dynamic_traffics__" type="Traffic" >
+			</node>
+			<node name="7" type="ShortestPath" />
+		</node>
+		<node name="tl_0" type="Link" >
+			<ref name="InterfaceAlias_8924" path="..:group_0:group_router:next_router" />
+			<ref name="InterfaceAlias_8925" path="..:group_0:group_router:prev_router" />
+		</node>
+		<node name="Traffic_8926" type="Traffic" >
+			<node name="TCPTraffic_8927" type="TCPTraffic" >
+				<attribute name="srcs" value="01021
+001064
+Host01024
+2799" symbol="false" />
+				<attribute name="mapping" value="one2one" symbol="false" />
+				<attribute name="start_time" value="0.0" symbol="false" />
+				<attribute name="interval_exponential" value="false" symbol="false" />
+				<attribute name="dsts" value="01021
+001064
+Host01023
+242" symbol="false" />
+				<attribute name="file_size" value="10000" symbol="false" />
+				<attribute name="number_of_sessions" value="1" symbol="false" />
+				<attribute name="interval" value="1.0" symbol="false" />
+			</node>
+		</node>
+		<node name="__dynamic_traffics__" type="Traffic" >
+		</node>
+		<node name="3" type="ShortestPath" />
+	</node>
+</model>

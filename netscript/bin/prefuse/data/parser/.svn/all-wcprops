@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser
+END
+ColorIntParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/ColorIntParser.java
+END
+IntArrayParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/IntArrayParser.java
+END
+IntParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/IntParser.java
+END
+DateTimeParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/DateTimeParser.java
+END
+TimeParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/TimeParser.java
+END
+LongArrayParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/LongArrayParser.java
+END
+LongParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/LongParser.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/package.html
+END
+ByteParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/ByteParser.java
+END
+FloatArrayParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/FloatArrayParser.java
+END
+TypeInferencer.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/TypeInferencer.java
+END
+FloatParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/FloatParser.java
+END
+StringParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/StringParser.java
+END
+DataParseException.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/DataParseException.java
+END
+ObjectParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/ObjectParser.java
+END
+ParserFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/ParserFactory.java
+END
+DoubleArrayParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/DoubleArrayParser.java
+END
+DataParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/DataParser.java
+END
+DoubleParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/DoubleParser.java
+END
+DateParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/DateParser.java
+END
+BooleanParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/primex/!svn/ver/526/trunk/netscript/src/prefuse/data/parser/BooleanParser.java
+END

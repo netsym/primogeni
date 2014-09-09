@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/primex/!svn/ver/2195/trunk/netsim/src/ssfnet/proto/tcp/swing_tcp_traffic
+END
+swing_tcp_traffic.cc
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/primex/!svn/ver/2195/trunk/netsim/src/ssfnet/proto/tcp/swing_tcp_traffic/swing_tcp_traffic.cc
+END
+swing_client.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/1933/trunk/netsim/src/ssfnet/proto/tcp/swing_tcp_traffic/swing_client.m
+END
+swing_server.cc
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/primex/!svn/ver/1933/trunk/netsim/src/ssfnet/proto/tcp/swing_tcp_traffic/swing_server.cc
+END
+swing_tcp_traffic.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/primex/!svn/ver/2195/trunk/netsim/src/ssfnet/proto/tcp/swing_tcp_traffic/swing_tcp_traffic.m
+END
+swing_server.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/primex/!svn/ver/1933/trunk/netsim/src/ssfnet/proto/tcp/swing_tcp_traffic/swing_server.m
+END
+swing_client.cc
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/primex/!svn/ver/1933/trunk/netsim/src/ssfnet/proto/tcp/swing_tcp_traffic/swing_client.cc
+END

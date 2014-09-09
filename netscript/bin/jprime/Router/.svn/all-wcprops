@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repos/primex/!svn/ver/2098/trunk/netscript/src/jprime/Router
+END
+Router.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repos/primex/!svn/ver/2098/trunk/netscript/src/jprime/Router/Router.java
+END
+RouterReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/primex/!svn/ver/1985/trunk/netscript/src/jprime/Router/RouterReplica.java
+END
+IRouterAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/primex/!svn/ver/459/trunk/netscript/src/jprime/Router/IRouterAlias.java
+END
+IRouter.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/primex/!svn/ver/1981/trunk/netscript/src/jprime/Router/IRouter.java
+END
+RouterAlias.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/primex/!svn/ver/2098/trunk/netscript/src/jprime/Router/RouterAlias.java
+END
+RouterAliasReplica.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/primex/!svn/ver/2098/trunk/netscript/src/jprime/Router/RouterAliasReplica.java
+END
