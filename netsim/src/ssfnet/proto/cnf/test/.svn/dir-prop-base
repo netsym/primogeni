@@ -1,8 +1,0 @@
-K 10
-svn:ignore
-V 60
-cnf_traffic.h
-cnf_traffic.m.extracted
-cnf_traffic.ssfnet.oo
-
-END

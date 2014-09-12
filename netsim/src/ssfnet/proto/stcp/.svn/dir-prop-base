@@ -1,9 +1,0 @@
-K 10
-svn:ignore
-V 34
-stcp_master.h
-*.m.extracted
-*.oo
-
-
-END

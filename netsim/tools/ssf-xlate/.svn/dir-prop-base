@@ -1,9 +1,0 @@
-K 10
-svn:ignore
-V 29
-*.a
-*.oo
-cmtstrip.c
-cmtstrip
-
-END
