@@ -27,11 +27,12 @@ package monitor.core;
  * You can find our research at http://www.primessf.net/.
  */
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.InetAddress;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -73,7 +74,9 @@ import monitor.commands.VarUpdate;
 import monitor.commands.VarUpdate.StringUpdate;
 import monitor.ssl.PrimoSslContextFactory;
 import monitor.util.Utils;
-import monitor.util.Utils.CmdRv;
+//import monitor.util.Utils.CmdRv;
+//import monitor.util.MasterConnectionThread;
+//import org.python.modules.thread.thread;
 
 import org.apache.mina.core.future.CloseFuture;
 import org.apache.mina.core.future.ConnectFuture;
@@ -87,6 +90,49 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
  *
  */
 public class RemoteController implements IController {
+	public class MasterConnectionThread extends Thread {
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			super.run();
+			connectMaster();
+		}
+		private void connectMaster() {
+			String[] command = {"/bin/sh", "/tmp/masterConnect.sh"};
+		    System.out.println("Command:"+command.toString());
+		    ProcessBuilder p = new ProcessBuilder(command);
+		    Process p2=null;
+			try {
+				p2 = p.start();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		    
+		    try {
+				Thread.sleep(3600000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    BufferedReader br = new BufferedReader(new InputStreamReader(p2.getInputStream()));
+		    String line;
+		    System.out.println("Output of running " + command.toString() + " is: ");
+		    try {
+				while ((line = br.readLine()) != null) {
+				    System.out.println(line);
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
+
+	
+
 	private static class CommandSummary {
 		public final CommandType ct;
 		public final Integer id;
@@ -226,19 +272,19 @@ public class RemoteController implements IController {
 			ConnectFuture future=null;
 			if (!master_control_ip.contains(":"))
 			{
-				listener.println("Connecting to master at "+master+":"+Utils.MASTER_PORT);
+				listener.println(" Connecting to master at "+master+":"+Utils.MASTER_PORT+" ( Case: Master has global IP/ pingable web address)");
 				future = connector.connect(new InetSocketAddress( master.getControl_ip(), Utils.MASTER_PORT)); //normal execution
 			}
 				
 			else //setting ssh tunnel, since having a ':' in master name means that its a KVM/XEN VM, not a physical machine 
 			{   
 				//mkdir
-				String user_home_pgc_tmp=System.getProperty("user.home")+"/pgc_tmp";
-				new File(user_home_pgc_tmp).mkdirs();
+				//String user_home_pgc_tmp=System.getProperty("user.home")+"/pgc_tmp";
+				//new File(user_home_pgc_tmp).mkdirs();
 				String[] master_cip_parts = master_control_ip.split(":");
 				listener.println("Master Ip Before:"+master.getControl_ip());
 				
-				File filesh = new File(user_home_pgc_tmp+"/masterConnect.sh");
+				File filesh = new File("/tmp/masterConnect.sh");
 		    	try{ 
 		    		if(filesh.delete()){
 		    			listener.println("Previous connect file deleted");
@@ -248,71 +294,48 @@ public class RemoteController implements IController {
 		    		}
 		    	}catch(Exception e){e.printStackTrace();}
 				
-				listener.println("Master connecting script will be at: "+user_home_pgc_tmp+ "/");
+				listener.println("Master connecting script will be at: /tmp/masterConnect.sh");
 		        FileWriter fileWritersh = null;
 				try {
 					fileWritersh = new FileWriter(filesh,true);
 					BufferedWriter bufferFileWritersh  = new BufferedWriter(fileWritersh);
 					fileWritersh.append("#!/bin/sh"); fileWritersh.append("\n");
-					fileWritersh.append("ssh -t -t -i ~/.ssh/id_pgc_nopass_rsa -L 9990:localhost:9990 -p "+master_cip_parts[1]+" mobai001@"+master_cip_parts[0]);
-			        bufferFileWritersh.close();
+					//fileWritersh.append("ssh -t -t -i ~/.ssh/id_pgc_nopass_rsa -L 9990:localhost:9990 -p "+master_cip_parts[1]+" mobai001@"+master_cip_parts[0]);
+					fileWritersh.append("ssh -f -N -i ~/.ssh/id_pgc_nopass_rsa -L 9990:localhost:9990 -p "+master_cip_parts[1]+" mobai001@"+master_cip_parts[0]);
+					bufferFileWritersh.close();
+			        fileWritersh.close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				listener.println("Updated: "+user_home_pgc_tmp+"/masterConnect.sh");
-	
 				
-				File file = new File(user_home_pgc_tmp+"/setupMasterConnection.pl");
-		    	try{ 
-		    		if(filesh.delete()){
-		    			listener.println("Previous connect file deleted");
-		    			//System.out.println(filesh.getName() + " is deleted!");
-		    		}else{
-		    			System.out.println("Delete operation is failed.");
-		    		}
-		    	}catch(Exception e){e.printStackTrace();}
-				
-		        FileWriter fileWriter = null;
-				try {
-					fileWriter = new FileWriter(file,true);
-					BufferedWriter bufferFileWriter  = new BufferedWriter(fileWriter);
-					fileWriter.append("#!/usr/bin/perl"); fileWriter.append("\n");
-					fileWriter.append("`/usr/bin/ssh  -t -t -i ~/.ssh/id_pgc_nopass_rsa -L 9990:localhost:9990 -p 31034 mobai001\\@pc4.instageni.rnoc.gatech.edu`");
-					//fileWriter.append("`sh "+user_home_pgc_tmp+"/masterConnect.sh &`");
-					
-			        bufferFileWriter.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				listener.println("Updated: "+user_home_pgc_tmp+"/setupMasterConnection.pl");
+				listener.println("Updated: /tmp/masterConnect.sh");
 
-				scmd = "nohup perl " + user_home_pgc_tmp + "/setupMasterConnection.pl";
-				listener.println("Saved perl script.");
 				
-				//CmdRv rv = Utils.executeCommand(scmd);
+				listener.println("Thread will be starting soon"); 
+				MasterConnectionThread justAThread = new MasterConnectionThread();
+				justAThread.start();
+				listener.println("State of the thread: "+justAThread.getState());
 				
-				//if(rv.status != 0){
-				//	listener.println("\n     !!!!RemoteController- failed to create local ssh tunnel. Experiment should be shutdown after this.\n");			
-
-				//}				
-				listener.println("tunnel setup peroperly.");
-				//COnenction setup correctly with master
-				master_control_ip="localhost";
-				master.setControl_ip(master_control_ip);
-		
-				
-//				try {
-//					listener.println("Thread will sleep for 5 sec for ssh tunnel to setup");
-//				    //Program sleeping for 5 second
-//					Thread.sleep(5000);                 //1000 milliseconds is one second.
-//					listener.println("Thread awake.");
-//				} catch(InterruptedException ex) {
-//				    Thread.currentThread().interrupt();
+//				scmd = "sh /tmp/masterConnect.sh";				
+//				CmdRv rv = Utils.executeCommand(scmd);
+//				if(rv.status != 0){
+//					listener.println("\n     !!!!RemoteController- failed to create local ssh tunnel. Experiment should be shutdown after this.\n");			
 //				}
 				
-				listener.println("Connecting to master at "+master+":"+Utils.MASTER_PORT);
+				listener.println("Tunnel setup peroperly.");
+				master_control_ip="localhost";
+				master.setControl_ip(master_control_ip);
+				
+				try {
+					listener.println("Thread will sleep for 60 sec for ssh tunnel to setup");
+				    //Program sleeping for 60 second
+					Thread.sleep(60000);                 //1000 milliseconds is one second.
+					listener.println("Thread awake.");
+				} catch(InterruptedException ex) {
+				    Thread.currentThread().interrupt();
+				}
+				listener.println("Connecting to master at "+master+":"+Utils.MASTER_PORT + " Case: Master is a vm and a ssh port is available(other than) to connect");
 				future=connector.connect(new InetSocketAddress(master_control_ip, Utils.MASTER_PORT)); //normal execution
 			}
 			listener.println("Connection setup peroperly.");
