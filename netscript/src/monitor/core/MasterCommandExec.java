@@ -1,39 +1,12 @@
 package monitor.core;
 
-/*
- * Copyright (c) 2011 Florida International University.
- *
- * Permission is hereby granted, free of charge, to any individual or
- * institution obtaining a copy of this software and associated
- * documentation files (the "software"), to use, copy, modify, and
- * distribute without restriction.
- *
- * The software is provided "as is", without warranty of any kind,
- * express or implied, including but not limited to the warranties of
- * merchantability, fitness for a particular purpose and
- * non-infringement.  In no event shall Florida International
- * University be liable for any claim, damages or other liability,
- * whether in an action of contract, tort or otherwise, arising from,
- * out of or in connection with the software or the use or other
- * dealings in the software.
- *
- * This software is developed and maintained by
- *
- *   Modeling and Networking Systems Research Group
- *   School of Computing and Information Sciences
- *   Florida International University
- *   Miami, Florida 33199, USA
- *
- * You can find our research at http://www.primessf.net/.
- */
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.net.InetAddress;
+//import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -41,6 +14,8 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.Set;
+
+import org.apache.derby.impl.store.replication.net.SlaveAddress;
 
 import jprime.util.NetAggPair;
 import jprime.util.Portal;
@@ -65,7 +40,7 @@ import monitor.util.Utils;
 import monitor.util.Utils.CmdRv;
 
 /**
- * @author Nathanael Van Vorst
+ * @author Nathanael Van Vorst, Mohammad Abu Obadia
  * 
  */
 public class MasterCommandExec extends Thread {
@@ -99,15 +74,19 @@ public class MasterCommandExec extends Thread {
 			try {
 				debug_messageMaster=null;
 				cmd = cmd_queue.take();
-				//if(Utils.DEBUG)System.out.println("\nGot cmd:"+ cmd + " machine id=" + cmd.getMachineId());
+				if(Utils.DEBUG)System.out.println("\nGot cmd:"+ cmd + " machine id=" + cmd.getMachineId());
+				//Utils.appendMsgToFile("/tmp/pgc_debug_msg","\nMasterCommandExec:run() Got cmd:"+ cmd + " machine id=" + cmd.getMachineId());
 				if(cmd.getMachineId()==-1 || cmd.getMachineId() == monitor.getMasterConfig().machineId) {
+					//Utils.appendMsgToFile("/tmp/pgc_debug_msg","\nLocalCommand:"+cmd.toString());
 					//by default we assume commands with no machine id are targeted to the master
 					handleLocalCmd(cmd);
 				}
 				else {
+					//Utils.appendMsgToFile("/tmp/pgc_debug_msg","\nSlaveCommand:"+cmd.toString());
 					handleSlaveCommand(cmd);
 				}
 			} catch (InterruptedException e) {
+				Utils.appendMsgToFile("/tmp/pgc_debug_msg","\n!!! Exception Caught in MasterCommandExec!");
 				e.printStackTrace();
 			}
 			//String path=;
@@ -115,10 +94,13 @@ public class MasterCommandExec extends Thread {
 			
 	        FileWriter fileWriter = null;
 			try {
-				String hostname=InetAddress.getLocalHost().getHostName();
+				//String hostname=InetAddress.getLocalHost().getHostName();
 				fileWriter = new FileWriter(new File("/tmp/pgc_debug_msg"),true);
 				BufferedWriter bufferFileWriter  = new BufferedWriter(fileWriter);//Hostname:"+hostname+"
-				fileWriter.append("\n[Count="+master_coutner++ +"] monitor.core->MasterCommandExec.java      Debug Messages:"+debug_messageMaster);
+				if (master_coutner<=100)
+					 fileWriter.append("\n["+master_coutner++ +"] MasterCommandExec      Debug Messages:"+debug_messageMaster);  //DEBUGG
+				else
+					fileWriter.append(">");
 		        bufferFileWriter.close();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -137,6 +119,7 @@ public class MasterCommandExec extends Thread {
 		if(nc == null) {
 			switch (cmd.getCommandType()) {
 			case STATE_EXCHANGE_CMD:{
+				//debug_messageMaster=null;
 				StateExchangeCmd se = (StateExchangeCmd)cmd;
 				monitor.commandFinished(true,cmd.getSerialNumber(),100, "[master]Unable to process StateExchange for uid="+se.getUid()
 						+". Couldn't find the slave with machine id "+se.getMachineId());//failure
@@ -221,6 +204,8 @@ public class MasterCommandExec extends Thread {
 				monitor.commandFinished(true,slavecmd.getSerialNumber(), 100, "Failed to generate mpi machine file!");
 				return;
 			}
+			
+			
 			pvfsConfig = monitor.generatePVFSConfig();
 			if(pvfsConfig == null || pvfsConfig.length()==0) {
 				if(Utils.DEBUG)System.out.println("Failed to generate pvfs config file!");
@@ -236,9 +221,12 @@ public class MasterCommandExec extends Thread {
 //---------------------------------------------------------------------------------------------
 	private void handleLocalCmd(AbstractCmd cmd) {
 		if(Utils.DEBUG)System.out.println("Handling local command");
-		debug_messageMaster+="\n\nHandling local command, case:"+cmd.getCommandType()+ ", cmd= "+cmd.toString();
-		switch (cmd.getCommandType()) {
+		//debug_messageMaster+="\n\nHandling local command, case:"+cmd.getCommandType()+ ", cmd= "+cmd.toString();
+		debug_messageMaster+="\nHandling local command, case:"+cmd.getCommandType();
 		
+		
+		switch (cmd.getCommandType()) {
+
 		case BLOCKING_CMD_RESULT:
 			if (cmd.getSerialNumber() < 0) {
 				// cmd created at the master and sent to slave
@@ -290,7 +278,10 @@ public class MasterCommandExec extends Thread {
 			break;
 			
 		case STATE_EXCHANGE_CMD:
+		{
+			debug_messageMaster=" -> ";
 			monitor.handleStateUpdate((StateExchangeCmd)cmd);
+		}
 			break;
 			
 		case NON_BLOCKING_CMD_RESULT:
@@ -303,7 +294,7 @@ public class MasterCommandExec extends Thread {
 			break;
 			
 		case SETUP_SLAVES:
-		{
+		{String temp_expt_name=null;
 			if(Utils.DEBUG)System.out.println("Setting up slaves...mpiMachineFile=" + mpiMachineFile +" pvfsConfig=" + pvfsConfig);
 			debug_messageMaster+="\nSetting up slaves...mpiMachineFile=" + mpiMachineFile +" pvfsConfig=" + pvfsConfig;
 			if(mpiMachineFile==null) {
@@ -316,33 +307,70 @@ public class MasterCommandExec extends Thread {
 				MetaCmd mc= new MetaCmd(cmd.getSerialNumber());
 				for(Integer sid : monitor.getSlaveIds()) {
 					if(Utils.DEBUG)System.out.println("sending a SetupSlaveCmd for sid=" + sid);
-					debug_messageMaster+="\nsending a SetupSlaveCmd for sid=" + sid;
+					debug_messageMaster+="\nsending a SetupSlaveCmd for sid=" + sid ;
+					//String temp_expt_name=((SetupSlavesCmd)cmd).getExpName();
 					monitor.sendCommand(sid, new SetupSlaveCmd(sid, monitor.getSsh_publicKey(), monitor.getSsh_privateKey(), pvfsConfig, ((SetupSlavesCmd)cmd).getExpName()), mc);
+					temp_expt_name=((SetupSlavesCmd)cmd).getExpName();
+					debug_messageMaster+="\nEXPT NAME: "+temp_expt_name;
 				}
 			}
+			
+			
+			CmdRv rv1 = null;
+			String scmd_scp_tlv = "perl  "+Utils.PRIMOGENI_FOLDER+"/copyTlvFilesToExps.pl "+Utils.BASE_EXP_DIR+"/"+temp_expt_name;
+			debug_messageMaster+="\n Copying file from master using SCP, command=: "+scmd_scp_tlv;
+			
+			rv1 = Utils.executeCommand(scmd_scp_tlv);
+			//System.out.println("\tCopy tlv file command:" + scmd_scp_tlv);
+			if(rv1.status != 0){
+				if(Utils.DEBUG)System.out.println("Failed to copy tlv files");
+				debug_messageMaster+="\n\t\t***Failed to copy TLV files";
+				break;
+			}			
+			//perl  copyTlvFilesToExps.pl /primex/exps/AThirdJavaMode
+			
 			if(Utils.DEBUG)System.out.println("Done Setting up slaves");
 			debug_messageMaster+="\nDone Setting up slaves";
 		}
+		
 			break;
 			
 		case SETUP_EXPERIMENT:
-		{
+		{String temp_expt_name_2=null; //obaida
+
 			final SetupExperimentCmd scmd = ((SetupExperimentCmd)cmd);
 			if(Utils.DEBUG)System.out.println("Setting up exp tlv count=" +scmd.getTlvs().size());
 			debug_messageMaster+="\nSetting up exp tlv count=" +scmd.getTlvs().size();
 			ArrayList<SetupExperimentCmd.TLVFile> temp = new ArrayList<SetupExperimentCmd.TLVFile>();
+			
 			temp.addAll(scmd.getTlvs());
+			//getting tlvs here
+			
 			Collections.sort(temp);
 			for(TLVFile t : temp) {
 				if(Utils.DEBUG)System.out.println("\t[TLV]"+t.part_id+", name="+t.filename);
 				debug_messageMaster+="\n\t[TLV]"+t.part_id+", name="+t.filename;
 				
 			}
+			//Transfer files here
+			for(TLVFile t : temp) {
+				if(Utils.DEBUG)System.out.println("\t[TLV]"+t.part_id+", name="+t.filename);
+				debug_messageMaster+="\n\t[TLV]"+t.part_id+", name="+t.filename;
+				//get slave machine name and trasfer the file there.
+				
+				
+			}
 			exps.put(((SetupExperimentCmd)cmd).getName(), temp);
 			String path = Utils.BASE_EXP_DIR+"/"+scmd.getName()+"/"+Utils.RUNTIME_VAR_NAME;
+			debug_messageMaster+="\n MasterCommandExec: Writing ="+path;
+			temp_expt_name_2=scmd.getName();//obaida
+			
+			
 			try {
 				BufferedWriter out = new BufferedWriter(new FileWriter(path));
+				
 				out.write(scmd.getRuntimeSymbols());
+				
 				out.close();
 				monitor.commandFinished(true,cmd.getSerialNumber());// success
 			} catch (IOException e) {
@@ -355,10 +383,31 @@ public class MasterCommandExec extends Thread {
 					agg2coms.put(aid, new AggData(e.getValue()));
 				}
 			}
+			
+			
+			//obaida
+			CmdRv rv1 = null;
+			String scmd_scp_tlv = "perl  "+Utils.PRIMOGENI_FOLDER+"/copyTlvFilesToExps.pl "+Utils.BASE_EXP_DIR+"/"+temp_expt_name_2;
+			debug_messageMaster+="\n Copying file from master using SCP, 9Attempt2), command=: "+scmd_scp_tlv;
+			
+			rv1 = Utils.executeCommand(scmd_scp_tlv);
+			//System.out.println("\tCopy tlv file command:" + scmd_scp_tlv);
+			if(rv1.status != 0){
+				if(Utils.DEBUG)System.out.println("Failed to copy tlv files");
+				debug_messageMaster+="\n\t\t***Failed to copy TLV files";
+				break;
+			}			
+			//perl  copyTlvFilesToExps.pl /primex/exps/AThirdJavaMode			
+			
+			
+			
 		}
 			break;
 			
 		case START_EXPERIMENT: {
+			
+			debug_messageMaster+="     inside case";
+			
 			StartExperimentCmd scmd = (StartExperimentCmd)cmd;
 			if(exps.containsKey(scmd.getName())) {
 				ArrayList<String> portal_args = new ArrayList<String>();
@@ -389,6 +438,7 @@ public class MasterCommandExec extends Thread {
 			else {
 				monitor.commandFinished(true,cmd.getSerialNumber(), 100,"Unknown experiemnt '"+scmd.getName()+"'");// failure
 			}
+	
 		}			
 			break;
 		case MONITOR_CMD: {
