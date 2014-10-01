@@ -8,6 +8,7 @@ my $rv;
 `pidof ssfgwd | xargs kill -9 `;
 `pidof openvpn | xargs kill -9 `;
 `pidof mpiexec | xargs kill -9 `;
+#`rm -rf /tmp/pgc*`;
 
 for(my $counter = 1; $counter <= 10; $counter++){
 	my $bridges = `ifconfig | grep br`;
@@ -38,7 +39,12 @@ for(my $counter = 1; $counter <= 10; $counter++){
 		$temp = (split(/\s/,$temp))[0];
 		$rv=`/usr/sbin/vzctl stop $temp`;
 		print $rv;
-		$rv=`/bin/umount /usr/local/primo/vz/private/$temp`;
+                $rv=`/usr/sbin/vzctl destroy $temp`;
 		print $rv;
+		`rm -rf /vz/private/$temp`;
+		#We need to rm -rf /vz/private/container
+
+
+		
 	}
 }
