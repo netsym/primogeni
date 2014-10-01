@@ -1,4 +1,6 @@
 #!/usr/bin/perl
+#usage: perl /primex/scripts/confVENetwork.pl 237 veth216 192.1.0.41 00:00:00:00:00:d8 66:00:00:00:00:d8
+#usage: perl confVENetwork.pl 237 veth216 192.1.0.41 00:00:00:00:00:d8 66:00:00:00:00:d8
 
 use strict;
 my $i;
@@ -28,3 +30,6 @@ if ( $? != 0 )
 
 print "VEs network configuration sucessfully!\n";
 exit 0;
+
+
+
