@@ -6,12 +6,12 @@
 echo "--------------------------------------------------------"
 echo "Updating jar"
 echo "--------------------------------------------------------"
-cd ~/Desktop/pgc2vega/primex/netscript
+cd ./netscript
 ant clean
 ant jar 
 cd dist
-rm ~/Desktop/pgc2vega/primex/netIDE/jprime/jprime.jar ~/Desktop/pgc2vega/primex/netIDE/jprime/jprime.src.jar
-cp *.jar ~/Desktop/pgc2vega/primex/netIDE/jprime/
+rm ../../netIDE/jprime/jprime.jar ../../netIDE/jprime/jprime.src.jar
+cp *.jar ../../netIDE/jprime/
 echo "--------------------------------------------------------"
 echo "Successfully updated"
 echo "--------------------------------------------------------"
