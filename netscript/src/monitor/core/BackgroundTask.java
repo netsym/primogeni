@@ -111,6 +111,7 @@ public class BackgroundTask implements Runnable {
 			maxRuntime=0;
 		}
 		else if(cmd instanceof StartExperimentCmd) {
+			
 			StartExperimentCmd scmd = ((StartExperimentCmd)cmd);
 			String vpngateway="";
 			if(scmd.getVPNGateway().length()>0) {
@@ -138,6 +139,7 @@ public class BackgroundTask implements Runnable {
 			exec+=" -v "+exp_dir+"/"+Utils.RUNTIME_VAR_NAME;
 
 			exec+=" > "+Utils.TMP_DIR+"/sim_"+((StartExperimentCmd)cmd).getName().replace(" ","_")+Utils.getDateTime()+".out 2>&1 ";
+			Utils.appendMsgToFile("/tmp/pgc_debug_msg","\n EXP CMD:"+exec);
 			System.out.println("EXP CMD:"+exec);
 			f=Utils.TMP_DIR+"/run_exp_"+cmd.getSerialNumber()+".sh";
 			if(!Utils.writeToFile(f,  exec.getBytes(), null)) {
