@@ -31,25 +31,27 @@ git clone github.com/netsym/primogeni
  chmod +x install_local.sh
 ./install_local.sh
 
+
 ###### Step by Step Install
 In cases the express installation goes wrong we recommend making it step by step so that you can tackle any issue that might prevent you from installation.
-  1. Instaling dependencies:
+
+1. Instaling dependencies:
    * Ubuntu
-    1. sudo apt-get update; sudo apt-get upgrade;
-    2 sudo apt-get install git build-essential subversion gcc gcc-c++ python flex bison ant mpi mpich mpich2 
-  2. Installing jdk 1.6.0 and setting JAVA_HOME
-  *Ubuntu
-    1. wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/6u23-b05/jdk-6u23-linux-x64.bin"
-    2. chmod +x ./jdk*;
-    3. ./jdk-6u23-linux-x64.bin
-    4. mkdir -p /usr/local/;mv jdk1.6.0_23 /usr/local/
-    5. echo "export JAVA_HOME=/usr/local/jdk1.6.0_23/" >> ~/.bashrc
-  3. Cloning Primogeni and making the primex simulator from source
-  * Ubuntu
-    1. git clone githum.com/netsym/primogeni
-    2. mv primogeni ~/Desktop/
-    3. ~/Desktop/primogeni/clean_build_all.sh
-    4. 
+      1. sudo apt-get update; sudo apt-get upgrade;
+      2 sudo apt-get install git build-essential subversion gcc gcc-c++ python flex bison ant mpi mpich mpich2 
+2. Installing jdk 1.6.0 and setting JAVA_HOME
+   *Ubuntu
+      1. wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/6u23-b05/jdk-6u23-linux-x64.bin"
+      2. chmod +x ./jdk*;
+      3. ./jdk-6u23-linux-x64.bin
+      4. mkdir -p /usr/local/;mv jdk1.6.0_23 /usr/local/
+      5. echo "export JAVA_HOME=/usr/local/jdk1.6.0_23/" >> ~/.bashrc
+3. Cloning Primogeni and making the primex simulator from source
+   * Ubuntu
+      1. git clone githum.com/netsym/primogeni
+      2. mv primogeni ~/Desktop/
+      3. ~/Desktop/primogeni/clean_build_all.sh
+      4. asdf
   4. asdf
 
 
