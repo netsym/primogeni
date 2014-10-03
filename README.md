@@ -17,8 +17,7 @@ To be able to use Primogeni and take advantage of hybrid experimentation using P
 
 
 ##### Installing Primogeni on Local Machine (Steps 1 & 2 of Primogeni Experimentation)
-This document includes steps for installing slingshot  on client machines. So far, we have successfully tested slingshot on the following machines:
-1. Linux Ubuntu 12.04 32-bit
+This document includes steps for installing slingshot  on client machines. So far, we have successfully tested slingshot on Linux Ubuntu 12.04 32-bit
 2. Mac OS 10.9 (maverick)
 
 
@@ -33,7 +32,7 @@ This document includes steps for installing slingshot  on client machines. So fa
    * ./install_local.sh
 
 
-###### Step by Step Install
+###### Step by Step Install (Alternative of Express Install)
 In cases the express installation goes wrong we recommend making it step by step so that you can tackle any issue that might prevent you from installation.
 
 1. Instaling dependencies:
@@ -42,20 +41,22 @@ In cases the express installation goes wrong we recommend making it step by step
        2. sudo apt-get install git build-essential subversion gcc gcc-c++ python flex bison ant mpi mpich mpich2 
 2. Installing jdk 1.6.0 and setting JAVA_HOME
    *Ubuntu
-      1. wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/6u23-b05/jdk-6u23-linux-x64.bin"
-      2. chmod +x ./jdk*;
-      3. ./jdk-6u23-linux-x64.bin
-      4. mkdir -p /usr/local/;mv jdk1.6.0_23 /usr/local/
-      5. echo "export JAVA_HOME=/usr/local/jdk1.6.0_23/" >> ~/.bashrc
-      6. echo "export PATH=$JAVA_HOME/bin:$PATH"
+       1. wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/6u23-b05/jdk-6u23-linux-x64.bin"
+       2. chmod +x ./jdk*;
+       3. ./jdk-6u23-linux-x64.bin
+       4. mkdir -p /usr/local/;mv jdk1.6.0_23 /usr/local/
+       5. echo "export JAVA_HOME=/usr/local/jdk1.6.0_23/" >> ~/.bashrc
+       6. echo "export PATH=$JAVA_HOME/bin:$PATH"
 3. Cloning Primogeni and making the primex simulator from source
    * Ubuntu
-      1. git clone github.com/netsym/primogeni
-      2. mv primogeni ~/Desktop/
-      3. ~/Desktop/primogeni/clean_build_all.sh
-      4. Most modern Ubuntu distros do not require this step. In case primex build fails because of c++, comment out line 244 and 245 in /usr/include/c++/4.6/i686-linux-gnu/bits/gthr-default.h.
+       1. git clone github.com/netsym/primogeni
+       2. mv primogeni ~/Desktop/
+       3. ~/Desktop/primogeni/clean_build_all.sh
+       4. (Tackiling c++ errors) Most modern Ubuntu distros do not require this step. In case primex build fails because of c++, comment out line 244 and 245 in /usr/include/c++/4.6/i686-linux-gnu/bits/gthr-default.h.
 
-4. We would launch Slingshot on Eclipse at this step. We recommend *Eclipse Indigo for RCP and RAP developers* Download the Eclipse IDE.
+##### Making and Running Primogeni API(Slingshot) on Eclipse
+
+1. We would launch Slingshot on Eclipse at this step. We recommend *Eclipse Indigo for RCP and RAP developers* Download the Eclipse IDE.
    * You can find it [here](http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/indigosr2).
      *Unzip the Eclipse package.
      * We need one dependency called Afae for syntax highlighting in Slinghsot. Download Afae from here and place it in plugins folder of eclipse directory you just downloaded.
@@ -64,23 +65,41 @@ In cases the express installation goes wrong we recommend making it step by step
        * a. Click on File > New > Java Project
        * b. Put "Slingshot" for Project name and uncheck 'Use default location'
        * c. Browse for the folder where primogeni is located and select the netIDE folder and click 'OK', then click 'Next', and then 'Finish'.
-       * d. Since Slingshot will use primex, we have to configure java library in Eclipse thatyou compiled primex with.
-       * the  9. Now your slingshot project has been created. However, the project is using the java libraries that we built it under. You need to configure Slingshot to use the java library you compiled primex with.
-10. To do this, right click on the slingshot project within eclipse in the package explorer on the left. Then click on properties. This will bring up a properties window. From this window, click on Java Build Path on the left. Click on the libraries tab on the top. Select the JRE System library which should be second to last on the libraries list. Click on edit on the right. This should bring up another window. Here, select your open jdk under execution environment if you used open jdk then click finish. If you used open-jdk, you can skip the rest of this paragraph. If you used our recommended java oracle however, click on alternate JRE. The click on installed JREs on the right. This will bring up another window. Here, click add. This brings up another window. Select Standard VM then click next. Under JRE home, click on directory and navigate to your java home directory. If you followed all the insructions, it should be /usr/lib/jvm/jdk1.7.0_51. Then click ok. This should automatically load the previous window with all the system libraries. Click on finish. Now select the new JRE under the installed JREs window. It should be jdk1.7.0_51. Click ok. In the JRE System Library window, under aternate JRE, the open jdk will still be selected. You need to change it to jdk1.7.0_51, then click finish. Now your Java Build Path is correctly configured. Click ok.
+       * d. Since Slingshot will use primex, we have to configure java library in Eclipse that you compiled primex with. To do this
+         * Right click Slingshot project within eclipse in the package explorer on the left.
+         * Then click on properties.
+         * From this window, click on Java Build Path on the left. 
+         * Click on the libraries tab on the top. 
+         * Select the JRE System library which should be second to last on the libraries list. 
+         * Click on edit on the right.
+         * Select your jdk that you installed primex with. (Click on alternate JRE->installed JREs->add->Standard VM->next).
+         * Under JRE home, click on directory and navigate to your java home directory. If you followed all the insructions, it should be /usr/local/jdk1.6.0_23. Then click ok then Click on finish. Now select the new JRE under the installed JREs window. It should be jdk1.6.0_23. Click ok. In the JRE System Library window, under aternate JRE, the open jdk will still be selected. You need to change it to jdk1.6.0_23, then click finish. Now your Java Build Path is correctly configured. Click ok.
+         * 
+2. Making Slingshot Product
+  * Expand the slingshot project. Open the *.product file corresponding to your machine. In our case, it is 'slingshot_linux_32.product. The file should have opened up in the editor. Click on the green play button WITHIN THE PRODUCT FILE! This will build and launch slingshot. (!Important Reminder: DO NOT click on the play button on the top of eclipse.)
+  * Slingshot will prompt you for a workspace. Choose a local folder that you would like to use as Sligshot workspace, a different folder than your Eclipse workspace. 
+  * Configuring simulator directory in Slingshot: Click on Tools > Slingshot Config Wizard in the top menu bar. After the dialog opens up, click on browse and select the primogeni directory whereyou installed the simulator. Then click 'OK' then 'Finish'.
 
-11. Expand the slingshot project by clicking the arrow button next to 'Slingshot' in the package explorer on the left. Double click on the *.product file corresponding to your machine. In our case, it is 'slingshot_linux_32.product. The file should have opened up in the editor. Click on the green play button WITHIN THE PRODUCT FILE! This will build and launch slingshot. DO NOT click on the play button on the top of eclipse.
-12. Slingshot will prompt you for a workspace. Just choose the one you created earlier under /home/geni/slingshot.
-13. We must now configure slingshot. Click on Tools > Slingshot Config Wizard in the top menu bar. After the dialog opens up, click on browse and select the primex directory you extracted earlier. Then click 'OK' then 'Finish'.
-Running an Experiment in Slingshot
 
-14. Now we can create an experiment. This will show you the basic for creating, compiling, and running an experiment. For more detailed tutorials, refer to the slingshot manual for creating slingshot experiments and models. You can find it at this link http://users.cis.fiu.edu/~meraz001/primotutorial/getstarted.html
-15. To create an experiment, click on File > New > Experiment on the top menu bar. This will bring up a new window. Name the experiment MySecondJavaModel? and Browse for the model file. Navigate to the primex directory. Go to netscript/test/java_models and select MySecondJavaModel? .java the click ok. Click finish to create the experiment. This will build a visual representation of the model and open up the model view for the project. On the right, find View Depth: and put that up to 3 by click the up arrow. Now you can see the full model. To compile the model, click on Experiment > Compile Experiment on the top menu bar. Now that the model is compiled, it cannot be changed. To run the experiment, click on Experiment > Launch Experiment on the top menu bar. This will bring up a window. Select Local Simulator then click next. For Runtime:, put 20 seconds. Leave the #Processors: at 1, and for Pace Simulation Speed:, put 1 which will indicate (Real Time). When you click finish, slingshot will begin to run your experiment. You can see this under View Depth. the Time is moving. When it gets to 10 seconds, you will see the nodes start blinking and changing colors. When the experiment terminates, a window will indicate this. Click ok. If running the experiment did not work, verify that you have configured slingshot to point to the appropriate primex directory you downloaded or checked out with svn (refer to step 13).
+
+##### How to run Experiment on Geni?
+  * Now its time to create an experiment in Slingshot. Follow this [link](http://users.cis.fiu.edu/~meraz001/primotutorial/getstarted.html) for getting started with model writing for Slingshot. This will show you the basics of creating, compiling, and running an experiment in Slingshot. 
+A simple model that only contains simulated hosts and link can be run on Local simulator by compiling and running the experiment you just created.
+
+  * For running the experiments on GENI you should select some of the hosts of your model as emulated hosts. To get the resources for running the model on Geni resources you need to get Geni resource slice (using Flack/Geni Desktop/Omni/geni portal). Allocate two machines (or vms) connected with a lan. Assign the lan interface an ipv4 IP like 10.10.1.1 and 10.10.1.2. To be able to run Primogeni the OS image of these two sliver needs to have a Primogeni OS image. 
+Here is few precreated OS image list can be found here.
+1 For: Exogeni
+2 For: Instageni emulab-xen sliver.
+   * Clemson
+   * Northwestern
+   * Gatech
+3 For: Protogeni
+
+ While your slice takes time to allocate resources lets create an experiment in Slingshot. To create an experiment, click on File > New > Experiment on the top menu bar of Slingshot. This will bring up a new window. Name the experiment With an experiment name and Browse for the model file. Navigate to the primex directory. Go to netscript/test/java_models and select MySecondJavaModel? .java the click ok. Click finish to create the experiment. This will build a visual representation of the model and open up the model view for the project. On the right, find View Depth: and put that up to 3 by click the up arrow. Now you can see the full model. 
+   * To compile the model, click on Experiment > Compile Experiment on the top menu bar. Now that the model is compiled, it cannot be changed. 
+   *To run the experiment, click on Experiment > Launch Experiment on the top menu bar. This will bring up a window. Select Local Simulator then click next. For Runtime:, put 20 seconds. Leave the #Processors: at 1, and for Pace Simulation Speed:, put 1 which will indicate (Real Time). When you click finish, slingshot will begin to run your experiment. You can see this under View Depth. the Time is moving. When it gets to 10 seconds, you will see the nodes start blinking and changing colors. When the experiment terminates, a window will indicate this. Click ok. If running the experiment did not work, verify that you have configured slingshot to point to the appropriate primex directory you downloaded or checked out with svn (refer to step 13).
 16. If you had any other problems, you can try following these steps again or you can contact us at <support-email-here>
 
 
 
 A hybrid network experiment testbed on GENI with physical, simulated, and emulated network components.
-
-
-##### How to run Experiment on Geni?
-From geni portal (using Flack/Geni Desktop/Omni), request for two machines (or vms) connected with a lan. Assign the lan interface an ipv4 IP like 10.10.1.1 and 10.10.1.2. To be ablle to run Primogeni the OS image of these two sliver needs to have a Primogeni OS image. 
