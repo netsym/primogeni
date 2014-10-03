@@ -5,7 +5,7 @@ An Overview of Primogeni- Hybrid Experimentation Approach
 
 
 ## Installing and Using Primogeni
-To be able to use Primogeni and advantage of hybrid experimentation using Primogeni one needs to have Slingshot (Primogeni API) installed in their local machine. Slingshot (Primogeni's IDE) is developed using Eclipse RCP programming. Primogeni is an open source software therefore we recommend making it straight from the sources so that the experimenter can take advantage of bug fixes and recent advancements while maintaining existing experimentation capability. 
+To be able to use Primogeni and take advantage of hybrid experimentation using Primogeni, one needs to have Slingshot (Primogeni's IDE) installed on their local machine. Slingshot is developed using Eclipse RCP programming. Primogeni is an open source software therefore we recommend making it straight from the sources so that the experimenter can take advantage of the bug fixes and recent advancements while maintaining existing experimentation capability. 
 
 
 #### Steps of the Primogeni experimentaion are -
@@ -20,7 +20,7 @@ To be able to use Primogeni and advantage of hybrid experimentation using Primog
 This document includes steps for installing slingshot  on client machines. So far, we have successfully tested slingshot on the following machines:
 1. Linux Ubuntu 12.04 32-bit
 2. Mac OS 10.9 (maverick)
-3. (more later)
+
 
 ###### Express Install
 
@@ -33,6 +33,24 @@ git clone github.com/netsym/primogeni
 
 ###### Step by Step Install
 In cases the express installation goes wrong we recommend making it step by step so that you can tackle any issue that might prevent you from installation.
+1. Instaling dependencies:
+  * Ubuntu
+    1. sudo apt-get update; sudo apt-get upgrade;
+    2 sudo apt-get install git build-essential subversion gcc gcc-c++ python flex bison ant mpi mpich mpich2 
+2. Installing jdk 1.6.0 and setting JAVA_HOME
+  *Ubuntu
+    1. wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/6u23-b05/jdk-6u23-linux-x64.bin"
+    2. chmod +x ./jdk*;
+    3. ./jdk-6u23-linux-x64.bin
+    4. mkdir -p /usr/local/;mv jdk1.6.0_23 /usr/local/
+    5. echo "export JAVA_HOME=/usr/local/jdk1.6.0_23/" >> ~/.bashrc
+3. Cloning Primogeni and making the primex simulator from source
+  * Ubuntu
+    1. git clone githum.com/netsym/primogeni
+    2. mv primogeni ~/Desktop/
+    3. ~/Desktop/primogeni/clean_build_all.sh
+    4. 
+4. 
 
 
 
@@ -41,6 +59,7 @@ In cases the express installation goes wrong we recommend making it step by step
 **Required Software**
 You need to make sure your machine has the following software. You can use package managers, such as "apt-get" (on Ubuntu Linux) or "macport" (on Mac OS) to install the needed software. Before start, you probably want to update/upgrade your currently installed software to the latest version (using "=sudo apt-get update; sudo apt-get upgrade=" on Ubuntu Linux, or "=sudo port selfupdate; sudo port upgrade outdated=" on Mac.
 You need to make sure your machine has the basic development tools. On Mac OS, you need to install "xcode". On Ubuntu Linux, you need to install "build-essential". These development tools include the gnu compilers, makefile, and standard c library. You may also need to install tools, such as autoconf, automake, but most likely they may have already been pre-installed.
+
 You will also find it more convenient to have the following tools:
 subversion (for obtaining software from our code repository)
 ssh (for secure login)
@@ -48,6 +67,7 @@ python (at least 2.6)
 flex (a lexical analyzer generator used by the simulator)
 bison (a parser generator used by the simulator)
 ant (for building java projects, it's called apache-ant in macport)
+
 You can do this by running 'sudo apt-get install <the-package-you-want-to-install>'. sudo apt-get install python flex bison ant ssh subversion mpi
 Running these commands will either prompt you to install the package, update the package, or do nothing because you already have it.
 You need to install Java. We recommend Java Oracle from their website but you can however use open jdk under Ubuntu by running 'sudo apt-get install default-jdk' (NOTE: if you choose to use open-jdk, you must install using default-jdk, not default-jre). You can download the Java Development Kit and install it by expanding the downloaded file in a private directory such as /usr/lib/jvm. And then set the following environment variables in your startup script (assuming you are using bash). You do this by adding the following two lines to the .bashrc file in your home directory.
