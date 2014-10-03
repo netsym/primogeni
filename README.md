@@ -9,9 +9,9 @@ To be able to use Primogeni and take advantage of hybrid experimentation using P
 
 
 #### Steps of the Primogeni experimentaion are -
-1. Making the simulator (primex), and installing required dependencies. (on local machine)
-2. Installing Eclipse (Indigo) and import Slingshot IDE project.(on local machine)
-3. Getting resources from GENI clearinghouse with Primogeni compatible OS images with preinstalled primex and required additional softwares and scripts. (Geni portal/Flack/Geni Desktop/Jacks/etc.)
+  1. Making the simulator (primex), and installing required dependencies. (on local machine)
+  2. Installing Eclipse (Indigo) and import Slingshot IDE project.(on local machine)
+  3. Getting resources from GENI clearinghouse with Primogeni compatible OS images with preinstalled primex and required additional softwares and scripts. (Geni portal/Flack/Geni Desktop/Jacks/etc.)
 4. Saving manifest rspec of the geni slice to local machine and importing the .rspec/.xml file to slingshot to create an environment where the experiments will be deployed
 5. Creating a model consisting of emulated hosts (openvz containers), real traffic, simulated traffic and simulated hosts. Deploying the experiment model and collecting results.
 
@@ -33,24 +33,24 @@ git clone github.com/netsym/primogeni
 
 ###### Step by Step Install
 In cases the express installation goes wrong we recommend making it step by step so that you can tackle any issue that might prevent you from installation.
-1. Instaling dependencies:
-  * Ubuntu
+  1. Instaling dependencies:
+   * Ubuntu
     1. sudo apt-get update; sudo apt-get upgrade;
     2 sudo apt-get install git build-essential subversion gcc gcc-c++ python flex bison ant mpi mpich mpich2 
-2. Installing jdk 1.6.0 and setting JAVA_HOME
+  2. Installing jdk 1.6.0 and setting JAVA_HOME
   *Ubuntu
     1. wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/6u23-b05/jdk-6u23-linux-x64.bin"
     2. chmod +x ./jdk*;
     3. ./jdk-6u23-linux-x64.bin
     4. mkdir -p /usr/local/;mv jdk1.6.0_23 /usr/local/
     5. echo "export JAVA_HOME=/usr/local/jdk1.6.0_23/" >> ~/.bashrc
-3. Cloning Primogeni and making the primex simulator from source
+  3. Cloning Primogeni and making the primex simulator from source
   * Ubuntu
     1. git clone githum.com/netsym/primogeni
     2. mv primogeni ~/Desktop/
     3. ~/Desktop/primogeni/clean_build_all.sh
     4. 
-4. 
+  4. asdf
 
 
 
