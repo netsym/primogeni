@@ -88,13 +88,13 @@ A simple model that only contains simulated hosts and link can be run on Local s
 
   * For running the experiments on GENI you should select some of the hosts of your model as emulated hosts. To get the resources for running the model on Geni resources you need to get Geni resource slice (using Flack/Geni Desktop/Omni/geni portal). Allocate two machines (or vms) connected with a lan. Assign the lan interface an ipv4 IP like 10.10.1.1 and 10.10.1.2. To be able to run Primogeni the OS image of these two sliver needs to have a Primogeni OS image. 
 
-**Here is few precreated OS image list can be found here**.
+**Here is few precreated Primogeni OS image**.
 1. **Exogeni**
      * Primogeni OS image for Exogeni (version-GEC 21)
      * Image descriptor xml: http://users.cis.fiu.edu/~mobai001/primogeni_exo_image/new_image.xml
      * Please verify sha1sum: eb36bbf95d7d73b698e4ad24ea1064438f7f82da
 
-2. **For: Instageni emulab-xen sliver**.
+2. **Instageni (sliver_typr=emulab-xen)**.
    1. OS image: NORTHWESTERN
       * For the same manager, you can use id=urn:publicid:IDN+instageni.northwestern.edu+image+ch-geni-net:primov3instanorthwestern
       * For other managers, you can use url=https://www.instageni.northwestern.edu/image_metadata.php?uuid=b550f7d0-49fd-11e4-8c68-000000000000
@@ -112,13 +112,38 @@ A simple model that only contains simulated hosts and link can be run on Local s
       * Comments: Working image.
 
 3. For: Protogeni
+    1. Emulab.net
+       * Image 1 
+    2. Uky protogeni
+       * Image 1 
 
 
- While your slice takes time to allocate resources lets create an experiment in Slingshot. To create an experiment, click on File > New > Experiment on the top menu bar of Slingshot. This will bring up a new window. Name the experiment With an experiment name and Browse for the model file. Navigate to the primex directory. Go to netscript/test/java_models and select MySecondJavaModel? .java the click ok. Click finish to create the experiment. This will build a visual representation of the model and open up the model view for the project. On the right, find View Depth: and put that up to 3 by click the up arrow. Now you can see the full model. 
-   * To compile the model, click on Experiment > Compile Experiment on the top menu bar. Now that the model is compiled, it cannot be changed. 
-   *To run the experiment, click on Experiment > Launch Experiment on the top menu bar. This will bring up a window. Select Local Simulator then click next. For Runtime:, put 20 seconds. Leave the #Processors: at 1, and for Pace Simulation Speed:, put 1 which will indicate (Real Time). When you click finish, slingshot will begin to run your experiment. You can see this under View Depth. the Time is moving. When it gets to 10 seconds, you will see the nodes start blinking and changing colors. When the experiment terminates, a window will indicate this. Click ok. If running the experiment did not work, verify that you have configured slingshot to point to the appropriate primex directory you downloaded or checked out with svn (refer to step 13).
-16. If you had any other problems, you can try following these steps again or you can contact us at <support-email-here>
+###### Creating a Hybrid Experiment on Slingshot
+ While your slice takes time to allocate resources lets create an experiment in Slingshot. To create an experiment, click on *File > New > Experiment* on the top menu bar of Slingshot. This will bring up a new window. Name the experiment With an experiment name and Browse for the model file. Navigate to the primogeni directory(The one you cloned from git). Go to *netscript/test/java_models* and select *MyThirdJavaModel.java* the click *ok*. Click finish to create the experiment. Now double-click on the experiment to see the visualization of the model on Slingshot. You can increase/decrese view depth on right to adjust On the right of the Slingshot to view the dails of the nested subnets.  
+ 
+###### Compiling The Model
+To compile the model, click on *Experiment > Compile Experiment* on the top menu bar. Your experiment is compiled.
+
+###### Adding a Slingshot Environment for Deploying Model
+I am assuming  enough time has passed and our slivers that we were creating are allocated and ready to do use. Hosts generally turn green in Flack once they are up and ready to use. 
+   * Save the manifest rspec from geni portal with a .rspec or .xml extension. 
+   * Click on create a new environment button on the toolbar. 
+   * Select Progeni/Instageni/Exogeni and Click next. Select which version is your rspec and then browse the Rspec file and click add. It will be listed for persing.
+   * Now Select one of the slivers as master and rest of the slivers as slave for the experiment. Please refer to this to learn more about Primogeni Architecture.
+   * Click next. 
+   * It will show you a summary about the master and slave nodes in the rspec
+   * Environemt is added successfully.
+   * Note: For creating Portal experiments (Special types of supported nodes in Primogeni that lets Primogeni slivers to connect to external network/internet), the resource allocation and environment creation need to be configured like this.
+   
 
 
+
+###### Running The Model
+One you have the model compiled and the environment created to support emulation you can now deploy your model and view/collect realtime experiment results. Click the Play button in the toolbar to run the model. It will ask you to select the environment. Select the environment where you want to deploy your experiment. (You can use the environment you created in previous step). Enter the time for how long you want to run the experiment. Hit finish. It will take few seconds based on the communication delay of the remote Geni machines for the experiment to start. In addition if there is any emulated hosts those will be created right before advancing the simulation time. Check the Slingshot Log if there is any isssues that might prevent your experimnent from deploying.
+
+
+###### Primogeni COnstellation Mailing list
+You can report the problems you  experience during the whole process at our mailing list. 
+Our mailing list is: 
 
 A hybrid network experiment testbed on GENI with physical, simulated, and emulated network components.
