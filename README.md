@@ -46,7 +46,7 @@ In cases the express installation goes wrong we recommend making it step by step
        3. ./jdk-6u23-linux-x64.bin
        4. mkdir -p /usr/local/;mv jdk1.6.0_23 /usr/local/
        5. echo "export JAVA_HOME=/usr/local/jdk1.6.0_23/" >> ~/.bashrc
-       6. echo "export PATH=$JAVA_HOME/bin:$PATH"
+       6. echo "export PATH=/usr/local/jdk1.6.0_23/bin:$PATH"  >> ~/.bashrc
 3. Cloning Primogeni and making the primex simulator from source
    * Ubuntu
        1. git clone github.com/netsym/primogeni
