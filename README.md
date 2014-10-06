@@ -88,30 +88,31 @@ A simple model that only contains simulated hosts and link can be run on Local s
 
   * For running the experiments on GENI you should select some of the hosts of your model as emulated hosts. To get the resources for running the model on Geni resources you need to get Geni resource slice (using Flack/Geni Desktop/Omni/geni portal). Allocate two machines (or vms) connected with a lan. Assign the lan interface an ipv4 IP like 10.10.1.1 and 10.10.1.2. To be able to run Primogeni the OS image of these two sliver needs to have a Primogeni OS image. 
 
-*Here is few precreated OS image list can be found here*.
-1 *Exogeni*
+**Here is few precreated OS image list can be found here**.
+1. **Exogeni**
      * Primogeni OS image for Exogeni (version-GEC 21)
      * Image descriptor xml: http://users.cis.fiu.edu/~mobai001/primogeni_exo_image/new_image.xml
      * Please verify sha1sum: eb36bbf95d7d73b698e4ad24ea1064438f7f82da
 
-2 For: Instageni emulab-xen sliver.
-   1 OS image: NORTHWESTERN
-      * UTC Time: 10/02/2014 06:31:01 AM
+2. **For: Instageni emulab-xen sliver**.
+   1. OS image: NORTHWESTERN
       * For the same manager, you can use id=urn:publicid:IDN+instageni.northwestern.edu+image+ch-geni-net:primov3instanorthwestern
       * For other managers, you can use url=https://www.instageni.northwestern.edu/image_metadata.php?uuid=b550f7d0-49fd-11e4-8c68-000000000000
-   1 OS IMAGE complete instageni site: CLEMSON
+      * Comments: Operational Image.
+   2. OS IMAGE complete instageni site: CLEMSON
       * For the same manager, you can use id=urn:publicid:IDN+instageni.clemson.edu+image+ch-geni-net:primov32instaclemson
       * For other managers, you can use url=
       * Comments: Working Image
-   1 OS IMAGE complete instageni site: KU.GPENI.NET
+   3. OS IMAGE complete instageni site: KU.GPENI.NET
       * For the same manager, you can use id=urn:publicid:IDN+instageni.ku.gpeni.net+image+ch-geni-net:primov31instclemson
       * For other managers, you can use url=https://www.instageni.ku.gpeni.net/image_metadata.php?uuid=37ea9fda-49ef-11e4-8f68-000000000000
-   1 OS IMAGE complete instageni site: KU.GPENI.NET
+   4. OS IMAGE complete instageni site: KU.GPENI.NET
       * For the same manager, you can use id=urn:publicid:IDN+instageni.ku.gpeni.net+image+ch-geni-net:primov3instaclemson
       * For other managers, you can use url=https://www.instageni.ku.gpeni.net/image_metadata.php?uuid=d01d7d72-49dc-11e4-8f68-000000000000
-      * Comments: Working image
+      * Comments: Working image.
 
-3 For: Protogeni
+3. For: Protogeni
+
 
  While your slice takes time to allocate resources lets create an experiment in Slingshot. To create an experiment, click on File > New > Experiment on the top menu bar of Slingshot. This will bring up a new window. Name the experiment With an experiment name and Browse for the model file. Navigate to the primex directory. Go to netscript/test/java_models and select MySecondJavaModel? .java the click ok. Click finish to create the experiment. This will build a visual representation of the model and open up the model view for the project. On the right, find View Depth: and put that up to 3 by click the up arrow. Now you can see the full model. 
    * To compile the model, click on Experiment > Compile Experiment on the top menu bar. Now that the model is compiled, it cannot be changed. 
