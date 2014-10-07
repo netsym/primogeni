@@ -38,7 +38,7 @@ In cases the express installation goes wrong we recommend making it step by step
 1. Instaling dependencies:
    * Ubuntu
        1. sudo apt-get update; sudo apt-get upgrade;
-       2. sudo apt-get install git build-essential subversion gcc gcc-c++ python flex bison ant mpi mpich mpich2 
+       2. sudo apt-get install git build-essential subversion gcc python flex bison ant mpi mpich mpich2 
 2. Installing jdk 1.6.0 and setting JAVA_HOME
    *Ubuntu
        1. wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/6u23-b05/jdk-6u23-linux-x64.bin"
@@ -49,8 +49,11 @@ In cases the express installation goes wrong we recommend making it step by step
        6. echo "export PATH=/usr/local/jdk1.6.0_23/bin:$PATH"  >> ~/.bashrc
 3. Cloning Primogeni and making the primex simulator from source
    * Ubuntu
-       1. git clone github.com/netsym/primogeni
-       2. mv primogeni ~/Desktop/
+       1. git clone https://github.com/netsym/primogeni
+       2. mv primogeni ~/Desktop/primogeni
+       3. Cd to ~/Desktop/primogeni/netsim and do a ./configure to see if the simulator can locate necessary dependencies required for installation.
+       4. cd ~/Desktop/primogeni
+       5. chmod +x clean_build_all.sh
        3. ~/Desktop/primogeni/clean_build_all.sh
        4. (Tackiling c++ errors) Most modern Ubuntu distros do not require this step. In case primex build fails because of c++, comment out line 244 and 245 in /usr/include/c++/4.6/i686-linux-gnu/bits/gthr-default.h.
 
@@ -63,8 +66,8 @@ In cases the express installation goes wrong we recommend making it step by step
      * Open Eclipse executable. Set a directory for eclipse workspace, it can be any directory you like. 
      * Importing Slingshot(primogeni/netIDE) as a project
        * a. Click on File > New > Java Project
-       * b. Put "Slingshot" for Project name and uncheck 'Use default location'
-       * c. Browse for the folder where primogeni is located and select the netIDE folder and click 'OK', then click 'Next', and then 'Finish'.
+       * b. Put `Slingshot` for Project name and uncheck `Use default location`.
+       * c. Browse for the folder where primogeni is located and select the `netIDE` folder and click 'OK', then click `Next`, and then `Finish`.
        * d. Since Slingshot will use primex, we have to configure java library in Eclipse that you compiled primex with. To do this
          * Right click Slingshot project within eclipse in the package explorer on the left.
          * Then click on properties.
@@ -86,7 +89,7 @@ In cases the express installation goes wrong we recommend making it step by step
   * Now its time to create an experiment in Slingshot. Follow this [link](http://users.cis.fiu.edu/~meraz001/primotutorial/getstarted.html) for getting started with model writing for Slingshot. This will show you the basics of creating, compiling, and running an experiment in Slingshot. 
 A simple model that only contains simulated hosts and link can be run on Local simulator by compiling and running the experiment you just created.
 
-  * For running the experiments on GENI you should select some of the hosts of your model as emulated hosts. To get the resources for running the model on Geni resources you need to get Geni resource slice (using Flack/Geni Desktop/Omni/geni portal). Allocate two machines (or vms) connected with a lan. Assign the lan interface an ipv4 IP like 10.10.1.1 and 10.10.1.2. To be able to run Primogeni the OS image of these two sliver needs to have a Primogeni OS image. 
+  * For running the experiments on GENI you should select some of the hosts of your model as emulated hosts. To get the resources for running the model on Geni resources you need to get Geni resource slice (using Flack/Geni Desktop/Omni/geni portal). Allocate two machines (or vms) connected with a lan. Assign the lan interface an ipv4 IP like 10.10.1.1 and 10.10.1.2. To be able to run Primogeni the OS image of these two sliver needs to have a Primogeni OS image.
 
 **Here is few precreated Primogeni OS image**.
 1. **Exogeni**
