@@ -23,40 +23,41 @@ This document includes steps for installing slingshot  on client machines. So fa
 
 #### Express Install
 
-1. Clone the priomogeni project at alocal directory
+* Clone the priomogeni project at a local directory
 ```
-`git clone github.com/netsym/primogeni`
-`mv primogeni ~/Desktop`
+git clone github.com/netsym/primogeni
+mv primogeni ~/Desktop/primogeni
 ```
-2. Install Primogeni using script
-   * `cd ~/Desktop/primogeni
-   * chmod +x install_local.sh
-   * ./install_local.sh
-
+* Install Primogeni using script
+```
+cd ~/Desktop/primogeni
+chmod +x install_local.sh
+./install_local.sh
+```
 
 #### Step by Step Install (Alternative of Express Install)
 In cases the express installation goes wrong we recommend making it step by step so that you can tackle any issue that might prevent you from installation.
 
 1. Instaling dependencies:
    * Ubuntu
-       1. sudo apt-get update; sudo apt-get upgrade;
-       2. sudo apt-get install git build-essential subversion gcc python flex bison ant mpi mpich mpich2 
+       1. `sudo apt-get update; sudo apt-get upgrade;`
+       2. `sudo apt-get install git build-essential subversion gcc python flex bison ant mpi mpich mpich2`
 2. Installing jdk 1.6.0 and setting JAVA_HOME
    *Ubuntu
-       1. wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/6u23-b05/jdk-6u23-linux-x64.bin"
-       2. chmod +x ./jdk*;
-       3. ./jdk-6u23-linux-x64.bin
-       4. mkdir -p /usr/local/;mv jdk1.6.0_23 /usr/local/
-       5. echo "export JAVA_HOME=/usr/local/jdk1.6.0_23/" >> ~/.bashrc
-       6. echo "export PATH=/usr/local/jdk1.6.0_23/bin:$PATH"  >> ~/.bashrc
+       1. `wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/6u23-b05/jdk-6u23-linux-x64.bin"`
+       2. `chmod +x ./jdk*;`
+       3. `./jdk-6u23-linux-x64.bin`
+       4. `mkdir -p /usr/local/;mv jdk1.6.0_23 /usr/local/`
+       5. `echo "export JAVA_HOME=/usr/local/jdk1.6.0_23/" >> ~/.bashrc`
+       6. `echo "export PATH=/usr/local/jdk1.6.0_23/bin:$PATH"  >> ~/.bashrc`
 3. Cloning Primogeni and making the primex simulator from source
    * Ubuntu
-       1. git clone https://github.com/netsym/primogeni
-       2. mv primogeni ~/Desktop/primogeni
-       3. Cd to ~/Desktop/primogeni/netsim and do a ./configure to see if the simulator can locate necessary dependencies required for installation.
-       4. cd ~/Desktop/primogeni
-       5. chmod +x clean_build_all.sh
-       3. ~/Desktop/primogeni/clean_build_all.sh
+       1. `git clone https://github.com/netsym/primogeni`
+       2. `mv primogeni ~/Desktop/primogeni`
+       3. Cd to `~/Desktop/primogeni/netsim` and do a `./configure` to see if the simulator can locate necessary dependencies required for installation.
+       4. `cd ~/Desktop/primogeni`
+       5. `chmod +x clean_build_all.sh`
+       3. `./clean_build_all.sh`
        4. (Tackiling c++ errors) Most modern Ubuntu distros do not require this step. In case primex build fails because of c++, comment out line 244 and 245 in /usr/include/c++/4.6/i686-linux-gnu/bits/gthr-default.h.
 
 #### Making and Running Primogeni API(Slingshot) on Eclipse
@@ -143,11 +144,9 @@ I am assuming  enough time has passed and our slivers that we were creating are 
 
 
 ##### Running The Model
-One you have the model compiled and the environment created to support emulation you can now deploy your model and view/collect realtime experiment results. Click the Play button in the toolbar to run the model. It will ask you to select the environment. Select the environment where you want to deploy your experiment. (You can use the environment you created in previous step). Enter the time for how long you want to run the experiment. Hit finish. It will take few seconds based on the communication delay of the remote Geni machines for the experiment to start. In addition if there is any emulated hosts those will be created right before advancing the simulation time. Check the Slingshot Log if there is any isssues that might prevent your experimnent from deploying.
+One you have the model compiled and the environment created to support emulation you can now deploy your model and view/collect realtime experiment results. Click the `Play` button in the toolbar to run the model. It will ask you to `select the environment`. Select the environment where you want to deploy your experiment. (You can `use the environment you created in previous step`). Enter the `time` for how long you want to run the experiment. Hit `finish`. It will take few seconds based on the communication delay of the remote Geni machines for the experiment to start. In addition if there is any emulated hosts those will be created right before advancing the simulation time. Check the Slingshot Log if there is any isssues that might prevent your experimnent from deploying.
 
 
 #### Primogeni COnstellation Mailing list
 You can report the problems you  experience during the whole process at our mailing list. 
-Our mailing list is: 
-
-A hybrid network experiment testbed on GENI with physical, simulated, and emulated network components.
+Our mailing list is: primogeni
