@@ -42,16 +42,10 @@ In cases the express installation goes wrong we recommend making it step by step
    * Ubuntu
        1. `sudo apt-get update; sudo apt-get upgrade;`
        2. `sudo apt-get install git build-essential subversion gcc python flex bison ant openjdk-6-jdk mpi mpich mpich2`
-2. Installing jdk 1.6.0 and setting JAVA_HOME
-   *Ubuntu
-       1. `wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/6u23-b05/jdk-6u23-linux-x64.bin"`
-       2. 
-       2. `chmod +x ./jdk*;`
-       3. `./jdk-6u23-linux-x64.bin`
-       4. `mkdir -p /usr/local/;mv jdk1.6.0_23 /usr/local/`
-       5. `echo "export JAVA_HOME=/usr/local/jdk1.6.0_23/" >> ~/.bashrc`
-       6. `echo "export PATH=/usr/local/jdk1.6.0_23/bin:$PATH"  >> ~/.bashrc`
-3. Cloning Primogeni and making the primex simulator from source
+       3. `sudo update-alternatives --config javac` 
+       4. You can set your JAVA_HOME to the installed openjdk6
+
+2. Cloning Primogeni and making the primex simulator from source
    * Ubuntu
        1. `git clone https://github.com/netsym/primogeni`
        2. `mv primogeni ~/Desktop/primogeni`
