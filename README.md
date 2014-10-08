@@ -8,7 +8,7 @@ An Overview of Primogeni- Hybrid Experimentation Approach
 To be able to use Primogeni and take advantage of hybrid experimentation using Primogeni, one needs to have Slingshot (Primogeni's IDE) installed on their local machine. Slingshot is developed using Eclipse RCP programming. Primogeni is an open source software therefore we recommend making it straight from the sources so that the experimenter can take advantage of the bug fixes and recent advancements while maintaining existing experimentation capability. 
 
 
-#### Steps of the Primogeni experimentaion are -
+### Steps of the Primogeni experimentaion are -
   1. Making the simulator (primex), and installing required dependencies. (on local machine)
   2. Installing Eclipse (Indigo) and import Slingshot IDE project.(on local machine)
   3. Getting resources from GENI clearinghouse with Primogeni compatible OS images with preinstalled primex and required additional softwares and scripts. (Geni portal/Flack/Geni Desktop/Jacks/etc.)
@@ -16,26 +16,12 @@ To be able to use Primogeni and take advantage of hybrid experimentation using P
 5. Creating a model consisting of emulated hosts (openvz containers), real traffic, simulated traffic and simulated hosts. Deploying the experiment model and collecting results.
 
 
-##### Installing Primogeni on Local Machine (Steps 1 & 2 of Primogeni Experimentation)
+#### Installing Primogeni on Local Machine (Steps 1 & 2 of Primogeni Experimentation)
 This document includes steps for installing slingshot  on client machines. So far, we have successfully tested slingshot on Linux Ubuntu 12.04 32-bit
 2. Mac OS 10.9 (maverick)
 
 
-#### Express Install
-
-* Clone the priomogeni project at a local directory
-```
-git clone github.com/netsym/primogeni
-mv primogeni ~/Desktop/primogeni
-```
-* Install Primogeni using script
-```
-cd ~/Desktop/primogeni
-chmod +x install_local.sh
-./install_local.sh
-```
-
-#### Step by Step Install (Alternative of Express Install)
+### Step by Step Install
 In cases the express installation goes wrong we recommend making it step by step so that you can tackle any issue that might prevent you from installation.
 
 1. Instaling dependencies:
@@ -74,8 +60,9 @@ In cases the express installation goes wrong we recommend making it step by step
          * Select the `JRE System library` which should be second to last on the libraries list. 
          * Click on `edit` on the right.
          * Select your jdk that you installed primex with. (Click on `alternate JRE->installed JREs->add->Standard VM->next`).
-         * Under JRE home, click on directory and navigate to your java home directory. If you followed all the insructions, it should be `/usr/local/jdk1.6.0_23`. Then click ok then Click on finish. Now select the new JRE under the installed JREs window. It should be `jdk1.6.0_23`. Click `ok`. In the JRE System Library window, under aternate JRE, the open jdk will still be selected. You need to change it to `jdk1.6.0_23`, then click finish. Now your Java Build Path is correctly configured. Click `ok`.
-         * 
+         * Under JRE home, click on directory and navigate to your java home directory. If you followed all the insructions, it should be `/usr/lib/jvm/java-6-openjdk-i386/amd64` or `/usr/lib/jvm/java-6-oracle/`. Then click `ok` then Click on `finis`h. Now select the new JRE under the installed JREs window. Click `ok`. In the JRE System Library window, under aternate JRE, the open jdk will still be selected. You need to change it to `openjdk-6` or `java-6-oracle`, then click `finish`. Now your Java Build Path is correctly configured. Click `ok`.
+
+
 2. Making Slingshot Product
   * Expand the slingshot project. Open the `*.product` file corresponding to your machine. In our case, it is `slingshot_linux_32.product`. The file should have opened up in the editor. Click on the `green play button` WITHIN THE PRODUCT FILE! This will build and launch slingshot. (!Important Reminder: DO NOT click on the play button on the top of eclipse.)
   * Slingshot will prompt you for a `workspace`. Choose a local folder that you would like to use as Sligshot workspace, a different folder than your Eclipse workspace. 
@@ -89,7 +76,8 @@ A simple model that only contains simulated hosts and link can be run on Local s
 
   * For running the experiments on GENI you should select some of the hosts of your model as *emulated hosts*. To get the resources for running the model on Geni resources you need to get Geni resource slice (using Flack/Geni Desktop/Omni/geni portal). Allocate two machines (or vms) connected with a lan. Assign the lan interface an ipv4 IP like `10.10.1.1` and `10.10.1.2`. To be able to run Primogeni the OS image of these two sliver needs to have a **Primogeni OS image**.
 
-**Here is few precreated Primogeni OS image**.
+**Here is few precreated Primogeni OS image**
+
 1. **Exogeni**
      * Primogeni OS image for Exogeni (version-GEC 21)
      * Image descriptor xml: `http://users.cis.fiu.edu/~mobai001/primogeni_exo_image/new_image.xml`
@@ -99,23 +87,20 @@ A simple model that only contains simulated hosts and link can be run on Local s
    1. OS image: NORTHWESTERN
       * For the same manager, you can use id=urn:publicid:IDN+instageni.northwestern.edu+image+ch-geni-net:primov3instanorthwestern
       * For other managers, you can use url=https://www.instageni.northwestern.edu/image_metadata.php?uuid=b550f7d0-49fd-11e4-8c68-000000000000
-      * Comments: Operational Image.
+      * Comments: Tested Operational.
    2. OS IMAGE complete instageni site: CLEMSON
       * For the same manager, you can use id=urn:publicid:IDN+instageni.clemson.edu+image+ch-geni-net:primov32instaclemson
-      * For other managers, you can use url=
-      * Comments: Working Image
+      * Comments: Tested Operational.
    3. OS IMAGE complete instageni site: KU.GPENI.NET
       * For the same manager, you can use id=urn:publicid:IDN+instageni.ku.gpeni.net+image+ch-geni-net:primov31instclemson
       * For other managers, you can use url=https://www.instageni.ku.gpeni.net/image_metadata.php?uuid=37ea9fda-49ef-11e4-8f68-000000000000
-   4. OS IMAGE complete instageni site: KU.GPENI.NET
+   4. OS IMAGE complete instageni site: Gatech
       * For the same manager, you can use id=urn:publicid:IDN+instageni.ku.gpeni.net+image+ch-geni-net:primov3instaclemson
       * For other managers, you can use url=https://www.instageni.ku.gpeni.net/image_metadata.php?uuid=d01d7d72-49dc-11e4-8f68-000000000000
-      * Comments: Working image.
+      * Comments: Tested Operational.
 
 3. For: Protogeni
     1. Emulab.net
-       * Image 1 
-    2. Uky protogeni
        * Image 1 
 
 
