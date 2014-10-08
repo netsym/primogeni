@@ -5,9 +5,9 @@ PrimoGENI Constellation allows network experimenters to conduct large-scale netw
 ## Installation
 There are three steps for preparing PrimoGENI Constellation to run from your local machine (we have tested both on Ubuntu Linux and on Mac OS):
 
-     1. Building the real-time network simulator (called `primex`)
-     2. Installing the PrimoGENI IDE (called `slingshot`)
-     3. Preparing the runtime environment for running experiments on GENI slices
+  1. Building the real-time network simulator (called `primex`)
+  2. Installing the PrimoGENI IDE (called `slingshot`)
+  3. Preparing the runtime environment for running experiments on GENI slices
 
 Before installation, you need to install the necessary packages that PrimoGENI is dependent upon. 
 * Ubuntu Linux:
