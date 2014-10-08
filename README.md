@@ -44,7 +44,7 @@ In cases the express installation goes wrong we recommend making it step by step
 1. We would launch Slingshot on Eclipse at this step. We recommend *Eclipse Indigo for RCP and RAP developers* Download the Eclipse IDE.
    * You can find it [here](http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/indigosr2).
      * Unzip the Eclipse package.
-     * We need one dependency called `Afae` for syntax highlighting in Slinghsot. Checkout Afae from primessf svn and place it in plugins folder of eclipse directory you just downloaded. You can checkout afae from primessf svn, the username and password is guest for checking out afae. Use: svn co https://primessf.net/repos/pgc/trunk/tools/com.rohanclan.afae_1.2.0
+     * We need one dependency called `Afae` for syntax highlighting in Slinghsot. You can download the plugin [here](https://www.primessf.net/pub/Public/PrimoGENIProject/afae_plugins.tgz).  Untar afae_plugins.tgz by `tar -zxf afae_plugins.tgz` and move `com.rohanclan.afae_1.2.0`, `com.rohanclan.imageviewer_0.9.1`, and `com.rohanclan.snippets_0.8.8` to the plugins folder of your eclipse installation. You need to restart eclipse after doing this
      * Open Eclipse executable. Set a directory for eclipse `workspace`, it can be any directory you like. 
      * Importing Slingshot(primogeni/netIDE) as a project
        * a. Click on `File > New > Java` Project
