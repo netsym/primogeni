@@ -19,13 +19,16 @@ To install PrimoGENI, you need to have some packages installed on your local mac
   1. `sudo apt-get update; sudo apt-get upgrade`
   2. `sudo apt-get install git subversion wget build-essential gcc python flex bison ant openjdk-6-jdk libpcap-dev texlive-binaries`
   3. `sudo update-alternatives --config javac` 
-  4. Set environment variable JAVA\_HOME to the installed openjdk directory (e.g., for bash shell, use `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386` for 32-bit Linux, and `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64` for 64-bit Linux)
+  4. Set the environment variable JAVA\_HOME; add the following command to your login shell (such as `~/.bash_profile` for bash):
+    * For 32-bit Linux: `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386`
+    * For 64-bit Linux: `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64`
 * Mac OS:
   1. Install latest MacPorts (https://www.macports.org/) and Xcode (https://developer.apple.com/xcode/downloads/)
   2. `sudo port selfupdate; sudo port upgrade outdated`
   3. `sudo port install git subversion wget python27 flex bison apache-ant`
-  4. Install Java 1.6 SDK for Mac OS *---(TODO)---*
-  5. Set environment variable JAVA\_HOME for your shell (e.g., for bash shell: ``export JAVA_HOME=`/usr/libexec/java_home```)
+  4. Install JDK 1.6 (if it hasn't). Go to https://developer.apple.com/downloads (you need an Apple account); download and install Java for OS X 2012-006 Developer Package.
+  5. Set the environment variable JAVA\_HOME; add the following command to your login shell (such as `~/.bash_profile` for bash):
+    * `export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)` 
 
 
 ## Compile Primex
