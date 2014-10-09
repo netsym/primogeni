@@ -54,8 +54,8 @@ Slingshot is the graphical user interface that one uses to launch and control Pr
   6. Create Slingshot project:
     1. Click on `File > New > Java Project` or `File > New > Project` and then select `Java > Java Project` in the `New Project` window
     2. Put `Slingshot` as `Project name`, uncheck `Use default location`, select `Location` to be the netIDE directory under the primogeni directory, and click `Finish`
-    3. Configure Eclipse to use the same Java version which you use for compiling primex
-      * Ubuntu Linux:
+    3. Configure Eclipse to use Java 1.6:
+      * For Ubuntu Linux:
         * Right click on `Slingshot` project in the package explorer and select `Properties`
         * In the popup window, click on `Java Build Path` and select `Libraries` tab 
         * Select `JRE System library` and select `Edit...`
@@ -64,11 +64,11 @@ Slingshot is the graphical user interface that one uses to launch and control Pr
           * In `JRE home` field, enter the Java home directory: `/usr/lib/jvm/java-6-openjdk-...`
           * Choose a proper `JRE name` and click `Finish`
           * In the `Installed JREs` widget, select the newly added entry
-      * Mac OS (one can skip this step the default Java is 1.6):
+      * For Mac OS (one can skip this step the default is Java 1.6; find out using `java -version`):
         * Right click on `Slingshot` project in the package explorer and select `Properties`
         * In the popup window, click on `Java Build Path` and select `Libraries` tab 
         * Select `JRE System library` and select `Edit...`
-        * Select the corresponding Execution environment using the pulldown menu
+        * Select the `Execution environment` using the pulldown menu
     4. Help Eclipse to resolve plug-in dependencies:
       * Right click on `Slingshot` project in the package explorer and select `Properties`
       * In the popup window, click on `Java Build Path` and select `Libraries` tab 
