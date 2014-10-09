@@ -1015,7 +1015,7 @@
          </property>
          <property
                name="aboutImage"
-               value="/slingshot/icons/icon_128.png">
+               value="/slingshot/icons/icon_64.png">
          </property>
          <property
                name="aboutText"
