@@ -34,35 +34,30 @@ Primex is a real-time network simulator. In order to run (small) network experim
 
 ## Install Slingshot
 
-Slingshot is the Integrated Development Environment for PrimoGENI. Slingshot uses Eclipse RCP.
-  1. Download Eclipse. We use Eclipse Indigo for RCP and RAP developers, which can be obtained from http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/indigosr2 (use 32 or 64-bit version compatible with your Java installation).
+Slingshot is the Integrated Development Environment (IDE) for PrimoGENI. Since slingshot uses Eclipse RCP, we need to install Eclipse for running slingshot:
+  1. Download Eclipse. We use Eclipse Indigo for RCP and RAP developers, which can be obtained from http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/indigosr2 (For Mac OS, make sure you choose the 32- or 64-bit version compatible with your Java installation).
   2. Untar the eclipse-\*.tar.gz file (which creates a directory named eclipse) under primogeni:<br>
     `cd primogeni; tar -xzf eclipse-*.tar.gz`
   3. Download the Afae plugin (for syntax highlighting) from https://www.primessf.net/pub/Public/PrimoGENIProject/afae_plugins.tgz
   4. `cd eclipse/plugins; tar -xvf afae_plugins.tgz`
   5. Run eclipse (you may need to set a directory for eclipse workspace)
   6. Create Slingshot project:
-    a. Click on `File > New > Java Project`
-    b. Put `Slingshot` as `Project name`, uncheck `Use default location`, select `Location` to be the netIDE directory under the primogeni directory, and click `Finish`
-    c. Since Slingshot will use primex, we have to configure `java library` in Eclipse that you compiled primex with. To do this:
-         * `Right click Slingshot` project within eclipse in the package explorer on the left.
-         * Then click on `properties`.
-         * From this window, click on `Java Build Path` on the left. 
-         * Click on the `libraries` tab on the top. 
-         * Select the `JRE System library` which should be second to last on the libraries list. 
-         * Click on `edit` on the right.
-         * Select your jdk that you installed primex with. (Click on `alternate JRE->installed JREs->add->Standard VM->next`).
-         * Under JRE home, click on directory and navigate to your java home directory. If you followed all the insructions, it should be `/usr/lib/jvm/java-6-openjdk-i386/amd64` or `/usr/lib/jvm/java-6-oracle/`. Then click `ok` then Click on `finis`h. Now select the new JRE under the installed JREs window. Click `ok`. In the JRE System Library window, under aternate JRE, the open jdk will still be selected. You need to change it to `openjdk-6` or `java-6-oracle`, then click `finish`. Now your Java Build Path is correctly configured. Click `ok`.
+    1. Click on `File > New > Java Project` or `File > New > Project` and then select `Java > Java Project` in the `New Project` window
+    2. Put `Slingshot` as `Project name`, uncheck `Use default location`, select `Location` to be the netIDE directory under the primogeni directory, and click `Finish`
+    3. Configure Eclipse to use the same Java library we use for compiling primex (one can skip this step on Mac OS if using the default Java):
+      * Right click on `Slingshot` project in the package explorer and select `Properties`
+      * In the popup window, click on `Java Build Path` and select `Libraries` tab 
+      * Select `JRE System library` and select `Edit...`
+      * Select the corresponding JRE: for example, `Alternate JRE > Installed JREs > Add > Standard VM` and `Next`; fill in `JRE home` with the Java home directory of your installation and choose a proper `JRE name`. Choose it to be your `Alternate JRE`
+    4. Run slingshot:
+      * Expand Slingshot project in the `Package Explorer`
+      * Open `slingshot_linux_32.product`, `slingshot_linux_64.product`, or `slingshot_mac.product`, depending on your machine type
+      * Click the button for `Launch an Eclipse application`
+      * When run in the first time, slingshot will ask you to set the workspace (manually, this can be done by selecting `File > Switch Workspace`); you can choose a new folder for all your primogeni experiments
+      * Slingshot will also ask you for primex directory (manually, this can be done by selecting `Tools > Slingshot Config Wizard`); you should provide the directory where you installed primogeni
 
+## Prepare Runtime Environment
 
-2. Making Slingshot Product
-  * Expand the slingshot project. Open the `*.product` file corresponding to your machine. In our case, it is `slingshot_linux_32.product`. The file should have opened up in the editor. Click on the `green play button` WITHIN THE PRODUCT FILE! This will build and launch slingshot. (!Important Reminder: DO NOT click on the play button on the top of eclipse.)
-  * Slingshot will prompt you for a `workspace`. Choose a local folder that you would like to use as Sligshot workspace, a different folder than your Eclipse workspace. 
-  * Configuring simulator directory in Slingshot: Click on `Tools > Slingshot Config Wizard` in the top menu bar. After the dialog opens up, click on browse and select the `primogeni directory` where you installed the simulator. Then click `OK` then `Finish`.
-
-
-
-#### How to run Experiment on Geni?
   * Now its time to create an experiment in Slingshot. Follow this [link](http://users.cis.fiu.edu/~meraz001/primotutorial/getstarted.html) for getting started with model writing for Slingshot. This will show you the basics of creating, compiling, and running an experiment in Slingshot. 
 A simple model that only contains simulated hosts and link can be run on Local simulator by compiling and running the experiment you just created.
 
