@@ -48,15 +48,17 @@ Slingshot is the Integrated Development Environment (IDE) for PrimoGENI. Since s
       * Right click on `Slingshot` project in the package explorer and select `Properties`
       * In the popup window, click on `Java Build Path` and select `Libraries` tab 
       * Select `JRE System library` and select `Edit...`
-      * Select the corresponding JRE: for example, `Alternate JRE > Installed JREs > Add > Standard VM` and `Next`; fill in `JRE home` with the Java home directory of your installation and choose a proper `JRE name`. Choose it to be your `Alternate JRE`
-    4. Run slingshot:
-      * Expand Slingshot project in the `Package Explorer`
-      * Open `slingshot_linux_32.product`, `slingshot_linux_64.product`, or `slingshot_mac.product`, depending on your machine type
-      * Click the button for `Launch an Eclipse application`
-      * When run in the first time, slingshot will ask you to set the workspace (manually, this can be done by selecting `File > Switch Workspace`); you can choose a new folder for all your primogeni experiments
-      * Slingshot will also ask you for primex directory (manually, this can be done by selecting `Tools > Slingshot Config Wizard`); you should provide the directory where you installed primogeni
+      * Select the corresponding JRE: for example, click `Alternate JRE > Installed JREs > Add > Standard VM` and `Next`; fill in `JRE home` with the Java home directory of your installation and choose a proper `JRE name`. Choose it to be your `Alternate JRE`
+  7. Run slingshot:
+    1. Expand Slingshot project in the `Package Explorer`
+    2. Open `slingshot_linux_32.product`, `slingshot_linux_64.product`, or `slingshot_mac.product`, depending on your machine type
+    3. Click the button for `Launch an Eclipse application`
+    4. When run for the first time, slingshot will ask you to set the workspace (manually, this can be done by selecting `File > Switch Workspace`); you can choose a new folder for all your primogeni experiments
+    5. Slingshot will also ask you for the primogeni installation (manually, this can be done by selecting `Tools > Slingshot Config Wizard`); simply point to the directory where you installed primogeni
 
 ## Prepare Runtime Environment
+
+*---LATER---*
 
   * Now its time to create an experiment in Slingshot. Follow this [link](http://users.cis.fiu.edu/~meraz001/primotutorial/getstarted.html) for getting started with model writing for Slingshot. This will show you the basics of creating, compiling, and running an experiment in Slingshot. 
 A simple model that only contains simulated hosts and link can be run on Local simulator by compiling and running the experiment you just created.
