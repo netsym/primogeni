@@ -17,13 +17,13 @@ Slingshot and primex will run on your local host. Slingshot is an integrated dev
 To install PrimoGENI, you need to have some packages installed on your local machine:
 * Ubuntu Linux:
   1. `sudo apt-get update; sudo apt-get upgrade`
-  2. `sudo apt-get install git subversion build-essential gcc python flex bison ant openjdk-6-jdk`
+  2. `sudo apt-get install git subversion wget build-essential gcc python flex bison ant openjdk-6-jdk`
   3. `sudo update-alternatives --config javac` 
   4. Set environment variable JAVA\_HOME for your shell to the installed openjdk6 (e.g., for bash shell on 32-bit Linux: `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386`)
 * Mac OS:
   1. Install latest MacPorts (https://www.macports.org/) and Xcode (https://developer.apple.com/xcode/downloads/)
   2. `sudo port selfupdate; sudo port upgrade outdated`
-  3. `sudo port install git subversion python27 flex bison apache-ant`
+  3. `sudo port install git subversion wget python27 flex bison apache-ant`
   4. Install Java 1.6 SDK for Mac OS *---(TODO)---*
   5. Set environment variable JAVA\_HOME for your shell (e.g., for bash shell: ``export JAVA_HOME=`/usr/libexec/java_home```)
 
@@ -40,13 +40,14 @@ Note that building the simulator may take a few minutes.
 
 ## Install Slingshot
 
-Slingshot is the graphical user interface that one uses to launch and control PrimoGENI experiments. Slingshot was developed using Eclipse RCP, we need to install Eclipse for running slingshot:
-  1. Download Eclipse. We use Eclipse Indigo for RCP and RAP developers, which can be obtained from http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/indigosr2 (For Mac OS, make sure you choose the 32- or 64-bit version compatible with your Java installation).
-  2. Untar the eclipse-\*.tar.gz file (which creates a directory named eclipse) under primogeni:<br>
+Slingshot is the graphical user interface that one uses to launch and control PrimoGENI experiments. Slingshot was developed using Eclipse RCP. Therefore, we need to install Eclipse for running slingshot:
+  1. Download Eclipse. We use Eclipse Indigo for RCP and RAP developers, which can be obtained from http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/indigosr2 (For Mac OS, make sure you choose the 32- or 64-bit version compatible with your Java installation; find out using `java -version`).
+  2. Untar the eclipse-\*.tar.gz file (the name depending on the version of Eclipse you use) under primogeni:<br>
     `cd primogeni; tar -xzf eclipse-*.tar.gz`
-  3. Download the Afae plugin (for syntax highlighting) from https://www.primessf.net/pub/Public/PrimoGENIProject/afae_plugins.tgz
-  4. `cd eclipse/plugins; tar -xvf afae_plugins.tgz`
-  5. Run eclipse (you may need to set a directory for eclipse workspace)
+  3. Download the Afae plugin (for syntax highlighting):<br>
+    `cd eclipse/plugins; wget --no-check-certificate https://www.primessf.net/primogeni/afae_plugins.tgz`
+  4. `tar -xzf afae_plugins.tgz`
+  5. Run Eclipse (you may need to set a directory for eclipse workspace)
   6. Create Slingshot project:
     1. Click on `File > New > Java Project` or `File > New > Project` and then select `Java > Java Project` in the `New Project` window
     2. Put `Slingshot` as `Project name`, uncheck `Use default location`, select `Location` to be the netIDE directory under the primogeni directory, and click `Finish`
