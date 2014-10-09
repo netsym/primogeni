@@ -17,9 +17,9 @@ Slingshot and primex will run on your local host. Slingshot is an integrated dev
 To install PrimoGENI, you need to have some packages installed on your local machine:
 * Ubuntu Linux:
   1. `sudo apt-get update; sudo apt-get upgrade`
-  2. `sudo apt-get install git subversion wget build-essential gcc python flex bison ant openjdk-6-jdk`
+  2. `sudo apt-get install git subversion wget build-essential gcc python flex bison ant openjdk-6-jdk libpcap-dev texlive-binaries`
   3. `sudo update-alternatives --config javac` 
-  4. Set environment variable JAVA\_HOME for your shell to the installed openjdk6 (e.g., for bash shell on 32-bit Linux: `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386`)
+  4. Set environment variable JAVA\_HOME to the installed openjdk directory (e.g., for bash shell, use `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386` for 32-bit Linux, and `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64` for 64-bit Linux)
 * Mac OS:
   1. Install latest MacPorts (https://www.macports.org/) and Xcode (https://developer.apple.com/xcode/downloads/)
   2. `sudo port selfupdate; sudo port upgrade outdated`
@@ -33,7 +33,7 @@ To install PrimoGENI, you need to have some packages installed on your local mac
 Primex is a real-time network simulator. One can directly download primex from github and use the provided script to build the simulator in one shot: 
   1. `git clone https://github.com/netsym/primogeni`
   2. `cd primogeni`
-  3. `sh ./build_all.sh`
+  3. `sh build_all.sh`
 
 Note that building the simulator may take a few minutes.
 
