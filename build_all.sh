@@ -23,11 +23,13 @@ make ssfnet
 result=$?
 if [ "$result" != "0" ]; then
   echo "error found when compiling ssfnet"
+  exit 1
 fi
 make ssfnet-jprime
 result=$?
 if [ "$result" != "0" ]; then
   echo "error found when compiling ssfnet"
+  exit 1
 fi
 echo "ssfnet compiled successfully..."
 
@@ -37,6 +39,7 @@ ant jar
 result=$?
 if [ "$result" != "0" ]; then
   echo "error found when compiling jprime"
+  exit 1
 fi
 echo "jprime compiled successfully..."
 
@@ -46,6 +49,7 @@ make all
 result=$?
 if [ "$result" != "0" ]; then
   echo "error found when compiling topology generator"
+  exit 1
 fi
 echo "topology compiled successfully..."
 
