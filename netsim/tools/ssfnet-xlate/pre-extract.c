@@ -46,7 +46,6 @@ typedef int16_t flex_int16_t;
 typedef uint16_t flex_uint16_t;
 typedef int32_t flex_int32_t;
 typedef uint32_t flex_uint32_t;
-typedef uint64_t flex_uint64_t;
 #else
 typedef signed char flex_int8_t;
 typedef short int flex_int16_t;
@@ -54,7 +53,6 @@ typedef int flex_int32_t;
 typedef unsigned char flex_uint8_t; 
 typedef unsigned short int flex_uint16_t;
 typedef unsigned int flex_uint32_t;
-#endif /* ! C99 */
 
 /* Limits of integral types. */
 #ifndef INT8_MIN
@@ -84,6 +82,8 @@ typedef unsigned int flex_uint32_t;
 #ifndef UINT32_MAX
 #define UINT32_MAX             (4294967295U)
 #endif
+
+#endif /* ! C99 */
 
 #endif /* ! FLEXINT_H */
 
@@ -141,7 +141,15 @@ typedef unsigned int flex_uint32_t;
 
 /* Size of default input buffer. */
 #ifndef YY_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k.
+ * Moreover, YY_BUF_SIZE is 2*YY_READ_BUF_SIZE in the general case.
+ * Ditto for the __ia64__ case accordingly.
+ */
+#define YY_BUF_SIZE 32768
+#else
 #define YY_BUF_SIZE 16384
+#endif /* __ia64__ */
 #endif
 
 /* The state buf must be large enough to hold one state per character in the main buffer.
@@ -153,12 +161,7 @@ typedef unsigned int flex_uint32_t;
 typedef struct yy_buffer_state *YY_BUFFER_STATE;
 #endif
 
-#ifndef YY_TYPEDEF_YY_SIZE_T
-#define YY_TYPEDEF_YY_SIZE_T
-typedef size_t yy_size_t;
-#endif
-
-extern yy_size_t yyleng;
+extern int yyleng;
 
 extern FILE *yyin, *yyout;
 
@@ -184,6 +187,11 @@ extern FILE *yyin, *yyout;
 
 #define unput(c) yyunput( c, (yytext_ptr)  )
 
+#ifndef YY_TYPEDEF_YY_SIZE_T
+#define YY_TYPEDEF_YY_SIZE_T
+typedef size_t yy_size_t;
+#endif
+
 #ifndef YY_STRUCT_YY_BUFFER_STATE
 #define YY_STRUCT_YY_BUFFER_STATE
 struct yy_buffer_state
@@ -201,7 +209,7 @@ struct yy_buffer_state
 	/* Number of characters read into yy_ch_buf, not including EOB
 	 * characters.
 	 */
-	yy_size_t yy_n_chars;
+	int yy_n_chars;
 
 	/* Whether we "own" the buffer - i.e., we know we created it,
 	 * and can realloc() it to grow it, and should free() it to
@@ -271,8 +279,8 @@ static YY_BUFFER_STATE * yy_buffer_stack = 0; /**< Stack as an array. */
 
 /* yy_hold_char holds the character lost when yytext is formed. */
 static char yy_hold_char;
-static yy_size_t yy_n_chars;		/* number of characters read into yy_ch_buf */
-yy_size_t yyleng;
+static int yy_n_chars;		/* number of characters read into yy_ch_buf */
+int yyleng;
 
 /* Points to current character in buffer. */
 static char *yy_c_buf_p = (char *) 0;
@@ -300,7 +308,7 @@ static void yy_init_buffer (YY_BUFFER_STATE b,FILE *file  );
 
 YY_BUFFER_STATE yy_scan_buffer (char *base,yy_size_t size  );
 YY_BUFFER_STATE yy_scan_string (yyconst char *yy_str  );
-YY_BUFFER_STATE yy_scan_bytes (yyconst char *bytes,yy_size_t len  );
+YY_BUFFER_STATE yy_scan_bytes (yyconst char *bytes,int len  );
 
 void *yyalloc (yy_size_t  );
 void *yyrealloc (void *,yy_size_t  );
@@ -355,7 +363,7 @@ static void yy_fatal_error (yyconst char msg[]  );
  */
 #define YY_DO_BEFORE_ACTION \
 	(yytext_ptr) = yy_bp; \
-	yyleng = (yy_size_t) (yy_cp - yy_bp); \
+	yyleng = (size_t) (yy_cp - yy_bp); \
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
@@ -610,8 +618,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
-#line 2 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 1 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 2 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 /*
  * extract.l :- used to extract the configurable entity
  *              declarations from ssfnet configurable entities 
@@ -650,7 +658,7 @@ FILE* fp;
 int yywrap();
 
 
-#line 654 "lex.yy.c"
+#line 662 "lex.yy.c"
 
 #define INITIAL 0
 #define SE0 1
@@ -710,7 +718,7 @@ FILE *yyget_out (void );
 
 void yyset_out  (FILE * out_str  );
 
-yy_size_t yyget_leng (void );
+int yyget_leng (void );
 
 char *yyget_text (void );
 
@@ -752,7 +760,12 @@ static int input (void );
 
 /* Amount of stuff to slurp up with each read. */
 #ifndef YY_READ_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k */
+#define YY_READ_BUF_SIZE 16384
+#else
 #define YY_READ_BUF_SIZE 8192
+#endif /* __ia64__ */
 #endif
 
 /* Copy whatever the last rule matched to the standard output. */
@@ -760,7 +773,7 @@ static int input (void );
 /* This used to be an fputs(), but since the string might contain NUL's,
  * we now use fwrite().
  */
-#define ECHO fwrite( yytext, yyleng, 1, yyout )
+#define ECHO do { if (fwrite( yytext, yyleng, 1, yyout )) {} } while (0)
 #endif
 
 /* Gets input and stuffs it into "buf".  number of characters read, or YY_NULL,
@@ -771,7 +784,7 @@ static int input (void );
 	if ( YY_CURRENT_BUFFER_LVALUE->yy_is_interactive ) \
 		{ \
 		int c = '*'; \
-		yy_size_t n; \
+		size_t n; \
 		for ( n = 0; n < max_size && \
 			     (c = getc( yyin )) != EOF && c != '\n'; ++n ) \
 			buf[n] = (char) c; \
@@ -853,12 +866,12 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 43 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 43 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 
 
 							{ BEGIN SE0; }
 
-#line 862 "lex.yy.c"
+#line 875 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -943,23 +956,23 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 47 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 47 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE1; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 48 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 48 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 49 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 49 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 51 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 51 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE2; fprintf(yyout,"%s", yytext);
 							  snprintf(t1,256,"%s",yytext);
 							  t2[0]='\0';
@@ -973,64 +986,64 @@ YY_RULE_SETUP
 case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
-#line 60 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 60 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 61 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 61 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 63 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 63 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE3; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 64 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 64 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 65 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 65 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 67 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 67 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE4; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 68 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 68 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 69 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 69 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 71 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 71 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE5; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 72 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 72 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }		
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 73 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 73 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 75 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 75 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext);
 						  	  if(strlen(t1)!=strlen(yytext)) { BEGIN SE0; }
 							  else if(strcmp(t1,yytext)) { BEGIN SE0; }
@@ -1040,33 +1053,33 @@ YY_RULE_SETUP
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 80 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 80 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }		
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 81 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 81 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 84 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 84 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE7; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 85 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 85 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE11; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 21:
 /* rule 21 can match eol */
 YY_RULE_SETUP
-#line 86 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 86 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }		
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 87 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 87 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 {
 								BEGIN SE6A;
 								fprintf(yyout,"%s", yytext);
@@ -1075,12 +1088,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 92 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 92 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 94 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 94 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 {
 								BEGIN SE6B;
 								fprintf(yyout,"%s", yytext);
@@ -1089,33 +1102,33 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 99 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 99 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); t1_tpl[tpos++]=yytext[0]; }		
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 101 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 101 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE7; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 102 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 102 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE11; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 28:
 /* rule 28 can match eol */
 YY_RULE_SETUP
-#line 103 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 103 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 104 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 104 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 107 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 107 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE8; fprintf(yyout,"%s", yytext);
 							  snprintf(t2,256,"%s",yytext);
 							}
@@ -1123,27 +1136,27 @@ YY_RULE_SETUP
 case 31:
 /* rule 31 can match eol */
 YY_RULE_SETUP
-#line 110 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 110 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }		
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 111 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 111 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 114 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 114 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE9; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 115 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 115 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE11; fprintf(yyout,"%s", yytext);  }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 116 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 116 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 {
 								BEGIN SE8A;
 								fprintf(yyout,"%s", yytext);
@@ -1153,17 +1166,17 @@ YY_RULE_SETUP
 case 36:
 /* rule 36 can match eol */
 YY_RULE_SETUP
-#line 122 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 122 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }		
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 123 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 123 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 125 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 125 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 {
 								BEGIN SE8B;
 								fprintf(yyout,"%s", yytext);
@@ -1172,131 +1185,131 @@ YY_RULE_SETUP
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 130 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 130 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); t2_tpl[tpos++]=yytext[0];}		
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 132 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 132 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE9; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 133 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 133 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE11; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 42:
 /* rule 42 can match eol */
 YY_RULE_SETUP
-#line 134 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 134 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 135 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 135 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 44:
 /* rule 44 can match eol */
 YY_RULE_SETUP
-#line 138 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 138 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }		
 	YY_BREAK
 case 45:
 /* rule 45 can match eol */
 YY_RULE_SETUP
-#line 139 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 139 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE9a; fprintf(yyout,"%s", yytext); 
 							  snprintf(type,256,"%s",yytext);
 							}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 142 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 142 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 144 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 144 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE9b; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 145 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 145 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE11; fprintf(yyout,"%s", yytext);  }
 	YY_BREAK
 case 49:
 /* rule 49 can match eol */
 YY_RULE_SETUP
-#line 146 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 146 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }		
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 147 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 147 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 51:
 /* rule 51 can match eol */
 YY_RULE_SETUP
-#line 149 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 149 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { }		
 	YY_BREAK
 case 52:
 /* rule 52 can match eol */
 YY_RULE_SETUP
-#line 150 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 150 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE10; snprintf(alias,256,"%s",yytext); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 151 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 151 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 153 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 153 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE11; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 55:
 /* rule 55 can match eol */
 YY_RULE_SETUP
-#line 154 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 154 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }		
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 155 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 155 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 160 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 160 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE12; fprintf(yyout,"%s", yytext); cls_ocurl=1;}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 161 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 161 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 162 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 162 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 164 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 164 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE13; fprintf(fp,"%s", yytext); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 165 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 165 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { cls_ocurl++; fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 166 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 166 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 {	cls_ocurl--;
 								if(cls_ocurl==0) { 
 									//the config entity did not have a state_configuration but
@@ -1321,12 +1334,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 187 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 187 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(yyout,"%s", yytext); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 189 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 189 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE14; fprintf(fp,"%s", yytext); 
 							  ce_ocurl=1; 
 							  fprintf(fp,"\n\t__PRIME__T1__=\"%s\";",t1);
@@ -1342,12 +1355,12 @@ YY_RULE_SETUP
 case 65:
 /* rule 65 can match eol */
 YY_RULE_SETUP
-#line 200 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 200 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(fp,"%s", yytext); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 201 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 201 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { BEGIN SE0;
 							  snprintf(t1,256,"\n/* Error while extract state_configuration*/\n"); 
 							  fprintf(fp,"%s",t1);
@@ -1356,12 +1369,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 206 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 206 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { ce_ocurl++; fprintf(fp,"%s", yytext); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 207 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 207 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { ce_ocurl--; fprintf(fp,"%s", yytext);
 							  if(ce_ocurl==0) { 
 								  	BEGIN SE0;
@@ -1373,20 +1386,20 @@ YY_RULE_SETUP
 case 69:
 /* rule 69 can match eol */
 YY_RULE_SETUP
-#line 214 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 214 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(fp,"%s", yytext); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 215 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 215 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 { fprintf(fp,"%s", yytext); }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 217 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 217 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 ECHO;
 	YY_BREAK
-#line 1390 "lex.yy.c"
+#line 1403 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(SE0):
 case YY_STATE_EOF(SE1):
@@ -1593,7 +1606,7 @@ static int yy_get_next_buffer (void)
 
 	else
 		{
-			yy_size_t num_to_read =
+			int num_to_read =
 			YY_CURRENT_BUFFER_LVALUE->yy_buf_size - number_to_move - 1;
 
 		while ( num_to_read <= 0 )
@@ -1607,7 +1620,7 @@ static int yy_get_next_buffer (void)
 
 			if ( b->yy_is_our_buffer )
 				{
-				yy_size_t new_size = b->yy_buf_size * 2;
+				int new_size = b->yy_buf_size * 2;
 
 				if ( new_size <= 0 )
 					b->yy_buf_size += b->yy_buf_size / 8;
@@ -1638,7 +1651,7 @@ static int yy_get_next_buffer (void)
 
 		/* Read in more data. */
 		YY_INPUT( (&YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[number_to_move]),
-			(yy_n_chars), num_to_read );
+			(yy_n_chars), (size_t) num_to_read );
 
 		YY_CURRENT_BUFFER_LVALUE->yy_n_chars = (yy_n_chars);
 		}
@@ -1748,7 +1761,7 @@ static int yy_get_next_buffer (void)
 	if ( yy_cp < YY_CURRENT_BUFFER_LVALUE->yy_ch_buf + 2 )
 		{ /* need to shift things up to make room */
 		/* +2 for EOB chars. */
-		register yy_size_t number_to_move = (yy_n_chars) + 2;
+		register int number_to_move = (yy_n_chars) + 2;
 		register char *dest = &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[
 					YY_CURRENT_BUFFER_LVALUE->yy_buf_size + 2];
 		register char *source =
@@ -1797,7 +1810,7 @@ static int yy_get_next_buffer (void)
 
 		else
 			{ /* need more input */
-			yy_size_t offset = (yy_c_buf_p) - (yytext_ptr);
+			int offset = (yy_c_buf_p) - (yytext_ptr);
 			++(yy_c_buf_p);
 
 			switch ( yy_get_next_buffer(  ) )
@@ -1821,7 +1834,7 @@ static int yy_get_next_buffer (void)
 				case EOB_ACT_END_OF_FILE:
 					{
 					if ( yywrap( ) )
-						return 0;
+						return EOF;
 
 					if ( ! (yy_did_buffer_switch_on_eof) )
 						YY_NEW_FILE;
@@ -2073,7 +2086,7 @@ void yypop_buffer_state (void)
  */
 static void yyensure_buffer_stack (void)
 {
-	yy_size_t num_to_alloc;
+	int num_to_alloc;
     
 	if (!(yy_buffer_stack)) {
 
@@ -2165,16 +2178,17 @@ YY_BUFFER_STATE yy_scan_string (yyconst char * yystr )
 
 /** Setup the input buffer state to scan the given bytes. The next call to yylex() will
  * scan from a @e copy of @a bytes.
- * @param bytes the byte buffer to scan
- * @param len the number of bytes in the buffer pointed to by @a bytes.
+ * @param yybytes the byte buffer to scan
+ * @param _yybytes_len the number of bytes in the buffer pointed to by @a bytes.
  * 
  * @return the newly allocated buffer state object.
  */
-YY_BUFFER_STATE yy_scan_bytes  (yyconst char * yybytes, yy_size_t  _yybytes_len )
+YY_BUFFER_STATE yy_scan_bytes  (yyconst char * yybytes, int  _yybytes_len )
 {
 	YY_BUFFER_STATE b;
 	char *buf;
-	yy_size_t n, i;
+	yy_size_t n;
+	int i;
     
 	/* Get memory for full buffer, including space for trailing EOB's. */
 	n = _yybytes_len + 2;
@@ -2256,7 +2270,7 @@ FILE *yyget_out  (void)
 /** Get the length of the current token.
  * 
  */
-yy_size_t yyget_leng  (void)
+int yyget_leng  (void)
 {
         return yyleng;
 }
@@ -2404,7 +2418,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 217 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/extract.l"
+#line 217 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/extract.l"
 
 
 

@@ -1,9 +1,9 @@
 #get all of the env vars and user options
 ifneq ($(INCLUDED_INC), true)
-include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
+include /home/liux/primogeni/netsim/Makefile.inc 
 endif
 
-RNG_PATH = /Users/liux/Workspace/primogeni/netsim/src/rng
+RNG_PATH = /home/liux/primogeni/netsim/src/rng
 
 ifeq ("x$(ENABLE_SPRNG)", "xyes")
 SPRNG_SRCFILES = \

@@ -1,14 +1,13 @@
-/* A Bison parser, made by GNU Bison 2.3.  */
+/* A Bison parser, made by GNU Bison 3.0.2.  */
 
-/* Skeleton interface for Bison's Yacc-like parsers in C
+/* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
-   Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
 
-   This program is free software; you can redistribute it and/or modify
+   This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -16,9 +15,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -33,59 +30,68 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-/* Tokens.  */
+#ifndef YY_YY_Y_TAB_H_INCLUDED
+# define YY_YY_Y_TAB_H_INCLUDED
+/* Debug traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 1
+#endif
+#if YYDEBUG
+extern int yydebug;
+#endif
+
+/* Token type.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-   /* Put the tokens into the symbol table, so that GDB and other debuggers
-      know about them.  */
-   enum yytokentype {
-     STATE_CFG = 258,
-     SHARED = 259,
-     CONFIGURABLE = 260,
-     CHILD_TYPE = 261,
-     UNSIGNED = 262,
-     SIGNED = 263,
-     DOUBLE = 264,
-     SHORT = 265,
-     FLOAT = 266,
-     VOID = 267,
-     CHAR = 268,
-     LONG_LONG = 269,
-     LONG_INT = 270,
-     LONG = 271,
-     INT = 272,
-     IDENTIFIER = 273,
-     CONSTANT = 274,
-     STRING_LITERAL = 275,
-     LCURL = 276,
-     RCURL = 277,
-     LANGLE = 278,
-     RANGLE = 279,
-     SEMI = 280,
-     EQ = 281,
-     COMMA = 282,
-     STAR = 283,
-     AMPR = 284,
-     COLONS = 285,
-     T1 = 286,
-     T2 = 287,
-     T1_TPL = 288,
-     T2_TPL = 289,
-     TYPEID = 290,
-     FILENAME = 291,
-     ALIAS = 292,
-     EMPTY = 293,
-     DEFAULT_VALUE = 294,
-     DOC_STR = 295,
-     TYPE = 296,
-     UNSERIALIZE_FCT = 297,
-     SERIALIZE_FCT = 298,
-     VISUALZIED = 299,
-     STATISTIC = 300,
-     MIN_COUNT = 301,
-     MAX_COUNT = 302,
-     IS_ALIASED = 303
-   };
+  enum yytokentype
+  {
+    STATE_CFG = 258,
+    SHARED = 259,
+    CONFIGURABLE = 260,
+    CHILD_TYPE = 261,
+    UNSIGNED = 262,
+    SIGNED = 263,
+    DOUBLE = 264,
+    SHORT = 265,
+    FLOAT = 266,
+    VOID = 267,
+    CHAR = 268,
+    LONG_LONG = 269,
+    LONG_INT = 270,
+    LONG = 271,
+    INT = 272,
+    IDENTIFIER = 273,
+    CONSTANT = 274,
+    STRING_LITERAL = 275,
+    LCURL = 276,
+    RCURL = 277,
+    LANGLE = 278,
+    RANGLE = 279,
+    SEMI = 280,
+    EQ = 281,
+    COMMA = 282,
+    STAR = 283,
+    AMPR = 284,
+    COLONS = 285,
+    T1 = 286,
+    T2 = 287,
+    T1_TPL = 288,
+    T2_TPL = 289,
+    TYPEID = 290,
+    FILENAME = 291,
+    ALIAS = 292,
+    EMPTY = 293,
+    DEFAULT_VALUE = 294,
+    DOC_STR = 295,
+    TYPE = 296,
+    UNSERIALIZE_FCT = 297,
+    SERIALIZE_FCT = 298,
+    VISUALZIED = 299,
+    STATISTIC = 300,
+    MIN_COUNT = 301,
+    MAX_COUNT = 302,
+    IS_ALIASED = 303
+  };
 #endif
 /* Tokens.  */
 #define STATE_CFG 258
@@ -135,25 +141,27 @@
 #define MAX_COUNT 302
 #define IS_ALIASED 303
 
-
-
-
+/* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE
-#line 23 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.y"
+typedef union YYSTYPE YYSTYPE;
+union YYSTYPE
 {
+#line 23 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.y" /* yacc.c:1909  */
+
 	char                 * str;
 	struct config_type   * ctype_ptr;
 	struct config_var    * var_ptr;
 	struct config_child  * child_ptr;
-}
-/* Line 1529 of yacc.c.  */
-#line 152 "y.tab.h"
-	YYSTYPE;
-# define yystype YYSTYPE /* obsolescent; will be withdrawn */
-# define YYSTYPE_IS_DECLARED 1
+
+#line 157 "y.tab.h" /* yacc.c:1909  */
+};
 # define YYSTYPE_IS_TRIVIAL 1
+# define YYSTYPE_IS_DECLARED 1
 #endif
+
 
 extern YYSTYPE yylval;
 
+int yyparse (void);
+
+#endif /* !YY_YY_Y_TAB_H_INCLUDED  */

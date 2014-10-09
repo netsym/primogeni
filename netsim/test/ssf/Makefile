@@ -1,14 +1,14 @@
 #get the ssf vars (which includes all of the env vars and user options)
 ifneq ($(INCLUDED_INC), true)
-include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
+include /home/liux/primogeni/netsim/Makefile.inc 
 endif
 
 # get the rules to build the ssf code
 ifneq ($(INCLUDED_SSF), true)
-include /Users/liux/Workspace/primogeni/netsim/src/ssf/Makefile 
+include /home/liux/primogeni/netsim/src/ssf/Makefile 
 endif
 
-TEST_SSF_PATH = /Users/liux/Workspace/primogeni/netsim/test/ssf
+TEST_SSF_PATH = /home/liux/primogeni/netsim/test/ssf
 
 TEST_SSF_HFILES = \
 	$(SSF_HFILES) \

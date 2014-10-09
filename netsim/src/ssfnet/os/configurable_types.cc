@@ -6,7 +6,7 @@
 /* ------------------------- */
 /* ------------------------- */
 
-#include "/Users/liux/Workspace/primogeni/netsim/src/ssfnet/os/configurable_types.h"
+#include "/home/liux/primogeni/netsim/src/ssfnet/os/configurable_types.h"
 namespace prime {
 namespace ssfnet {
 

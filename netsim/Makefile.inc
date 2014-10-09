@@ -16,8 +16,8 @@ ENABLE_METIS = yes
 ENABLE_SPRNG = yes
 ENABLE_BOOSTRNG = no
 
-NETSIM_DIR = /Users/liux/Workspace/primogeni/netsim
-DOC_DIR = /Users/liux/Workspace/primogeni/netsim/../doc
+NETSIM_DIR = /home/liux/primogeni/netsim
+DOC_DIR = /home/liux/primogeni/netsim/../doc
 
 CC_ORIG = gcc
 CC = gcc
@@ -36,17 +36,17 @@ YACC = bison -y
 YFLAGS = -dt -v
 LEX = flex
 LFLAGS = 
-LEXLIB = -ll
-SED = /usr/bin/sed
-PERL = /opt/local/bin/perl
+LEXLIB = -lfl
+SED = /bin/sed
+PERL = /usr/bin/perl
 PYTHON = /usr/bin/python
-AR = /opt/local/bin/ar
+AR = /usr/bin/ar
 ARFLAGS = -cru
 RANLIB = ranlib
 LN_S = ln -s
 #INSTALL = @INSTALL@
 LN_S = ln -s
-MKDIR_P = /opt/local/bin/gmkdir -p
+MKDIR_P = /bin/mkdir -p
 EXEEXT = 
 
 HAVE_BISON = yes
@@ -56,11 +56,11 @@ PTHREAD_CFLAGS =
 PTHREAD_LIBS = -lpthread
 
 SSF_SYNC = standalone
-SSF_MACH = X86_DARWIN
+SSF_MACH = X86_64_LINUX
 SSF_ARCH = GENERIC
 
-JNI_LDFLAGS = -L/System/Library/Frameworks/JavaVM.framework/Libraries/
-JNI_CPPFLAGS = -I/System/Library/Frameworks/JavaVM.framework/Headers
+JNI_LDFLAGS = -L/usr/lib/jvm/java-6-openjdk-amd64/jre/lib//server
+JNI_CPPFLAGS =  -I/usr/lib/jvm/java-6-openjdk-amd64/include -I/usr/lib/jvm/java-6-openjdk-amd64/include/linux
 
 JPRIME_SEPARATE_PROP_TABLE= false
 

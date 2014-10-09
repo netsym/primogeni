@@ -1,6 +1,6 @@
 #get all of the env vars and user options
 ifneq ($(INCLUDED_INC), true)
-include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
+include /home/liux/primogeni/netsim/Makefile.inc 
 endif
 
 # You can set these variables from the command line.
@@ -16,7 +16,7 @@ PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) $(DOC_DIR)
 
 DOXYDEPS = .jprime_done .slingshot_done .controller_done .ssf_done .ssfnet_done
-CLEANUP = CONTROLLER.tag JPRIME.tag SLINGSHOT.tag SSF.tag SSFNET.tag /Users/liux/Workspace/primogeni/netsim/../doc/doxy_predef.cfg $(DOXYDEPS)
+CLEANUP = CONTROLLER.tag JPRIME.tag SLINGSHOT.tag SSF.tag SSFNET.tag /home/liux/primogeni/netsim/../doc/doxy_predef.cfg $(DOXYDEPS)
 .PHONY: doc-verbose-help doc-help doc-clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doc-test web
 
 doc-verbose-help:
@@ -46,26 +46,26 @@ doc-help:
 
 $(BUILDDIR)/doxygen:
 	mkdir $(BUILDDIR)/doxygen
-	$(PERL) /Users/liux/Workspace/primogeni/netsim/../doc/predef.pl $(SSFNET_CFLAGS) > /Users/liux/Workspace/primogeni/netsim/../doc/doxy_predef.cfg
-.jprime_done: $(BUILDDIR)/doxygen /Users/liux/Workspace/primogeni/netsim/../doc/jprime.doxyfile
+	$(PERL) /home/liux/primogeni/netsim/../doc/predef.pl $(SSFNET_CFLAGS) > /home/liux/primogeni/netsim/../doc/doxy_predef.cfg
+.jprime_done: $(BUILDDIR)/doxygen /home/liux/primogeni/netsim/../doc/jprime.doxyfile
 	mkdir -p $(BUILDDIR)/doxygen/jprime
-	$(DOXYGEN) /Users/liux/Workspace/primogeni/netsim/../doc/jprime.doxyfile
+	$(DOXYGEN) /home/liux/primogeni/netsim/../doc/jprime.doxyfile
 	touch .jprime_done
-.slingshot_done: $(BUILDDIR)/doxygen /Users/liux/Workspace/primogeni/netsim/../doc/slingshot.doxyfile
+.slingshot_done: $(BUILDDIR)/doxygen /home/liux/primogeni/netsim/../doc/slingshot.doxyfile
 	mkdir -p $(BUILDDIR)/doxygen/slingshot
-	$(DOXYGEN) /Users/liux/Workspace/primogeni/netsim/../doc/slingshot.doxyfile
+	$(DOXYGEN) /home/liux/primogeni/netsim/../doc/slingshot.doxyfile
 	touch .slingshot_done
-.controller_done: $(BUILDDIR)/doxygen /Users/liux/Workspace/primogeni/netsim/../doc/controller.doxyfile
+.controller_done: $(BUILDDIR)/doxygen /home/liux/primogeni/netsim/../doc/controller.doxyfile
 	mkdir -p $(BUILDDIR)/doxygen/meta-controller
-	$(DOXYGEN) /Users/liux/Workspace/primogeni/netsim/../doc/controller.doxyfile
+	$(DOXYGEN) /home/liux/primogeni/netsim/../doc/controller.doxyfile
 	touch .controller_done
-.ssf_done: $(BUILDDIR)/doxygen /Users/liux/Workspace/primogeni/netsim/../doc/ssf.doxyfile
+.ssf_done: $(BUILDDIR)/doxygen /home/liux/primogeni/netsim/../doc/ssf.doxyfile
 	mkdir -p $(BUILDDIR)/doxygen/ssf
-	$(DOXYGEN) /Users/liux/Workspace/primogeni/netsim/../doc/ssf.doxyfile
+	$(DOXYGEN) /home/liux/primogeni/netsim/../doc/ssf.doxyfile
 	touch .ssf_done
-.ssfnet_done: $(BUILDDIR)/doxygen /Users/liux/Workspace/primogeni/netsim/../doc/ssfnet.doxyfile
+.ssfnet_done: $(BUILDDIR)/doxygen /home/liux/primogeni/netsim/../doc/ssfnet.doxyfile
 	mkdir -p $(BUILDDIR)/doxygen/ssfnet
-	$(DOXYGEN) /Users/liux/Workspace/primogeni/netsim/../doc/ssfnet.doxyfile
+	$(DOXYGEN) /home/liux/primogeni/netsim/../doc/ssfnet.doxyfile
 	touch .ssfnet_done
 
 doc-clean:

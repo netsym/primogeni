@@ -164,7 +164,7 @@ template<class T> class SSF_ALLOCATOR {
 public:
   typedef T value_type;
   typedef size_t size_type;
-//  typedef ptrdiff_t difference_type;
+  typedef std::ptrdiff_t difference_type;
 
   typedef T* pointer;
   typedef const T* const_pointer;
@@ -212,7 +212,7 @@ public:
 
 template<> class SSF_ALLOCATOR<void> {
   typedef size_t      size_type;
-//  typedef ptrdiff_t   difference_type;
+  typedef std::ptrdiff_t   difference_type;
   typedef void*       pointer;
   typedef const void* const_pointer;
   typedef void        value_type;
@@ -240,7 +240,7 @@ template<class T> class SSF_QUICK_ALLOCATOR {
 public:
   typedef T value_type;
   typedef size_t size_type;
-//  typedef ptrdiff_t difference_type;
+  typedef std::ptrdiff_t difference_type;
 
   typedef T* pointer;
   typedef const T* const_pointer;

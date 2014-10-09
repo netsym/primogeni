@@ -1,9 +1,9 @@
 #get all of the env vars and user options
 ifneq ($(INCLUDED_INC), true)
-include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
+include /home/liux/primogeni/netsim/Makefile.inc 
 endif 
 
-METIS_PATH = /Users/liux/Workspace/primogeni/netsim/tools/metis
+METIS_PATH = /home/liux/primogeni/netsim/tools/metis
 
 METIS_SRCFILES = \
 	$(METIS_PATH)/balance.c \

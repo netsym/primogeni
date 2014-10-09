@@ -1,36 +1,36 @@
 #get all of the env vars and user options
 ifneq ($(INCLUDED_INC), true)
-include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
+include /home/liux/primogeni/netsim/Makefile.inc 
 endif
 
 # get the rules to build the metis code
 ifneq ($(INCLUDED_METIS), true)
-include /Users/liux/Workspace/primogeni/netsim/tools/metis/Makefile
+include /home/liux/primogeni/netsim/tools/metis/Makefile
 endif
 
 # get the rules to build the dml code
 ifneq ($(INCLUDED_DML), true)
-include /Users/liux/Workspace/primogeni/netsim/src/dml/Makefile 
+include /home/liux/primogeni/netsim/src/dml/Makefile 
 endif
 
 # get the rules to build the rng code
 ifneq ($(INCLUDED_RNG), true)
-include /Users/liux/Workspace/primogeni/netsim/src/rng/Makefile 
+include /home/liux/primogeni/netsim/src/rng/Makefile 
 endif
 
 # get the rules to build the ssf code
 ifneq ($(INCLUDED_SSF), true)
-include /Users/liux/Workspace/primogeni/netsim/src/ssf/Makefile 
+include /home/liux/primogeni/netsim/src/ssf/Makefile 
 endif 
 
-SSFNET_PATH = /Users/liux/Workspace/primogeni/netsim/src/ssfnet
-PCAP_PATH = /Users/liux/Workspace/primogeni/netsim/src/libpcap
-JPRIME_SRC = /Users/liux/Workspace/primogeni/netsim/../netscript/src/jprime
-JPRIME_GEN = /Users/liux/Workspace/primogeni/netsim/../netscript/src/jprime/gen/*.java
-SSFNET_XLATE_PATH = /Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate
+SSFNET_PATH = /home/liux/primogeni/netsim/src/ssfnet
+PCAP_PATH = /home/liux/primogeni/netsim/src/libpcap
+JPRIME_SRC = /home/liux/primogeni/netsim/../netscript/src/jprime
+JPRIME_GEN = /home/liux/primogeni/netsim/../netscript/src/jprime/gen/*.java
+SSFNET_XLATE_PATH = /home/liux/primogeni/netsim/tools/ssfnet-xlate
 
-ssfnet-doc: /Users/liux/Workspace/primogeni/netsim/../doc/doxy_predef.cfg /Users/liux/Workspace/primogeni/netsim/../doc/ssfnet.doxyfile
-	$(DOXYGEN) /Users/liux/Workspace/primogeni/netsim/../doc/ssfnet.doxyfile
+ssfnet-doc: /home/liux/primogeni/netsim/../doc/doxy_predef.cfg /home/liux/primogeni/netsim/../doc/ssfnet.doxyfile
+	$(DOXYGEN) /home/liux/primogeni/netsim/../doc/ssfnet.doxyfile
 
 SSFNET_XLATE_SRCFILES = \
 	$(SSFNET_XLATE_PATH)/code_generator.cc \

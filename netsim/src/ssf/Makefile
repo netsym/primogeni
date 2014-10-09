@@ -1,16 +1,16 @@
 #get all of the env vars and user options
 ifneq ($(INCLUDED_INC), true)
-include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
+include /home/liux/primogeni/netsim/Makefile.inc 
 endif
 
-SSF_PATH = /Users/liux/Workspace/primogeni/netsim/src/ssf
-SSF_TOOL_PATH = /Users/liux/Workspace/primogeni/netsim/tools/ssf-tools
-SSF_XLATE_PATH = /Users/liux/Workspace/primogeni/netsim/tools/ssf-xlate
-SSF_PART_PATH = /Users/liux/Workspace/primogeni/netsim/tools/ssf-partition
-SSF_LIBSYNK_PATH = /Users/liux/Workspace/primogeni/netsim/src/ssf/libsynk
+SSF_PATH = /home/liux/primogeni/netsim/src/ssf
+SSF_TOOL_PATH = /home/liux/primogeni/netsim/tools/ssf-tools
+SSF_XLATE_PATH = /home/liux/primogeni/netsim/tools/ssf-xlate
+SSF_PART_PATH = /home/liux/primogeni/netsim/tools/ssf-partition
+SSF_LIBSYNK_PATH = /home/liux/primogeni/netsim/src/ssf/libsynk
 
-ssf-doc: /Users/liux/Workspace/primogeni/netsim/../doc/doxy_predef.cfg /Users/liux/Workspace/primogeni/netsim/../doc/ssfnet.doxyfile
-	$(DOXYGEN) /Users/liux/Workspace/primogeni/netsim/../doc/ssf.doxyfile
+ssf-doc: /home/liux/primogeni/netsim/../doc/doxy_predef.cfg /home/liux/primogeni/netsim/../doc/ssfnet.doxyfile
+	$(DOXYGEN) /home/liux/primogeni/netsim/../doc/ssf.doxyfile
 
 SSF_MAC_HFILES = \
 	$(SSF_PATH)/mac/arena.h \

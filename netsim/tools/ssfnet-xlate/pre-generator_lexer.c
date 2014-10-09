@@ -46,7 +46,6 @@ typedef int16_t flex_int16_t;
 typedef uint16_t flex_uint16_t;
 typedef int32_t flex_int32_t;
 typedef uint32_t flex_uint32_t;
-typedef uint64_t flex_uint64_t;
 #else
 typedef signed char flex_int8_t;
 typedef short int flex_int16_t;
@@ -54,7 +53,6 @@ typedef int flex_int32_t;
 typedef unsigned char flex_uint8_t; 
 typedef unsigned short int flex_uint16_t;
 typedef unsigned int flex_uint32_t;
-#endif /* ! C99 */
 
 /* Limits of integral types. */
 #ifndef INT8_MIN
@@ -84,6 +82,8 @@ typedef unsigned int flex_uint32_t;
 #ifndef UINT32_MAX
 #define UINT32_MAX             (4294967295U)
 #endif
+
+#endif /* ! C99 */
 
 #endif /* ! FLEXINT_H */
 
@@ -141,7 +141,15 @@ typedef unsigned int flex_uint32_t;
 
 /* Size of default input buffer. */
 #ifndef YY_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k.
+ * Moreover, YY_BUF_SIZE is 2*YY_READ_BUF_SIZE in the general case.
+ * Ditto for the __ia64__ case accordingly.
+ */
+#define YY_BUF_SIZE 32768
+#else
 #define YY_BUF_SIZE 16384
+#endif /* __ia64__ */
 #endif
 
 /* The state buf must be large enough to hold one state per character in the main buffer.
@@ -153,12 +161,7 @@ typedef unsigned int flex_uint32_t;
 typedef struct yy_buffer_state *YY_BUFFER_STATE;
 #endif
 
-#ifndef YY_TYPEDEF_YY_SIZE_T
-#define YY_TYPEDEF_YY_SIZE_T
-typedef size_t yy_size_t;
-#endif
-
-extern yy_size_t yyleng;
+extern int yyleng;
 
 extern FILE *yyin, *yyout;
 
@@ -184,6 +187,11 @@ extern FILE *yyin, *yyout;
 
 #define unput(c) yyunput( c, (yytext_ptr)  )
 
+#ifndef YY_TYPEDEF_YY_SIZE_T
+#define YY_TYPEDEF_YY_SIZE_T
+typedef size_t yy_size_t;
+#endif
+
 #ifndef YY_STRUCT_YY_BUFFER_STATE
 #define YY_STRUCT_YY_BUFFER_STATE
 struct yy_buffer_state
@@ -201,7 +209,7 @@ struct yy_buffer_state
 	/* Number of characters read into yy_ch_buf, not including EOB
 	 * characters.
 	 */
-	yy_size_t yy_n_chars;
+	int yy_n_chars;
 
 	/* Whether we "own" the buffer - i.e., we know we created it,
 	 * and can realloc() it to grow it, and should free() it to
@@ -271,8 +279,8 @@ static YY_BUFFER_STATE * yy_buffer_stack = 0; /**< Stack as an array. */
 
 /* yy_hold_char holds the character lost when yytext is formed. */
 static char yy_hold_char;
-static yy_size_t yy_n_chars;		/* number of characters read into yy_ch_buf */
-yy_size_t yyleng;
+static int yy_n_chars;		/* number of characters read into yy_ch_buf */
+int yyleng;
 
 /* Points to current character in buffer. */
 static char *yy_c_buf_p = (char *) 0;
@@ -300,7 +308,7 @@ static void yy_init_buffer (YY_BUFFER_STATE b,FILE *file  );
 
 YY_BUFFER_STATE yy_scan_buffer (char *base,yy_size_t size  );
 YY_BUFFER_STATE yy_scan_string (yyconst char *yy_str  );
-YY_BUFFER_STATE yy_scan_bytes (yyconst char *bytes,yy_size_t len  );
+YY_BUFFER_STATE yy_scan_bytes (yyconst char *bytes,int len  );
 
 void *yyalloc (yy_size_t  );
 void *yyrealloc (void *,yy_size_t  );
@@ -355,7 +363,7 @@ static void yy_fatal_error (yyconst char msg[]  );
  */
 #define YY_DO_BEFORE_ACTION \
 	(yytext_ptr) = yy_bp; \
-	yyleng = (yy_size_t) (yy_cp - yy_bp); \
+	yyleng = (size_t) (yy_cp - yy_bp); \
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
@@ -684,8 +692,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
-#line 9 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 1 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 9 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 
 /*
  * scehma.l :- used to construct configurable entities
@@ -697,7 +705,7 @@ char *yytext;
 #include "generator_parser.h"
 
 
-#line 701 "lex.yy.c"
+#line 709 "lex.yy.c"
 
 #define INITIAL 0
 #define NORM 1
@@ -738,7 +746,7 @@ FILE *yyget_out (void );
 
 void yyset_out  (FILE * out_str  );
 
-yy_size_t yyget_leng (void );
+int yyget_leng (void );
 
 char *yyget_text (void );
 
@@ -780,7 +788,12 @@ static int input (void );
 
 /* Amount of stuff to slurp up with each read. */
 #ifndef YY_READ_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k */
+#define YY_READ_BUF_SIZE 16384
+#else
 #define YY_READ_BUF_SIZE 8192
+#endif /* __ia64__ */
 #endif
 
 /* Copy whatever the last rule matched to the standard output. */
@@ -788,7 +801,7 @@ static int input (void );
 /* This used to be an fputs(), but since the string might contain NUL's,
  * we now use fwrite().
  */
-#define ECHO fwrite( yytext, yyleng, 1, yyout )
+#define ECHO do { if (fwrite( yytext, yyleng, 1, yyout )) {} } while (0)
 #endif
 
 /* Gets input and stuffs it into "buf".  number of characters read, or YY_NULL,
@@ -799,7 +812,7 @@ static int input (void );
 	if ( YY_CURRENT_BUFFER_LVALUE->yy_is_interactive ) \
 		{ \
 		int c = '*'; \
-		yy_size_t n; \
+		size_t n; \
 		for ( n = 0; n < max_size && \
 			     (c = getc( yyin )) != EOF && c != '\n'; ++n ) \
 			buf[n] = (char) c; \
@@ -881,10 +894,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 23 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 23 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 
 								{BEGIN NORM;}
-#line 888 "lex.yy.c"
+#line 901 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -969,326 +982,326 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 25 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 25 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return STATE_CFG; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 26 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 26 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return SHARED; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 27 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 27 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONFIGURABLE; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 28 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 28 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CHILD_TYPE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 29 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 29 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return DEFAULT_VALUE; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 30 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 30 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return DOC_STR; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 31 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 31 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return VISUALZIED; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 32 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 32 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return STATISTIC; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 33 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 33 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return TYPE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 34 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 34 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return UNSERIALIZE_FCT; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 35 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 35 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return SERIALIZE_FCT; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 36 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 36 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return MIN_COUNT; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 37 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 37 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return MAX_COUNT; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 38 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 38 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return IS_ALIASED; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 39 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 39 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return T1; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 40 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 40 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return T2; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 41 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 41 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return T1_TPL; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 42 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 42 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return T2_TPL; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 43 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 43 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return TYPEID; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 44 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 44 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return FILENAME; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 45 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 45 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return ALIAS; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 46 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 46 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return EMPTY; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 48 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 48 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return UNSIGNED; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 49 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 49 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return SIGNED; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 50 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 50 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return DOUBLE; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 51 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 51 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return SHORT; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 52 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 52 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return FLOAT; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 53 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 53 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return VOID; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 54 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 54 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CHAR; }
 	YY_BREAK
 case 30:
 /* rule 30 can match eol */
 YY_RULE_SETUP
-#line 55 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 55 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup("long long"); return LONG_LONG; }
 	YY_BREAK
 case 31:
 /* rule 31 can match eol */
 YY_RULE_SETUP
-#line 56 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 56 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup("long int"); return LONG_INT; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 57 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 57 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return LONG; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 58 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 58 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return INT; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 59 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 59 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 60 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 60 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 61 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 61 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 62 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 62 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 64 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 64 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return IDENTIFIER; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 66 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 66 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 67 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 67 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 68 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 68 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 42:
 /* rule 42 can match eol */
 YY_RULE_SETUP
-#line 69 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 69 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 71 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 71 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 72 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 72 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 73 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 73 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return CONSTANT; }
 	YY_BREAK
 case 46:
 /* rule 46 can match eol */
 YY_RULE_SETUP
-#line 75 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 75 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext+1); yylval.str[strlen(yylval.str)-1]='\0'; return STRING_LITERAL; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 77 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 77 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return COLONS; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 78 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 78 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return LCURL; }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 79 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 79 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return RCURL; }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 80 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 80 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return LANGLE; }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 81 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 81 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return RANGLE; }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 82 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 82 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return SEMI; }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 83 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 83 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return EQ; }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 84 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 84 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return COMMA; }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 85 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 85 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return STAR; }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 86 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 86 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { yylval.str=strdup(yytext); return AMPR; }
 	YY_BREAK
 case 57:
 /* rule 57 can match eol */
 YY_RULE_SETUP
-#line 87 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 87 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 88 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 88 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { BEGIN CMT; }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 89 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 89 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { BEGIN NORM; }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 90 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 90 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { }
 	YY_BREAK
 case 61:
 /* rule 61 can match eol */
 YY_RULE_SETUP
-#line 92 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 92 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 93 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 93 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 { printf("\nERROR: skipping %s\n", yytext); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 95 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 95 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 ECHO;
 	YY_BREAK
-#line 1292 "lex.yy.c"
+#line 1305 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(NORM):
 case YY_STATE_EOF(CMT):
@@ -1476,7 +1489,7 @@ static int yy_get_next_buffer (void)
 
 	else
 		{
-			yy_size_t num_to_read =
+			int num_to_read =
 			YY_CURRENT_BUFFER_LVALUE->yy_buf_size - number_to_move - 1;
 
 		while ( num_to_read <= 0 )
@@ -1490,7 +1503,7 @@ static int yy_get_next_buffer (void)
 
 			if ( b->yy_is_our_buffer )
 				{
-				yy_size_t new_size = b->yy_buf_size * 2;
+				int new_size = b->yy_buf_size * 2;
 
 				if ( new_size <= 0 )
 					b->yy_buf_size += b->yy_buf_size / 8;
@@ -1521,7 +1534,7 @@ static int yy_get_next_buffer (void)
 
 		/* Read in more data. */
 		YY_INPUT( (&YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[number_to_move]),
-			(yy_n_chars), num_to_read );
+			(yy_n_chars), (size_t) num_to_read );
 
 		YY_CURRENT_BUFFER_LVALUE->yy_n_chars = (yy_n_chars);
 		}
@@ -1631,7 +1644,7 @@ static int yy_get_next_buffer (void)
 	if ( yy_cp < YY_CURRENT_BUFFER_LVALUE->yy_ch_buf + 2 )
 		{ /* need to shift things up to make room */
 		/* +2 for EOB chars. */
-		register yy_size_t number_to_move = (yy_n_chars) + 2;
+		register int number_to_move = (yy_n_chars) + 2;
 		register char *dest = &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[
 					YY_CURRENT_BUFFER_LVALUE->yy_buf_size + 2];
 		register char *source =
@@ -1680,7 +1693,7 @@ static int yy_get_next_buffer (void)
 
 		else
 			{ /* need more input */
-			yy_size_t offset = (yy_c_buf_p) - (yytext_ptr);
+			int offset = (yy_c_buf_p) - (yytext_ptr);
 			++(yy_c_buf_p);
 
 			switch ( yy_get_next_buffer(  ) )
@@ -1704,7 +1717,7 @@ static int yy_get_next_buffer (void)
 				case EOB_ACT_END_OF_FILE:
 					{
 					if ( yywrap( ) )
-						return 0;
+						return EOF;
 
 					if ( ! (yy_did_buffer_switch_on_eof) )
 						YY_NEW_FILE;
@@ -1956,7 +1969,7 @@ void yypop_buffer_state (void)
  */
 static void yyensure_buffer_stack (void)
 {
-	yy_size_t num_to_alloc;
+	int num_to_alloc;
     
 	if (!(yy_buffer_stack)) {
 
@@ -2048,16 +2061,17 @@ YY_BUFFER_STATE yy_scan_string (yyconst char * yystr )
 
 /** Setup the input buffer state to scan the given bytes. The next call to yylex() will
  * scan from a @e copy of @a bytes.
- * @param bytes the byte buffer to scan
- * @param len the number of bytes in the buffer pointed to by @a bytes.
+ * @param yybytes the byte buffer to scan
+ * @param _yybytes_len the number of bytes in the buffer pointed to by @a bytes.
  * 
  * @return the newly allocated buffer state object.
  */
-YY_BUFFER_STATE yy_scan_bytes  (yyconst char * yybytes, yy_size_t  _yybytes_len )
+YY_BUFFER_STATE yy_scan_bytes  (yyconst char * yybytes, int  _yybytes_len )
 {
 	YY_BUFFER_STATE b;
 	char *buf;
-	yy_size_t n, i;
+	yy_size_t n;
+	int i;
     
 	/* Get memory for full buffer, including space for trailing EOB's. */
 	n = _yybytes_len + 2;
@@ -2139,7 +2153,7 @@ FILE *yyget_out  (void)
 /** Get the length of the current token.
  * 
  */
-yy_size_t yyget_leng  (void)
+int yyget_leng  (void)
 {
         return yyleng;
 }
@@ -2287,7 +2301,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 95 "/Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate/generator.l"
+#line 95 "/home/liux/primogeni/netsim/tools/ssfnet-xlate/generator.l"
 
 
 

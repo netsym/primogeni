@@ -21,9 +21,6 @@
 
 #include "api/ssftime.h"
 
-namespace prime {
-namespace ssf {
-
 // Endian conversions: we don't need to do anything if the execution
 // environment is homogeneous. That is, all machines running the
 // simulation are of the same architecture. Note that running on a
@@ -88,6 +85,9 @@ namespace ssf {
     SSF_BYTE_ORDER_32(((prime::ssf::uint64)(x))>>32))
 
 #endif /*SSF_NO_ENDIAN_FORMATTING*/
+
+namespace prime {
+namespace ssf {
 
 /**
  * \brief Compact data storage.
