@@ -54,21 +54,31 @@ Slingshot is the graphical user interface that one uses to launch and control Pr
   6. Create Slingshot project:
     1. Click on `File > New > Java Project` or `File > New > Project` and then select `Java > Java Project` in the `New Project` window
     2. Put `Slingshot` as `Project name`, uncheck `Use default location`, select `Location` to be the netIDE directory under the primogeni directory, and click `Finish`
-    3. Configure Eclipse to use the same Java library we use for compiling primex (one can skip this step on Mac OS if using the default Java):
-      * Right click on `Slingshot` project in the package explorer and select `Properties`
-      * In the popup window, click on `Java Build Path` and select `Libraries` tab 
-      * Select `JRE System library` and select `Edit...`
-      * Select the corresponding JRE: for example, click `Alternate JRE > Installed JREs > Add > Standard VM` and `Next`; fill in `JRE home` with the Java home directory of your installation and choose a proper `JRE name`. Choose it to be your `Alternate JRE`
+    3. Configure Eclipse to use the same Java version which you use for compiling primex
+      * Ubuntu Linux:
+        * Right click on `Slingshot` project in the package explorer and select `Properties`
+        * In the popup window, click on `Java Build Path` and select `Libraries` tab 
+        * Select `JRE System library` and select `Edit...`
+        * Select the corresponding JRE System Library:
+          * Click `Installed JREs > Add > Standard VM` and `Next`
+          * In `JRE home` field, enter the Java home directory: `/usr/lib/jvm/java-6-openjdk-...`
+          * Choose a proper `JRE name` and click `Finish`
+          * In the `Installed JREs` widget, select the newly added entry
+      * Mac OS (one can skip this step the default Java is 1.6):
+        * Right click on `Slingshot` project in the package explorer and select `Properties`
+        * In the popup window, click on `Java Build Path` and select `Libraries` tab 
+        * Select `JRE System library` and select `Edit...`
+        * Select the corresponding Execution environment using the pulldown menu
     4. Help Eclipse to resolve plug-in dependencies:
       * Right click on `Slingshot` project in the package explorer and select `Properties`
       * In the popup window, click on `Java Build Path` and select `Libraries` tab 
       * Click `Add Libraries`, choose `Plug-in Dependencies`, click `Next` and then `Finish`
   7. Run slingshot:
     1. Expand Slingshot project in the `Package Explorer`
-    2. Open `slingshot_linux_32.product`, `slingshot_linux_64.product`, or `slingshot_mac.product`, depending on your machine type
-    3. Click the button for `Launch an Eclipse application`
+    2. Open either `slingshot_linux_32.product`, `slingshot_linux_64.product`, or `slingshot_mac.product`, depending on your machine type
+    3. Click `Launch an Eclipse application`
     4. When run for the first time, slingshot will ask you to set the workspace (manually, this can be done by selecting `File > Switch Workspace`); you can choose a new folder to store all your primogeni experiments
-    5. Slingshot will also ask you for the primogeni installation (manually, this can be done by selecting `Tools > Slingshot Config Wizard`); simply point to the directory where you installed primogeni just now
+    5. Slingshot will also ask you to set preference; in particular, it will ask for the location of your primex installation (manually, this can be done by selecting `Tools > Slingshot Config Wizard`); simply enter the primogeni directory
 
 ## Prepare Runtime Environment
 
