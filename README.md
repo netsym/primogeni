@@ -17,7 +17,7 @@ Slingshot and primex will run on your local host. Slingshot is an integrated dev
 To install PrimoGENI, you need to have some packages installed on your local machine:
 * Ubuntu Linux:
   1. `sudo apt-get update; sudo apt-get upgrade`
-  2. `sudo apt-get install git subversion wget build-essential gcc python flex bison ant openjdk-6-jdk libpcap-devsudo texlive-binaries`
+  2. `sudo apt-get install git subversion wget build-essential gcc python flex bison ant openjdk-6-jdk libpcap-dev texlive-binaries`
   3. `sudo update-alternatives --config javac` 
   4. Set environment variable JAVA\_HOME to the installed openjdk directory (e.g., for bash shell, use `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386` for 32-bit Linux, and `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64` for 64-bit Linux)
 * Mac OS:
