@@ -56,12 +56,16 @@ Slingshot is the graphical user interface that one uses to launch and control Pr
       * In the popup window, click on `Java Build Path` and select `Libraries` tab 
       * Select `JRE System library` and select `Edit...`
       * Select the corresponding JRE: for example, click `Alternate JRE > Installed JREs > Add > Standard VM` and `Next`; fill in `JRE home` with the Java home directory of your installation and choose a proper `JRE name`. Choose it to be your `Alternate JRE`
+    4. Help Eclipse to resolve plug-in dependencies:
+      * Right click on `Slingshot` project in the package explorer and select `Properties`
+      * In the popup window, click on `Java Build Path` and select `Libraries` tab 
+      * Click `Add Libraries`, choose `Plug-in Dependencies`, click `Next` and then `Finish`
   7. Run slingshot:
     1. Expand Slingshot project in the `Package Explorer`
     2. Open `slingshot_linux_32.product`, `slingshot_linux_64.product`, or `slingshot_mac.product`, depending on your machine type
     3. Click the button for `Launch an Eclipse application`
-    4. When run for the first time, slingshot will ask you to set the workspace (manually, this can be done by selecting `File > Switch Workspace`); you can choose a new folder for all your primogeni experiments
-    5. Slingshot will also ask you for the primogeni installation (manually, this can be done by selecting `Tools > Slingshot Config Wizard`); simply point to the directory where you installed primogeni
+    4. When run for the first time, slingshot will ask you to set the workspace (manually, this can be done by selecting `File > Switch Workspace`); you can choose a new folder to store all your primogeni experiments
+    5. Slingshot will also ask you for the primogeni installation (manually, this can be done by selecting `Tools > Slingshot Config Wizard`); simply point to the directory where you installed primogeni just now
 
 ## Prepare Runtime Environment
 
