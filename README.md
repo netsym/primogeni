@@ -6,7 +6,6 @@ PrimoGENI Constellation allows network experimenters to conduct large-scale netw
 ## Prepare Installation 
 
 There are three steps for preparing PrimoGENI Constellation to run from your local machine (we have tested both on Ubuntu Linux and on Mac OS):
-
   1. Building the real-time network simulator (called `primex`)
   2. Installing the PrimoGENI IDE (called `slingshot`)
   3. Preparing the runtime environment for running experiments on GENI slices
@@ -21,66 +20,29 @@ Before installation, you need to install the necessary packages that PrimoGENI i
   1. Install latest MacPorts (https://www.macports.org/) and Xcode (https://developer.apple.com/xcode/downloads/)
   2. `sudo port selfupdate; sudo port upgrade outdated`
   3. `sudo port install git subversion python flex bison ant`
-  4. Install Java 1.6
+  4. Install Java 1.6 SDK for Mac OS (TODO)
   5. Set environment variable JAVA\_HOME for your shell (e.g., for bash shell: ``export JAVA_HOME=`/usr/libexec/java_home```)
 
 ## Build Primex
 
 Primex is a real-time network simulator. In order to run (small) network experiments on your local machine, you need to install primex:
   1. `git clone https://github.com/netsym/primogeni`
-  2. `cd primogeni; sh ./build_all.sh`
+  2. `cd primogeni`
+  3. `sh ./build_all.sh`
 
+## Install Slingshot
 
-
-Installing and Using Primogeni
-To be able to use Primogeni and take advantage of hybrid experimentation using Primogeni, one needs to have Slingshot (Primogeni's IDE) installed on their local machine. Slingshot is developed using Eclipse RCP programming. Primogeni is an open source software therefore we recommend making it straight from the sources so that the experimenter can take advantage of the bug fixes and recent advancements while maintaining existing experimentation capability. 
-
-
-### Steps of the Primogeni experimentaion are -
-  1. Making the simulator (primex), and installing required dependencies. (on local machine)
-  2. Installing Eclipse (Indigo) and import Slingshot IDE project.(on local machine)
-  3. Getting resources from GENI clearinghouse with Primogeni compatible OS images with preinstalled primex and required additional softwares and scripts. (Geni portal/Flack/Geni Desktop/Jacks/etc.)
-4. Saving manifest rspec of the geni slice to local machine and importing the .rspec/.xml file to slingshot to create an environment where the experiments will be deployed
-5. Creating a model consisting of emulated hosts (openvz containers), real traffic, simulated traffic and simulated hosts. Deploying the experiment model and collecting results.
-
-
-#### Installing Primogeni on Local Machine (Steps 1 & 2 of Primogeni Experimentation)
-This document includes steps for installing slingshot  on client machines. So far, we have successfully tested slingshot on Linux Ubuntu 12.04 32-bit
-2. Mac OS 10.9 (maverick)
-
-
-### Step by Step Install
-In cases the express installation goes wrong we recommend making it step by step so that you can tackle any issue that might prevent you from installation.
-
-1. Instaling dependencies:
-   * Ubuntu
-       1. `sudo apt-get update; sudo apt-get upgrade;`
-       2. `sudo apt-get install git build-essential subversion gcc python flex bison ant openjdk-6-jdk mpi mpich mpich2`
-       3. `sudo update-alternatives --config javac` 
-       4. You can set your JAVA_HOME to the installed openjdk6
-
-2. Cloning Primogeni and making the primex simulator from source
-   * Ubuntu
-       1. `git clone https://github.com/netsym/primogeni`
-       2. `mv primogeni ~/Desktop/primogeni`
-       3. Cd to `~/Desktop/primogeni/netsim` and do a `./configure` to see if the simulator can locate necessary dependencies required for installation.
-       4. `cd ~/Desktop/primogeni`
-       5. `chmod +x clean_build_all.sh`
-       3. `./clean_build_all.sh`
-       4. (Tackiling c++ errors) Most modern Ubuntu distros do not require this step. In case primex build fails because of c++, comment out line 244 and 245 in /usr/include/c++/4.6/i686-linux-gnu/bits/gthr-default.h.
-
-#### Making and Running Primogeni API(Slingshot) on Eclipse
-
-1. We would launch Slingshot on Eclipse at this step. We recommend *Eclipse Indigo for RCP and RAP developers* Download the Eclipse IDE.
-   * You can find it [here](http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/indigosr2).
-     * Unzip the Eclipse package.
-     * We need one dependency called `Afae` for syntax highlighting in Slinghsot. You can download the plugin [here](https://www.primessf.net/pub/Public/PrimoGENIProject/afae_plugins.tgz).  Untar afae_plugins.tgz by `tar -zxf afae_plugins.tgz` and move `com.rohanclan.afae_1.2.0`, `com.rohanclan.imageviewer_0.9.1`, and `com.rohanclan.snippets_0.8.8` to the plugins folder of your eclipse installation. You need to restart eclipse after doing this
-     * Open Eclipse executable. Set a directory for eclipse `workspace`, it can be any directory you like. 
-     * Importing Slingshot(primogeni/netIDE) as a project
-       * a. Click on `File > New > Java` Project
-       * b. Put `Slingshot` for Project name and uncheck `Use default location`.
-       * c. Browse for the folder where primogeni is located and select the `netIDE` folder and click `OK`, then click `Next`, and then `Finish`.
-       * d. Since Slingshot will use primex, we have to configure `java library` in Eclipse that you compiled primex with. To do this:
+Slingshot is the Integrated Development Environment for PrimoGENI. Slingshot uses Eclipse RCP.
+  1. Download Eclipse. We use Eclipse Indigo for RCP and RAP developers, which can be obtained from http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/indigosr2 (use 32 or 64-bit version compatible with your Java installation).
+  2. Untar the eclipse-\*.tar.gz file (which creates a directory named eclipse) under primogeni:<br>
+    `cd primogeni; tar -xzf eclipse-*.tar.gz`
+  3. Download the Afae plugin (for syntax highlighting) from https://www.primessf.net/pub/Public/PrimoGENIProject/afae_plugins.tgz
+  4. `cd eclipse/plugins; tar -xvf afae_plugins.tgz`
+  5. Run eclipse (you may need to set a directory for eclipse workspace)
+  6. Create Slingshot project:
+    a. Click on `File > New > Java Project`
+    b. Put `Slingshot` as `Project name`, uncheck `Use default location`, select `Location` to be the netIDE directory under the primogeni directory, and click `Finish`
+    c. Since Slingshot will use primex, we have to configure `java library` in Eclipse that you compiled primex with. To do this:
          * `Right click Slingshot` project within eclipse in the package explorer on the left.
          * Then click on `properties`.
          * From this window, click on `Java Build Path` on the left. 
