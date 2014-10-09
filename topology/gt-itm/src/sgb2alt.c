@@ -24,6 +24,7 @@
 #include "gb_save.h"
 #include "geog.h"
 
+int
 main(argc,argv)
     int argc;
     char *argv[];
@@ -36,14 +37,14 @@ main(argc,argv)
 
     if (argc != 3) {
 	    printf("sgb2old <sgfile> <altfile>\n\n");
-	    return;
+	    return 1;
     }
     fout = fopen(argv[2],"w");
 
     g = restore_graph(argv[1]);
 		if (g == NULL) {
       printf("%s does not contain a correct SGB graph\n",argv[1]);
-			return;
+			return 2;
 		}
 			
     fprintf(fout,"GRAPH (#nodes #edges id uu vv ww xx yy zz):\n");
@@ -81,4 +82,5 @@ main(argc,argv)
 		}
    	}
 
+  return 0;
 }	

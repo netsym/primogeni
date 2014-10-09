@@ -50,7 +50,8 @@ namespace ssfnet {
 
 class SimpleSocket;
 
-struct UDPConnection {
+class UDPConnection {
+ public:
 	int srcPort;
 	int dstPort;
 	IPAddress srcIP;

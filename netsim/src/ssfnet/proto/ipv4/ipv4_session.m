@@ -113,7 +113,8 @@ struct IPTablesEntry {
   IPTablesEntry* next; // next callback entry in the iptables chain
 };
 
-struct IPOptionToAbove {
+class IPOptionToAbove {
+ public:
 	IPAddress src_ip;
 	IPAddress dst_ip;
 };

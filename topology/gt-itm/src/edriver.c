@@ -50,7 +50,7 @@
     		   } \
 		 }\
 
-main(argc,argv)
+int main(argc,argv)
     int argc;
     char *argv[];
 {
@@ -69,7 +69,7 @@ main(argc,argv)
 
     if (argc == 1) {
 	printf("Usage: edriver <filestem> [-nd] [-<f0><f1>]*\n\n");
-	return;
+	return 1;
     }
     /* determine whether to print distributions */
     /* determine where in argv the field pairs begin */

@@ -217,8 +217,9 @@ SwingTCPTraffic::~SwingTCPTraffic() {
 			delete tpf[i][j];
 		}
 	}
-	if (file_summary)
-		delete[] file_summary;
+	/*
+	if (file_summary) delete[] file_summary;
+	*/
 }
 
 bool SwingTCPTraffic::shouldBeIncludedInCommunity(Community* com) {

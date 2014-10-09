@@ -151,14 +151,14 @@ void Monitor::init() {
 								LOG_ERROR("wtf?\n");
 							}
 							LOG_DEBUG("mon agg "<<a->getUName()<<", com="<<com->getCommunityId()<<"("<<((void*)com) <<")"<<endl);
-							MonitorTimer::Com2Timer::iterator j = timers.find(com);
-							if(j == timers.end()) {
+							MonitorTimer::Com2Timer::iterator jj = timers.find(com);
+							if(jj == timers.end()) {
 								MonitorTimer* t = new MonitorTimer(com);
 								t->add(c->getObj());
 								timers.insert(SSFNET_MAKE_PAIR(com,t));
 							}
 							else {
-								j->second->add(c->getObj());
+								jj->second->add(c->getObj());
 							}
 						}
 					}

@@ -296,7 +296,7 @@ geo_parms	parmsbuf[MAXLEVEL];	/* make sure MAXLEVEL >= 3 */
     return NULL;
 }
 
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
     FILE           *infile;
     char	   *rv;
@@ -304,15 +304,15 @@ main(int argc, char **argv)
 
     if (argc == 1) {
 	printf("itm <spec-file0> <spec-file1> ....\n\n");
-	return;
+	return 1;
     }
     while (--argc) {
 
-        if (rv = makegraph(*(++argv))) {
+        if ((rv = makegraph(*(++argv)))) {
 	    fprintf(stderr,"Error processing file %s: %s\n",*argv,rv);
 	}
 
     }	/* while on argc */
 
-    exit(0);
+    return 0;
 }

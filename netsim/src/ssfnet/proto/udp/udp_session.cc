@@ -48,13 +48,13 @@ UDPSession::~UDPSession() {
 		delete conn;
 }
 
-void UDPSession::send(uint32 length)
+void UDPSession::send(uint64 length)
 {
 	LOG_DEBUG("Send "<< length << " (B) virtual data down the protocol stack, getMaxDatagramSize()=" <<
 			udpMaster->getMaxDatagramSize() << endl);
-	int offset = 0;
-	while(offset < (int) length) { // if there's anything left to be sent
-		int to_send = (int) mymin(udpMaster->getMaxDatagramSize(), (int)length-offset);
+	int64 offset = 0;
+	while(offset < (int64) length) { // if there's anything left to be sent
+	        int to_send = (int) mymin(udpMaster->getMaxDatagramSize(), (int)(length-offset));
 		offset += to_send;
 		LOG_DEBUG("UDPSession::send to_send=" << to_send << endl);
 		to_send += sizeof(RawUDPHeader); //udp length includes header
@@ -72,12 +72,12 @@ void UDPSession::send(uint32 length)
 	}
 }
 
-void UDPSession::sendMsg(uint32 length, byte* msg, bool send_data_and_disconnect)
+void UDPSession::sendMsg(uint64 length, byte* msg, bool send_data_and_disconnect)
 {
 	LOG_DEBUG("UDPSession::send emu"<< length << " down the protocol stack" << endl);
-	int offset = 0;
-	while(offset < (int) length) { // if there's anything left to be sent
-		int to_send = (int) mymin(udpMaster->getMaxDatagramSize(), (int)length-offset);
+	int64 offset = 0;
+	while(offset < (int64) length) { // if there's anything left to be sent
+    	        int to_send = (int) mymin(udpMaster->getMaxDatagramSize(), (int)(length-offset));
 		DataMessage* dmsg;
 		if(msg) dmsg = new DataMessage(to_send, &msg[offset]);
 		else dmsg = new DataMessage(to_send);

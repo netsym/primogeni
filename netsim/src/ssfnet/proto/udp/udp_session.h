@@ -54,10 +54,10 @@ class UDPSession : public TransportSession {
 	virtual ~UDPSession();
 
 	// Send this number of bytes - simulation
-	virtual void send(uint32 length);
+	virtual void send(uint64 length);
 
 	// Send the bytes pointed by msg - emulation
-	virtual void sendMsg(uint32 size, byte* msg=0, bool send_data_and_disconnect=false);
+	virtual void sendMsg(uint64 size, byte* msg=0, bool send_data_and_disconnect=false);
 
 	// Receive the message popped up from the ip session
 	virtual void receive(UDPMessage* udpmsg, void* extinfo);

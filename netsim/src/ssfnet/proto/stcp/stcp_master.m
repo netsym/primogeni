@@ -42,7 +42,8 @@ namespace ssfnet {
 class SimpleSocket;
 class STCPSession;
 
-struct STCPConnection {
+class STCPConnection {
+ public:
 	int src_port;
 	int dst_port;
 	IPAddress src_ip;

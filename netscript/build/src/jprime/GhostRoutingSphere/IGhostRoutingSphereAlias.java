@@ -1,6 +1,0 @@
-
-package jprime.GhostRoutingSphere;
-
-public interface IGhostRoutingSphereAlias extends jprime.gen.IGhostRoutingSphereAlias {
-//Insert your user-specific code here (if any)
-}

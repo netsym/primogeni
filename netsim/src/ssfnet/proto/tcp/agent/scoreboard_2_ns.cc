@@ -67,11 +67,11 @@
 namespace prime {
 namespace ssfnet {
 
-#ifndef ASSERT(x)
+#ifndef ASSERT
 #define ASSERT(x) if (!(x)) {printf ("Assert SB failed\n"); exit(1);}
 #endif
 
-#ifndef ASSERT1(x)
+#ifndef ASSERT1
 #define ASSERT1(x) if (!(x)) {printf ("Assert1 SB (length)\n"); exit(1);}
 #endif
 
