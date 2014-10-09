@@ -35,7 +35,7 @@
 #define HAVE_FLOAT_H 1
 
 /* Define to 1 if you have the `floor' function. */
-/* #undef HAVE_FLOOR */
+#define HAVE_FLOOR 1
 
 /* Define to 1 if you have the `fork' function. */
 #define HAVE_FORK 1
@@ -68,7 +68,7 @@
 #define HAVE_JNI_H 1
 
 /* Define to 1 if you have the <libintl.h> header file. */
-#define HAVE_LIBINTL_H 1
+/* #undef HAVE_LIBINTL_H */
 
 /* Define to 1 if you have the <limits.h> header file. */
 #define HAVE_LIMITS_H 1
@@ -78,7 +78,7 @@
 #define HAVE_MALLOC 1
 
 /* Define to 1 if you have the <malloc.h> header file. */
-#define HAVE_MALLOC_H 1
+/* #undef HAVE_MALLOC_H */
 
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
@@ -99,7 +99,7 @@
 #define HAVE_NETINET_IN_H 1
 
 /* Define to 1 if you have the `pow' function. */
-/* #undef HAVE_POW */
+#define HAVE_POW 1
 
 /* "Define if you have POSIX threads are supported" */
 #define HAVE_PTHREAD 1
@@ -121,7 +121,7 @@
 #define HAVE_SOCKET 1
 
 /* Define to 1 if you have the `sqrt' function. */
-/* #undef HAVE_SQRT */
+#define HAVE_SQRT 1
 
 /* Define to 1 if `stat' has the bug that it succeeds when given the
    zero-length file name argument. */
@@ -219,7 +219,7 @@
 
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
-#define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
+/* #undef LSTAT_FOLLOWS_SLASHED_SYMLINK */
 
 /* Define to 1 if assertions should be disabled. */
 /* #undef NDEBUG */

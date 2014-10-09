@@ -1,9 +1,9 @@
 #get all of the env vars and user options
 ifneq ($(INCLUDED_INC), true)
-include /home/obaida/Desktop/pgc2vega/primex/netsim/Makefile.inc 
+include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
 endif
 
-DML_PATH = /home/obaida/Desktop/pgc2vega/primex/netsim/src/dml
+DML_PATH = /Users/liux/Workspace/primogeni/netsim/src/dml
 
 DML_SRCFILES = \
 	$(DML_PATH)/dml.h \

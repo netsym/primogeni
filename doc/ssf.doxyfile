@@ -38,7 +38,7 @@ PROJECT_NUMBER = XXX
 # If a relative path is entered, it will be relative to the location 
 # where doxygen was started. If left blank the current directory will be used.
 
-OUTPUT_DIRECTORY = /home/obaida/Desktop/pgc2vega/primex/netsim/../doc/_build/doxygen/ssf
+OUTPUT_DIRECTORY = /Users/liux/Workspace/primogeni/netsim/../doc/_build/doxygen/ssf
 
 # If the CREATE_SUBDIRS tag is set to YES, then doxygen will create 
 # 4096 sub-directories (in 2 levels) under the output directory of each output 
@@ -564,7 +564,7 @@ WARN_LOGFILE =
 # directories like "/usr/src/myproject". Separate the files or directories 
 # with spaces.
 
-INPUT = /home/obaida/Desktop/pgc2vega/primex/netsim/src/ssf
+INPUT = /Users/liux/Workspace/primogeni/netsim/src/ssf
 
 # This tag can be used to specify the character encoding of the source files 
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is 
@@ -1245,7 +1245,7 @@ INCLUDE_FILE_PATTERNS =
 # instead of the = operator.
 
 PREDEFINED = 
-@INCLUDE = /home/obaida/Desktop/pgc2vega/primex/netsim/../doc/doxy_predef.cfg
+@INCLUDE = /Users/liux/Workspace/primogeni/netsim/../doc/doxy_predef.cfg
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then 
 # this tag can be used to specify a list of macro names that should be expanded. 

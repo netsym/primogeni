@@ -1,9 +1,9 @@
 #get the ssf vars (which includes all of the env vars and user options)
 ifneq ($(INCLUDED_INC), true)
-include /home/obaida/Desktop/pgc2vega/primex/netsim/Makefile.inc 
+include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
 endif
 
-TEST_SSFNET_PATH = /home/obaida/Desktop/pgc2vega/primex/netsim/test/ssfnet/functional
+TEST_SSFNET_PATH = /Users/liux/Workspace/primogeni/netsim/test/ssfnet/functional
 
 TEST_SSFNET_HFILES = \
 	$(SSFNET_HFILES)
@@ -45,5 +45,5 @@ INCLUDED_SSFNET_TEST=true
 # get the rules to build the ssfnet code
 # MUST BE INCLUDED AT THE END OF THE FILE
 ifneq ($(INCLUDED_SSFNET), true)
-include /home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet/Makefile 
+include /Users/liux/Workspace/primogeni/netsim/src/ssfnet/Makefile 
 endif

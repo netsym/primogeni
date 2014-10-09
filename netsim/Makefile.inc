@@ -16,8 +16,8 @@ ENABLE_METIS = yes
 ENABLE_SPRNG = yes
 ENABLE_BOOSTRNG = no
 
-NETSIM_DIR = /home/obaida/Desktop/pgc2vega/primex/netsim
-DOC_DIR = /home/obaida/Desktop/pgc2vega/primex/netsim/../doc
+NETSIM_DIR = /Users/liux/Workspace/primogeni/netsim
+DOC_DIR = /Users/liux/Workspace/primogeni/netsim/../doc
 
 CC_ORIG = gcc
 CC = gcc
@@ -36,17 +36,17 @@ YACC = bison -y
 YFLAGS = -dt -v
 LEX = flex
 LFLAGS = 
-LEXLIB = -lfl
-SED = /bin/sed
-PERL = /usr/bin/perl
+LEXLIB = -ll
+SED = /usr/bin/sed
+PERL = /opt/local/bin/perl
 PYTHON = /usr/bin/python
-AR = /usr/bin/ar
+AR = /opt/local/bin/ar
 ARFLAGS = -cru
 RANLIB = ranlib
 LN_S = ln -s
 #INSTALL = @INSTALL@
 LN_S = ln -s
-MKDIR_P = /bin/mkdir -p
+MKDIR_P = /opt/local/bin/gmkdir -p
 EXEEXT = 
 
 HAVE_BISON = yes
@@ -56,11 +56,11 @@ PTHREAD_CFLAGS =
 PTHREAD_LIBS = -lpthread
 
 SSF_SYNC = standalone
-SSF_MACH = X86_LINUX
+SSF_MACH = X86_DARWIN
 SSF_ARCH = GENERIC
 
-JNI_LDFLAGS = -L/usr/lib/jvm/java-6-openjdk/jre/lib//server
-JNI_CPPFLAGS =  -I/usr/lib/jvm/java-6-openjdk/include -I/usr/lib/jvm/java-6-openjdk/include/linux
+JNI_LDFLAGS = -L/System/Library/Frameworks/JavaVM.framework/Libraries/
+JNI_CPPFLAGS = -I/System/Library/Frameworks/JavaVM.framework/Headers
 
 JPRIME_SEPARATE_PROP_TABLE= false
 

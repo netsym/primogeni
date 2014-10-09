@@ -1,16 +1,16 @@
 #get all of the env vars and user options
 ifneq ($(INCLUDED_INC), true)
-include /home/obaida/Desktop/pgc2vega/primex/netsim/Makefile.inc 
+include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
 endif
 
-SSF_PATH = /home/obaida/Desktop/pgc2vega/primex/netsim/src/ssf
-SSF_TOOL_PATH = /home/obaida/Desktop/pgc2vega/primex/netsim/tools/ssf-tools
-SSF_XLATE_PATH = /home/obaida/Desktop/pgc2vega/primex/netsim/tools/ssf-xlate
-SSF_PART_PATH = /home/obaida/Desktop/pgc2vega/primex/netsim/tools/ssf-partition
-SSF_LIBSYNK_PATH = /home/obaida/Desktop/pgc2vega/primex/netsim/src/ssf/libsynk
+SSF_PATH = /Users/liux/Workspace/primogeni/netsim/src/ssf
+SSF_TOOL_PATH = /Users/liux/Workspace/primogeni/netsim/tools/ssf-tools
+SSF_XLATE_PATH = /Users/liux/Workspace/primogeni/netsim/tools/ssf-xlate
+SSF_PART_PATH = /Users/liux/Workspace/primogeni/netsim/tools/ssf-partition
+SSF_LIBSYNK_PATH = /Users/liux/Workspace/primogeni/netsim/src/ssf/libsynk
 
-ssf-doc: /home/obaida/Desktop/pgc2vega/primex/netsim/../doc/doxy_predef.cfg /home/obaida/Desktop/pgc2vega/primex/netsim/../doc/ssfnet.doxyfile
-	$(DOXYGEN) /home/obaida/Desktop/pgc2vega/primex/netsim/../doc/ssf.doxyfile
+ssf-doc: /Users/liux/Workspace/primogeni/netsim/../doc/doxy_predef.cfg /Users/liux/Workspace/primogeni/netsim/../doc/ssfnet.doxyfile
+	$(DOXYGEN) /Users/liux/Workspace/primogeni/netsim/../doc/ssf.doxyfile
 
 SSF_MAC_HFILES = \
 	$(SSF_PATH)/mac/arena.h \

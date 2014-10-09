@@ -1,36 +1,36 @@
 #get all of the env vars and user options
 ifneq ($(INCLUDED_INC), true)
-include /home/obaida/Desktop/pgc2vega/primex/netsim/Makefile.inc 
+include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
 endif
 
 # get the rules to build the metis code
 ifneq ($(INCLUDED_METIS), true)
-include /home/obaida/Desktop/pgc2vega/primex/netsim/tools/metis/Makefile
+include /Users/liux/Workspace/primogeni/netsim/tools/metis/Makefile
 endif
 
 # get the rules to build the dml code
 ifneq ($(INCLUDED_DML), true)
-include /home/obaida/Desktop/pgc2vega/primex/netsim/src/dml/Makefile 
+include /Users/liux/Workspace/primogeni/netsim/src/dml/Makefile 
 endif
 
 # get the rules to build the rng code
 ifneq ($(INCLUDED_RNG), true)
-include /home/obaida/Desktop/pgc2vega/primex/netsim/src/rng/Makefile 
+include /Users/liux/Workspace/primogeni/netsim/src/rng/Makefile 
 endif
 
 # get the rules to build the ssf code
 ifneq ($(INCLUDED_SSF), true)
-include /home/obaida/Desktop/pgc2vega/primex/netsim/src/ssf/Makefile 
+include /Users/liux/Workspace/primogeni/netsim/src/ssf/Makefile 
 endif 
 
-SSFNET_PATH = /home/obaida/Desktop/pgc2vega/primex/netsim/src/ssfnet
-PCAP_PATH = /home/obaida/Desktop/pgc2vega/primex/netsim/src/libpcap
-JPRIME_SRC = /home/obaida/Desktop/pgc2vega/primex/netsim/../netscript/src/jprime
-JPRIME_GEN = /home/obaida/Desktop/pgc2vega/primex/netsim/../netscript/src/jprime/gen/*.java
-SSFNET_XLATE_PATH = /home/obaida/Desktop/pgc2vega/primex/netsim/tools/ssfnet-xlate
+SSFNET_PATH = /Users/liux/Workspace/primogeni/netsim/src/ssfnet
+PCAP_PATH = /Users/liux/Workspace/primogeni/netsim/src/libpcap
+JPRIME_SRC = /Users/liux/Workspace/primogeni/netsim/../netscript/src/jprime
+JPRIME_GEN = /Users/liux/Workspace/primogeni/netsim/../netscript/src/jprime/gen/*.java
+SSFNET_XLATE_PATH = /Users/liux/Workspace/primogeni/netsim/tools/ssfnet-xlate
 
-ssfnet-doc: /home/obaida/Desktop/pgc2vega/primex/netsim/../doc/doxy_predef.cfg /home/obaida/Desktop/pgc2vega/primex/netsim/../doc/ssfnet.doxyfile
-	$(DOXYGEN) /home/obaida/Desktop/pgc2vega/primex/netsim/../doc/ssfnet.doxyfile
+ssfnet-doc: /Users/liux/Workspace/primogeni/netsim/../doc/doxy_predef.cfg /Users/liux/Workspace/primogeni/netsim/../doc/ssfnet.doxyfile
+	$(DOXYGEN) /Users/liux/Workspace/primogeni/netsim/../doc/ssfnet.doxyfile
 
 SSFNET_XLATE_SRCFILES = \
 	$(SSFNET_XLATE_PATH)/code_generator.cc \

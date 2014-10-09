@@ -1,6 +1,6 @@
 #get all of the env vars and user options
 ifneq ($(INCLUDED_INC), true)
-include /home/obaida/Desktop/pgc2vega/primex/netsim/Makefile.inc 
+include /Users/liux/Workspace/primogeni/netsim/Makefile.inc 
 endif
 
 # get the rules to build the ssfnet code
@@ -8,8 +8,8 @@ ifneq ($(INCLUDED_SSFNET), true)
 include /home/nmvanvo/workspace/primex/netsim/src/ssfnet/Makefile 
 endif
 
-OPENVPNDIR=/home/obaida/Desktop/pgc2vega/primex/netsim/src/emuproxy/openvpn
-SSFGWDDIR=/home/obaida/Desktop/pgc2vega/primex/netsim/src/emuproxy/ssfgwd
+OPENVPNDIR=/Users/liux/Workspace/primogeni/netsim/src/emuproxy/openvpn
+SSFGWDDIR=/Users/liux/Workspace/primogeni/netsim/src/emuproxy/ssfgwd
 
 SSFGWD_HDRFILES = \
 	$(SSFGWDDIR)/circle_buffer.h \
@@ -39,9 +39,9 @@ SSFGWD_CFLAGS = $(SSF_CXXFLAGS)
 SSFGWD_LDFLAGS =
 SSFGWD_LDADD =
 
-SSFGWD_EXE=/home/obaida/Desktop/pgc2vega/primex/netsim/ssfgwd
-OPENVPN_EXE=/home/obaida/Desktop/pgc2vega/primex/netsim/openvpn
-OPENVPN_SO=/home/obaida/Desktop/pgc2vega/primex/netsim/openvpn-client-conn.so
+SSFGWD_EXE=/Users/liux/Workspace/primogeni/netsim/ssfgwd
+OPENVPN_EXE=/Users/liux/Workspace/primogeni/netsim/openvpn
+OPENVPN_SO=/Users/liux/Workspace/primogeni/netsim/openvpn-client-conn.so
 
 %.gwd.o:	%.cc $(SSFGWD_HDRFILES)
 	$(CXX_ORIG) $(SSFGWD_INCLUDES) $(SSFGWD_CFLAGS) $(SSFNET_INCLUDES) $(SSFGWD_CFLAGS) -o $@ -c $<
