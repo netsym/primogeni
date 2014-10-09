@@ -23,20 +23,24 @@ To install PrimoGENI, you need to have some packages installed on your local mac
 * Mac OS:
   1. Install latest MacPorts (https://www.macports.org/) and Xcode (https://developer.apple.com/xcode/downloads/)
   2. `sudo port selfupdate; sudo port upgrade outdated`
-  3. `sudo port install git subversion python flex bison ant`
-  4. Install Java 1.6 SDK for Mac OS (TODO)
+  3. `sudo port install git subversion python27 flex bison apache-ant`
+  4. Install Java 1.6 SDK for Mac OS *---(TODO)---*
   5. Set environment variable JAVA\_HOME for your shell (e.g., for bash shell: ``export JAVA_HOME=`/usr/libexec/java_home```)
 
-## Build Primex
 
-Primex is a real-time network simulator. In order to run (small) network experiments on your local machine, you need to install primex:
+## Compile Primex
+
+Primex is a real-time network simulator. One can directly download primex from github and use the provided script to build the simulator in one shot: 
   1. `git clone https://github.com/netsym/primogeni`
   2. `cd primogeni`
   3. `sh ./build_all.sh`
 
+Note that building the simulator may take a few minutes.
+
+
 ## Install Slingshot
 
-Slingshot is the Integrated Development Environment (IDE) for PrimoGENI. Since slingshot uses Eclipse RCP, we need to install Eclipse for running slingshot:
+Slingshot is the graphical user interface that one uses to launch and control PrimoGENI experiments. Slingshot was developed using Eclipse RCP, we need to install Eclipse for running slingshot:
   1. Download Eclipse. We use Eclipse Indigo for RCP and RAP developers, which can be obtained from http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/indigosr2 (For Mac OS, make sure you choose the 32- or 64-bit version compatible with your Java installation).
   2. Untar the eclipse-\*.tar.gz file (which creates a directory named eclipse) under primogeni:<br>
     `cd primogeni; tar -xzf eclipse-*.tar.gz`
