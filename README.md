@@ -87,7 +87,16 @@ Slingshot is the graphical user interface that one uses to launch and control Pr
   * Now its time to create an experiment in Slingshot. Follow this [link](http://users.cis.fiu.edu/~meraz001/primotutorial/getstarted.html) for getting started with model writing for Slingshot. This will show you the basics of creating, compiling, and running an experiment in Slingshot. 
 A simple model that only contains simulated hosts and link can be run on Local simulator by compiling and running the experiment you just created.
 
-  * For running the experiments on GENI you should select some of the hosts of your model as *emulated hosts*. To get the resources for running the model on Geni resources you need to get Geni resource slice (using Flack/Geni Desktop/Omni/geni portal). Allocate two machines (or vms) connected with a lan. Assign the lan interface an ipv4 IP like `10.10.1.1` and `10.10.1.2`. To be able to run Primogeni the OS image of these two sliver needs to have a **Primogeni OS image**.
+  * For running the experiments on GENI resources you should select some of the hosts of your model as *emulated hosts*. To get the resources for running the model on Geni resources you need to get Geni resource slice (using Flack/Geni Desktop/Omni/geni portal). Allocate two machines (or vms) connected with a lan. Assign the lan interface an ipv4 IP like `10.10.1.1` and `10.10.1.2`. To be able to run Primogeni the OS image of these two sliver needs to have a **Primogeni OS image**. 
+
+  * If you are new to GENI you can follow this [link](http://groups.geni.net/geni/wiki/GENIExperimenterWelcome) to get started with GENI. Mane sure you do a simple resource allocation as described in this [RunHelloGeni]( http://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/RunHelloGENI) tutorial. Easiest way to get strted with geni us to use Flack, a GENI API available in your geni portal after you log in. 
+     * You have to be a part of a project to be able to create slices. Once you are a member of a project you can create slices from your portal.geni.net homepage. Slice name have to be unique.
+     * Once the slice is created click on Launch Flack button, and wait until Flack finishes loading; this process might take a while because Flack is querying all the geni sites. Now click on PC/VM boxes by each site to create a sliver(host) of that type. Say for our example you create two of such slivers. 
+     * You can use Geni supported resource description file (rspec) to allocate resources instead of drawing the topology. 
+Paste this url http://www.gpolab.bbn.com/exp/HelloGENI/hellogeni-bound.xml and click Ok
+A topology will come up. Your topology should look like Login to Flack Video. Press the Submit button and confirm that you want to reserve these resources.
+Wait while your resources are being reserved. This will take several minutes so be patient. When your sliver is ready the background will be green
+ 
 
 **Here is few precreated Primogeni OS image**
 
