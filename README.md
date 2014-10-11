@@ -74,7 +74,7 @@ Slingshot is the graphical user interface that one uses to launch and control Pr
       * In the popup window, click on `Java Build Path` and select `Libraries` tab 
       * Click `Add Libraries`, choose `Plug-in Dependencies`, click `Next` and then `Finish`
   7. Run slingshot:
-    1. Expand Slingshot project in the `Package Explorer`
+    1. Expand the Slingshot project in the `Package Explorer`
     2. Open either `slingshot_linux_32.product`, `slingshot_linux_64.product`, or `slingshot_mac.product`, depending on your machine type
     3. Click `Launch an Eclipse application`
     4. When run for the first time, slingshot will ask you to set the workspace (manually, this can be done by selecting `File > Switch Workspace`); you can choose a new folder to store all your primogeni experiments
@@ -83,18 +83,25 @@ Slingshot is the graphical user interface that one uses to launch and control Pr
 
 ## Prepare Runtime Environments
 
-One needs to specify the runtime environment to run experiments. PrimoGENI supports the following types of runtime environments:
-  * *Local machine*: The experiments can run on the same machine where Slingshot is run. Currently, local machine supports simulation-only experiments. The next version of PrimoGENI will enable hybrid experiments with simulated and emulated components on the local machine. By default, Slingshot already has the local machine runtime environment created for use.
-  * *GENI slice*: The experiments can run on a preallocated GENI slice with at least two machines (or VMs) booted from an existing PrimoGENI OS image, all connected through a LAN. Slingshot uses the Manifest RSpec (i.e., the resource description exported from GENI experimenter tools) as input to create a runtime environment corresponding to each GENI slice. Currently, PrimoGENI supports ProtoGENI (www.protogeni.net), and both InstaGENI (http://groups.geni.net/geni/wiki/GENIRacksHome/InstageniRacks) and ExoGENI (www.exogeni.net) racks.
+One needs to specify the runtime environment to launch experiments. PrimoGENI supports two types of runtime environments:
+  * *Local Machine*: One can run an experiment can run on the same machine where Slingshot is located. Currently, local machine supports only simulation experiments, and they are typically small experiments. In its next version, PrimoGENI will allow hybrid experiments on the local machine with both simulated and emulated components. Note that one does not need to explicitly install the local machine runtime environment; it has already been created by default.
+  * *GENI Slice*: The experiments can run on pre-allocated GENI slices, each consisted of at least two machines (or VMs) booted from an existing PrimoGENI OS image. The machines in the slice much be all connected through a LAN. Slingshot uses the "manifest rspec" (i.e., the xml description returned by the GENI experimenter tools upon resource allocation) as input to create a runtime environment. Currently, PrimoGENI supports experiments on ProtoGENI (www.protogeni.net), and both InstaGENI (http://groups.geni.net/geni/wiki/GENIRacksHome/InstageniRacks) and ExoGENI (www.exogeni.net) racks.
 
-In the following, we discuss how to create runtime environments for different GENI resources. 
-
-First, we need to create the GENI slice. If you are new to GENI you can learn about using GENI from [here](http://groups.geni.net/geni/wiki/GENIExperimenterWelcome). One can create GENI slices on GENI portal (https://portal.geni.net) or using experimenter tools, such as Flack/Jacks, GENI Desktop, and Omni.
-  * ExoGENI: set the `Name` of the `Disk Image` to be `http://users.cis.fiu.edu/~mobai001/primogeni_exo_image/image_gec21.xml` and set `Version` to be `eb36bbf95d7d73b698e4ad24ea1064438f7f82da` (which is sha1sum of the xml file). We recommend using sliver type `XOMedium` or larger.
-  * InstaGENI:
-  * ProtoGENI:
-
-Once the slice has been created, you need to download the Manifest RSpect. (If using Flack, one can view the manifest document and then save it to file).
+In the following, we discuss how to create the runtime environments for different GENI resources:
+  * If you haven't already done so, you need to generate an ssh keypair in the `~/.ssh` directory (so that you will be able to log onto GENI slices without using passphrase):<br>
+      `cd ~/.ssh`<br>
+      `ssh-keygen -f id_geni_rsa_nopass`<br>
+      `ssh-add id_geni_rsa_nopass`<br>
+    You need to upload the public key (`id_geni_rsa_nopass.pub`) to the GENI portal (https://portal.geni.net); it's under `Profile` and `SSH Keys`.
+  * Create the GENI slice. If you are new to GENI you can learn about using GENI from [here](http://groups.geni.net/geni/wiki/GENIExperimenterWelcome). One can create a GENI slice at the GENI portal (https://portal.geni.net) or using separate experimenter tools, such as Flack/Jacks, GENI Desktop, and Omni. Each slice must contain at least two machines connected by a LAN. Also, you need to specify the respective PrimoGENI OS image for the machines depending on the GENI resource type:
+    * ExoGENI rack: the disk image's `Name` shall be `http://users.cis.fiu.edu/~mobai001/primogeni_exo_image/image_gec21.xml`; the  `Version` shall be `eb36bbf95d7d73b698e4ad24ea1064438f7f82da` (i.e., the sha1sum of the xml file). We recommend using the sliver type `XOMedium` or larger.
+    * InstaGENI rack: the disk images depend on location (with names listed below). The sliver type should be `emulab-xen`.
+      * Clemson University: `urn:publicid:IDN+instageni.clemson.edu+image+ch-geni-net:primov32instaclemson`
+      * Northwestern University: `urn:publicid:IDN+instageni.northwestern.edu+image+ch-geni-net:primov3instanorthwestern`
+      * University of Kentucky: `urn:publicid:IDN+instageni.ku.gpeni.net+image+ch-geni-net:primov31instclemson`
+    * ProtoGENI: *TODO*
+  * Save the the manifest rspec into a file which you will need for creating the runtime environment. (For example, if using Flack, one should be able to view the manifest document and then save it to a file).
+  * In slingshot, `Experiment > Create/Edit Environments`, provide a `Name` for the new environment, select `Geni Slices`, and the click `Add`. In the popup window, click `Browse...` to select the manifest file, click `Add` and then `Finish` (three times).
 
 
 *---LATER---*
@@ -106,23 +113,10 @@ A simple model that only contains simulated hosts and link can be run on Local s
 
  
 
-**Here is few precreated Primogeni OS image**
 
-1. **Exogeni**
-     * Primogeni OS image for Exogeni (version-GEC 21)
-     * Image descriptor xml: `http://users.cis.fiu.edu/~mobai001/primogeni_exo_image/new_image.xml`
-     * Please verify sha1sum: `eb36bbf95d7d73b698e4ad24ea1064438f7f82da`
-
-2. **Instageni (sliver_typr=emulab-xen)**.
-   1. OS image: NORTHWESTERN
-      * For the same manager, you can use id=urn:publicid:IDN+instageni.northwestern.edu+image+ch-geni-net:primov3instanorthwestern
-      * For other managers, you can use url=https://www.instageni.northwestern.edu/image_metadata.php?uuid=b550f7d0-49fd-11e4-8c68-000000000000
-      * Comments: Tested Operational.
-   2. OS IMAGE complete instageni site: CLEMSON
-      * For the same manager, you can use id=urn:publicid:IDN+instageni.clemson.edu+image+ch-geni-net:primov32instaclemson
-      * Comments: Tested Operational.
+2. 
    3. OS IMAGE complete instageni site: KU.GPENI.NET
-      * For the same manager, you can use id=urn:publicid:IDN+instageni.ku.gpeni.net+image+ch-geni-net:primov31instclemson
+      * For the same manager, you can use id=
       * For other managers, you can use url=https://www.instageni.ku.gpeni.net/image_metadata.php?uuid=37ea9fda-49ef-11e4-8f68-000000000000
    4. OS IMAGE complete instageni site: Gatech
       * For the same manager, you can use id=urn:publicid:IDN+instageni.ku.gpeni.net+image+ch-geni-net:primov3instaclemson
