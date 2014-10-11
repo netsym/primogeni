@@ -43,8 +43,8 @@ public enum EnvType {
 	/**
 	 * For use with generic ProtoGENI manifest
 	 */
-	PROTO_GENI("ProtoGENI"),
-	
+//	/PROTO_GENI("ProtoGENI"),
+	PROTO_GENI("Geni Slices"),
 	/**
 	 * Use local sim -- restricted functionality
 	 */

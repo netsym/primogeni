@@ -132,26 +132,41 @@ public class CreateEnvironmentFirstPage extends WizardPage implements Listener, 
 		gd.heightHint = 50;
 		gd.widthHint = 100;
 		t.setLayoutData(gd);
+		
 		toolkit.paintBordersFor(s1_client);
 	
+		
+		
+		
+		
 		env_viewer = new TableViewer(t);
 		env_viewer.setContentProvider(new ArrayContentProvider());
 		viewerColumn = new TableViewerColumn(env_viewer, SWT.NONE);
 		viewerColumn.getColumn().setWidth(300);
 		viewerColumn.setLabelProvider(new ColumnLabelProvider() {
 			@Override
+
+			
 			public String getText(Object element) {
+				//System.out.println("\nEnvs01: "+((EnvType)element).str);//ProtoGENI, GeniSLices, Cluster
 				return ((EnvType)element).str;
 			};
 
+			
+			
 			public Image getImage(Object element) {
-				return PlatformUI.getWorkbench().getSharedImages()
-						.getImage(ISharedImages.IMG_OBJ_ELEMENT);
+				//System.out.println("Envs: "+PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT));
+				//return ("Exogeni");
+				return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT);
 			};
+
 		}
 
 		);
 		env_viewer.setInput(composite);
+		
+		
+		
 		add = toolkit.createButton(s1_client, "Add", SWT.PUSH);
 		s1.setClient(s1_client);
 		name.addListener(SWT.KeyUp, this);

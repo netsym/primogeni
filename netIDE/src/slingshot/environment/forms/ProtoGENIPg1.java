@@ -26,7 +26,8 @@ package slingshot.environment.forms;
  *
  * You can find our research at http://www.primessf.net/.
  */
-
+import java.io.*;
+import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -67,8 +68,8 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 
-//import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.widgets.Combo;
+//import org.eclipse.swt.widgets.Combo; // #ForCombo
+
 
 import slingshot.Util;
 import slingshot.Util.Type;
@@ -92,8 +93,8 @@ public class ProtoGENIPg1 extends BaseForm {
 	private Text manifest;// ,manifest2;
 	private Shell shell;
 	private BasePage page;
-	private Combo ManifestVersionList;
-	private int ParserChoice;// selected version of Manifest
+//	private Combo ManifestVersionList;  // #ForCombo
+//	private int ParserChoice;// selected version of Manifest // #ForCombo
 
 	/**
 	 * 
@@ -128,7 +129,7 @@ public class ProtoGENIPg1 extends BaseForm {
 				| Section.TITLE_BAR);
 		sec.setLayout(new FillLayout(SWT.CENTER));
 		sec.setText("Manifests");
-		sec.setDescription("All manifests in the following list will be converted into a ProtoGENI enviornment.");
+		sec.setDescription("All manifests in the following list will be converted into a Geni Slices enviornment.");
 
 		Composite sec_client = toolkit.createComposite(sec, SWT.WRAP);
 		sec_client.setLayout(new GridLayout(4, false));
@@ -153,24 +154,15 @@ public class ProtoGENIPg1 extends BaseForm {
 		browse.setLayoutData(gd);
 		page.mySetButtonLayoutData(browse);
 
-		// Label l2 = toolkit.createLabel(sec_client,
-		// "Select Geni Manifest Version");
-		// gd = new GridData();
-		// gd.horizontalSpan=4;
-		// l2.setLayoutData(gd);
-		String SupportedGeniManifestVersions[] = { "Geni Rspec v2.0", "Geni Rspec v3" };
-		// String SupportedGeniManifestVersions[]=
-		// {"Geni Rspec v2.0","Geni Rspec v3","Option1-All Aggregate",
-		// "Exogeni FLukes Rspec"};
-		ManifestVersionList = new Combo(shell, SWT.DROP_DOWN | SWT.READ_ONLY);
-		for (int i = 0; i < SupportedGeniManifestVersions.length; i++) {
-			ManifestVersionList.add(SupportedGeniManifestVersions[i]);
-		}
-		ManifestVersionList.select(0);
 
-		// gd = new GridData(SWT.FILL, SWT.FILL,true,false);
-		// gd.horizontalSpan=4;
-		// ManifestVersionList.setLayoutData(gd);
+//		String SupportedGeniManifestVersions[] = { "Geni Rspec v2.0", "Geni Rspec v3" };
+//		ManifestVersionList = new Combo(shell, SWT.DROP_DOWN | SWT.READ_ONLY);    // #ForCombo
+//		for (int i = 0; i < SupportedGeniManifestVersions.length; i++) {
+//			ManifestVersionList.add(SupportedGeniManifestVersions[i]);
+//		}
+//		ManifestVersionList.select(0);
+
+
 
 		viewer = new TableViewer(t);
 		viewer.setContentProvider(new ArrayContentProvider());
@@ -297,7 +289,11 @@ public class ProtoGENIPg1 extends BaseForm {
 			manifest.setText("");
 			add.setEnabled(false);
 
-			ParserChoice = ManifestVersionList.getSelectionIndex();
+			
+			
+			
+			
+			//ParserChoice = ManifestVersionList.getSelectionIndex(); // #ForCombo
 
 		} else if (event.widget == delete) {
 			if (selected != null) {
@@ -309,7 +305,7 @@ public class ProtoGENIPg1 extends BaseForm {
 		} else if (event.widget == browse) {
 			// create the file selection Dialog
 			FileDialog fileDialog = new FileDialog(shell);
-			fileDialog.setFilterExtensions(new String[] { "*.rspec", "*.xml" });
+			fileDialog.setFilterExtensions(new String[] { "*.*", "*.xml", "*.rspec", "*.txt"});
 
 			// get the path of the file selected by the user
 			String f = fileDialog.open();
@@ -337,65 +333,85 @@ public class ProtoGENIPg1 extends BaseForm {
 	// OBAIDA xx<>xx SENDING FILES to MANIFEST PARSER in JPRIME to parse geni
 	// nodes and links
 
+	
+	
+    public static boolean findStringInFile(File fRspec, String searchString) {
+        boolean result = false;
+        Scanner in = null;
+        try {
+            in = new Scanner(new FileReader(fRspec));
+            while(in.hasNextLine() && !result) {
+                result = in.nextLine().indexOf(searchString) >= 0;
+            }
+        }
+        catch(IOException e) {
+            e.printStackTrace();      
+        }
+        finally {
+            try { in.close() ; } catch(Exception e) { /* ignore */ }  
+        }
+        return result;
+    }
+	
+	
+	
+	
+	
 	public void openNextPage() {
 		ArrayList<File> filelist = new ArrayList<File>();
+		System.out.print("\nManifest File(s):");
+		String OnlyOnefile=null; 
+		
 		for(String f : files) {
 			filelist.add(new File(f));
+			System.out.print("    "+f);
+			//Assuming that the user is inputting only one RSPEC file for now.
+			OnlyOnefile=f;
 		}
-		//if v2
-		//ManifestParser p;
-		
 		ManifestParser p2;
-		//ManifestParserGeniv3 p3;
 		
-		//read DropDown list menu
-        //int x=0;
+		int manifest_version=0;//=ParserChoice+2;//parser choise is ascertained with Mouseup event
+			
 		
-//		if (x==0)
-//		  {
-		   
-		   //ParserChoice=2;
-		   int manifest_version=ParserChoice+2;//parser choise is ascertained with Mouseup event
-			
-			p2 = new ManifestParser(filelist,manifest_version);
-			
-			if(p2.getParseErrors().size()>0) {
-				String message = "";
-				for(String e : p2.getParseErrors()) {
-					message+=e+"\n";
-				}
-				Util.dialog(Type.ERROR, "WARNING: There were problems parsing 1 or more xml elements in the manifest(s). The errors follow:", message);
+
+    	File fRspec = new File(OnlyOnefile);
+        
+        System.out.print("\nProvided Manifest Rspec Version is: ");
+        if(findStringInFile(fRspec, "rspec/2")||findStringInFile(fRspec, "rspec/0.2"))
+        {
+        	manifest_version=2;
+        	System.out.print(" 2  "); 
+        }
+        else if(findStringInFile(fRspec, "rspec/3"))
+        {
+        	manifest_version=3;
+        	System.out.print(" 3  ");
+        }
+        
+        else
+        {
+        	System.out.print(" INVALID  ");
+        	Util.dialog(Type.ERROR, "WARNING: There were error finding RSPEC version in the file","Environment creation might not be successful");
+        }
+        
+        //System.out.printf("Result of searching for %s in %s was %b\n", searchRspec, fRspec.getName(), findStringInFile(fRspec, searchRspec));		
+		
+
+        //manifest_version=ParserChoice+2;
+
+	   
+		p2 = new ManifestParser(filelist,manifest_version);
+		
+		if(p2.getParseErrors().size()>0) {
+			String message = "";
+			for(String e : p2.getParseErrors()) {
+				message+=e+"\n";
 			}
-			FormWizardDialog dialog = new FormWizardDialog(shell, new FormWizard(page.env,2,p2));
-			dialog.open();
-			
-//			
-//		  }
-//		else
-//			{
-//			p3 = new ManifestParserGeniv3(filelist);
-//			if(p3.getParseErrors().size()>0) {
-//				String message = "";
-//				for(String e : p3.getParseErrors()) {
-//					message+=e+"\n";
-//				}
-//				Util.dialog(Type.ERROR, "WARNING: There were problems parsing 1 or more xml elements in the manifest(s). The errors follow:", message);
-//			}
-//			FormWizardDialog dialog = new FormWizardDialog(shell, new FormWizard(page.env,4,p3));  //OBAIDA 4= geniv3 in FormWizard.java
-//			dialog.open();
-//			
-//			}
-		//if v3
-		
-//		if(p.getParseErrors().size()>0) {
-//			String message = "";
-//			for(String e : p.getParseErrors()) {
-//				message+=e+"\n";
-//			}
-//			Util.dialog(Type.ERROR, "WARNING: There were problems parsing 1 or more xml elements in the manifest(s). The errors follow:", message);
-//		}
-//		FormWizardDialog dialog = new FormWizardDialog(shell, new FormWizard(page.env,2,p));
-//		dialog.open();
+			Util.dialog(Type.ERROR, "WARNING: There were problems parsing 1 or more xml elements in the manifest(s). The errors follow:", message);
+		}
+		FormWizardDialog dialog = new FormWizardDialog(shell, new FormWizard(page.env,2,p2));
+		dialog.open();
+
 	}
 
 	/*
