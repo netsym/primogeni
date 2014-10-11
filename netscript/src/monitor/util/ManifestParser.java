@@ -1,37 +1,34 @@
-//STILL there could be one problem with client_id="geni2:if0" in Interface, we have to check if thats valid
-//version 2 after having few blank fields when made jar
-
-//package ParserProtoGENIv2;
 package monitor.util;
+
 
 //package slingshot.environment.forms;
 
 /*
- * Copyright (c) 2011 Florida International University.
- *
- * Permission is hereby granted, free of charge, to any individual or
- * institution obtaining a copy of this software and associated
- * documentation files (the "software"), to use, copy, modify, and
- * distribute without restriction.
- *
- * The software is provided "as is", without warranty of any kind,
- * express or implied, including but not limited to the warranties of
- * merchantability, fitness for a particular purpose and
- * non-infringement.  In no event shall Florida International
- * University be liable for any claim, damages or other liability,
- * whether in an action of contract, tort or otherwise, arising from,
- * out of or in connection with the software or the use or other
- * dealings in the software.
- *
- * This software is developed and maintained by
- *
- *   Modeling and Networking Systems Research Group
- *   School of Computing and Information Sciences
- *   Florida International University
- *   Miami, Florida 33199, USA
- *
- * You can find our research at http://www.primessf.net/.
- */
+* Copyright (c) 2011 Florida International University.
+*
+* Permission is hereby granted, free of charge, to any individual or
+* institution obtaining a copy of this software and associated
+* documentation files (the "software"), to use, copy, modify, and
+* distribute without restriction.
+*
+* The software is provided "as is", without warranty of any kind,
+* express or implied, including but not limited to the warranties of
+* merchantability, fitness for a particular purpose and
+* non-infringement.  In no event shall Florida International
+* University be liable for any claim, damages or other liability,
+* whether in an action of contract, tort or otherwise, arising from,
+* out of or in connection with the software or the use or other
+* dealings in the software.
+*
+* This software is developed and maintained by
+*
+*   Modeling and Networking Systems Research Group
+*   School of Computing and Information Sciences
+*   Florida International University
+*   Miami, Florida 33199, USA
+*
+* You can find our research at http://www.primessf.net/.
+*/
 
 import java.io.File;
 import java.io.PrintStream;
@@ -51,14 +48,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * @author Nathanael Van Vorst, Abu Obaida
- * 
- *         a class to parse a protogeni rspec
- * 
- *         for now we only care about links and nodes. later we may support
- *         other types of information.
- * 
- */
+* @author Nathanael Van Vorst, Abu Obaida
+* 
+*         a class to parse a protogeni rspec
+* 
+*         for now we only care about links and nodes. later we may support
+*         other types of information.
+* 
+*/
 public class ManifestParser {
 	// ManifestParserInSlingshotForProtoGeniV2
 	private static int manifest_version;
@@ -336,20 +333,22 @@ public class ManifestParser {
 			NodeList nodeLst = n.getChildNodes();
 			if (nodeLst.getLength() > 0) {
 				for (int i = 0; i < nodeLst.getLength(); i++) {
-					n = nodeLst.item(i);
-
-					if (n == null || n.getNodeName() == null)
+					//n =  nodeLst.item(i);  
+					Node nx= nodeLst.item(i);//node list item will be "sliver_tyupe", "vnode", "interface" etc.
+					//System.out.println("XX= "+nx.getNodeName());
+									
+					if (nx == null || nx.getNodeName() == null)
 						continue;
 					// We are assuming first useful SUB-NODE is sliver_type
 
 					// APPLICABLE FOR GENI RSPEC geniV2
-					else if (n.getNodeName().compareTo("vnode") == 0) { // OBAIDA_MARKER
+					else if (nx.getNodeName().compareTo("vnode") == 0) { // OBAIDA_MARKER
 						attrs.put("virtualization_type", "emulab-vnode");
 						// For now, im asssigning fixed value here, need to to
 						// combine with hostname to get proper value
-						// System.out.println("   1-Working node: <"+n.getNodeName()+">");
+						// System.out.println("   1-Working node: <"+nx.getNodeName()+">");
 						// //xxxx
-						NamedNodeMap sliver_type_attrs = n.getAttributes();
+						NamedNodeMap sliver_type_attrs = nx.getAttributes();
 						if (null != sliver_type_attrs) {// counter_obaida++;
 														// //delete_later
 							for (int m = 0; m < sliver_type_attrs.getLength(); m++) {
@@ -368,10 +367,16 @@ public class ManifestParser {
 						}
 					}
 
-					else if (n.getNodeName().compareTo("sliver_type") == 0) { // OBAIDA_MARKER
-						// System.out.println("   1-Working node: <"+n.getNodeName()+">");
+//				    <sliver_type xmlns:emulab="http://www.protogeni.net/resources/rspec/ext/emulab/1" name="emulab-xen">
+//				      <emulab:xen xmlns="http://www.protogeni.net/resources/rspec/ext/emulab/1" cores="2" ram="2048" disk="8"/>
+//				      <disk_image name="urn:publicid:IDN+instageni.rnoc.gatech.edu+image+ch-geni-net:pgcGatechIGXen"/>
+//				      <disk_image2 name="urn:publicid:IDage+ch-geni-net:pgcGatechIGXen"/>
+//				    </sliver_type>
+					
+					else if (nx.getNodeName().compareTo("sliver_type") == 0) { // OBAIDA_MARKER
+						// System.out.println("   1-Working node: <"+nx.getNodeName()+">");
 						// //xxxx
-						NamedNodeMap sliver_type_attrs = n.getAttributes();
+						NamedNodeMap sliver_type_attrs = nx.getAttributes();
 						if (null != sliver_type_attrs) {
 							// counter_obaida++; delete_later
 							for (int m = 0; m < sliver_type_attrs.getLength(); m++) {
@@ -385,48 +390,65 @@ public class ManifestParser {
 							} // delete_later upper line -- SET
 								// virtualization_subtype here
 						}
-						int a_counter=0;
-						NodeList nodeLst10 = n.getChildNodes();
+						//int a_counter=0;
+						NodeList nodeLst1x = nx.getChildNodes();
 						// NamedNodeMap
+						int ttl_child=nodeLst1x.getLength();
+//						System.out.println("Total child of sliver_type: "+ttl_child);
 						
-						//INSTAGENI WORK FOR EXTENDED OPERATIONS 
-						if ((nodeLst10.item(1).getNodeName() .compareTo("disk_image") == 0)) {
-							// System.out.println("   FINALLY DISK_IMAGE [1]"+nodeLst10.item(1).getNodeName());
-							// extracting attributes of disk_image now.
-							NamedNodeMap disk_image_attrs = nodeLst10.item(1) .getAttributes();
-							if (null != disk_image_attrs) {
-								for (int p = 0; p < disk_image_attrs.getLength(); p++) {
-									if (disk_image_attrs.item(p).getNodeName().compareTo("name") == 0||disk_image_attrs.item(p).getNodeName().compareTo("url") == 0) {
-										attrs.put("disk_image",disk_image_attrs.item(p).getNodeValue());
-										// System.out.println("Attr_name(disk_image) = "+disk_image_attrs.item(p).getNodeName()+" | Value="+disk_image_attrs.item(p).getNodeValue());
-									} // / xxxx delete upper line
+						if (ttl_child>0){
+							for (int lc =1; lc<ttl_child; lc++ ){
+								
+								//System.out.println("Child#"+lc+", Val: "+nodeLst1x.item(lc).getNodeName().toString());
+								
+								
+								//INSTAGENI WORK FOR EXTENDED OPERATIONS 
+								if ((nodeLst1x.item(lc).getNodeName().compareTo("disk_image") == 0)) {
+									// System.out.println("   FINALLY DISK_IMAGE [1]"+nodeLst10.item(1).getNodeName());
+									// extracting attributes of disk_image now.
+									NamedNodeMap disk_image_attrs = nodeLst1x.item(lc) .getAttributes();
+									if (null != disk_image_attrs) {
+										for (int p = 0; p < disk_image_attrs.getLength(); p++) {
+											if (disk_image_attrs.item(p).getNodeName().compareTo("name") == 0||disk_image_attrs.item(p).getNodeName().compareTo("url") == 0) {
+												attrs.put("disk_image",disk_image_attrs.item(p).getNodeValue());
+												// System.out.println("Attr_name(disk_image) = "+disk_image_attrs.item(p).getNodeName()+" | Value="+disk_image_attrs.item(p).getNodeValue());
+											} // / xxxx delete upper line
 
-									// geniV3
-									else if (disk_image_attrs.item(p) .getNodeName().compareTo("version") == 0) // sha1sum image_file_name.xml
-									{
-										// String
-										// TEMP_version="THIS is a unused value"+disk_image_attrs.item(p).getNodeValue();
+											// geniV3
+											else if (disk_image_attrs.item(p) .getNodeName().compareTo("version") == 0) // sha1sum image_file_name.xml
+											{
+												// String
+												// TEMP_version="THIS is a unused value"+disk_image_attrs.item(p).getNodeValue();
+											}
+										}
 									}
 								}
+								else  //
+									continue;
+								
+								
+								
+								
+								
 							}
+							
 						}
-						else
-							continue;
+						
 					}
 
-					else if (n.getNodeName().compareTo("interface") == 0) { // xxx
+					else if (nx.getNodeName().compareTo("interface") == 0) { // xxx
 						try {
-							// System.out.println("\n CHECK if I am adding");//xxxxxx
-							nics.add(new NIC(n, this)); // problemproblem
-							// System.out.println(":\t\t ADDED");//xxxxxx
+							 //System.out.println("\n CHECK if NIC Interface is adding: " );//xxxxxx
+							nics.add(new NIC(nx, this)); // problemproblem
+							 //System.out.println("\t\t Node Interface Added");//xxxxxx
 						} catch (Exception e) {
-							System.out.println("\t Exception: I didn't ADD");
+							System.out.println("\t Exception: NIC <interface> didn't insert properly : "+nx);
 						}
 					}
 
 					// geniV2 only
-					else if (n.getNodeName().compareTo("host") == 0) {
-						node_attrs = n.getAttributes();
+					else if (nx.getNodeName().compareTo("host") == 0) {
+						node_attrs = nx.getAttributes();
 						if (null != node_attrs) {
 							for (int j = 0; j < node_attrs.getLength(); j++) {
 								//System.out.println("HOST TAG ATTRS=" +node_attrs.getLength());
@@ -449,10 +471,10 @@ public class ManifestParser {
 						}
 					}
 
-					else if (n.getNodeName().compareTo("services") == 0) { //hostnamexxx
+					else if (nx.getNodeName().compareTo("services") == 0) { //hostnamexxx
 						//System.out.println("Services");
 						
-						NodeList nodeLst3 = n.getChildNodes();
+						NodeList nodeLst3 = nx.getChildNodes();
 						//NodeList nodeLstHostname =nodeLst3; int host_count_1=0;
 						if (nodeLst3.getLength() > 0) {
 							for (int j = 0; j < nodeLst3.getLength(); j++) {
@@ -470,7 +492,7 @@ public class ManifestParser {
 										NamedNodeMap node_attrs_hostname = n1.getAttributes();
 											
 
-          								//IF THERE IS MULTIPLE <LOGIN> NODE THAN IT KEEPS THE LAST ONE BECAUSE WE ARE OVERWRITING 
+        								//IF THERE IS MULTIPLE <LOGIN> NODE THAN IT KEEPS THE LAST ONE BECAUSE WE ARE OVERWRITING 
 											if (null != node_attrs_hostname) {
 												for (int l = 0; l < node_attrs_hostname.getLength(); l++) {
 												//for (int l = 0; l < 2; l++) {
@@ -503,9 +525,9 @@ public class ManifestParser {
 
 					// cancelling Nodes
 
-					else if (n.getNodeName().compareTo("flack:node_info") == 0 || n.getNodeName().compareTo("ns4:geni_sliver_info") == 0 || n.getNodeName().compareTo("location") == 0 || n.getNodeName().compareTo("rs:vnode") == 0)
+					else if (nx.getNodeName().compareTo("flack:node_info") == 0 || nx.getNodeName().compareTo("ns4:geni_sliver_info") == 0 || nx.getNodeName().compareTo("location") == 0 || nx.getNodeName().compareTo("rs:vnode") == 0)
 					{
-						// System.out.println("   X-Skipped node: <"+n.getNodeName()+">");//xxxx
+						// System.out.println("   X-Skipped node: <"+nx.getNodeName()+">");//xxxx
 						continue;
 					}
 				}
@@ -592,13 +614,12 @@ public class ManifestParser {
 		public final String username;
 		public final String authentication;
 
-		public User(Node n) {
-			if (n.getNodeName().compareTo("login") != 0) {
-				throw new RuntimeException("invalid node type '"
-						+ n.getNodeName() + "'. Expected 'login'.");
+		public User(Node nu) {
+			if (nu.getNodeName().compareTo("login") != 0) {
+				throw new RuntimeException("invalid node type '" + nu.getNodeName() + "'. Expected 'login'.");
 			}
 			String auth = null, user = null;
-			NamedNodeMap node_attrs = n.getAttributes();
+			NamedNodeMap node_attrs = nu.getAttributes();
 			if (null != node_attrs) {
 				for (int i = 0; i < node_attrs.getLength(); i++) {
 					Node a = node_attrs.item(i);
@@ -656,34 +677,36 @@ public class ManifestParser {
 		public NIC_ref ref = null; // will be set during resolution phase
 		public GeniNode parent;
 
-		public NIC(Node n, GeniNode parent) {
-			if (n.getNodeName().compareTo("interface") != 0) {
+		public NIC(Node nodeNic, GeniNode parent) {
+			if (nodeNic.getNodeName().compareTo("interface") != 0) {
 				// System.out.println("\t\t DID nothing"); //xxxxxx
-				throw new RuntimeException("invalid node type '"
-						+ n.getNodeName() + "'. Expected 'interface'.");
+				throw new RuntimeException("invalid node type '" + nodeNic.getNodeName() + "'. Expected 'interface'.");
 			}
-			// System.out.println("\t\t Call transfered to NIC to add it for:"+n.getNodeName());
+			//System.out.println("\tCall transfered to NIC to add :"+nodeNic.getNodeName());
 			// //xxxxxx
 			this.parent = parent;
 			String virtual_id_temp = null, component_urn_temp = null, sliver_id_temp = null, mac_addr = null;
-			NamedNodeMap node_attrs = n.getAttributes();
+			NamedNodeMap node_attrs = nodeNic.getAttributes();
 			if (null != node_attrs) {
-				// System.out.println("\t\t node_attrs.getlength():"+node_attrs.getLength());
+				// System.out.println("\t node_attrs.getlength():"+node_attrs.getLength());
 				// //xxxxxx
 				for (int i = 0; i < node_attrs.getLength(); i++) {
 					Node a = node_attrs.item(i);
 					if (a.getNodeName().equals("client_id"))
-						virtual_id_temp = a.getNodeValue();
+						{virtual_id_temp = a.getNodeValue();
+						//System.out.println("Got Client ID: ss"+a.getNodeValue());
+						}
 					else if (a.getNodeName().equals("mac_address")) {
 						if (manifest_version == 3) { // for geniV3 conversion
 							mac_addr = a.getNodeValue().replaceAll(":", ""); 
 							// truncating special signs from mac_address
 						} else
 							mac_addr = a.getNodeValue();
+						
 					}
 					// geniV2 only
 					else if (a.getNodeName().equals("component_id")&&manifest_version==2) {
-						// System.out.println("HERE I AM PROCESSING NIC ::::"+a.getNodeValue());
+						 System.out.println("HERE I AM PROCESSING NIC ::::"+a.getNodeValue());
 						component_urn_temp = a.getNodeValue();
 						// to SOLVE problem with compatiablity: that old
 						// component id was just a ethernet number
@@ -692,20 +715,29 @@ public class ManifestParser {
 						// String cid_1=split_parts[0];
 						// String cid_2=split_parts[1];
 						component_urn_temp = ""+ split_parts[split_parts.length - 1];
-						// System.out.println("component_urn(expecting like eth0):"+component_urn_temp); //xxxx vvi
+						 System.out.println("component_urn(expecting like eth0):"+component_urn_temp); //xxxx vvi
 					} else if (a.getNodeName().equals("sliver_id")&&manifest_version==2)
 						sliver_id_temp = a.getNodeValue();
 					else
 						continue; // System.out.println("FAILED! :"+a.getNodeName());
 				}
 			}
+			String my_mac=null;
 			if (manifest_version == 3) { // for geniV3 conversion
 				sliver_id_temp = "urn:________:IDN+______.net+sliver+000000";
 				//component_urn_temp = "NO_ETH"; // NEEED TO BE CHANGED
 				String [] component_urn_temp_v3 =virtual_id_temp.split(":");
 				component_urn_temp=component_urn_temp_v3[1];
-				
-				
+				if (mac_addr==null)
+					{
+					//System.out.println("Mac_addr1:"+mac_addr);
+					Random rand = new Random();
+					int randomNum2Dgt = rand.nextInt((99 - 10) + 1) + 10;
+					my_mac="00:00:00:00:00:"+randomNum2Dgt;
+					mac_addr=my_mac;
+					//System.out.println("Mac_addr2:"+mac_addr);
+
+					}
 			}
 
 			this.component_id = component_urn_temp == null ? "": component_urn_temp;
@@ -727,16 +759,19 @@ public class ManifestParser {
 			if (sliver_id_temp == null)
 				throw new RuntimeException("invalid sid");
 			// System.out.println("  link sliver ID: "+sliver_id); //xxxxxx
-			this.mac_address = mac_addr == null ? "" : mac_addr;
+			// System.out.println("Mac_addra:"+mac_addr);
+			this.mac_address = mac_addr == null ? my_mac : mac_addr;
 			if (mac_addr == null)
-				throw new RuntimeException("invalid mac");
+				{
+				//System.out.println("Mac_addrb:"+mac_addr);
+				throw new RuntimeException("invalid mac");}
 			// Need to find IP address from <ip> tag.
-			// System.out.println("Finding IP ADDRESS in interface"); //xxxx
-			NodeList nodeLst11 = n.getChildNodes();
+			//System.out.println("Finding IP ADDRESS in interface"); //xxxx
+			NodeList nodeLst11 = nodeNic.getChildNodes();
 			String ip_address = null, ip_netmask = null, ip_type = null;
 			for (int s = 0; s < 31; s++) {
 				if (nodeLst11.item(s).getNodeName().compareTo("ip") == 0) {
-					// System.out.println("       FINALLY IP: index["+s+"]:"+nodeLst11.item(s).getNodeName());//xxxxxxx
+					//System.out.println("       FINALLY IP: index["+s+"]:"+nodeLst11.item(s).getNodeName());//xxxxxxx
 					// extracting attributes of IP.
 					NamedNodeMap ip_attributes = nodeLst11.item(s)
 							.getAttributes();
@@ -744,15 +779,15 @@ public class ManifestParser {
 						for (int t = 0; t < ip_attributes.getLength(); t++) {
 							if (ip_attributes.item(t).getNodeName().compareTo("address") == 0) {
 								ip_address = ip_attributes.item(t).getNodeValue();
-								// System.out.println("Attr_name(ip) = "+ip_attributes.item(t).getNodeName()+" | Value="+ip_attributes.item(t).getNodeValue());
+								//System.out.println("Attr_name(ip) = "+ip_attributes.item(t).getNodeName()+" | Value="+ip_attributes.item(t).getNodeValue());
 							} // / xxxx delete upper line
 							else if (ip_attributes.item(t).getNodeName().compareTo("netmask") == 0) {
 								ip_netmask = ip_attributes.item(t).getNodeValue();
-								// System.out.println("Attr_name(ip) = "+ip_attributes.item(t).getNodeName()+" | Value="+ip_attributes.item(t).getNodeValue());
+								//System.out.println("Attr_name(ip) = "+ip_attributes.item(t).getNodeName()+" | Value="+ip_attributes.item(t).getNodeValue());
 							} 
 							else if (ip_attributes.item(t).getNodeName().compareTo("type") == 0) {
 								ip_type = ip_attributes.item(t).getNodeValue();
-								// System.out.println("Attr_name(ip) = "+ip_attributes.item(t).getNodeName()+" | Value="+ip_attributes.item(t).getNodeValue());
+								//System.out.println("Attr_name(ip) = "+ip_attributes.item(t).getNodeName()+" | Value="+ip_attributes.item(t).getNodeValue());
 							} 
 						}
 					}
@@ -870,7 +905,7 @@ public class ManifestParser {
 			if (vlantag_presence==false)
 			{  //Giving random vlantag
 				Random rand= new Random();
- 		        int pick = rand.nextInt(900) + 100;
+		        int pick = rand.nextInt(900) + 100;
 		        
 		        //String vlantag_value=""+pick;
 				attrs.put("vlantag",""+pick);
@@ -999,8 +1034,7 @@ public class ManifestParser {
 			attrs.put("MAC", "000Random000"); // length 8-4-4-4-12 characters
 			// geniv3 only
 			if (manifest_version == 3) {
-				attrs.put("sliver_id",
-						"sliver_id__________________________________empty");
+				attrs.put("sliver_id", "sliver_id__________________________________empty");
 				// attrs.put("component_urn", "NO_ETH");
 			}
 		}
