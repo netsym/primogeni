@@ -80,7 +80,22 @@ Slingshot is the graphical user interface that one uses to launch and control Pr
     4. When run for the first time, slingshot will ask you to set the workspace (manually, this can be done by selecting `File > Switch Workspace`); you can choose a new folder to store all your primogeni experiments
     5. Slingshot will also ask you to set preference; in particular, it will ask for the location of your primex installation (manually, this can be done by selecting `Tools > Slingshot Config Wizard`); simply enter the primogeni directory
 
-## Prepare Runtime Environment
+
+## Prepare Runtime Environments
+
+One needs to specify the runtime environment to run experiments. PrimoGENI supports the following types of runtime environments:
+  * *Local machine*: The experiments can run on the same machine where Slingshot is run. Currently, local machine supports simulation-only experiments. The next version of PrimoGENI will enable hybrid experiments with simulated and emulated components on the local machine. By default, Slingshot already has the local machine runtime environment created for use.
+  * *GENI slice*: The experiments can run on a preallocated GENI slice with at least two machines (or VMs) booted from an existing PrimoGENI OS image, all connected through a LAN. Slingshot uses the Manifest RSpec (i.e., the resource description exported from GENI experimenter tools) as input to create a runtime environment corresponding to each GENI slice. Currently, PrimoGENI supports ProtoGENI (www.protogeni.net), and both InstaGENI (http://groups.geni.net/geni/wiki/GENIRacksHome/InstageniRacks) and ExoGENI (www.exogeni.net) racks.
+
+In the following, we discuss how to create runtime environments for different GENI resources. 
+
+First, we need to create the GENI slice. If you are new to GENI you can learn about using GENI from [here](http://groups.geni.net/geni/wiki/GENIExperimenterWelcome). One can create GENI slices on GENI portal (https://portal.geni.net) or using experimenter tools, such as Flack/Jacks, GENI Desktop, and Omni.
+  * ExoGENI: set the `Name` of the `Disk Image` to be `http://users.cis.fiu.edu/~mobai001/primogeni_exo_image/image_gec21.xml` and set `Version` to be `eb36bbf95d7d73b698e4ad24ea1064438f7f82da` (which is sha1sum of the xml file). We recommend using sliver type `XOMedium` or larger.
+  * InstaGENI:
+  * ProtoGENI:
+
+Once the slice has been created, you need to download the Manifest RSpect. (If using Flack, one can view the manifest document and then save it to file).
+
 
 *---LATER---*
 
@@ -89,13 +104,6 @@ A simple model that only contains simulated hosts and link can be run on Local s
 
   * For running the experiments on GENI resources you should select some of the hosts of your model as *emulated hosts*. To get the resources for running the model on Geni resources you need to get Geni resource slice (using Flack/Geni Desktop/Omni/geni portal). Allocate two machines (or vms) connected with a lan. Assign the lan interface an ipv4 IP like `10.10.1.1` and `10.10.1.2`. To be able to run Primogeni the OS image of these two sliver needs to have a **Primogeni OS image**. 
 
-  * If you are new to GENI you can follow this [link](http://groups.geni.net/geni/wiki/GENIExperimenterWelcome) to get started with GENI. Mane sure you do a simple resource allocation as described in this [RunHelloGeni]( http://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/RunHelloGENI) tutorial. Easiest way to get strted with geni us to use Flack, a GENI API available in your geni portal after you log in. 
-     * You have to be a part of a project to be able to create slices. Once you are a member of a project you can create slices from your portal.geni.net homepage. Slice name have to be unique.
-     * Once the slice is created click on Launch Flack button, and wait until Flack finishes loading; this process might take a while because Flack is querying all the geni sites. Now click on PC/VM boxes by each site to create a sliver(host) of that type. Say for our example you create two of such slivers. 
-     * You can use Geni supported resource description file (rspec) to allocate resources instead of drawing the topology. 
-Paste this url http://www.gpolab.bbn.com/exp/HelloGENI/hellogeni-bound.xml and click Ok
-A topology will come up. Your topology should look like Login to Flack Video. Press the Submit button and confirm that you want to reserve these resources.
-Wait while your resources are being reserved. This will take several minutes so be patient. When your sliver is ready the background will be green
  
 
 **Here is few precreated Primogeni OS image**
