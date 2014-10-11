@@ -26,7 +26,7 @@ To install PrimoGENI, you need to have some packages installed on your local mac
   1. Install latest MacPorts (https://www.macports.org/) and Xcode (https://developer.apple.com/xcode/downloads/)
   2. `sudo port selfupdate; sudo port upgrade outdated`
   3. `sudo port install git subversion wget python27 flex bison apache-ant`
-  4. Install JDK 1.6 (if it hasn't). Go to https://developer.apple.com/downloads (you need an Apple account); download and install Java for OS X 2012-006 Developer Package.
+  4. Install JDK 1.6 (if you don't already have; look into `/System/Library/Java/JavaVirtualMachines` directory). Go to https://developer.apple.com/downloads (you need an Apple account); download and install Java for OS X 2012-006 Developer Package.
   5. Set the environment variable JAVA\_HOME; add the following command to your login shell (such as `~/.bash_profile` for bash):
     * `export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)` 
 
@@ -51,7 +51,7 @@ Slingshot is the graphical user interface that one uses to launch and control Pr
     `cd eclipse/plugins; wget --no-check-certificate https://www.primessf.net/primogeni/afae_plugins.tgz`
   4. `tar -xzf afae_plugins.tgz`
   5. Run Eclipse (you may need to set a directory for eclipse workspace)
-  6. Create Slingshot project:
+  6. Create Slingshot project in Eclipse:
     1. Click on `File > New > Java Project` or `File > New > Project` and then select `Java > Java Project` in the `New Project` window
     2. Put `Slingshot` as `Project name`, uncheck `Use default location`, select `Location` to be the netIDE directory under the primogeni directory, and click `Finish`
     3. Configure Eclipse to use Java 1.6:
