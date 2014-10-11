@@ -70,3 +70,5 @@ public class MySecondJavaModel extends ModelInterface{
 		return topnet;
 	}
 }
+
+

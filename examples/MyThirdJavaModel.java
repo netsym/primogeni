@@ -11,8 +11,8 @@ import jprime.Router.IRouter;
 import jprime.database.Database;
 import jprime.util.ModelInterface;
 
-public class MySecondJavaModel extends ModelInterface{
-	public MySecondJavaModel(Database db, Experiment exp) {
+public class MyThirdJavaModel extends ModelInterface{
+	public MyThirdJavaModel(Database db, Experiment exp) {
 		super(db, exp, new ArrayList<ModelParam>());
 	}
 	public INet buildModel(Map<String, ModelParamValue> parameters) {
@@ -32,6 +32,8 @@ public class MySecondJavaModel extends ModelInterface{
 
 		IHost h3 = left_net.createHost("h3");
 		IInterface if3 = h3.createInterface("if0");
+		//make h3 in both the left and right nets emulated
+		h3.enableEmulation();
 
 		IHost h4 = left_net.createHost("h4");
 		IInterface if4 = h4.createInterface("if0");
@@ -62,11 +64,18 @@ public class MySecondJavaModel extends ModelInterface{
 		toplink.createInterface(((IRouter)left_net.get("r")).createInterface("if0"));
 		toplink.createInterface(((IRouter)right_net.get("r")).createInterface("if0"));		
 		
-		//add traffic
+		//add simulated traffic
 		IHost right_h2 = (IHost)right_net.get("h1");
 		TrafficFactory trafficFactory = new TrafficFactory(topnet);
-		trafficFactory.createSimulatedTCP(10, 1000000000L, h1, right_h2);
-		trafficFactory.createSimulatedTCP(13, 2, 10000000000L, h2, right_h2);
+		trafficFactory.createSimulatedTCP(10, 1000000000, h1, right_h2);
+		trafficFactory.createSimulatedTCP(12, 2, 1000000000, h2, right_h2);
+	
+
+		//add emulated traffic
+		IHost right_h3 = (IHost)right_net.get("h3");
+		trafficFactory.createEmulatedTCP(5, 100000000, right_h3, h3);
+		
 		return topnet;
+		
 	}
 }
