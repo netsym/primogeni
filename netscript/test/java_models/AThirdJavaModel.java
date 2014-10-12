@@ -73,7 +73,7 @@ public class AThirdJavaModel extends ModelInterface{
 
 		//add emulated traffic
 		IHost right_h3 = (IHost)right_net.get("h3");
-		trafficFactory.createEmulatedTCP(5, 100000000, right_h3, h3);
+		//trafficFactory.createEmulatedTCP(5, 100000000, right_h3, h3);
 		
 		return topnet;
 		

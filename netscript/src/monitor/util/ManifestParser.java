@@ -217,7 +217,9 @@ public class ManifestParser {
 				"virtualization_type", // fill with random values
 				"virtualization_subtype", "component_urn", // component_id
 				"component_uuid", // fill with random values
-				"component_manager_urn", "hostname", "sliver_uuid", // fill with random values values
+				"component_manager_urn", 
+				"hostname", 
+				"sliver_uuid", // fill with random values values
 				"sliver_urn", // sliver_id
 				"disk_image" };
 		public final HashMap<String, String> attrs;
@@ -229,7 +231,7 @@ public class ManifestParser {
 		 * // * Example node to parse <node client_id="node3-lan1"
 		 * component_manager_uuid="28a10955-aa00-11dd-ad1f-001143e453fe"
 		 * virtualization_type="emulab-vnode" startup_command="" exclusive="1"
-//		 * virtualization_subtype="raw"
+		 * virtualization_subtype="raw"
 		 * component_urn="urn:publicid:IDN+emulab.net+node+pc355"
 		 * component_uuid="dea00a1d-773e-102b-8eb4-001143e453fe"
 		 * component_manager_id="urn:publicid:IDN+emulab.net+authority+cm"
@@ -327,8 +329,13 @@ public class ManifestParser {
 			{
 				//attrs.put("hostname", "111.111.111.111"); 
 			}
-			String real_hostname_slave=null; //ts a local variable just to store the hostname temporarily for vms(that acts as hosts)
+			String host_info1=null, host_info2port=null,host_info3=null,host_info4=null,host_info5=null;
+			//What Expected: host_info1:host_info2:host_info3:host_info4:host_info5
+			//What Expected(e.g.)   pc3.instageni.instageni.clemson.edu:31242:sliver1.slicemname.geni.clemson.edu:userName:10.10.1.1
 			
+			
+			//Hname_port_name_info=null; //ts a local variable just to store the hostname temporarily for vms(that acts as hosts)
+			//Hname is the name of the Internet reachable hostname that is the creator of VMs.
 			
 			NodeList nodeLst = n.getChildNodes();
 			if (nodeLst.getLength() > 0) {
@@ -425,11 +432,6 @@ public class ManifestParser {
 								}
 								else  //
 									continue;
-								
-								
-								
-								
-								
 							}
 							
 						}
@@ -459,7 +461,8 @@ public class ManifestParser {
 									if(manifest_version==3)
 									{
 										//this is the real hostname we will use to treat slaves in a XEN VM/ or any host that doesnt have default ssh port address 22 (not a raw-pc) 
-										real_hostname_slave=a.getNodeValue();
+										host_info3=a.getNodeValue();
+										//System.out.println("Host Name Initial:"+a.getNodeValue());
 										// attrs.put("hostname",a.getNodeValue()); 								
 									}
 									else if(manifest_version==2)
@@ -473,7 +476,6 @@ public class ManifestParser {
 
 					else if (nx.getNodeName().compareTo("services") == 0) { //hostnamexxx
 						//System.out.println("Services");
-						
 						NodeList nodeLst3 = nx.getChildNodes();
 						//NodeList nodeLstHostname =nodeLst3; int host_count_1=0;
 						if (nodeLst3.getLength() > 0) {
@@ -484,14 +486,11 @@ public class ManifestParser {
 								if (n1.getNodeName().compareTo("login") == 0) {
 									//System.out.println("Hostname X="+host_count_1++);
 									users.add(new User(n1));
-
 									//RETRIEVE HOSTNAME or IP from here
 									if (manifest_version == 3||manifest_version == 2) // geniV3 only
 									{   
-										String hostname_temp_loop = null;
+										//String hostname_temp_loop = null;
 										NamedNodeMap node_attrs_hostname = n1.getAttributes();
-											
-
         								//IF THERE IS MULTIPLE <LOGIN> NODE THAN IT KEEPS THE LAST ONE BECAUSE WE ARE OVERWRITING 
 											if (null != node_attrs_hostname) {
 												for (int l = 0; l < node_attrs_hostname.getLength(); l++) {
@@ -499,32 +498,29 @@ public class ManifestParser {
 													Node b = node_attrs_hostname.item(l);
 													if (b.getNodeName().equals("hostname"))
 														{
-														hostname_temp_loop = b.getNodeValue();
-													    //System.out.println("Name is"+hostname_temp_loop);
-													    
+																												
+														host_info1 = b.getNodeValue();
+													    //System.out.println("Name is: "+hostname_temp_loop);
 														}
-													else if(b.getNodeName().equals("port")&& !b.getNodeValue().equals("22")&& hostname_temp_loop!=null)
+													else if(b.getNodeName().equals("port"))
 													{
-														if (real_hostname_slave!=null)
-															hostname_temp_loop=hostname_temp_loop+":"+b.getNodeValue()+":"+real_hostname_slave;
-														else 
-															real_hostname_slave=hostname_temp_loop+":"+b.getNodeValue();
-														
+														host_info2port=b.getNodeValue();
 														//This node is a VM created by a hypervisor e.g. Xen
+													}
+													else if(b.getNodeName().equals("username")&&!b.getNodeValue().equals("root"))
+													{
+														host_info4=b.getNodeValue();
 													}
 													else 
 														continue;
 												}
 											}
-										attrs.put("hostname",hostname_temp_loop);	
 									}									
 								}
 							}
 						}
 					}
-
 					// cancelling Nodes
-
 					else if (nx.getNodeName().compareTo("flack:node_info") == 0 || nx.getNodeName().compareTo("ns4:geni_sliver_info") == 0 || nx.getNodeName().compareTo("location") == 0 || nx.getNodeName().compareTo("rs:vnode") == 0)
 					{
 						// System.out.println("   X-Skipped node: <"+nx.getNodeName()+">");//xxxx
@@ -532,14 +528,21 @@ public class ManifestParser {
 					}
 				}
 			}
-		}
 
+			if(host_info2port.compareTo("22")!=0)
+				attrs.put("hostname",host_info1+":"+host_info2port+":"+host_info3+":"+host_info4); 
+			else 
+				attrs.put("hostname",host_info1);//exogeni case
+			
+			//attrs.put("hostname",host_info);
+		}
+		// ---------------------------------------------------------------------------------------------------------------------------
 		public String getURN() {// System.out.println("\n I was here"); //xxxxx
 			if (attrs.containsKey("component_urn"))
 				return attrs.get("component_urn");
 			return "[component_urn not found]";
 		}
-
+		// ---------------------------------------------------------------------------------------------------------------------------
 		public boolean errors(ArrayList<String> all_errs) {
 			boolean rv = false;
 			boolean added_p = false;
@@ -769,7 +772,7 @@ public class ManifestParser {
 			//System.out.println("Finding IP ADDRESS in interface"); //xxxx
 			NodeList nodeLst11 = nodeNic.getChildNodes();
 			String ip_address = null, ip_netmask = null, ip_type = null;
-			for (int s = 0; s < 31; s++) {
+			for (int s=0;s<nodeLst11.getLength();s++) {
 				if (nodeLst11.item(s).getNodeName().compareTo("ip") == 0) {
 					//System.out.println("       FINALLY IP: index["+s+"]:"+nodeLst11.item(s).getNodeName());//xxxxxxx
 					// extracting attributes of IP.
@@ -779,6 +782,7 @@ public class ManifestParser {
 						for (int t = 0; t < ip_attributes.getLength(); t++) {
 							if (ip_attributes.item(t).getNodeName().compareTo("address") == 0) {
 								ip_address = ip_attributes.item(t).getNodeValue();
+								
 								//System.out.println("Attr_name(ip) = "+ip_attributes.item(t).getNodeName()+" | Value="+ip_attributes.item(t).getNodeValue());
 							} // / xxxx delete upper line
 							else if (ip_attributes.item(t).getNodeName().compareTo("netmask") == 0) {
@@ -1290,6 +1294,9 @@ public class ManifestParser {
 		return true;
 
 	}// end of function
+
+	// -------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------
 
 	// -------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------

@@ -63,7 +63,7 @@ public class ProtoGENIPg3 extends RemoteClusterPg2 {
 		if (master_control_ip.contains(":"))
 		{
 			String[] parts_master=master_control_ip.split(":");
-			master_control_ip=parts_master[0]+":"+parts_master[1];
+			master_control_ip=parts_master[0]+":"+parts_master[1]+":"+parts_master[3];
 		}
 		System.out.println("Adding Master: ControlIP="+master_control_ip);
 		model.nodes.add(new ComputeNode(master_control_ip, txtMaster_data_ip.getText(), new ArrayList<Portal>()));
