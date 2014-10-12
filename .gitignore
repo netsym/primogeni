@@ -3,6 +3,7 @@
 **/.project
 **/.classpath
 **/.settings
+netIDE/bin/*
 doc/Makefile
 doc/*.doxyfile
 **/*.jar

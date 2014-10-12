@@ -52,6 +52,8 @@ if [ "$result" != "0" ]; then
   echo "error found when compiling jprime"
   exit 1
 fi
+mkdir -p ../netIDE/jprime
+cp -f dist/*.jar ../netIDE/jprime
 echo "jprime compiled successfully..."
 
 cd ../topology > /dev/null
