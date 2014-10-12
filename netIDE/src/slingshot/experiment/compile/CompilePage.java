@@ -84,7 +84,7 @@ public class CompilePage extends WizardPage implements Listener {
 
 		
 		toolkit.createLabel(composite, "IPPrefix:");
-		ip_prefix = toolkit.createText(composite, "192.1.0.0/16", SWT.NONE);
+		ip_prefix = toolkit.createText(composite, "192.168.0.0/16", SWT.NONE);
         ip_prefix.setEditable(true);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan=1;
@@ -139,7 +139,7 @@ public class CompilePage extends WizardPage implements Listener {
 				}
 			} catch(NumberFormatException e) {}
 		}
-        setErrorMessage("The prefix must have the form 'A.B.C.D/E' where A,B,C,D are in [0,255) and E is in (0,32). 192.1.0.0/16 is an example of a valid prefix.");
+        setErrorMessage("The prefix must have the form 'A.B.C.D/E' where A,B,C,D are in [0,255) and E is in (0,32). 192.168.0.0/16 is an example of a valid prefix.");
         return false;
 	}
 	

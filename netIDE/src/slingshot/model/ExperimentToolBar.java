@@ -68,6 +68,8 @@ public class ExperimentToolBar implements Listener, IExpStateListener {
 
 	private ToolItem startVizItem;
 	private ToolItem pause_resumeVizItem;
+	private ToolItem focusVizItem;
+	private ToolItem centerVizItem;
 	private ToolItem addOverlay;
 	private ToolItem clearOverlay;
 	private ToolItem compileItem;
@@ -76,7 +78,7 @@ public class ExperimentToolBar implements Listener, IExpStateListener {
 
 	Image pauseVizIcon;
 	Image resumeVizIcon;
-	Image refreshVizIcon;
+        //Image refreshVizIcon;
 
 	public ExperimentToolBar(CoolBar coolbar, String expName) {
 		this.ps = ProjectLoader.getProjectState(expName);
@@ -95,10 +97,12 @@ public class ExperimentToolBar implements Listener, IExpStateListener {
 	private void createToolBarComposite(CoolBar coolbar) {
 
 
-		Image startVizIcon = Activator.getImage("icons/viz.png");
-		refreshVizIcon = Activator.getImage("icons/refresh_viz.png");
+		Image startVizIcon = Activator.getImage("icons/refresh_viz.png");
+		//refreshVizIcon = Activator.getImage("icons/refresh_viz.png");
 		pauseVizIcon = Activator.getImage("icons/pause_viz.png");
 		resumeVizIcon = Activator.getImage("icons/play_viz.png");
+	        Image focusVizIcon = Activator.getImage("icons/viz.png"); // ZZZ
+	        Image centerVizIcon = Activator.getImage("icons/center_viz.gif"); // ZZZ
 		Image overlayAddIcon = Activator.getImage("icons/overlayAdd.png");
 		Image overlayDeleteIcon = Activator.getImage("icons/overlayClear.png");
 		Image compileIcon = Activator.getImage("icons/brick.png");
@@ -120,6 +124,13 @@ public class ExperimentToolBar implements Listener, IExpStateListener {
 		pause_resumeVizItem.setImage(pauseVizIcon);
 		pause_resumeVizItem.setToolTipText("Pause / Resume Visualization");
 		
+		focusVizItem = new ToolItem(toolbar, SWT.PUSH);
+		focusVizItem.setImage(focusVizIcon);
+		focusVizItem.setToolTipText("Focus Visualization");
+
+		centerVizItem = new ToolItem(toolbar, SWT.PUSH);
+		centerVizItem.setImage(centerVizIcon);
+		centerVizItem.setToolTipText("Center Visualization");
 
 		addOverlay = new ToolItem(toolbar, SWT.PUSH);
 		addOverlay.setImage(overlayAddIcon);
@@ -148,7 +159,8 @@ public class ExperimentToolBar implements Listener, IExpStateListener {
 		graphItem.setEnabled(false);
 
 		if (ps.exp.getState().gte(State.PRE_COMPILED)) {
-			startVizItem.setImage(refreshVizIcon);
+		    //startVizItem.setImage(refreshVizIcon);
+		    //focusItem.setEnabled(true);
 		}
 		else {
 			pause_resumeVizItem.setEnabled(false);
@@ -166,6 +178,8 @@ public class ExperimentToolBar implements Listener, IExpStateListener {
 	private void addListeners() {
 		startVizItem.addListener(SWT.Selection, this);
 		pause_resumeVizItem.addListener(SWT.Selection, this);
+		focusVizItem.addListener(SWT.Selection, this);
+		centerVizItem.addListener(SWT.Selection, this);
 		compileItem.addListener(SWT.Selection, this);
 		runItem.addListener(SWT.Selection, this);
 		graphItem.addListener(SWT.Selection, this);
@@ -184,6 +198,10 @@ public class ExperimentToolBar implements Listener, IExpStateListener {
 			handleRunEvent();
 		} else if (source == pause_resumeVizItem){
 			handlePauseResumeVizEvent();
+		} else if (source == focusVizItem){
+			handleFocusVizEvent();
+		} else if (source == centerVizItem){
+			handleCenterVizEvent();
 		} else if (source == graphItem){
 			handleGraphEvent();
 		} else if (source == addOverlay){
@@ -244,9 +262,23 @@ public class ExperimentToolBar implements Listener, IExpStateListener {
 			ps.exp.expandedNets.clear();
 		} catch(Exception e) {}
 		ps.exp.executeCommand("startViz()", true);
-		startVizItem.setImage(refreshVizIcon);
+		//startVizItem.setImage(refreshVizIcon);
 		pause_resumeVizItem.setImage(pauseVizIcon);
 		pause_resumeVizItem.setEnabled(true);
+	}
+
+	private void handleFocusVizEvent() {
+		try {
+		    //ps.exp.expandedNets.clear();
+		    ps.exp.focusViz();
+		} catch(Exception e) {}
+	}
+
+	private void handleCenterVizEvent() {
+		try {
+		    //ps.exp.expandedNets.clear();
+		    ps.exp.centerViz();
+		} catch(Exception e) {}
 	}
 
 	private void handlePauseResumeVizEvent() {

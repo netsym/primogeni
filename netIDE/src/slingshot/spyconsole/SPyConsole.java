@@ -170,7 +170,7 @@ public class SPyConsole extends InteractiveConsole implements Runnable, KeyListe
                 String p = ((PyString) prompt).toString();
                 startUserInput(p);
                 waitForInput();
-                System.out.println("sl.spyconsole.spyconsole.raw_input():"+getInput());
+                //System.out.println("sl.spyconsole.spyconsole.raw_input():"+getInput());
                 return getInput();
         }
 
@@ -709,7 +709,7 @@ public class SPyConsole extends InteractiveConsole implements Runnable, KeyListe
                          exec(PythonConsoleHandler.__resetexp__);
                          this.write("\n", "input");
                  }else if(kc == KeyEvent.VK_TAB){
-                         System.out.println("XXX - tab");
+		     //System.out.println("XXX - tab");
                  }else if(kc == KeyEvent.VK_X && (kmod & ctrl_mask) != 0){
                          _textpane.cut();
                  
@@ -805,7 +805,7 @@ public class SPyConsole extends InteractiveConsole implements Runnable, KeyListe
         public void caretUpdate(CaretEvent e) {
                 // TODO Auto-generated method stub
 
-                System.out.println();
+	    //System.out.println();
                
                 // highlight the string when do selection
                 if (e.getDot() != e.getMark()) {

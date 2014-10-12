@@ -84,7 +84,7 @@ public class IPAddressAssignment {
 			}
 		}
 		else {
-			cur_address=IPAddressUtil.ip2Int("192.1.0.0");
+			cur_address=IPAddressUtil.ip2Int("192.168.0.0");
 		}
 		topnet.accept(this);
 		if(portal_rules.size() >0 ) {

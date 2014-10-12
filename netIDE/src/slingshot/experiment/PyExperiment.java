@@ -30,6 +30,7 @@ package slingshot.experiment;
 
 import java.awt.BorderLayout;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -79,6 +80,8 @@ import org.eclipse.ui.PlatformUI;
 
 import prefuse.Display;
 import prefuse.Visualization;
+import prefuse.util.GraphicsLib;
+import prefuse.util.display.DisplayLib;
 import prefuse.controls.PanControl;
 import prefuse.controls.WheelZoomControl;
 import prefuse.controls.ZoomControl;
@@ -472,6 +475,23 @@ public class PyExperiment implements IExpListenter {
 	 */
 	public void startViz(){
 		startVisualization();
+	}
+	
+	/**
+	 * 
+	 */
+	public void centerViz(){
+	    Visualization vis = display.getVisualization();
+	    Rectangle2D bounds = vis.getBounds(Visualization.ALL_ITEMS);
+	    GraphicsLib.expand(bounds, 50 + (int)(1/display.getScale()));
+	    DisplayLib.fitViewToBounds(display, bounds, 500);
+	}
+	
+	/**
+	 * 
+	 */
+	public void focusViz(){
+	    focus();
 	}
 	
 	/**
