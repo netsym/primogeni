@@ -15,11 +15,11 @@ High-Level Architecture
 
 PrimoGENI is composed of five major components:
 
-  * The :ref:`architecture-ssfnet-label` network simulator.
-  * PRIMEX's modeling framework, :ref:`architecture-jprime-label`.
-  * The :ref:`architecture-meta-controller-label`.
-  * :ref:`architecture-slingshot-label`.
-  * A ProtoGENI/Emulab :ref:`architecture-os-image-label`.
+  * The *network simulator*.
+  * PRIMEX's modeling framework, *jprime*.
+  * The *meta-controller*.
+  * *Slingshot*.
+  * A ProtoGENI/Emulab *PrimoGENI's OS-image*.
 
 
 Below is high-level view of how these components are configured to implement PrimoGENI.
@@ -27,7 +27,7 @@ Below is high-level view of how these components are configured to implement Pri
 .. image:: images/component-diagram.png
   :width: 7in
 
-On the far left of the diagram there are models which are loaded into Slingshot using jPRIME. jPRIME manages the model and acts as a intermediary to the database, visualization libraries, and interactive console. The local controller compiles the jPRIME model, configures the compute cluster, and deploys the compiled model to the meta-controllers running on our custom OS image on the compute nodes which will execute the model. 
+On the far left of the diagram there a2re models which are loaded into Slingshot using jPRIME. jPRIME manages the model and acts as a intermediary to the database, visualization libraries, and interactive console. The local controller compiles the jPRIME model, configures the compute cluster, and deploys the compiled model to the meta-controllers running on our custom OS image on the compute nodes which will execute the model. 
 
 .. _architecture-ssfnet-label:
 
@@ -49,7 +49,13 @@ Network experiments (aka network models) are composed of sub-models such as host
   :width: 7in
 
 
-Partitioning is done is two basic steps. First, the model is partitioned into *P* model fragments, where *P* is the number of compute nodes the model will be executed on. The second step is the partition each fragment into *C* communities, where *C* is the number of processors on the compute node. Each community acts as an SSF timeline which is executed in its own thread. All of the communities within the same model fragment will be executed on the same compute node. Each model fragment is compiled into a TLV file. A TLV is a packed format for model which is used by the :primex:`model builder <prime::ssfnet::ModelBuilder>` to construct the entity tree within each PRIMEX instance. Further details on partitioning can be found in :ref:`architecture-jprime-parting-label` and :ref:`architecture-primex-parting-label`.
+Partitioning is done is two basic steps. First, the model is partitioned into *P* model fragments,
+where *P* is the number of compute nodes the model will be executed on. The second step is the partition
+each fragment into *C* communities, where *C* is the number of processors on the compute node. Each community
+acts as an SSF timeline which is executed in its own thread. All of the communities within the same model fragment
+will be executed on the same compute node. Each model fragment is compiled into a TLV file. A TLV is a packed
+format for model which is used by the :primex:`model builder <prime::ssfnet::ModelBuilder>` to construct the entity
+tree within each PRIMEX instance.
 
 There will be a single PRIMEX instance run on each partition and if that partition has multiple communities PRIMEX will execute each community in its own thread. Within each community there are two important components: the :primex:`I/O manager <prime::ssfnet::IOManager>` and the :primex:`traffic manager <prime::ssfnet::TrafficManager>`. The :primex:`I/O manager <prime::ssfnet::IOManager>` is responsible for exchanging events with other communities as well as importing and exporting events with real entities (i.e. emulation). The :primex:`traffic manager <prime::ssfnet::TrafficManager>` schedules traffic within each community. Models are partitioned by cutting network links. A community will only exchange events with another community if both communities contain a host or router which are connected by the same link. This limits how many remote-communities a community must interact with.
 
@@ -231,10 +237,9 @@ Within each partition there will be one instance of each network entity in the m
   * Community 3: :samp:`topnet:right:h3`, :samp:`topnet:right:h3`, :samp:`topnet:right:r` 
 
 
-Each host or router exists in exactly one community. On the other hand :samp:`topnet` and :samp:`topnet:toplink` are in both partitions. This is possible because networks and links are both passive entities. 
-
-.. note:: Strictly speaking we have also have a :primex:`PlaceHolder <prime::ssfnet::PlaceHolder>` in partition 0 for :samp:`topnet:right`, a :primex:`PlaceHolder <prime::ssfnet::PlaceHolder>` in partition 1 for :samp:`topnet:left`, a :primex:`GhostInterface <prime::ssfnet::GhostInterface>` in community 0 for :samp:`topnet:right:r:if0`, and a :primex:`GhostInterface <prime::ssfnet::GhostInterface>` in community 2 for :samp:`topnet:left:r:if0`. See :ref:`architecture-primex-parting-label` for details.
-
+Each host or router exists in exactly one community. On the other
+hand :samp:`topnet` and :samp:`topnet:toplink` are in both partitions. This is possible
+because networks and links are both passive entities. 
 
 The following types of network entities are passive:
 
@@ -350,7 +355,7 @@ which defines a logger	 new with the name *LOGGER_NAME*. If you want to referenc
 
 where :samp:`<msg>` exactly what you would write to :samp:`std::cout` . When you run the PRIMEX simulator you can control the level at which all or some of the loggers log at. To get set the default debug level for all loggers by adding "-D DEBUG" as a command line option to PRIMEX. You can also control the level each logger. For example, :samp:`-D ERROR -DS Link DEBUG` will for all loggers except Link to only log error messages. The Link logger will log all messages. To get a list of all the loggers that can be configured you just pass :samp:`-DL` to the simulator.
 
-When the simulator is configured with "--disable-ssfnet-debug" LOG_DEBUG, LOG_INFO, and LOG_WARN are macro'd out (for performance reasons) and only LOG_ERROR remain in the code. See :ref:`slingshot-configuration-label` for more details on how to configure the simulator.
+When the simulator is NOT configured with "--enable-ssfnet-debug" LOG_DEBUG, LOG_INFO, and LOG_WARN are macro'd out (for performance reasons) and only LOG_ERROR remain in the code. See :ref:`slingshot-configuration-label` for more details on how to configure the simulator.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Advanced Error Handling
@@ -431,7 +436,7 @@ that:
 
 which makes calculating RIDs (and UIDs) trivial. 
 
-.. note:: RIDs are important to how spherical routing calculates and stores forwarding tables. See :ref:`architecture-primex-routing-label` for more details.
+.. note:: RIDs are important to how spherical routing calculates and stores forwarding tables.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 IP --> UID, UID --> IP
@@ -468,7 +473,7 @@ As described in the :ref:`architecture-primex-base-entity-label` section, all en
 Structural Replication
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-There are two types of structural information within PRIMEX. The first type we is routing information. Routing information is stored within :primex:`RoutingSphere <prime::ssfnet::RoutingSphere>` and :primex:`RouteTable <prime::ssfnet::RouteTable>`. Because the actual routing states are stored as shared variables replication is handled the same as other sharable state. For details on how routing works see :ref:`architecture-primex-routing-label`.
+There are two types of structural information within PRIMEX. The first type we is routing information. Routing information is stored within :primex:`RoutingSphere <prime::ssfnet::RoutingSphere>` and :primex:`RouteTable <prime::ssfnet::RouteTable>`. Because the actual routing states are stored as shared variables replication is handled the same as other sharable state. 
 
 The second type of structural information is the actual network topology (i.e. the entity tree). We need to store the parent and children of each entity. When large sub-structures (like networks) are replicated the relative topological information is identical so there is some memory savings to be had. In order to share topological information among replicates entities within PRIMEX do not store pointers to children. As an optimization we opted to have entities store a direct pointer to their parent entities because fetching your parent is an extremely common operation during model execution.
 
@@ -690,6 +695,7 @@ The application traffic model definition, my_new_app_traffic.m:
       //called by the traffic manager to if this traffic needs to start traffic
       virtual void getNextEvent(
           StartTrafficEvent*& traffics_to_start, //if traffic needs to be started now, create a start traffic event and set this
+	  UpdateTrafficTypeEvent*& update_evt, //if there needs to be an update event the traffic manager will deliver it to all concerned traffic types on remote traffic managers
           bool& wrap_up, //if this traffic is finished set to true and the traffic mgr will clean this up.
           VirtualTime& recall_at //when should this be recalled to start more traffic; set to zero recall immediately
           );
@@ -730,9 +736,6 @@ PRIMEX currently has the following protocols:
 
 All hosts and routers will have an IPv4 session. TCP and UDP implement the :primex:`TransportSession <prime::ssfnet::TransportSession>` interface which provide a common interface for sending and receiving data over :primex:`SimpleSockets <prime::ssfnet::SimpleSocket>`. See :primex:`CBR <prime::ssfnet::CBR>` and :primex:`HTTPClient <prime::ssfnet::HTTPClient>` for example uses of the socket interface. 
 
-See :ref:`architecture-jprime-protos-label` for examples of how to configure TCP and UDP.
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Current Applications
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -745,235 +748,21 @@ PRIMEX currently has the following applications:
 * SWING Traffic (:primex:`SwingServer <prime::ssfnet::SwingServer>`, :primex:`SwingClient <prime::ssfnet::SwingClient>`)
 * :primex:`Fluid Traffic <prime::ssfnet::FluidTraffic>`
 
-ICMPv4Session, CBR, HTTP, and SWING, are simple applications which are self-explanatory (just look at the parameters). Fluid traffic, strictly speaking, is not an application. It is a special type of traffic. For details on on fluid traffic see :ref:`architecture-primex-traffic-mgr-fluid-label`. See :ref:`architecture-jprime-traffic-label` for examples on how to specify and configure the various types of applications and the associated traffic.
-
-
---------------------------------------------------
-Protocol Messages
---------------------------------------------------
-
-xxx
-
-.. _architecture-primex-traffic-mgr-label:
+ICMPv4Session, CBR, HTTP, and SWING, are simple applications which are self-explanatory (just look at the parameters). Fluid traffic, strictly speaking, is not an application. It is a special type of traffic. See :ref:`architecture-jprime-traffic-label` for examples on how to specify and configure the various types of applications and the associated traffic.
 
 --------------------------------------------------
 Traffic Managers
 --------------------------------------------------
 
-XXX
+The :primex:`traffic manager <prime::ssfnet::TrafficManager>` schedules traffic within each community by maintaining a priority queue sorted by the recall time of the traffic tyes. The :primex:`traffic manager <prime::ssfnet::TrafficManager>` recalls each traffic type at its recall time and process the traffic events by calling :primex:`getNextEvent(StartTrafficEvent*& traffics_to_start, UpdateTrafficTypeEvent*& update_evt, bool& wrap_up, VirtualTime& recall_at) <prime::ssfnet::TrafficType::getNextEvent(StartTrafficEvent*& traffics_to_start, UpdateTrafficTypeEvent*& update_evt, bool& wrap_up, VirtualTime& recall_at)>` function of the traffic. This function needs to be reimplemented by each particular traffic types (e.g. CBR traffic, Ping Traffic) according to its behavior. Generally, the getNextEvent() function has to implement the following tasks:
 
-.. _architecture-primex-traffic-mgr-fluid-label:
+1. Create a start traffic event and set its variables, for example, set the start time, source node and destination node for the start traffic events. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Fluid Traffic
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2. Schedule the recall time of this traffic type by setting the recall time. 
 
-XXX
+3. If this traffic type needs to be updated, create an update event and set its variables. 
 
-
---------------------------------------------------
-I/O Manager
---------------------------------------------------
-
-XXX
-
---------------------------------------------------
-Emulation Infrastructure
---------------------------------------------------
-
-XXX
-
-.. _architecture-primex-routing-label:
-
---------------------------------------------------
-Routing
---------------------------------------------------
-
-XXX
-
---------------------------------------------------
-State-Exportation
---------------------------------------------------
-
-XXX
-
-.. _architecture-primex-parting-label:
-
---------------------------------------------------------------------------------------------------
-Partitioning & Cross-Timeline Communication
---------------------------------------------------------------------------------------------------
-XXX
-
-
-.. _architecture-jprime-label:
-
-=================================
-jPRIME
-=================================
-
-XXX
-
---------------------------------------------------
-Basic Model Structure
---------------------------------------------------
-
-XXX
-
-.. _architecture-replication-label:
-
---------------------------------------------------
-Replication
---------------------------------------------------
-
-XXX
-
-
-.. _architecture-jprime-protos-label:
-
---------------------------------------------------
-Protocols
---------------------------------------------------
-
-
-
-.. _architecture-jprime-traffic-label:
-
---------------------------------------------------
-Traffic
---------------------------------------------------
-
-xxx
-
---------------------------------------------------
-Emulation
---------------------------------------------------
-
-xxx
-
-.. _architecture-jprime-rids-label:
-
---------------------------------------------------
-Resource Identifiers
---------------------------------------------------
-
-XXX
-
---------------------------------------------------
-Handling Large Modes: Out-of-Core Processing
---------------------------------------------------
-
-XXX
-
-.. _architecture-jprime-parting-label:
-
---------------------------------------------------
-Partitioning
---------------------------------------------------
-
-
-.. _architecture-meta-controller-label:
-
-=================================
-Meta-Controller
-=================================
-
-XXX
-
---------------------------------------------------
-Local-Controllers
---------------------------------------------------
-
-XXX
-
---------------------------------------------------
-Command Structure
---------------------------------------------------
-
-xxx
-
---------------------------------------------------
-Master/Slave Controllers
---------------------------------------------------
-
-XXX
-
---------------------------------------------------
-Real-Time Updates
---------------------------------------------------
-
-XXX
-
---------------------------------------------------
-Deployment & Provisioning
---------------------------------------------------
-
-xxx
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-ProtoGENI
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-xxx
-
-.. _architecture-slingshot-label:
-
-=================================
-Slingshot
-=================================
-
-XXX
-
---------------------------------------------------
-Core Structures
---------------------------------------------------
-
-xxx
-
---------------------------------------------------
-Network Graph Visualization: prefuse
---------------------------------------------------
-
-xxx
-
---------------------------------------------------
-Interactive Console: Jython
---------------------------------------------------
-
-xxx
-
---------------------------------------------------
-Network Generators
---------------------------------------------------
-
-xxx
-
-
-.. _architecture-os-image-label:
-
-=================================
-OS Image
-=================================
-
-XXX
-
---------------------------------------------------
-Virtualization
---------------------------------------------------
-
-xxx
-
---------------------------------------------------
-File System
---------------------------------------------------
-
-xxx
-
---------------------------------------------------
-Software
---------------------------------------------------
-
-xxx
-
+4. If the traffic has finished, set the wrap_up to be true. 
 
 
 .. |gamma| unicode:: U+03B3

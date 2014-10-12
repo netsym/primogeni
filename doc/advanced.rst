@@ -4,9 +4,9 @@
 
 .. _advanced-label:
 
-************
+***************************
 Advanced Usage of PrimoGENI
-************
+***************************
 
 PrimoGENI is composed of four main components:
 
@@ -112,11 +112,11 @@ Multiple Partitions
 
 * Compile SomeModel.java to run with two partitions::
 
-   % java -DPART_STR="2::1:1,2:1" -jar dist/jprime.jar  create some_model_name SomeModel.java
+   % java -DPART_STR="2::1:1,2:1" -jar dist/jprime.jar create some_model_name SomeModel.java
 
 * Alternatively, you can specify the partitioning string like ``2::*:1`` which means all compute node will have 1 processor.::
 
-   % java -DPART_STR="2::*:1" -jar dist/jprime.jar  create some_model_name SomeModel.java
+   % java -DPART_STR="2::*:1" -jar dist/jprime.jar create some_model_name SomeModel.java
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Multiple Partition with Traffic Portals
@@ -229,13 +229,13 @@ Below are two example commands to configure PrimoGENI in a cluster.
   capable of running emulation (i.e. have `OpenVZ <http://openvz.org>`_ kernel extensions).::
 
   % cd <primex_dir>/netsim
-  % ./configure --with-ssf-sync=mpi --disable-ssfnet-debug
+  % ./configure --with-ssf-sync=mpi --enable-ssfnet-openvpn --disable-lzo
 
 * Configure PRIMEX for a cluster enviornment where compute nodes are
   **not** capable of running emulation.::
 
   % cd <primex_dir>/netsim
-  % ./configure --with-ssf-sync=mpi --disable-ssfnet-debug --disable-ssfnet-emulation  --disable-ssfnet-openvpn
+  % ./configure --with-ssf-sync=mpi --disable-ssfnet-emulation
 
 
 Recent installations of MPICH2 use `Hydra
@@ -390,9 +390,9 @@ Exporting state from the simulation via TCP
 
   * :controller:`ModelInterface  <monitor::util::PrimeStateServer>` will print out state updates as they are received. You could use :controller:`ModelInterface <monitor::util::PrimeStateServer>` as a basis to create your own state listener.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Exporting state from the simulation via Meta-Controllers
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 * Install Slingshot (see :ref:`install-label` )
 * Launch Slingshot (see :ref:`quick-start-label` )
@@ -424,3 +424,330 @@ Exporting state from the simulation via Meta-Controllers
 
 * Deploy the experiment (see :ref:`slingshot-user-manual-label` )
 * The simulation should be running on the compute nodes and you should see traffic in Slingshot.
+
+=====================================
+Configuring Transport Protocols
+=====================================
+
+If your experiments include *simulated traffic*, i.e., traffic generated and destined to simulated hosts, you will
+need to know how to configure the transport protocol that runs beneath your applications.
+
+Currently, our simulator supports TCP and UDP protocols; which are compatible with real implementations. In this 
+section, we describe the configurable parameters of both protocols. For more detailed information about our implementation
+you can read our `SVEET <https://www.primessf.net/bin/view/Public/PublicationsSveet>`_ paper.
+
+------------------------------------------ 
+TCP Protocol
+------------------------------------------
+
+The following are TCP's configurable parameters:
+
+==================   ============  ===============   ============================
+Name                 Type          Default value     Description
+==================   ============  ===============   ============================
+tcpCA                STRING        bic               Congestion control algorithm
+mss                  INT           1448 (bytes)      Maximum segment size in bytes          
+sndWndSize           INT           1e9  (bytes)      Maximum sending window size
+sndBufSize           INT           1e9  (bytes)      Maximum size of sender buffer
+rcvWndSize           INT           1e9  (bytes)      Maximum receiving window size
+samplingInterval     FLOAT         10000 (seconds)   Interval between consecutive sampling of TCP variables
+iss                  INT           0                 Initial sequence number
+==================   ============  ===============   ============================
+
+For example, let's say you want to create two hosts, one server and one client and establish a HTTP
+flow between them. Also, you want the server to download at a maximum rate limited by the *sndWndSize* and
+you want it it to use the *highspeed* congestion control algorithm. Additionally, you also want data packets
+to be no longer than one thousand bytes. Then, your model would include something like the following:
+
+* Create top network
+
+.. code-block:: java
+
+  Net top = exp.createTopNet("topnet");
+
+* Create source and destination and configure TCP parameters
+
+.. code-block:: java
+
+  //source of data packets
+  IHost source = top.createHost("source");
+  ITCPMaster tcp_s = source.createTCPMaster();
+  tcp_s.setTcpCA("highspeed");
+  tcp_s.setMss(1000);
+  tcp_s.setSndWndSize(10);
+  IHTTPServer http_s = source.createHTTPServer();
+
+  //destination of data packets
+  IHost destination = top.createHost("destination");
+  IHTTPClient http_client = destination.createHTTPClient();
+
+* Configure the blottleneck link between both hosts
+
+.. code-block:: java
+ 
+   ILink bottlenek = top.createLink("bottleneck");
+   bottleneck.setDelay(0.064);
+   bottleneck.setbandwidth(1000000);
+
+* Create traffic between source and destination
+
+.. code-block:: java
+
+  ITraffic trf = top.createTraffic();
+  IHTTPTraffic http_trf = trf.createHTTPTraffic();
+  ...	
+  http_trf.setSrcs("{.:destination}");
+  http_trf.setDsts("{.:source}");
+
+In the code excerpt show above, *source* is configured to boot up a HTTP server and as such it generates data packets
+in response to HTTP requests originated by the *destination*. The TCP protocol
+beneath the HTTP layer is configured, in the server, to serve no more than 10 packets of 1000 bytes every RTT or 
+78,125 bytes every second per flow. Also, the server is configured to use the *highspeed* congestion control. For a
+complete example you can take a look at *TCPTester.java* under *netscript/test/java_models/* of primex's source
+code.
+
+------------------------------------------ 
+UDP Protocol
+------------------------------------------
+
+Like TCP, UDP has its own configurable parameter described below.
+
+==================   ============  ===============   ============================
+Name                 Type          Default value     Description
+==================   ============  ===============   ============================
+max_datagram_size    INT           1470 (bytes)      maximum datagram size
+==================   ============  ===============   ============================
+
+UDP traffic is specified in the following way:
+
+.. code-block:: java
+
+	ITraffic t = top.createTraffic();
+	IUDPTraffic tr = t.createUDPTraffic();
+	tr.setInterval(10);
+	tr.setBytesToSendEachInterval("1500");
+	tr.setCount("2");
+	tr.setSrcs("{.:host2}");
+	tr.setDsts("{.:host1}");
+	
+In the code excerpt shown above, *host2* will send *host1* 1500 bytes every 10 seconds. *setCount* indicates
+the number of intervals of length *setInterval* before the traffic ends. For a complete example you can take a
+look at *UDPTester.java* under *netscript/test/java_models/* of primex's source code.
+
+
+.. _architecture-jprime-label:
+
+=================================
+Configuring Traffic
+=================================
+
+The simulator comes with some common traffic types, including:
+
+* TCP traffic (for downloading data from server to client over TCP)
+* UDP traffic (for downloading data from server to client over UDP with constant bit-rate)
+* Ping traffic (for sending ICMP pings)
+
+The :jprime:`TrafficFactory <jprime::TrafficFactory>` class provides several methods to simply add TCP, UDP and Ping traffic flows. Below are some example functions to create simulated traffic:
+
+* Create Simulated TCP flows: :jprime:`jprime::TrafficFactory::createSimulatedTCP(Mapping mapping, double startTime, ArrivalProcess arrivalProcess, double arrivalRate, int numberOfFlows, long bytesToTransfer, List<IHost> srcs, List<IHost> dsts)`:
+
+  * The argument "mapping" is used to specify how to map traffic flows from a group of sources to a group of destinations. You are allowed to specify not only a single source and a single destination also a list of sources and a list of destinations in the argument "srcs" and "dsts". Once you have multiple sources and destinations, you can choose one of the following three ways to generate the traffic flows between souces and destinations automatically:
+   * ONE2ONE: Each source communicates with one single destination.
+   * ONE2MANY: Each source communicates with multiple destinations; each destination communicates with at least one source.
+   * MANY2ONE: Each destination communicates with multiple sources; each source communicates with at least one destination.
+   * ALL2ALL: Each source communicates with all destinations. This is the default setup for mapping. 
+
+  * The argument "startTime" specifies the time in seconds at which this traffic action will become active. The default value of start time is set to be 0. The argumennt "arrivalProcess" specifies whether the time intervals between the traffic flows are constant or not. You have two choices for setting the arrival process:
+   * CONSTANT: This is the default value.
+   * EXPONENTIAL: The flow intervals are Exponential distributed. 
+
+  * The argument "sendRate" specifies how many flow arrivals per second. If the arrival process is exponential, 1/sendRate will be the mean of the flows' inter-arrival times. 
+
+  * The argument "numberOfFlows" indicates the total number of flows that occur between sources and destinations. The argument "bytesToTransfer" is the number of bytes to  be downloaded from the server to the client. For TCP traffic, "srcs" are clients, and "dsts" are servers. 
+
+
+* Create Simualated UDP flows: :jprime:`jprime::TrafficFactory::createSimulatedUDP(Mapping mapping, double startTime, ArrivalProcess arrivalProcess, double arrivalRate, long sendRate, double sendTime, List<IHost> srcs, List<IHost> dsts)`
+
+  * The argument "sendRate" is the number of bytes transfered from source to destination per second. For UDP flows, the traffic direction is from "srcs" to "dsts".
+
+* Create Simulated Ping traffic: :jprime:`jprime::TrafficFactory::createSimulatedPing(Mapping mapping, double startTime, ArrivalProcess arrivalProcess, double arrivalRate, long numberOfPings, List<IHost> srcs, List<IHost> dsts)`
+
+  * The argument "numberOfPings" is the total number of Ping packets generated by this traffic. The argument "arrivalRate" specifies the number of Pings per second. 
+
+Below is an example to show the basic usage of :jprime:`TrafficFactory <jprime::TrafficFactory>`. You can refer to :jprime:`TrafficFactory <jprime::TrafficFactory>` for a full list of all the available methods to create simulated, emulated and hybrid traffic flows in the simulator. 
+
+.. code-block:: java
+
+		INet topnet = null; //this would be the real topnet
+		IHost srcHost=null, dstHost=null; //just place holder -- should use real hosts/nets
+		INet srcNet=null, dstNet=null;//just place holder -- should use real hosts/nets
+		
+		TrafficFactory tFactory = new TrafficFactory(topnet, "my_traffic");
+		
+		//have srcHost send 10 pings to dstHost at time 1.0
+		tFactory.createSimulatedPing(1.0, 10, srcHost,dstHost);
+		
+		//have every host in srcNet contact one host in dstNet and download 10 MB
+		//every 10 second 1 host from srcNet will be chosen to start after the traffic is started 
+		tFactory.createSimulatedTCP(Mapping.ONE2ONE 2.0, ArrivalProcess.CONSTANT, 10, 1, 1024*1024*10, srcNet, dstNet);
+		
+		//have all hosts in srcNet contact the REAL host 131.14.1.3 and download 10 MB
+		//hosts will be hosts to start using an exponential distribution with an off_time of 0.1
+		tFactory.createHybridTCP(3.0, ArrivalProcess.EXPONENTIAL, 0.1, 1, 1024*1024*10, srcNet, "131.14.1.3");
+		
+=================================================
+Running Experiments with External Hosts (Portals)
+=================================================
+
+An interesting and useful characteristic of PrimoGENI is that it enables external hosts, called portals from hereon,
+to interact between each other through the simulator. Also, it is even possible for *simulated hosts* to communicate
+with portals.
+
+For an experiment to contain external hosts, you must use the
+`test scripts <http://www.protogeni.net/trac/protogeni/wiki/TestScripts>`_ with a rspec that requests external hosts. If
+you do not know how to do this, you can take a look at the
+`ProtoGENI Environment <file:///home/geni/workspace/primex/doc/_build/html/slingshot.html#protogeni-environment>`_ section.
+Once you get the *manifest*, you should input that to a newly created ProtoGENI enviroment and have it ready for
+deploying experiments.
+
+.. note:: **IMPORTANT!!!** If your java/python/xml model includes *n* portals, then your ProtoGENI enviroment should
+          also contain *n* portals so that perfect matching is possible
+
+We describe how to use portals with an example. Creating a model that includes portals is no different that creating 
+a simple except for:
+
+1. When create an interface that will connect to an portal then that interface must be marked accordingly.
+ 
+   .. code-block:: java
+ 	
+ 	  IInterface myportal;
+ 	  myportal.createTrafficPortal();
+
+2. Via portals, more networks other than the IP space of the experiment can be reachable, even the Internet. To do so
+   we must explicitly enable that in the portal interface.
+   
+   .. code-block:: java
+
+      myportal.addReachableNetwork("65.0.0.0");
+
+3. The portal interface IP address must be explicitly set.
+
+   .. code-block:: java
+     
+      myportal.setIpAddress("10.10.3.1");
+      
+   .. note:: **IMPORTANT!!!** The subnetwork connecting the portal interface inside the simulator (myportal in our case)
+      to the interface of the real machine **must** be set as **reachable** as shown above or external hosts will not be
+      reachable from primex.
+      
+ A complete example of a model using portals can be found
+ `HERE <http://users.cis.fiu.edu/~meraz001/slingshotfiles/Portals.java>`_. In that example we have what we call the 
+ *campus model*. In that model we have two portals configured which are signaled as triangles in the display as show
+ below.
+ 
+  .. image:: images/slingshot_portals_display.png
+    :width: 5in
+
+Now, we have to create a suitable environment to host this experiment. 
+
+1. Follow the same steps to create a normal enviroment up to the point when you reach this popup window:
+
+  .. image:: images/slingshot_portals_creating_env_1.png
+    :width: 7in
+
+2. Then, one node must be tagged as **master** and another as **slave** as discussed in previous sections. If you are using
+   the rspec provided `HERE <http://users.cis.fiu.edu/~meraz001/slingshotfiles/utah-4nodes-datanetwork.rspec>`_, then
+   the node with three interfaces must be tagged as slave. Note that the node wich are configured to use the 
+   **urn:publicid:IDN+emulab.net+image+PRIME//primoGENIv2** OS image are used for being master or slaves while the
+   others are automatically tagged as external hosts.
+   
+3. Click *Finish*. You should see the following window:
+
+   .. image:: images/slingshot_portals_creating_env_2.png
+    :width: 6in
+    
+   In that window the summary of the environment is shown. Notice that the number of portals is two for our environment.
+   
+4. Click *Finish*.
+
+We are now in position to launch the experiment.
+
+1. Compile de model.
+
+2. Click on *Run Experiment*.
+
+3. Choose the environment you just created and click *Next*.
+
+4. Enter the *Runtime* and click *Next*.
+
+5. Now, the portals inside the simulator have to mapped to real interfaces. Doing so in out model is easy because we 
+   set explicitly our both interfaces to have the IPs *10.10.3.1* and *10.10.1.2*; which are exactly the same IPs of the
+   slice we got from Emulab/ProtoGENI after using the test scripts. Therefore, we recommend to first get the slice, inspect
+   the IPS of the slaves which connect to external hosts and make the corresponding interfaces in the java model to have
+   the same IPs. You should see something like the following:
+   
+   .. image:: images/slingshot_portals_creating_env_3.png
+    :width: 6in
+    
+   Then, you just have to choose an IP from *Portals* and the same IP from *Interfaces* and then press *Link*. Note in the
+   figure above that the interface and portal 10.10.1.2 have already been linked. You can repeat this to link the portal and interface with IP 10.10.3.1.
+   
+6. Once there are no more portals to be linked then click *Finish*.
+   
+   After the experiment has already been instatiated you **must** login to the external nodes and add a route for reaching the
+   IP space. You get the IPs of the portals from the manifest. For example:
+
+   .. code-block:: console
+      
+      Miguel-Erazos-MacBook-Pro:~ Erazo$ ssh merazo@pc277.emulab.net
+      externalnode1:~% sudo su -
+      root@externalnode1:~# ifconfig
+      eth0      Link encap:Ethernet  HWaddr 00:11:43:e4:39:17  
+                inet addr:155.98.39.77  Bcast:155.98.39.255  Mask:255.255.252.0
+          
+      eth4      Link encap:Ethernet  HWaddr 00:04:23:b7:42:d0  
+                inet addr:10.10.1.1  Bcast:10.10.1.255  Mask:255.255.255.0
+          
+      lo        Link encap:Local Loopback  
+                inet addr:127.0.0.1  Mask:255.0.0.0
+          
+     root@externalnode1:~# ip route add 192.0.0.0/8 via 10.10.1.2 dev eth4
+  
+   Note from above that we add a route to 192.0.0.0/8 space because that is the IP space of the experiment and we want
+   to reach it from the **private interface of the external node** which we call *experiment network*. 
+   
+7. After this is done, the portals can reach  **any** of other portals via the simulator or **any** other simulated host.
+   Note how we can ping any host. Using *traceroute -I* displays the route from the source to the destination
+   (We use *-I* because we use ICMP protocol).
+
+   .. code-block:: console
+
+      PING 192.1.8.26 (192.1.8.26) 56(84) bytes of data.
+      64 bytes from 192.1.8.26: icmp_req=1 ttl=54 time=2.07 ms
+      64 bytes from 192.1.8.26: icmp_req=2 ttl=54 time=2.06 ms
+
+      root@externalnode1:~# traceroute -I 192.1.8.26
+	  traceroute to 192.1.8.26 (192.1.8.26), 30 hops max, 60 byte packets
+ 	  1  192.1.3.21 (192.1.3.21)  2.422 ms  2.424 ms  2.423 ms
+ 	  2  192.1.3.17 (192.1.3.17)  2.422 ms  2.425 ms  2.426 ms
+ 	  3  192.1.8.129 (192.1.8.129)  2.424 ms  2.428 ms  2.430 ms
+ 	  4  192.1.8.53 (192.1.8.53)  2.429 ms  2.432 ms  2.432 ms
+ 	  5  192.1.8.42 (192.1.8.42)  2.431 ms  2.434 ms  2.413 ms
+ 	  6  192.1.8.62 (192.1.8.62)  2.410 ms  1.636 ms  1.618 ms
+ 	  7  192.1.8.14 (192.1.8.14)  1.731 ms  1.840 ms  1.829 ms
+ 	  8  192.1.8.26 (192.1.8.26)  2.003 ms  2.073 ms  2.055 ms
+
+
+   We can even show in slingshot the route of one host to another inputting the traceroute output after clicking on 
+   *Add Graph Overlay* as shown below.
+   
+   .. image:: images/slingshot_traceroute_output.png
+    :width: 6in
+   
+   Then, slingshot will show:
+   
+   .. image:: images/slingshot_traceroute.png
+    :width: 6in
+    
+   In this way, you can start/run **any application** between portals and use the simulator to mimic any enviroment within
+   which these real applications would be running.

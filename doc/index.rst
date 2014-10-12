@@ -15,7 +15,7 @@ Sphinx is a python documentation generator that uses a markup language, called
 Doxygen is a documentation system which is useful for languages such
 as C++, C, and Java. 
 
-All source code as well HTML and PDF versions of this document are
+All source code as well as HTML and PDF versions of this document are
 available at `http://www.primessf.net/PrimoGENI <http://www.primessf.net/PrimoGENI/>`_.
 
 If you have trouble downloading, using, or installing PrimoGENI you can email :literal:`help@primessf.net` for assistance. 
