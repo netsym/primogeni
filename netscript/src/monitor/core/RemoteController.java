@@ -245,7 +245,7 @@ public class RemoteController implements IController {
 
 				String[] master_cip_parts = master_control_ip.split(":");
 				listener.println("Master Ip Before setting up tunnel:"+master.getControl_ip());
-			    String tunnel_command = "ssh -f -N -L 9990:localhost:9990 -p "+master_cip_parts[1]+" "+master_cip_parts[2]+"@"+master_cip_parts[0];
+			    String tunnel_command = "ssh -o \"StrictHostKeyChecking no\" -f -N -L 9990:localhost:9990 -p "+master_cip_parts[1]+" "+master_cip_parts[2]+"@"+master_cip_parts[0];
 
 				MasterConnectionThread justAThread = new MasterConnectionThread(tunnel_command);
 				justAThread.start();
@@ -268,7 +268,7 @@ public class RemoteController implements IController {
 				try {
 					listener.println("Thread will sleep for 60 sec for ssh tunnel to setup");
 				    //Program sleeping for 60 second
-					Thread.sleep(60000);                 //1000 milliseconds is one second.
+					Thread.sleep(5000);                 //1000 milliseconds is one second.
 					listener.println("Thread awake.");
 				} catch(InterruptedException ex) {
 				    Thread.currentThread().interrupt();
@@ -357,7 +357,7 @@ public class RemoteController implements IController {
 				fileWritersh = new FileWriter(filesh,true);
 				BufferedWriter bufferFileWritersh  = new BufferedWriter(fileWritersh);
 				fileWritersh.append("#!/bin/sh"); fileWritersh.append("\n");
-				fileWritersh.append(scmd);
+				fileWritersh.append(scmd); fileWritersh.append("\n");
 				bufferFileWritersh.close();
 		        fileWritersh.close();
 				listener.println("Updated: /tmp/masterConnect.sh");
