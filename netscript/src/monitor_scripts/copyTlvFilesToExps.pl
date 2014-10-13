@@ -15,8 +15,8 @@ my @answer = split(':', $_);
 print "Copying tlv files to Machine:$answer[0] \n";
 print $fh "Copying tlv files and primex-exps files to:$answer[0] \n";
 
-`ssh $answer[0] 'mkdir -p $exptDir'`;
-`scp $exptDir/* $answer[0]:$exptDir/`
+`ssh -o "StrictHostKeyChecking no" $answer[0] 'mkdir -p $exptDir'`;
+`scp -o "StrictHostKeyChecking no" $exptDir/* $answer[0]:$exptDir/`
 }
 close(MYFILE);
 #print "1".$abc;
