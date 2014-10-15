@@ -27,6 +27,7 @@ Bundle-ClassPath: .,
  lib/lucene-1.4.3.jar,
  jprime/jprime.jar,
  lib/Minaorg21.jar,
+ lib/jsch-0.1.51.jar,
  lib/derby.jar,
  lib/LiveGraph.2.0.beta01.Complete.jar,
  lib/SoftNetConsultUtils.2.01.slim.jar

@@ -76,6 +76,7 @@ import monitor.commands.VarUpdate.StringUpdate;
 import monitor.ssl.PrimoSslContextFactory;
 import monitor.util.Utils;
 import monitor.util.Utils.CmdRv;
+import monitor.util.JschPortForwardingL;
 //import monitor.util.Utils.CmdRv;
 //import monitor.util.MasterConnectionThread;
 //import org.python.modules.thread.thread;
@@ -88,7 +89,7 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
 
 /**
- * @author Nathanael Van Vorst
+ * @author Nathanael Van Vorst, Mohammad Obaida
  *
  */
 public class RemoteController implements IController {
@@ -245,11 +246,34 @@ public class RemoteController implements IController {
 
 				String[] master_cip_parts = master_control_ip.split(":");
 				listener.println("Master Ip Before setting up tunnel:"+master.getControl_ip());
-			    String tunnel_command = "ssh -o \"StrictHostKeyChecking no\" -f -N -L 9990:localhost:9990 -p "+master_cip_parts[1]+" "+master_cip_parts[2]+"@"+master_cip_parts[0];
+			    String tunnel_command = "ssh -o \"StrictHostKeyChecking no\"  -f -N -L 9990:localhost:9990 -p "+master_cip_parts[1]+" "+master_cip_parts[2]+"@"+master_cip_parts[0];
+//yyy
+				//MasterConnectionThread justAThread = new MasterConnectionThread(tunnel_command);
+				//justAThread.start();
+				//listener.println("State of the thread: "+justAThread.getState());
 
-				MasterConnectionThread justAThread = new MasterConnectionThread(tunnel_command);
-				justAThread.start();
-				listener.println("State of the thread: "+justAThread.getState());
+			    JschPortForwardingL ssh_tunnel=new JschPortForwardingL();
+				String tunnel_username=null,tunnel_remotehost=null;
+				int tunnel_masterport,tunnel_localport,tunnel_ssh_port=0;//if ssh port is not :22
+				//String[ ]master_cip_parts= pc243.instageni.clemson.edu:ssh_port:username
+				tunnel_username=master_cip_parts[2];
+				tunnel_remotehost=master_cip_parts[0];
+				tunnel_ssh_port=Integer.parseInt(master_cip_parts[1]);
+				tunnel_localport=tunnel_masterport=Utils.MASTER_PORT;
+				if ((null!=tunnel_username && null!=tunnel_remotehost)&& tunnel_ssh_port>0)
+				 {
+					 if ( ssh_tunnel.SetTunnel(tunnel_username,tunnel_remotehost, tunnel_ssh_port, tunnel_localport, tunnel_masterport))
+					 {
+						 System.out.println("Tunnel setup properly.");
+						 listener.println("Tunnel setup properly.");
+					 }
+					 else 
+						System.out.println("Problem setting up ssh tunnel, Program might not run properly, unless you create the tunnel manually.");
+					 	listener.println("Tunnel setup failed, you can try setting tunnel manually using sh and try to run the model again.");
+					 	listener.println("Use this :"+tunnel_command);
+				 }
+				
+				
 				
 				
 //			     scmd = "ssh -f -N -L 9990:localhost:9990 -p "+master_cip_parts[1]+" "+master_cip_parts[2]+"@"+master_cip_parts[0];
@@ -265,15 +289,38 @@ public class RemoteController implements IController {
 				master_control_ip="localhost";
 				master.setControl_ip(master_control_ip);
 				
-				try {
-					listener.println("Thread will sleep for 60 sec for ssh tunnel to setup");
-				    //Program sleeping for 60 second
-					Thread.sleep(5000);                 //1000 milliseconds is one second.
-					listener.println("Thread awake.");
-				} catch(InterruptedException ex) {
-				    Thread.currentThread().interrupt();
-				}
+//				try {
+//					listener.println("Thread will sleep for 5 sec for ssh tunnel to setup");
+//				    //Program sleeping for 5 second
+//					Thread.sleep(5000);                 //1000 milliseconds is one second.
+//					listener.println("Thread awake.");
+//				} catch(InterruptedException ex) {
+//				    Thread.currentThread().interrupt();
+//				}
 				listener.println("Connecting to master at "+master+":"+Utils.MASTER_PORT + " Case: Master is a vm and a ssh port is available(other than 22) to connect");
+				//yyy
+//				int max_wait_time=75, unit_wait=3;
+//				//future=connector.connect(new InetSocketAddress(master_control_ip, Utils.MASTER_PORT)); //normal execution
+//				//future.awaitUninterruptibly();
+//				//this.masterSession=future.getSession();
+//				future=null;
+//				
+//				for (int wait_i=0;wait_i<=max_wait_time;wait_i+=unit_wait)
+//				{	future=connector.connect(new InetSocketAddress(master_control_ip, Utils.MASTER_PORT)); //normal execution
+//					listener.println("Master Session:"+future.getSession());
+//					if (null !=future.getSession()) 
+//						{
+//						this.masterSession=future.getSession();
+//						break;
+//						}
+//					try
+//					{
+//						listener.println("Waiting: "+unit_wait+"s");
+//						Thread.sleep(unit_wait*1000);                 //1000 milliseconds is one second.
+//					}catch(InterruptedException ex) {
+//						Thread.currentThread().interrupt();
+//					}					//if (!future.getSession().isConnected())//null ==future.getSession())
+//				}
 				future=connector.connect(new InetSocketAddress(master_control_ip, Utils.MASTER_PORT)); //normal execution
 			}
 			listener.println("Connection setup peroperly.");
@@ -281,8 +328,6 @@ public class RemoteController implements IController {
 			//ConnectFuture future = connector.connect(new InetSocketAddress( master.getControl_ip(), Utils.MASTER_PORT)); --Old connect
 			
 			future.awaitUninterruptibly();
-
-			
 			this.masterSession=future.getSession();
 			listener.println("Connected to master! connected="+this.masterSession.isConnected() +"masterSession="+masterSession);
 			List<Partition> partitions = new ArrayList<Partition>();
@@ -311,6 +356,31 @@ public class RemoteController implements IController {
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public class MasterConnectionThread extends Thread {
 		//@Override
 		public String scmd;
@@ -334,12 +404,7 @@ public class RemoteController implements IController {
 //			}
 			//String[] command = {"/bin/sh", "/tmp/masterConnect.sh"};
 
-			
-			
 			System.out.println("Connecting Command:"+scmd.toString());
-			
-			
-			
 			
 			File filesh = new File("/tmp/masterConnect.sh");
 	    	try{ 
@@ -347,20 +412,23 @@ public class RemoteController implements IController {
 	    			listener.println("Previous connect file deleted");
 	    			//System.out.println(filesh.getName() + " is deleted!");
 	    		}else{
-	    			System.out.println("There is no repvious connect file to delete.");
+	    			System.out.println("There is no previous connect file to delete.");
 	    		}
 	    	}catch(Exception e){e.printStackTrace();}
 			
-			listener.println("Master connecting script will be at: /tmp/masterConnect.sh");
+			//listener.println("Master connecting script will be at: /tmp/masterConnect.sh");
 	        FileWriter fileWritersh = null;
 			try {
 				fileWritersh = new FileWriter(filesh,true);
 				BufferedWriter bufferFileWritersh  = new BufferedWriter(fileWritersh);
-				fileWritersh.append("#!/bin/sh"); fileWritersh.append("\n");
-				fileWritersh.append(scmd); fileWritersh.append("\n");
+				fileWritersh.append("#!/bin/sh");fileWritersh.append("\n");
+				//fileWritersh.append("kill `ps -eo pid,args --cols=10000 | awk '/9990:localhost:9990/ && $1 != PROCINFO[\"pid\"] { print $1 }'`");
+				// kill -9 `ps -ef | grep -i 9990:localhost:9990 | awk '{print $2}'`
+				//fileWritersh.append("sleep 5");fileWritersh.append("\n");//wait for the kill command to 
+				fileWritersh.append(scmd);
 				bufferFileWritersh.close();
 		        fileWritersh.close();
-				listener.println("Updated: /tmp/masterConnect.sh");
+				listener.println("Updated Tunnel Script at: /tmp/masterConnect.sh");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -370,7 +438,8 @@ public class RemoteController implements IController {
 			
 			System.out.println("Remote Controller, cmd to execute:" + scmd); //xxxxxxxxxx
 			
-			String[] command = {"/bin/sh", "/tmp/masterConnect.sh"};
+			
+			String[] command = {"sh", "/tmp/masterConnect.sh"};//> /dev/null 2>&1
 		    System.out.println("Command:"+command.toString());
 		    ProcessBuilder p = new ProcessBuilder(command);
 		    Process p2=null;
@@ -381,12 +450,12 @@ public class RemoteController implements IController {
 				e1.printStackTrace();
 			}
 		    
-		    try {
-				Thread.sleep(3600000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//		    try {
+//				Thread.sleep(3600000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		    BufferedReader br = new BufferedReader(new InputStreamReader(p2.getInputStream()));
 		    String line;
 		    System.out.println("Output of running " + command.toString() + " is: ");
@@ -398,101 +467,6 @@ public class RemoteController implements IController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
-//			try {
-//				// A Runtime object has methods for dealing with the OS
-//				Runtime r = Runtime.getRuntime();
-//				Process p;     // Process tracks one external native process
-//				BufferedReader is;  // reader for output of process
-//				String line;
-//
-//				p = r.exec(scmd);
-//				System.out.println("Remote Controller, Executed Command  ='"+scmd+"+':\n"); //xxxxxx
-//
-//
-//				Thread.sleep(3600000);//1 hour.
-//
-//
-//
-//
-//
-//				// getInputStream gives an Input stream connected to
-//				// the process p's standard output. Just use it to make
-//				// a BufferedReader to readLine() what the program writes out.
-//				is = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//
-//
-//
-//
-//				p.waitFor();  // wait for process to complete
-//
-//
-//				String msg = "";
-//				while ((line = is.readLine()) != null) {
-//					msg+=line;
-//				}
-//				int rv = p.exitValue();
-//				if(Utils.DEBUG)System.out.println("Process done, exit status was " + rv+" MSG="+msg);
-//				System.out.println("Remote COntroller, Process done, exit status was " + rv+" MSG="+msg);
-//				Utils.appendMsgToFile("/tmp/pgc_debug_msg","Remote Controller, Process done, exis status was:"+scmd+ " rv="+rv+" MSG="+msg);
-//
-//
-//				try {
-//					p.destroy();
-//				}
-//				catch(Exception e) {
-//				}
-//				p=null;
-//			} catch (Exception e) {
-//				StringWriter sw = new StringWriter();
-//				PrintWriter pw = new PrintWriter(sw, true);
-//				e.printStackTrace(pw);
-//				pw.flush();
-//				sw.flush();
-//				if(Utils.DEBUG)System.out.println("Error executing command '"+scmd+"+':\n"+sw.toString());
-//				Utils.appendMsgToFile("/tmp/pgc_debug_msg","Renote Controller, Error executing command '"+scmd+"+': "+sw.toString());
-//				System.out.println("Remote COntroller, Error executing command '"+scmd+"+': "+sw.toString());
-//				//System.out.println("OBAIDAError executing command '"+cmd+"+':\n"+sw.toString());
-//
-//			}
-
-
-
-			//			
-			//			
-			//			
-			//			
-//		    ProcessBuilder p = new ProcessBuilder(scmd);
-//		    Process p2=null;
-//			try {
-//				p2 = p.start();
-//			} catch (IOException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//		    //sleeping this thread so that tunnel isnt killed automatically 
-//		    try {
-//				Thread.sleep(3600000);//1 hour.
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		    BufferedReader br = new BufferedReader(new InputStreamReader(p2.getInputStream()));
-//		    String line;
-//		    System.out.println("Output of running " + scmd.toString() + " is: ");
-//		    try {
-//				while ((line = br.readLine()) != null) {
-//				    System.out.println(line);
-//				}
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-		    
-		    
-		    
 		    
 		}
 
@@ -766,6 +740,10 @@ public class RemoteController implements IController {
 		//listener.println("Saving output to "+outdir);
 		//this.sendCommand(new MonitorCmd("/bin/mkdir -p "+outdir,-1,0,0,true));
 
+		
+		
+		
+		//yyy
 		this.startExperiment(runtime);
 		for(EmulationCommand e : exp.getEmulationCommands()) {
 			e.evaluateCmd(this.partitioning.getTopnet(), runtime);
