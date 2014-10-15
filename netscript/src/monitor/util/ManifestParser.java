@@ -80,12 +80,15 @@ public class ManifestParser {
 	public ManifestParser(List<File> files, int manifest_version_arg) {
 		ManifestParser.manifest_version = manifest_version_arg;
 		if (files.size() == 0) {
-			throw new RuntimeException(
-					"There must be at least one manifest to parse. Found 0!");
+			throw new RuntimeException("There must be at least one manifest to parse. Found 0!");
 		}
 		for (File f : files) { // LIST OF FILES SUPPLIED TO PARSE
+			System.out.println("ManifestParser is now parsing file: "+f);
 			parseFile(f);
+			//System.out.println("ManifestParser Completed Parsing: "+f);
+
 		}
+		//System.out.println("Statring to resolve");
 		resolve();
 	}
 
@@ -103,17 +106,19 @@ public class ManifestParser {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			doc = db.parse(file); // Inputting Manifest file(*.xml/*.rspec) to
-									// doc parser
+			doc = db.parse(file); // Inputting Manifest file(*.xml/*.rspec) to doc parser
+			
+			
+			//GOTTA PRINT DOC
 			doc.getDocumentElement().normalize();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		System.out
-				.println("Manifest Parser version: Geni v" + manifest_version);
+		System.out.println("Manifest Parser version: Geni v" + manifest_version);
 		NodeList nodeLst = doc.getChildNodes();
 		ArrayList<Node> cs = new ArrayList<Node>();
 		ArrayList<Node> ls = new ArrayList<Node>();
+		//System.out.println("Before parsing CS:"+cs);
 		for (int i = 0; i < nodeLst.getLength(); i++) {
 			Node n = nodeLst.item(i);
 			if (n == null || n.getNodeName() == null)
@@ -126,14 +131,9 @@ public class ManifestParser {
 												// node list- extracting nodes
 					if (nn == null || nn.getNodeName() == null)
 						continue;
-					if (nn.getNodeName().compareTo("node") == 0) { // xml nodes
-																	// that
-																	// starts
-																	// like
-																	// <node
+					if (nn.getNodeName().compareTo("node") == 0) { // xml nodes that starts like <node
 						cs.add(nn);
 					}
-
 					/*
 					 * else
 					 * if(nn.getNodeName().compareTo("another_xml_node_type"
@@ -155,11 +155,21 @@ public class ManifestParser {
 		} // THis far we took all the "node"s in a list and "link"s in another
 			// list //OBAIDA //Take one by one "node" from list and send to
 			// GeniNode(n) to retrieve data
-
+		//compute_nodes=null;
+		
+		
+		//compute_nodes.removeAll(cs);
+		//yyy
+		//printing all the compute_nodes
+		//System.out.println("Existing compute nodes are:");
+		//
+		//
+		if(!compute_nodes.isEmpty())//compute_nodes.size()>0
+		{
+			compute_nodes.clear();
+		}
 		for (Node n : cs) {
-			GeniNode c = new GeniNode(n); // Converting a NODE of XML file to
-											// GeniNode data structure defined
-											// some place in this class
+			GeniNode c = new GeniNode(n); // Converting a NODE of XML file to GeniNode data structure defined some place in this class
 			ArrayList<String> errs1 = new ArrayList<String>();
 			if (c.errors(errs1)) {
 				errs.add("Errors GeniNode '" + c.getURN() + "'");
@@ -1134,12 +1144,17 @@ public class ManifestParser {
 	// ---------------------------------------------------------------------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------
 	private void resolve() {// int counter=1;
+		System.out.println("ManifestParser resolve-> Before Update");
+
 		if (Updating_Data_Structure()) {
 			System.out .println("All IP,MAC updates successful");
+			System.out.println("Updating done ");
+
 		} else
 			System.out.println("!WARNING! Problem updating data structure");
 
 		for (NIC_ref ref : refs) {
+			
 			//System.out.println("(M1)Searching for: ref.getURN()->  "+ref.getURN()+" THAT IS component_urn in PREVIOUS RSPEC"); //xxxx vvi
 			//System.out.println("    (M2)Searching in: "+nics +"\n"); 
 			//xxxx vvi ISSUE WITH I NEEED TO USE unique way for nics that is virtual_id or client_id in <LINK>
@@ -1147,14 +1162,13 @@ public class ManifestParser {
 				// System.out.println("\nMARKER 3 "); //xxxxxxx vvi
 				for (NIC nic : nics.get(ref.getURN())) {
 
-					// System.out.println("\n\n\nMARKER 4 "+nics.get(ref.getURN())); //xxxxx vvi
+					//System.out.println("\n\n\nMARKER 4 "+nics.get(ref.getURN())); //xxxxx vvi
 					nic.ref = ref;
 					ref.nic = nic;
 				}
 			} else {
 
-				errs.add("Unable to find interface '" + ref.getURN()
-						+ "' referred to by:");
+				errs.add("Unable to find interface '" + ref.getURN() + "' referred to by:");
 				errs.add(ref.getString("\t"));
 			}
 		}
@@ -1182,7 +1196,7 @@ public class ManifestParser {
 	public ArrayList<String> getParseErrors() {
 		return errs;
 	}
-
+//yyy
 	public ArrayList<GeniNode> getNodes() {
 		return compute_nodes;
 	}
@@ -1214,7 +1228,9 @@ public class ManifestParser {
 		// FUNCTION starts here
 		// int geni_node_counter=1;
 		for (GeniNode c3 : compute_nodes) {
-			// out2.println(c3.getString("\t"));
+			//out2.println(c3.getString("\t"));
+			//yyy
+			//System.out.println("Compute Node ="+c3.getString("\t"));
 			// System.out.println("----------------------------------------:"+geni_node_counter+++":-----------------------------");//xxxxxxxx
 			// System.out.println(c3.nics);
 			List<NIC> nics3 = c3.nics;
@@ -1313,8 +1329,7 @@ public class ManifestParser {
 		ManifestParser p = new ManifestParser(files, manifest_version);
 
 		if (p.getParseErrors().size() > 0) {
-			System.out
-					.println("WARNING: There were problems parsing 1 or more xml elements in the manifest(s). The errors follow.");
+			System.out.println("WARNING: There were problems parsing 1 or more xml elements in the manifest(s). The errors follow.");
 			for (String e : p.getParseErrors()) {
 				System.out.println("\t" + e);
 			}
