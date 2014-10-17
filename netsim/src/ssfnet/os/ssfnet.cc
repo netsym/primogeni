@@ -273,10 +273,11 @@ int main
 			uid = atoll(argv[i]);
 			if(uid ==0) {
 				fprintf(stderr, "ERROR: -tp: invalid traffic portal UID!\n\n");
-				showuse = true;
-				break;
+				//showuse = true; //ZZZZZ
+				//break;
+			} else {
+				portal_map->insert(SSFNET_MAKE_PAIR(uid,nic));
 			}
-			portal_map->insert(SSFNET_MAKE_PAIR(uid,nic));
 		}
 		else if (!strcmp(argv[i], "-gateway")) {
 			if (++i >= argc) {

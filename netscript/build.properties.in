@@ -57,7 +57,7 @@ compiledist.dir=${dist.dir}/${name}-${version}
 # ###########
 # Define class and shared libraries paths
 # ###########
-class-path-manifest=${mysql.lib} ${lucene.lib} ${jython.lib} ${derby.lib} ${mina.lib}${jsch.lib} ${live-graph1.lib} ${live-graph2.lib}
+class-path-manifest=${mysql.lib} ${lucene.lib} ${jython.lib} ${derby.lib} ${mina.lib} ${jsch.lib} ${live-graph1.lib} ${live-graph2.lib}
 class-path=${mysql.lib}:${lucene.lib}:${jython.lib}:${derby.lib}:${mina.lib}:${jsch.lib}:${live-graph1.lib}:${live-graph2.lib}
 metis.lib=${netsim.dir}/tools/metis/libmetis.so
 

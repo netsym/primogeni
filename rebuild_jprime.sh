@@ -10,7 +10,9 @@ cd ./netscript
 ant clean
 ant jar 
 cd dist
+
 rm ../../netIDE/jprime/jprime.jar ../../netIDE/jprime/jprime.src.jar
+mkdir -p ../../netIDE/jprime
 cp *.jar ../../netIDE/jprime/
 echo "--------------------------------------------------------"
 echo "Successfully updated"
