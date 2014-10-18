@@ -122,7 +122,7 @@ int openvpn_system (const char *command, const struct env_set *es, unsigned int 
 
 /* interpret the status code returned by system() */
 bool system_ok(int);
-int system_executed (int stat);
+bool system_executed (int stat);
 const char *system_error_message (int, struct gc_arena *gc);
 
 /* run system() with error check, return true if success,

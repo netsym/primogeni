@@ -105,20 +105,25 @@ public class CreateExpWizardPage extends WizardPage implements Listener {
 		fileDialog.setFilterExtensions(new String[] {"*.py;*.xml;*.java;*.class"});
 
 		//get the path of the file selected by the user
-		fileDialog.setFilterPath(ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString()+
-				File.separator + ProjectLoader.GENERATED_MODELS);
+		String t = ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString()+
+				File.separator + ProjectLoader.GENERATED_MODELS;		
+		//System.out.println("FILTER PATH:"+t);
+		fileDialog.setFilterPath(t);
+		//TODO: LIU: Eclipse has problem with with FileDialog on OS X Mavericks.
+		//See https://bugs.eclipse.org/bugs/show_bug.cgi?id=420682 for details.
+		//Need to upgrade Eclipse to remove the bug
 		
 		modelFilePath = fileDialog.open();
-        if(modelFilePath == null)
+        if(modelFilePath == null) {
         	modelFilePath = "";
+        }    		
     	//check if the path is not null
-    	if (modelFilePath.length() > 0 ){
+    	if (modelFilePath.length() > 0 ) {
     		//get the file name from that path
     		String fileName = modelFilePath.substring(modelFilePath.lastIndexOf('/')+1);
     		setErrorMessage(null);
     		modelField.setText(fileName);
     	}
-
 	}
 	/**
 	 * Creates the visual components for this Wizard Page

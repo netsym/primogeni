@@ -26,9 +26,13 @@
 #define BASIC_H
 
 /* bool definitions */
+#ifndef bool
 #define bool int
+#endif
+#ifndef true
 #define true 1
 #define false 0
+#endif
 
 #define BOOL_CAST(x) ((x) ? (true) : (false))
 

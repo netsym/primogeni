@@ -2177,7 +2177,7 @@ options_string (const struct options *o,
  * therefore don't compare them and return true.
  */
 
-bool
+int
 options_cmp_equal (char *actual, const char *expected)
 {
   return options_cmp_equal_safe (actual, expected, strlen (actual) + 1);
@@ -2299,7 +2299,7 @@ options_warning_safe_ml (const int msglevel, char *actual, const char *expected,
   gc_free (&gc);
 }
 
-bool
+int
 options_cmp_equal_safe (char *actual, const char *expected, size_t actual_n)
 {
   struct gc_arena gc = gc_new ();

@@ -40,6 +40,10 @@
 
 #include "memdbg.h"
 
+#ifndef SOL_IP
+#define SOL_IP IPPROTO_IP
+#endif
+
 /*
  * Functions related to the translation of DNS names to IP addresses.
  */
