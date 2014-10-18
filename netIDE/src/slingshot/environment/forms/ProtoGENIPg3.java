@@ -39,17 +39,17 @@ import slingshot.environment.EnvironmentFileModel;
 
 
 /**
- * 
- * 
- * @author Nathanael Van Vorst
+ *
+ *
+ * @author Nathanael Van Vorst, Mohammad Abu Obaida
  *
  */
 public class ProtoGENIPg3 extends RemoteClusterPg2 {
-	
+
 	public ProtoGENIPg3() {
 		super();
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see slingshot.environment.forms.BaseForm#saveDataToModel(slingshot.environment.EnvironmentFileModel, java.lang.String)
 	 */
@@ -57,7 +57,7 @@ public class ProtoGENIPg3 extends RemoteClusterPg2 {
 		if(name != null) model.name = name;
 		model.environment = EnvType.PROTO_GENI;
 		model.nodes = new LinkedList<ComputeNode>();
-		
+
 		//Modifying master and slave before saving to model (Modifying from XEN/Exo Vm form to our format.)
 		String master_control_ip=txtMaster_control_ip.getText();
 		if (master_control_ip.contains(":"))
@@ -67,9 +67,9 @@ public class ProtoGENIPg3 extends RemoteClusterPg2 {
 		}
 		System.out.println("Adding Master: ControlIP="+master_control_ip);
 		model.nodes.add(new ComputeNode(master_control_ip, txtMaster_data_ip.getText(), new ArrayList<Portal>()));
-		
+
 		//slaves are in a hash set of compute nodes they need to be modified other way
-		if (slaves.toString().contains(":")) //slaves are of port format(not raw-pc:22), we need to delete the first two aprts of the slave name  
+		if (slaves.toString().contains(":")) //slaves are of port format(not raw-pc:22), we need to delete the first two aprts of the slave name
 		{
  			for (ComputeNode a_slave : slaves) {
 				// out2.println(c3.getString("\t"));
@@ -84,7 +84,7 @@ public class ProtoGENIPg3 extends RemoteClusterPg2 {
 		}
 		System.out.println("Adding Slaves:"+slaves);
 		model.nodes.addAll(slaves);
-		
+
 		model.linked_env_type=linked_env_type;
 		model.linked_env_name=linked_env_name;
 		model.slice_name=slice_name;

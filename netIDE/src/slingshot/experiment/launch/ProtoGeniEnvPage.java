@@ -17,7 +17,7 @@ import slingshot.experiment.PyExperiment;
 /**
  * This class defines the Wizard Page that asks information to deploy the experiment.
  *
- * @author Nathanael Van Vorst
+ * @author Nathanael Van Vorst, Mohammad Abu Obaida
  */
 public class ProtoGeniEnvPage extends WizardPage implements Listener, EnvPage {
 	private Text runtime;
@@ -30,8 +30,8 @@ public class ProtoGeniEnvPage extends WizardPage implements Listener, EnvPage {
 	protected ProtoGeniEnvPage(String pageName, PyExperiment exp){
 		super(pageName);
 		//this.exp=exp;
-		setTitle("ProtoGENI Environment");
-		setDescription("Configure the ProtoGENI environment to run the experiment.");
+		setTitle("Geni Slices Environment");
+		setDescription("Configure the Geni slices environment to run the experiment.");
 	}
 
 	/* (non-Javadoc)

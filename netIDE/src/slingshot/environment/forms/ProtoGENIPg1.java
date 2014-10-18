@@ -32,7 +32,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
 import monitor.util.ManifestParser;
 //import monitor.util.ManifestParserGeniv3;
 
@@ -368,7 +367,7 @@ public class ProtoGENIPg1 extends BaseForm {
 			//Assuming that the user is inputting only one RSPEC file for now.
 			OnlyOnefile=f;
 		}
-		ManifestParser p2;
+		ManifestParser p2=null;
 		
 		int manifest_version=0;//=ParserChoice+2;//parser choise is ascertained with Mouseup event
 			
@@ -377,7 +376,7 @@ public class ProtoGENIPg1 extends BaseForm {
     	File fRspec = new File(OnlyOnefile);
         
         System.out.print("\nProvided Manifest Rspec Version is: ");
-        if(findStringInFile(fRspec, "rspec/2")||findStringInFile(fRspec, "rspec/0.2"))
+        if(findStringInFile(fRspec, "rspec/2")||findStringInFile(fRspec, "rspec/0.2")||findStringInFile(fRspec, "rspec/0.1")||findStringInFile(fRspec, "rspec/1"))
         {
         	manifest_version=2;
         	System.out.print(" 2  "); 
@@ -399,8 +398,16 @@ public class ProtoGENIPg1 extends BaseForm {
 
         //manifest_version=ParserChoice+2;
 
+        System.out.println("\nFilelist for parsing: "+filelist);
+        
+        //p2=null;
 	   
-		p2 = new ManifestParser(filelist,manifest_version);
+        //JOptionPane.showMessageDialog(null,"ALERT MESSAGEpg1-01","TITLE",JOptionPane.WARNING_MESSAGE);
+        p2 = new ManifestParser(filelist,manifest_version);
+        //JOptionPane.showMessageDialog(null,"ALERT MESSAGEpg1-02","TITLE",JOptionPane.WARNING_MESSAGE);
+		
+		//yyy
+		//System.out.println("After parsing the rspec:\n Nodes:"+p2.getNodes().toString());
 		
 		if(p2.getParseErrors().size()>0) {
 			String message = "";
@@ -409,7 +416,13 @@ public class ProtoGENIPg1 extends BaseForm {
 			}
 			Util.dialog(Type.ERROR, "WARNING: There were problems parsing 1 or more xml elements in the manifest(s). The errors follow:", message);
 		}
-		FormWizardDialog dialog = new FormWizardDialog(shell, new FormWizard(page.env,2,p2));
+		FormWizardDialog dialog=null;
+		FormWizard form_wizard=null;
+		form_wizard= new FormWizard(page.env,2,p2);
+		dialog = new FormWizardDialog(shell, form_wizard);
+		
+		//dialog = new FormWizardDialog(shell, new FormWizard(page.env,2,p2));
+		//FormWizardDialog dialog = new FormWizardDialog(shell, new FormWizard(page.env,2,p2));
 		dialog.open();
 
 	}
