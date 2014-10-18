@@ -34,7 +34,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.Set;
-
 import jprime.util.ComputeNode;
 import jprime.util.Portal;
 import monitor.util.ManifestParser;
@@ -82,7 +81,7 @@ import slingshot.environment.forms.FormWizard.FormWizardDialog;
 /**
  * 
  * 
- * @author Nathanael Van Vorst
+ * @author Nathanael Van Vorst, MOhammad Abu Obaida
  *
  */
 public class ProtoGENIPg2 extends BaseForm {
@@ -201,6 +200,9 @@ public class ProtoGENIPg2 extends BaseForm {
 	 * @see slingshot.environment.forms.BaseForm#createControl(org.eclipse.swt.widgets.Composite, slingshot.environment.forms.BasePage)
 	 */
 	public Composite createControl(Composite parent, BasePage page, Display d) {
+		//JOptionPane.showMessageDialog(null,"ALERT MESSAGE","TITLE",JOptionPane.WARNING_MESSAGE);
+
+
 		this.page=page;
 		this.shell = parent.getShell();
 		FormToolkit toolkit = new FormToolkit(d);
@@ -234,7 +236,7 @@ public class ProtoGENIPg2 extends BaseForm {
 		nodeList.setContentProvider(new ArrayContentProvider());
 		
 		viewerColumn = new TableViewerColumn(nodeList, SWT.FILL);
-		viewerColumn.getColumn().setText("Status");
+		viewerColumn.getColumn().setText("Status");                               //GENI Nodes Column 1 header
 		viewerColumn.getColumn().setWidth(100);
 		viewerColumn.getColumn().setResizable(true);
 		viewerColumn.setLabelProvider(new ColumnLabelProvider() {
@@ -253,7 +255,7 @@ public class ProtoGENIPg2 extends BaseForm {
 		}
 		);
 		viewerColumn = new TableViewerColumn(nodeList, SWT.FILL);
-		viewerColumn.getColumn().setText("Hostname");
+		viewerColumn.getColumn().setText("Hostname");                              //GENI Nodes Column 2 header
 		viewerColumn.getColumn().setWidth(150);
 		viewerColumn.getColumn().setResizable(true);
 		viewerColumn.setLabelProvider(new ColumnLabelProvider() {
@@ -263,6 +265,9 @@ public class ProtoGENIPg2 extends BaseForm {
 				return c.hostname();
 			};
 
+			
+			
+			
 			public Image getImage(Object element) {
 				return null;
 			}
