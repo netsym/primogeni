@@ -19,10 +19,11 @@ if ( $? != 0 )
   exit 1;
 }
 
-`/usr/sbin/vzctl exec $cont_id ifconfig eth0 $nic_ip up`;
+# TODO: LIU: the netmask is fixed here; should be passed in as an argument from the compiled model from slingshot
+`/usr/sbin/vzctl exec $cont_id ifconfig eth0 $nic_ip netmask 255.255.0.0 up`;
 if ( $? != 0 )
 {
-  print "command failed: /usr/sbin/vzctl exec $cont_id ifconfig eth0 $nic_ip up\n";
+  print "command failed: /usr/sbin/vzctl exec $cont_id ifconfig eth0 $nic_ip netmask 255.255.0.0 up\n";
   exit 1;
 }
 

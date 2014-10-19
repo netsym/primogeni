@@ -13,7 +13,7 @@ for($i=$from; $i<=$to; $i++){
 
    #Create configuration file before starting the container
    #container template should be palced in /vz/tempalte/cache
-   `/usr/sbin/vzctl create $i --ostemplate centos-6-x86_64-minimal --config basic`;
+   `/usr/sbin/vzctl create $i --ostemplate centos-6-x86_64-minimal-2 --config basic`;
    if ( $? != 0 )
    {
      print "command failed: failed to container VE with id=$i\n";
