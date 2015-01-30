@@ -203,6 +203,9 @@ public class TLVMaker {
 			
 			Action action = Action.fromString(args[0]);
 			String name = args[1];
+			String prefix = ""; 
+			
+			
 			
 			Database db = Database.createDatabase();
 			ModelInterface model = null;
@@ -216,7 +219,13 @@ public class TLVMaker {
 			case create:
 			{
 				if(args.length!=3) {
+					if (args.length!=4)
 					usage();
+					else
+					{
+						prefix = args[3];
+						//we have 4 arguments : e.g. create ModelCompiledName ModelLocatoon.java base_ip_address 192.0.0.0
+					}
 				}
 				File file = new File(args[2]);
 				if(!file.exists()) {
@@ -229,14 +238,7 @@ public class TLVMaker {
 				
 				model=getModel(db, fname, file, path, name);  //err3
 
-				boolean instageni_xen=true;
-				if (instageni_xen==true)
-				{
-					
-					
-					
-				}
-				
+
 				//ERROR I got  Exception in thread "main" java.lang.NullPointerException
 				//at jprime.util.DynamicClassManager.compile(DynamicClassManager.java:136)
 				//at jprime.util.DynamicClassManager.loadModel(DynamicClassManager.java:109)
@@ -252,8 +254,21 @@ public class TLVMaker {
 				if(cn != null)
 					cnl.addAll(cn);
 				HashMap<Portal,String> linked = getPortals(cn);
+
+				HashMap<String, String> params = new HashMap<String, String>();
+				params.put("base_ip_address", prefix);				
 				
+				
+				//Obaida zzz
+				//Previous function calling is being changed to have base_ip_prefix 
+				//model.createTLV(GlobalProperties.PART_STR, GlobalProperties.CREATE_XML, GlobalProperties.OUT_DIR, linked, cnl,model.loadParametersFromSystemProperties());
+				
+				//New Calls
+				if (args.length > 3)
+				model.createTLVwithIP(GlobalProperties.PART_STR, GlobalProperties.CREATE_XML, GlobalProperties.OUT_DIR, linked, cnl, model.loadParametersFromSystemProperties(), params);
+				else if (args.length==3)
 				model.createTLV(GlobalProperties.PART_STR, GlobalProperties.CREATE_XML, GlobalProperties.OUT_DIR, linked, cnl,model.loadParametersFromSystemProperties());
+
 				//new EmulationCommandVisitor(t.geExperiment().getRootNode(), 100);
 				db.save(model.getExperiment(),null);
 			}
