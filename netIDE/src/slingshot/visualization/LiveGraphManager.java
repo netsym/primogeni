@@ -39,22 +39,20 @@ import jprime.Interface.IInterface;
 import jprime.gen.ModelNodeVariable;
 import monitor.util.Utils;
 
-import org.LiveGraph.dataFile.write.DataStreamWriter;
-import org.LiveGraph.dataFile.write.DataStreamWriterFactory;
+import datawriter.DataWriter;
+import datawriter.DataStreamWriter;
 
 import slingshot.configuration.ConfigurationHandler;
 
 /**
- * 
+ * @author Renan Santana
  * @author Nathanael Van Vorst
  *
  */
 public class LiveGraphManager {
 	private final String csv_file;
-	private final String data_file;
-	private final String graph_file;
-	private final boolean can_run;
-	private String pid=null;
+	private String pid2;
+	
 	private static class datum {
 		public final String name;
 		public String value;
@@ -63,8 +61,12 @@ public class LiveGraphManager {
 			this.value=v;
 		}
 	}
+	
 	private DataStreamWriter ds;
-	private final TreeMap<Long,TreeMap<Integer,datum>> prev=new TreeMap<Long,TreeMap<Integer,datum>>();
+	
+	// dataSets contains dataSet 
+	private final TreeMap<Long,TreeMap<Integer,datum>> dataSets = new TreeMap<Long,TreeMap<Integer,datum>>();
+	// this is the dataSet
 	private static final int num_in_bytes = ModelNodeVariable.num_in_bytes();
 	private static final int num_out_bytes = ModelNodeVariable.num_out_bytes();
 	private static final int num_in_packets = ModelNodeVariable.num_in_packets();
@@ -76,89 +78,70 @@ public class LiveGraphManager {
 	private static final int bytes_in_per_sec = ModelNodeVariable.bytes_in_per_sec();
 	private static final int bytes_out_per_sec = ModelNodeVariable.bytes_out_per_sec();
 
-	
-	
+	/*
+	 * setup the settings for the plotter for when it opens and 
+	 * store these settings in a file
+	 * */ 
 	public LiveGraphManager(IHost h) {
 		super();
-		csv_file=Utils.TMP_DIR+"/host_"+h.getUID()+".csv";
-		data_file=Utils.TMP_DIR+"/host_"+h.getUID()+".lgdfs";
-		graph_file=Utils.TMP_DIR+"/host_"+h.getUID()+".lggs";
-		this.ds = DataStreamWriterFactory.createDataWriter(csv_file, true);
-		String t = "";
-		t+="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n";
-		t+="<!DOCTYPE properties SYSTEM \"http://java.sun.com/dtd/properties.dtd\">\n";
-		t+="<properties>\n";
-		t+="<comment>Datafile Settings for "+h.getUniqueName()+"</comment>\n";
-		t+="<entry key=\"ShowOnlyTailData\">0</entry>\n";
-		t+="<entry key=\"DataFile\">"+csv_file+"</entry>\n";
-		t+="<entry key=\"UpdateFrequency\">20</entry>\n";
-		t+="<entry key=\"DoNotCacheData\">0</entry>\n";
-		t+="</properties>\n";
-		if(!Utils.writeToFile(data_file, t.getBytes(), null)) {
-			System.out.println("Cant start live graph!");
-			can_run=false;
+		
+		csv_file = "/home/renan/Desktop/temp.csv";
+//		csv_file = Utils.TMP_DIR + "/host_" + h.getUID() + ".csv";
+		
+		// Live-Graph: data writer object
+		try {
+			this.ds = DataWriter.createDataWriter(csv_file, true);
+		} catch (Exception e) {
+			e.printStackTrace();
 			return;
 		}
-		t = "";
-		t+="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n";
-		t+="<!DOCTYPE properties SYSTEM \"http://java.sun.com/dtd/properties.dtd\">\n";
-		t+="<properties>\n";
-		t+="<comment>Graph Settings for "+h.getUniqueName()+"</comment>\n";
-		t+="<entry key=\"HGridSize\">50</entry>\n";
-		t+="<entry key=\"VGridSize\">50</entry>\n";
-		t+="<entry key=\"HGridColour\">c0c0c0</entry>\n";
-		t+="<entry key=\"XAxisParamValue\">1</entry>\n";
-		t+="<entry key=\"MaxY\">Auto</entry>\n";
-		t+="<entry key=\"MaxX\">Auto</entry>\n";
-		t+="<entry key=\"XAxisSeriesIndex\">0</entry>\n";
-		t+="<entry key=\"MinY\">Auto</entry>\n";
-		t+="<entry key=\"VGridColour\">c0c0c0</entry>\n";
-		t+="<entry key=\"MinX\">Auto</entry>\n";
-		t+="<entry key=\"XAxisType\">XAxis_DSNum</entry>\n";
-		t+="<entry key=\"VGridType\">VGrid_None</entry>\n";
-		t+="<entry key=\"HGridType\">HGrid_None</entry>\n";
-		t+="<entry key=\"HighlightDataPoints\">1</entry>\n";
-		t+="</properties>\n";
-		if(!Utils.writeToFile(graph_file, t.getBytes(), null)) {
-			System.out.println("Cant start live graph!");
-			can_run=false;
-			return;
-		}
-		else {
-			can_run=true;
-		}
-		this.ds.setSeparator(";");
-		this.ds.writeFileInfo("Data for "+h.getUniqueName());
+		
 		for(IModelNode c : h.getAllChildren()) {
 			if(c instanceof IInterface) {
-				TreeMap<Integer,datum> ct = new TreeMap<Integer,datum>();
-				ct.put(num_in_bytes,new datum(c.getName()+"_"+ModelNodeVariable.int2name(num_in_bytes),"0"));
-				ct.put(num_out_bytes,new datum(c.getName()+"_"+ModelNodeVariable.int2name(num_out_bytes),"0"));
-				ct.put(num_in_packets,new datum(c.getName()+"_"+ModelNodeVariable.int2name(num_in_packets),"0"));
-				ct.put(num_out_packets,new datum(c.getName()+"_"+ModelNodeVariable.int2name(num_out_packets),"0"));
-				ct.put(packets_in_per_sec,new datum(c.getName()+"_"+ModelNodeVariable.int2name(packets_in_per_sec),"0"));
-				ct.put(packets_out_per_sec,new datum(c.getName()+"_"+ModelNodeVariable.int2name(packets_out_per_sec),"0"));
-				ct.put(bytes_in_per_sec,new datum(c.getName()+"_"+ModelNodeVariable.int2name(bytes_in_per_sec),"0"));
-				ct.put(bytes_out_per_sec,new datum(c.getName()+"_"+ModelNodeVariable.int2name(bytes_out_per_sec),"0"));
-				ct.put(queue_size,new datum(c.getName()+"_"+ModelNodeVariable.int2name(queue_size),"0"));
-				prev.put(c.getUID(),ct);
+				TreeMap<Integer,datum> dataSet = new TreeMap<Integer,datum>();
+				
+				dataSet.put(num_in_bytes,new datum(c.getName()+"_"+ModelNodeVariable.int2name(num_in_bytes),"0"));
+				dataSet.put(num_out_bytes,new datum(c.getName()+"_"+ModelNodeVariable.int2name(num_out_bytes),"0"));
+				dataSet.put(num_in_packets,new datum(c.getName()+"_"+ModelNodeVariable.int2name(num_in_packets),"0"));
+				dataSet.put(num_out_packets,new datum(c.getName()+"_"+ModelNodeVariable.int2name(num_out_packets),"0"));
+				dataSet.put(packets_in_per_sec,new datum(c.getName()+"_"+ModelNodeVariable.int2name(packets_in_per_sec),"0"));
+				dataSet.put(packets_out_per_sec,new datum(c.getName()+"_"+ModelNodeVariable.int2name(packets_out_per_sec),"0"));
+				dataSet.put(bytes_in_per_sec,new datum(c.getName()+"_"+ModelNodeVariable.int2name(bytes_in_per_sec),"0"));
+				dataSet.put(bytes_out_per_sec,new datum(c.getName()+"_"+ModelNodeVariable.int2name(bytes_out_per_sec),"0"));
+				dataSet.put(queue_size,new datum(c.getName()+"_"+ModelNodeVariable.int2name(queue_size),"0"));
+				dataSets.put(c.getUID(),dataSet);
 			}
 		}
-		TreeMap<Integer,datum> ct = new TreeMap<Integer,datum>();
-		ct.put(traffic_intensity,new datum(ModelNodeVariable.int2name(traffic_intensity),"0"));
-		prev.put(h.getUID(), ct);
+		
+		TreeMap<Integer,datum> dataSet = new TreeMap<Integer,datum>();
+		dataSet.put(traffic_intensity,new datum(ModelNodeVariable.int2name(traffic_intensity),"0"));
+		dataSets.put(h.getUID(), dataSet);
+		
+		// from the dataSets set-up the data series: name 
 		ds.addDataSeries("time");
-		for(TreeMap<Integer,datum> c: prev.values()) {
+		ds.addDataSeries(h.getParent().getName());
+		for(TreeMap<Integer,datum> c: dataSets.values()) {
 			for(datum d: c.values()) {
 				ds.addDataSeries(d.name);
 			}
 		}
+		
+		ds.writeLabelSet();
+		if (ds.hadIOException()) {
+	        ds.getIOException().printStackTrace();
+	        ds.resetIOException();
+		}
+		
+		// from the dataSets set-up the data series: value
 		ds.setDataValue("0");
-		for(TreeMap<Integer,datum> c: prev.values()) {
+		for(TreeMap<Integer,datum> c: dataSets.values()) {
 			for(datum d: c.values()) {
 				ds.setDataValue(d.value);
 			}
 		}
+		
+		// writeDataSet flushes the cache to the data stream and prepares for
+		// processing of the next dataset
 		ds.writeDataSet();
 		if (ds.hadIOException()) {
 	        ds.getIOException().printStackTrace();
@@ -166,84 +149,89 @@ public class LiveGraphManager {
 		}
 	}
 	
+	/*
+	 * start LiveGraph as a separate OS process on the machine and use
+	 * command line params to configure the plotter to use settings done before
+	 * start up
+	 * */
 	public void start() {
-		if(!can_run) return; 
-		String f=Utils.TMP_DIR+"/live_graph.sh";
-		String path =getClass().getProtectionDomain().getCodeSource().getLocation().getFile()	+"../netscript/dist/lib/";
-		String j1 = path+"/LiveGraph.2.0.beta01.Complete.jar";
 		
-		if(! (new File(j1).exists())) {
+		String shell_path = Utils.TMP_DIR + "/live_graph2.sh";
+		String path = getClass().getProtectionDomain().getCodeSource().getLocation().getFile() + "../netscript/dist/lib/";
+		String jar = path + "/Live-Graph.jar";
+		
+		if(!(new File(jar).exists())) {
 			path = ConfigurationHandler.getPrimexDirectory();
 	    	if (!path.endsWith(File.separator))
 	    		path += File.separator;
-	    	j1=path+"netscript/lib/LiveGraph.2.0.beta01.Complete.jar";
+	    	jar = path + "netscript/lib/Live-Graph.jar";
 		}
-		//String j2 = path+"/SoftNetConsultUtils.2.01.slim.jar";
-		//String exec="java -jar "+j1+" -dfs "+data_file+" -gs "+graph_file;		
-		String exec="";
-		exec+="#!/bin/bash\n";
-		exec+="PROGRAM=\"java -jar "+j1+" -dfs "+data_file+" -gs "+graph_file+"\"\n";
-		exec+="$PROGRAM &\n";
-		exec+="PID=$!\n";
-		exec+="echo $PID\n";
-		if(!Utils.writeToFile(f, exec.getBytes(), null)) {
+		
+		String script = "";
+		script += "#!/bin/bash\n";
+		script += "PROGRAM=\"java -jar " + jar + " " + csv_file + "\"\n";
+		script += "$PROGRAM &\n";
+		script += "PID=$!\n";
+		script += "echo $PID\n";
+		
+		if(!Utils.writeToFile(shell_path, script.getBytes(), null)) {
 			System.out.println("Cant start live graph!");
 			return;
 		}
-		ProcessBuilder pb = new ProcessBuilder("sh", f);
-		pb.directory(new File(Utils.TMP_DIR));
-		pb.redirectErrorStream(true);
-		Process p=null;
-		BufferedReader stdout = null;
+		
+		ProcessBuilder pb2 = new ProcessBuilder("sh", shell_path);
+		pb2.directory(new File(Utils.TMP_DIR));
+		pb2.redirectErrorStream(true);
+		Process p2 = null;
+		BufferedReader stdout2 = null;
+		
 		try {
-			p =  pb.start();
-			stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			p2 =  pb2.start();
+			stdout2 = new BufferedReader(new InputStreamReader(p2.getInputStream()));
 		} catch (IOException e) {
 			System.out.println("Cant start live graph!");
-			pid=null;
+			pid2 = null;
 			return;
 		}
-		try {
-			p.waitFor();  // wait for process to complete
-		}
-		catch(InterruptedException e) {
-		}
-		try {
-			pid = stdout.readLine();
-		} catch (IOException e1) {
-			pid=null;
-		}
-		System.out.println("Started live graph with pid:"+pid);
+		
+		try { p2.waitFor(); }
+		catch(InterruptedException e) { }
+		
+		try { pid2 = stdout2.readLine(); } 
+		catch (IOException e1) { pid2 = null; }
+		
+		System.out.println("Started live graph with pid: " + pid2);
 	}
 	
 	public void stop() {
-		if(pid != null) {
-			System.out.println("Stopping livegraph! pid="+pid);
-			try {
-				Runtime.getRuntime().exec("kill -9 "+pid);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			pid=null;
+		if(pid2 != null) {
+			System.out.println("Stopping livegraph! pid: " + pid2);
+			
+			try { Runtime.getRuntime().exec("kill -9 "+pid2); } 
+			catch (IOException e) { e.printStackTrace(); }
+			
+			pid2 = null;
 			final DataStreamWriter t = ds;
-			ds=null;
+			ds = null;
 			t.close();
 		}
 	}
 	
 	public void handleStateUpdate(final long node_id, final double time, final int attr_id, final String value) {
-		if(ds==null) {
-			System.out.println("cant write data to live graph, ds is null!");
+		if(ds == null) {
+			System.out.println("Cant write data to live graph, ds is null!");
 			return;
 		}
-		if(prev.containsKey(node_id) && prev.get(node_id).containsKey(attr_id)) {
-			prev.get(node_id).get(attr_id).value=value;
+		
+		if(dataSets.containsKey(node_id) && dataSets.get(node_id).containsKey(attr_id)) {
+			dataSets.get(node_id).get(attr_id).value = value;
 			ds.setDataValue(time);
-			for(TreeMap<Integer,datum> c: prev.values()) {
-				for(datum d: c.values()) {
+			
+			for(TreeMap<Integer,datum> c: dataSets.values()) {
+				for(datum d: c.values())
 					this.ds.setDataValue(d.value);
-				}
 			}
+			
 			ds.writeDataSet();
 			if (ds.hadIOException()) {
 		        ds.getIOException().printStackTrace();
@@ -252,3 +240,4 @@ public class LiveGraphManager {
 		}
 	}
 }
+
