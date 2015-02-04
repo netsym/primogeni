@@ -15,7 +15,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.OverlayLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,9 +31,11 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.data.Range;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -61,7 +65,7 @@ public class CreatePanels extends JFrame{
 	private static JLabel interfaceLabel[];
 	
 	private static boolean pause = false;
-	private static String[] namedescription;
+	private static String[] nameDescription;
 	private static BufferedReader fileData;
 	
 	temp(String csv_file) throws NoDataFileDefined{
@@ -73,8 +77,8 @@ public class CreatePanels extends JFrame{
 		
 		arrtemp = init_label(csv_file.trim());
 		
-		series = new XYSeries[namedescription.length];
-		chartPanel = new ChartPanel[namedescription.length];
+		series = new XYSeries[nameDescription.length];
+		chartPanel = new ChartPanel[nameDescription.length];
 		pane = new JPanel[4];
 		interfaceMenu = new JMenuBar[4];
 		interfaceLabel = new JLabel[4];
@@ -130,7 +134,7 @@ public class CreatePanels extends JFrame{
 				tempInt = tempStr.indexOf(' ');
 				arrline[i] = Character.toUpperCase(tempStr.charAt(tempInt+1)) + tempStr.substring(tempInt + 2);
 			}
-			namedescription = Arrays.copyOfRange(arrline, 1, arrline.length);;
+			nameDescription = Arrays.copyOfRange(arrline, 1, arrline.length);;
 			return Arrays.copyOfRange(arrtemp, 1, arrtemp.length);
 		}catch(IOException e){ e.printStackTrace(); }
 		
@@ -162,7 +166,7 @@ public class CreatePanels extends JFrame{
 					
 					for(int temp = start; temp < i; temp++){
 						final int tempSelected = temp;
-						item = new JMenuItem(namedescription[temp]);
+						item = new JMenuItem(nameDescription[temp]);
 						
 						item.addActionListener(new ActionListener(){
 							final int paneIndex = index;
@@ -174,7 +178,7 @@ public class CreatePanels extends JFrame{
 								
 								JLabel setNewLabel = (JLabel)pane[paneIndex].getComponent(1);
 								JLabel getLabel = setNewLabel;
-								setNewLabel.setText(interfaceName + " - " + namedescription[selected]);
+								setNewLabel.setText(interfaceName + " - " + nameDescription[selected]);
 								
 								// The current chart needs to be switched
 								// Only if there's a chart already in quadrant 
@@ -212,10 +216,6 @@ public class CreatePanels extends JFrame{
 			}
 			
 			interfaceMenu[index] = new JMenuBar();
-			//parent_submenus.setVisibleRowCount(5);
-			//JScrollPane scroll = new JScrollPane(parent_submenus);
-			//scroll.setWheelScrollingEnabled(true);
-			//scroll.getVerticalScrollBar().setUnitIncrement(16);
 			for(JMenu sub: parent_submenu)
 				main_menu.add(sub);
 			interfaceMenu[index].add(main_menu);
@@ -226,24 +226,11 @@ public class CreatePanels extends JFrame{
 	private JMenuBar init_menubar(){
 		JMenuBar menubar = new JMenuBar();
 		JMenu file = new JMenu("File");
-		JMenu test = new JMenu("TEST");
-		JMenuItem item1 = new JMenuItem("export data N/A");
-		JMenuItem item2 = new JMenuItem("graph data N/A");
-		JMenuItem item3 = new JMenuItem("pause");
+		
+		JMenuItem item1 = new JMenuItem("Pause");
+		JMenuItem setting = new JMenuItem("Settings");
 		
 		item1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				System.out.println("export data");
-			}
-		});
-		
-		item2.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				System.out.println("display data");
-			}
-		});
-		
-		item3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				if(pause)
 					pause = false;
@@ -252,11 +239,61 @@ public class CreatePanels extends JFrame{
 			}
 		});
 		
+		setting.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				JFrame temp = new JFrame();
+				temp.getContentPane().setLayout(new BorderLayout());
+				
+				JPanel p = new JPanel();
+				final JLabel label = new JLabel("New x-axis size", SwingConstants.CENTER);
+				final JTextField input = new JTextField(3);
+				JButton button = new JButton("Enter");
+				
+				label.setPreferredSize(new Dimension(200, 50));
+				p.setPreferredSize(new Dimension(200, 120));
+				
+				button.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event) {
+						int domain = 0;
+						boolean domainProb = false, domainTypeProb = false;
+						try{
+							domain = Integer.parseInt(input.getText());
+							if(domain > 401 || domain < 9)
+								domainProb = true;
+						}catch(NumberFormatException e){ domainTypeProb = true; }
+						
+						if(!domainProb && !domainTypeProb){
+							label.setText("New x-axis size");
+							for(JPanel panel: pane){
+								XYPlot plot = ((ChartPanel)((JPanel)panel.getComponent(2))
+										.getComponent(1)).getChart().getXYPlot();
+								NumberAxis xAxis = (NumberAxis)plot.getDomainAxis();
+								xAxis.setRange(new Range(0, domain));
+								//xAxis.setTickUnit(new NumberTickUnit(5));
+							}
+						}
+						else if(domainProb)
+							label.setText("<html>New x-axis size<br><font color='red'>Domain size Error</font></html>");
+						else
+							label.setText("<html>New x-axis size<br><font color='red'>Input type Error</font></html>");
+						
+						domainProb = domainTypeProb = false;
+					}
+					
+				});
+				
+				p.add(label, BorderLayout.NORTH);
+				p.add(input, BorderLayout.CENTER);
+				p.add(button, BorderLayout.SOUTH);
+				temp.add(p);
+				temp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				temp.pack();
+				temp.setVisible(true);
+			}
+		});
+		
 		file.add(item1);
-		file.add(item2);
-		file.add(item3);
-		test.add(item1);
-		file.add(test);
+		file.add(setting);
 		menubar.add(file);
 		//menubar.add(interfaceMenu[0]);
 		
@@ -266,7 +303,7 @@ public class CreatePanels extends JFrame{
 	
 	
 	private void init_series(final int index){
-		series[index] = new XYSeries(namedescription[index]);
+		series[index] = new XYSeries(nameDescription[index]);
 		final XYSeriesCollection dataset = new XYSeriesCollection(series[index]);
 		final JFreeChart chart = createChart(dataset, index);
 		chartPanel[index] = new ChartPanel(chart);
@@ -288,7 +325,7 @@ public class CreatePanels extends JFrame{
 		OverlayLayout overlay = new OverlayLayout(p1);
 		p1.setLayout(overlay);
 		
-		interfaceLabel[index] = new JLabel("Interface 1 - " + namedescription[index], SwingConstants.CENTER);
+		interfaceLabel[index] = new JLabel("Interface 1 - " + nameDescription[index], SwingConstants.CENTER);
 		interfaceLabel[index].setPreferredSize(new Dimension(500, 20));
 		pane[index] = new JPanel(new BorderLayout());		
 		
