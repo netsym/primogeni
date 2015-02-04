@@ -261,7 +261,7 @@ public class CreatePanels extends JFrame{
 			
 			public void mouseClicked(MouseEvent e){
 				if (e.getClickCount() == 2){
-					System.out.println("e Double click");
+					//System.out.println("e Double click");
 					container.getComponent(0).setVisible(true);
 				}
 			}
