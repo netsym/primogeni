@@ -200,6 +200,25 @@ public abstract class ModelInterface {
 	}
 	
 
+	public final PartTlvPair createTLVwithIP(
+			String partString,
+			boolean outputXML,
+			String directoryToStoreFiles,
+			HashMap<Portal,String> linked,
+			List<ComputeNode> computeNodes,
+			Map<String, ModelParamValue> parameters,
+			Map<String,String> paramss
+			) throws IOException {
+		/* $if false == DEBUG $ */
+		IPersistableCache.logPhaseChange(PhaseChange.build_model, "");
+		/* $endif$ */
+		buildModel(parameters);
+		exp.compile(new StatusListener(), paramss);
+		exp.save();
+		return createOutput(exp, partString, outputXML, directoryToStoreFiles, linked, computeNodes);
+	}
+
+
 	public final static PartTlvPair createOutput(
 			Experiment exp, 
 			String partString,
