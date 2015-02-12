@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.BufferedReader;
@@ -15,8 +14,10 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.OverlayLayout;
 import javax.swing.JFrame;
@@ -31,7 +32,6 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -44,7 +44,9 @@ import org.jfree.data.xy.XYSeriesCollection;
 /*
  * Note: Structure of the Panels are
  * Index 0: Drop down interface menu
- * Index 1: Label
+ * Index 1: JPanel
+ * 			Index 0: JLabel
+ * 			Index 1: RadioButton
  * Index 2: Overlay
  * 			Index 0: Glass-pane
  * 			Index 1: Chart 
@@ -68,14 +70,14 @@ public class CreatePanels extends JFrame{
 	private static String[] nameDescription;
 	private static BufferedReader fileData;
 	
-	temp(String csv_file) throws NoDataFileDefined{
+	CreatePanels(String csv_file) throws NoDataFileDefined{
 		if(csv_file == null)
 			throw new NoDataFileDefined();
 		
-		String arrline[], arrtemp[];
+		String arrline[], submenu_names[];
 		String line;
 		
-		arrtemp = init_label(csv_file.trim());
+		submenu_names = init_label(csv_file.trim());
 		
 		series = new XYSeries[nameDescription.length];
 		chartPanel = new ChartPanel[nameDescription.length];
@@ -91,7 +93,7 @@ public class CreatePanels extends JFrame{
 			init_series(index);
 		
 		for(int index = 0; index < pane.length; index++){
-			init_pane(index, arrtemp);
+			init_pane(index, submenu_names);
 			add(pane[index]);
 		}
 		
@@ -176,13 +178,13 @@ public class CreatePanels extends JFrame{
 							public void actionPerformed(ActionEvent event) {
 								//System.out.println(index + " " + selected + " " + namedescription[selected]);
 								
-								JLabel setNewLabel = (JLabel)pane[paneIndex].getComponent(1);
+								JLabel setNewLabel = (JLabel)((JPanel)pane[paneIndex].getComponent(1)).getComponent(0);
 								JLabel getLabel = setNewLabel;
 								setNewLabel.setText(interfaceName + " - " + nameDescription[selected]);
 								
 								// The current chart needs to be switched
 								// Only if there's a chart already in quadrant 
-								ChartPanel switchCharts = ((ChartPanel)((JPanel)pane[paneIndex].getComponent(2)).getComponent(1));
+								ChartPanel switchCharts = (ChartPanel)((JPanel)pane[paneIndex].getComponent(2)).getComponent(1);
 								
 								// Remove the current chart
 								((JPanel)pane[paneIndex].getComponent(2)).remove(1);
@@ -197,7 +199,7 @@ public class CreatePanels extends JFrame{
 									try{ 
 										((JPanel)panel.getComponent(2)).getComponent(1);
 									}catch(Exception e){
-										setNewLabel = (JLabel)pane[paneIndex].getComponent(1);
+										setNewLabel = (JLabel)((JPanel)pane[paneIndex].getComponent(1)).getComponent(0);
 										setNewLabel.setText(getLabel.getText());
 										((JPanel)panel.getComponent(2)).add(switchCharts, 1);
 									}
@@ -216,11 +218,14 @@ public class CreatePanels extends JFrame{
 			}
 			
 			interfaceMenu[index] = new JMenuBar();
+			//parent_submenus.setVisibleRowCount(5);
+			//JScrollPane scroll = new JScrollPane(parent_submenus);
+			//scroll.setWheelScrollingEnabled(true);
+			//scroll.getVerticalScrollBar().setUnitIncrement(16);
 			for(JMenu sub: parent_submenu)
 				main_menu.add(sub);
 			interfaceMenu[index].add(main_menu);
 	}
-	
 	
 	
 	private JMenuBar init_menubar(){
@@ -295,11 +300,9 @@ public class CreatePanels extends JFrame{
 		file.add(item1);
 		file.add(setting);
 		menubar.add(file);
-		//menubar.add(interfaceMenu[0]);
 		
 		return menubar;
 	}
-	
 	
 	
 	private void init_series(final int index){
@@ -311,80 +314,100 @@ public class CreatePanels extends JFrame{
 	}
 	
 	
+	private void init_pane_interface(final int index, final JRadioButton pan, JRadioButton zoom){
+		final JPanel container = (JPanel)pane[index].getComponent(2);
+		ButtonGroup group = new ButtonGroup();
+		
+		pan.setText("Pan");
+		pan.setSelected(true);
+		zoom.setText("Zoom");
+		
+		group.add(pan);
+		group.add(zoom);
+		
+		// Functionality of panning the chart left or right
+		((JPanel)container.getComponent(0)).addMouseMotionListener(new MouseMotionAdapter(){
+			private final int paneIndex = index;
+			private int lastValue = 0;
+			private JRadioButton radiobut = ((JRadioButton)((JPanel)pane[paneIndex].getComponent(1)).getComponent(1));
+			
+			public void mouseDragged(MouseEvent event) {
+				if( radiobut.isSelected() ){
+					int value = event.getX();
+					XYPlot plot = ((ChartPanel)((JPanel)pane[paneIndex].getComponent(2))
+							.getComponent(1)).getChart().getXYPlot();
+					
+					ValueAxis axis = plot.getDomainAxis();
+					
+					if(value > lastValue)
+						axis.pan(0.04);
+					else
+						axis.pan(-0.04);
+					lastValue = value;
+				}
+			}
+		});
+		
+		// Enable the glasspane (allows panning)
+		pan.addActionListener(new ActionListener(){
+			private final int paneIndex = index;
+			JPanel container = (JPanel)pane[paneIndex].getComponent(2);
+			
+			public void actionPerformed(ActionEvent e){
+				if (((JRadioButton)e.getSource()).isSelected())
+					container.getComponent(0).setVisible(true);
+			}
+		});
+		
+		// Disable the glasspane (allows zooming)
+		zoom.addActionListener(new ActionListener(){
+			private final int paneIndex = index;
+			JPanel container = (JPanel)pane[paneIndex].getComponent(2);
+			
+			public void actionPerformed(ActionEvent e){
+				if (((JRadioButton)e.getSource()).isSelected())
+					container.getComponent(0).setVisible(false);
+			}
+		});
+	}
+	
 	
 	private void init_pane(final int index, String arrtemp[]){
 		
-		JPanel p1 = new JPanel();
+		JPanel overlayContainer = new JPanel();
 		JPanel glasspane = new JPanel();
 		
-		p1.setPreferredSize(new java.awt.Dimension(500, 270));
+		JPanel label_button = new JPanel(new BorderLayout());
+		label_button.setSize(new Dimension(100, 20));
+		
+		pane[index] = new JPanel(new BorderLayout());
+		
+		JRadioButton pan = new JRadioButton();
+		JRadioButton zoom = new JRadioButton();
+		
+		interfaceLabel[index] = new JLabel("Interface 1 - " + nameDescription[index], SwingConstants.CENTER);
+		interfaceLabel[index].setPreferredSize(new Dimension(400, 20));
+		
+		overlayContainer.setPreferredSize(new java.awt.Dimension(500, 270));
 		glasspane.setPreferredSize(new java.awt.Dimension(500, 270));
 		//setGlassPane(glasspane);
 		glasspane.setOpaque(false);
 		
-		OverlayLayout overlay = new OverlayLayout(p1);
-		p1.setLayout(overlay);
-		
-		interfaceLabel[index] = new JLabel("Interface 1 - " + nameDescription[index], SwingConstants.CENTER);
-		interfaceLabel[index].setPreferredSize(new Dimension(500, 20));
-		pane[index] = new JPanel(new BorderLayout());		
-		
+		OverlayLayout overlay = new OverlayLayout(overlayContainer);
+		overlayContainer.setLayout(overlay);
+				
 		init_interfaceDropMenu(index, arrtemp);
 		
 		pane[index].add(interfaceMenu[index], BorderLayout.NORTH);
-		pane[index].add(interfaceLabel[index], BorderLayout.CENTER);
-		p1.add(glasspane);
-		p1.add(chartPanel[index]);
-		pane[index].add(p1, BorderLayout.SOUTH);
+		label_button.add(interfaceLabel[index], BorderLayout.WEST);
+		label_button.add(pan, BorderLayout.CENTER);
+		label_button.add(zoom, BorderLayout.EAST);
+		pane[index].add(label_button, BorderLayout.CENTER);
+		overlayContainer.add(glasspane);
+		overlayContainer.add(chartPanel[index]);
+		pane[index].add(overlayContainer, BorderLayout.SOUTH);
 		
-		// Functionality of panning the chart left or right
-		glasspane.addMouseMotionListener(new MouseMotionAdapter(){
-			private final int paneIndex = index;
-			private int lastValue = 0;
-			@Override
-			public void mouseDragged(MouseEvent event) {
-				int value = event.getX();
-				XYPlot plot = ((ChartPanel)((JPanel)pane[paneIndex].getComponent(2))
-						.getComponent(1)).getChart().getXYPlot();
-				
-				ValueAxis axis = plot.getDomainAxis();
-				
-				if(value > lastValue){
-					axis.pan(0.02);
-					lastValue = value;
-				}
-				else{
-					axis.pan(-0.02);
-					lastValue = value;
-				}
-				
-			}
-		});
-		
-		// Disable the glasspane (which allows zooming)
-		glasspane.addMouseListener(new MouseAdapter(){
-			JPanel container = (JPanel)pane[index].getComponent(2);
-			
-			public void mouseClicked(MouseEvent e){
-				if (e.getClickCount() == 2){
-					System.out.println("d Double click");
-					container.getComponent(0).setVisible(false);
-				}
-			}
-		});
-		
-		// Enable the glasspane (which allows the panning)
-		JPanel container = (JPanel)pane[index].getComponent(2);
-		container.getComponent(1).addMouseListener(new MouseAdapter(){
-			JPanel container = (JPanel)pane[index].getComponent(2);
-			
-			public void mouseClicked(MouseEvent e){
-				if (e.getClickCount() == 2){
-					System.out.println("e Double click");
-					container.getComponent(0).setVisible(true);
-				}
-			}
-		});
+		init_pane_interface(index, pan, zoom);
 	}
 	
 	
@@ -415,8 +438,8 @@ public class CreatePanels extends JFrame{
 }
 
 @SuppressWarnings("serial")
-class NoDataFileDefined2 extends Exception{
-	NoDataFileDefined2(){
+class NoDataFileDefined extends Exception{
+	NoDataFileDefined(){
 		super("Possible Command line argument missing. Data File path missing.");
 	}
 }
