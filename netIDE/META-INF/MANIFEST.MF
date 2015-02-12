@@ -29,7 +29,7 @@ Bundle-ClassPath: .,
  lib/Minaorg21.jar,
  lib/jsch-0.1.51.jar,
  lib/derby.jar,
- lib/LiveGraph.2.0.beta01.Complete.jar,
+ lib/Live-Graph.jar,
  lib/SoftNetConsultUtils.2.01.slim.jar
 Export-Package: slingshot.projects
 Import-Package: org.eclipse.core.filesystem,

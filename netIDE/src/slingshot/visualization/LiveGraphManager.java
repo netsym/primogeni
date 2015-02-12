@@ -85,8 +85,8 @@ public class LiveGraphManager {
 	public LiveGraphManager(IHost h) {
 		super();
 		
-		csv_file = "/home/renan/Desktop/temp.csv";
-//		csv_file = Utils.TMP_DIR + "/host_" + h.getUID() + ".csv";
+//		csv_file = "/home/renan/Desktop/temp.csv";
+		csv_file = Utils.TMP_DIR + "/host_" + h.getUID() + ".csv";
 		
 		// Live-Graph: data writer object
 		try {
