@@ -69,6 +69,7 @@ public class CreatePanels extends JFrame{
 	private static boolean pause = false;
 	private static String[] nameDescription;
 	private static BufferedReader fileData;
+	private static final int default_paneAmount = 4;
 	
 	CreatePanels(String csv_file) throws NoDataFileDefined{
 		if(csv_file == null)
@@ -81,23 +82,24 @@ public class CreatePanels extends JFrame{
 		
 		series = new XYSeries[nameDescription.length];
 		chartPanel = new ChartPanel[nameDescription.length];
-		pane = new JPanel[4];
-		interfaceMenu = new JMenuBar[4];
-		interfaceLabel = new JLabel[4];
+		pane = new JPanel[9];
+		interfaceMenu = new JMenuBar[9];
+		interfaceLabel = new JLabel[9];
 		
-		setJMenuBar(init_menubar());
+		setJMenuBar(init_menubar(submenu_names));
 		
-		getContentPane().setLayout(new GridLayout(2,2));
+		getContentPane().setLayout(new GridLayout(2,2,3,3));
 		
 		for(int index = 0; index < series.length; index++)
 			init_series(index);
 		
-		for(int index = 0; index < pane.length; index++){
+		for(int index = 0; index < default_paneAmount; index++){
 			init_pane(index, submenu_names);
 			add(pane[index]);
 		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setMinimumSize(new Dimension(500, 300));
 		pack();
 		setVisible(true);
 		
@@ -141,6 +143,152 @@ public class CreatePanels extends JFrame{
 		}catch(IOException e){ e.printStackTrace(); }
 		
 		return null;
+	}
+	
+	
+	private void resizer(int index, int grid[]){
+		JPanel overlay = (JPanel)pane[index].getComponent(2);
+		float coef = (float) (grid[1] == 3 ? 1.45 : 1.0);
+		int row = (int)(500/((float)grid[1]/2) * coef), col = (int)(270/((float)grid[0]/2));
+		overlay.setPreferredSize( new Dimension(row, col) );
+		pane[index].setPreferredSize( new Dimension(row, col+41) );
+	}
+	
+	
+	private JMenuBar init_menubar(final String[] submenu_bar){
+		JMenuBar menubar = new JMenuBar();
+		JMenu file = new JMenu("File");
+		
+		JMenuItem item1 = new JMenuItem("Pause");
+		JMenuItem setting = new JMenuItem("Settings");
+		
+		item1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				if(pause)
+					pause = false;
+				else 
+					pause = true;
+			}
+		});
+		
+		setting.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				JFrame temp = new JFrame();
+				
+				JPanel p = new JPanel(new GridLayout(3,2,4,3));
+				final JLabel label_newx = new JLabel("New x-axis size", SwingConstants.CENTER);
+				final JLabel label_customGrid = new JLabel("Custom Grid", SwingConstants.CENTER);
+				final JTextField input = new JTextField("100", 3);
+				final JTextField input_mxn = new JTextField("2,2", 5);
+				JButton button = new JButton("Enter");
+				JButton button2 = new JButton("Enter");
+				
+				
+				button.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event) {
+						int domain = 0;
+						boolean domainProb = false, domainTypeProb = false;
+						try{
+							domain = Integer.parseInt(input.getText());
+							if(domain > 401 || domain < 9)
+								domainProb = true;
+						}catch(NumberFormatException e){ domainTypeProb = true; }
+						
+						if(!domainProb && !domainTypeProb){
+							label_newx.setText("New x-axis size");
+							for(JPanel panel: pane){
+								try{
+									XYPlot plot = ((ChartPanel)((JPanel)panel.getComponent(2))
+											.getComponent(1)).getChart().getXYPlot();
+									NumberAxis xAxis = (NumberAxis)plot.getDomainAxis();
+									xAxis.setRange(new Range(0, domain));
+								}catch(Exception e){ break; }
+							}
+						}
+						else if(domainProb)
+							label_newx.setText("<html>New x-axis size<br><font color='red'>Domain size Error</font></html>");
+						else
+							label_newx.setText("<html>New x-axis size<br><font color='red'>Input type Error</font></html>");
+						
+						domainProb = domainTypeProb = false;
+					}
+					
+				});
+				
+				button2.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event) {
+						int grid[] = {2,2};
+						String value[] = input_mxn.getText().replace(" ", "").trim().split("\\s*[,x]+\\s*"); 
+						boolean domainProb = false, domainTypeProb = false;
+						
+						try{
+							grid[0] = Integer.parseInt(value[0]);
+							grid[1] = Integer.parseInt(value[1]);
+							if(grid[0] > 3 || grid[1] > 3 || grid[0] < 1 || grid[1] < 1)
+								domainProb = true;
+						}catch(Exception e){ domainTypeProb = true; }
+						
+						if(!domainProb && !domainTypeProb){
+							label_customGrid.setText("Custom Grid");
+							getContentPane().setLayout(new GridLayout(grid[0],grid[1],3,3));
+							
+							for(int index = 0; index < grid[0]*grid[1]; index++){
+								if(pane[index] == null){
+									pane[index] = new JPanel();
+									init_pane(index, submenu_bar);
+								}
+								if(getComponentCount() < grid[0]*grid[1])
+									add(pane[index]);
+								resizer(index, grid);
+							}
+							
+							for(int index = grid[0]*grid[1]; index < 9; index++){
+								try{ remove(pane[index]); }catch(Exception e){ break; }
+							}
+							validate();
+							pack();
+						}
+						else if(domainProb)
+							label_customGrid.setText("<html>Custom Grid<br><font color='red'>Size Error</font></html>");
+						else
+							label_customGrid.setText("<html>Custom Grid<br><font color='red'>Input type Error</font></html>");
+						
+						domainProb = domainTypeProb = false;
+					}
+					
+				});
+				
+				p.add(label_newx);
+				p.add(label_customGrid);
+				p.add(input);
+				p.add(input_mxn);
+				p.add(button);
+				p.add(button2);
+				
+				temp.add(p);
+				temp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				temp.setPreferredSize(new Dimension(400, 200));
+				temp.setMinimumSize(new Dimension(200, 200));
+				temp.setMaximumSize(new Dimension(450, 250));
+				temp.pack();
+				temp.setVisible(true);
+			}
+		});
+		
+		file.add(item1);
+		file.add(setting);
+		menubar.add(file);
+		
+		return menubar;
+	}
+	
+	
+	private void init_series(final int index){
+		series[index] = new XYSeries(nameDescription[index]);
+		final XYSeriesCollection dataset = new XYSeriesCollection(series[index]);
+		final JFreeChart chart = createChart(dataset, index);
+		chartPanel[index] = new ChartPanel(chart);
+		chartPanel[index].setPreferredSize(new java.awt.Dimension(500, 270));
 	}
 	
 	
@@ -228,92 +376,6 @@ public class CreatePanels extends JFrame{
 	}
 	
 	
-	private JMenuBar init_menubar(){
-		JMenuBar menubar = new JMenuBar();
-		JMenu file = new JMenu("File");
-		
-		JMenuItem item1 = new JMenuItem("Pause");
-		JMenuItem setting = new JMenuItem("Settings");
-		
-		item1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				if(pause)
-					pause = false;
-				else 
-					pause = true;
-			}
-		});
-		
-		setting.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				JFrame temp = new JFrame();
-				temp.getContentPane().setLayout(new BorderLayout());
-				
-				JPanel p = new JPanel();
-				final JLabel label = new JLabel("New x-axis size", SwingConstants.CENTER);
-				final JTextField input = new JTextField(3);
-				JButton button = new JButton("Enter");
-				
-				label.setPreferredSize(new Dimension(200, 50));
-				p.setPreferredSize(new Dimension(200, 120));
-				
-				button.addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent event) {
-						int domain = 0;
-						boolean domainProb = false, domainTypeProb = false;
-						try{
-							domain = Integer.parseInt(input.getText());
-							if(domain > 401 || domain < 9)
-								domainProb = true;
-						}catch(NumberFormatException e){ domainTypeProb = true; }
-						
-						if(!domainProb && !domainTypeProb){
-							label.setText("New x-axis size");
-							for(JPanel panel: pane){
-								XYPlot plot = ((ChartPanel)((JPanel)panel.getComponent(2))
-										.getComponent(1)).getChart().getXYPlot();
-								NumberAxis xAxis = (NumberAxis)plot.getDomainAxis();
-								xAxis.setRange(new Range(0, domain));
-								//xAxis.setTickUnit(new NumberTickUnit(5));
-							}
-						}
-						else if(domainProb)
-							label.setText("<html>New x-axis size<br><font color='red'>Domain size Error</font></html>");
-						else
-							label.setText("<html>New x-axis size<br><font color='red'>Input type Error</font></html>");
-						
-						domainProb = domainTypeProb = false;
-					}
-					
-				});
-				
-				p.add(label, BorderLayout.NORTH);
-				p.add(input, BorderLayout.CENTER);
-				p.add(button, BorderLayout.SOUTH);
-				temp.add(p);
-				temp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				temp.pack();
-				temp.setVisible(true);
-			}
-		});
-		
-		file.add(item1);
-		file.add(setting);
-		menubar.add(file);
-		
-		return menubar;
-	}
-	
-	
-	private void init_series(final int index){
-		series[index] = new XYSeries(nameDescription[index]);
-		final XYSeriesCollection dataset = new XYSeriesCollection(series[index]);
-		final JFreeChart chart = createChart(dataset, index);
-		chartPanel[index] = new ChartPanel(chart);
-		chartPanel[index].setPreferredSize(new java.awt.Dimension(500, 270));
-	}
-	
-	
 	private void init_pane_interface(final int index, final JRadioButton pan, JRadioButton zoom){
 		final JPanel container = (JPanel)pane[index].getComponent(2);
 		ButtonGroup group = new ButtonGroup();
@@ -378,7 +440,7 @@ public class CreatePanels extends JFrame{
 		JPanel glasspane = new JPanel();
 		
 		JPanel label_button = new JPanel(new BorderLayout());
-		label_button.setSize(new Dimension(100, 20));
+		label_button.setPreferredSize(new Dimension(150, 20));
 		
 		pane[index] = new JPanel(new BorderLayout());
 		
@@ -386,11 +448,10 @@ public class CreatePanels extends JFrame{
 		JRadioButton zoom = new JRadioButton();
 		
 		interfaceLabel[index] = new JLabel("Interface 1 - " + nameDescription[index], SwingConstants.CENTER);
-		interfaceLabel[index].setPreferredSize(new Dimension(400, 20));
+		interfaceLabel[index].setPreferredSize(new Dimension(350, 20));
 		
 		overlayContainer.setPreferredSize(new java.awt.Dimension(500, 270));
 		glasspane.setPreferredSize(new java.awt.Dimension(500, 270));
-		//setGlassPane(glasspane);
 		glasspane.setOpaque(false);
 		
 		OverlayLayout overlay = new OverlayLayout(overlayContainer);
