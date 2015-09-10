@@ -68,14 +68,14 @@ public class ExperimentCompileHandler extends ExperimentCommandHandler implement
 			final Shell shell = new Shell(Display.getDefault());
 			CompileWizard cw = new CompileWizard();
 			WizardDialog configdlg = new WizardDialog (shell, cw);
-    		configdlg.open();
+    		configdlg.open();//zzz_compile
     		String ipprefix = cw.getIPPrefix();
     		if(ipprefix != null) {
     			try {
     				if(curExp.view != null) {
     					curExp.view.showLogTab();
     				}
-    				curExp.exp.compile(ipprefix);
+    				curExp.exp.compile(ipprefix);////zzz_compile
     			}
     			catch(Exception e ) {
     				Util.dialog(Type.ERROR,

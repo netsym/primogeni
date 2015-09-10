@@ -34,6 +34,7 @@ import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -46,12 +47,19 @@ import java.util.TreeSet;
 import jprime.DynamicTrafficFactory;
 import jprime.Experiment;
 import jprime.IModelNode;
+import jprime.ModelNode;
 import jprime.State;
 import jprime.StatusListener;
+import jprime.EmulationProtocol.IEmulationProtocol;
 import jprime.Host.IHost;
+import jprime.Interface.IInterface;
 import jprime.Link.ILink;
 import jprime.Net.INet;
 import jprime.Net.Net;
+import jprime.OpenVPNEmulation.IOpenVPNEmulation;
+import jprime.TrafficPortal.ITrafficPortal;
+import jprime.partitioning.Alignment;
+import jprime.partitioning.Partition;
 import jprime.partitioning.Partitioning;
 import jprime.util.ComputeNode;
 import jprime.util.GraphOverlay.OverlayInfo;
@@ -59,13 +67,17 @@ import jprime.util.PartTlvPair;
 import jprime.util.Portal;
 import jprime.variable.Dataset;
 import jprime.visitors.TLVVisitor;
+import monitor.commands.SetupContainerCmd;
 import monitor.commands.StateExchangeCmd;
 import monitor.commands.VarUpdate;
+import monitor.commands.SetupContainerCmd.NIC;
 import monitor.core.ExpRunner;
 import monitor.core.IController;
 import monitor.core.IExpListenter;
 import monitor.core.LocalController;
+import monitor.core.LocalEmulatedController; //zzz_LOCAL_EMULATED
 import monitor.core.Provisioner;
+import monitor.deployers.ProtoGeniDeployer;
 import monitor.provisoners.PreAllocatedProvisioner;
 
 import org.eclipse.core.resources.IFolder;
@@ -129,6 +141,7 @@ public class PyExperiment implements IExpListenter {
 		public IController exp_controller;
 		public final ExpRunner expRunner;
 		public final LocalController local_controller;
+		public final LocalEmulatedController local_emulated_controller;//zzz_LOCAL_EMULATED
 		public final Dataset dataset;
 		public List<ComputeNode> computeNodes;
 		public Partitioning parting;
@@ -138,6 +151,18 @@ public class PyExperiment implements IExpListenter {
 		public ExpThread (LocalController local_controller, Dataset dataset) {
 			this.expRunner=null;
 			this.local_controller=local_controller;
+			this.local_emulated_controller=null;//zzz
+			this.dataset=dataset;
+			this.computeNodes=null;
+			this.parting=null;
+			this.exp_controller=null;
+			this.emuNodes=null;
+			this.base_real_time=null;
+		}
+		public ExpThread (LocalEmulatedController local_emulated_controller, Dataset dataset) { //zzz
+			this.expRunner=null;
+			this.local_controller=null;
+			this.local_emulated_controller=local_emulated_controller;	
 			this.dataset=dataset;
 			this.computeNodes=null;
 			this.parting=null;
@@ -146,9 +171,11 @@ public class PyExperiment implements IExpListenter {
 			this.base_real_time=null;
 		}
 		
+		
 		public ExpThread (ExpRunner expRunner, Dataset dataset) {
 			this.expRunner=expRunner;
 			this.local_controller=null;
+			this.local_emulated_controller=null;//zzz
 			this.dataset=dataset;
 			this.computeNodes=null;
 			this.parting=null;
@@ -824,7 +851,7 @@ public class PyExperiment implements IExpListenter {
 	/**
 	 * 
 	 */
-	public void compile(final String prefix) {
+	public void compile(final String prefix) {//zzz_compile
 		if(exp.getState().lte(State.PRE_COMPILED)){
 			ProgressMonitorDialog dialog = new ProgressMonitorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell()); 
 			try {
@@ -837,6 +864,8 @@ public class PyExperiment implements IExpListenter {
 								HashMap<String, String> params = new HashMap<String, String>();
 								params.put("base_ip_address", prefix);
 								exp.compile(new SlinghotStatusListener(monitor), params);
+								System.out.println("GreatCompile zzz");
+
 								monitor.done(); 
 							}
 						};
@@ -888,6 +917,52 @@ public class PyExperiment implements IExpListenter {
 		if(computeNodes == null)
 			computeNodes = new ArrayList<ComputeNode>();
 		Partitioning partitioning = exp.partition(partString, portals, computeNodes);
+		
+		
+//		//zzz start emulated node inquiry 
+//	    System.out.println ("ZZZ Root Node:"+partitioning.getTopnet());
+//		//find the hosts...
+//		HashMap<Long, IHost> vms = new HashMap<Long,IHost>();
+//		for(IEmulationProtocol p : exp.getEmuProtocols()) {
+//			if(p instanceof ITrafficPortal) {
+//				IHost h = (IHost)p.getParent().getParent();
+//				for(IModelNode c : h.getAllChildren()) {
+//					try {
+//						if(c instanceof IInterface) {
+//							//portalRoutes.addAll(((IInterface)c).getReachableNetworks());
+//						}
+//					} catch(Exception e) {}
+//				}
+//			}
+////			else if(p instanceof IOpenVPNEmulation) {
+////				IHost h = (IHost)p.getParent().getParent();
+////				vpns.put(h.getUID(),h);
+////			}
+//			else {
+//				IHost h = (IHost)p.getParent().getParent();
+//				System.out.println("PyExperiment:  h.getUID()= "+h.getUID()+", h = "+h);
+//				vms.put(h.getUID(),h);
+//			}
+//		}
+//		//setup the machine map
+////		for(IHost h : vms.values()) {
+////			Set<Integer> pid = h.getAlignments(parting.partitioning);
+////			if (pid.size() != 1)
+////				throw new RuntimeException("Should never happen!");
+////			for(Integer i : pid) {
+////				Alignment a = parting.partitioning.findAlignment(i);
+////				if(a == null)
+////					throw new RuntimeException("Should never happen!");
+////				if(!vmMap.containsKey(a.getPartId())) {
+////					vmMap.put(a.getPartId(), new ArrayList<IHost>());
+////				}
+////				//if(Utils.DEBUG)System.out.println("\tAdding "+node.getUniqueName()+" to part "+a.getPartId());
+////				vmMap.get(a.getPartId()).add(h);
+////			}
+////		}
+//	    
+//		//zzz_end 
+		
 		println("\t***************************************");
 		println("\tCreating TLV");
 		println("\t***************************************");
@@ -1146,6 +1221,54 @@ public class PyExperiment implements IExpListenter {
 				}
 			}
 			break;
+			case LOCAL_EMULATED: //zzz_LOCAL_EMULATED
+			{
+				setState(State.PARTITIONED);
+				PartTlvPair parting;
+				try {
+					parting = this.partition(ec.getPartitioningString(), resultsPath, new HashSet<Portal>(), new ArrayList<ComputeNode>());
+					this.setState(jprime.State.SETUP);
+					final LocalEmulatedController lec = new LocalEmulatedController(
+							exp,parting,
+							ec.runtime,
+							ec.numProcs,
+							ec.emuRatio,
+							this,
+							ConfigurationHandler.getPrimexDirectory(),
+							true,
+							ec.runtimeSymbolMap,
+							resultsPath);
+					lec.addToAreaOfInterest(getAreaOfInterest().values());
+					this.expRunner = new ExpThread(lec, dataset);
+					this.expRunner.exp_controller = expRunner.local_emulated_controller;
+					this.expRunner.local_emulated_controller.start();
+					this.expRunner.parting=parting.partitioning;
+					
+					//zzz
+					//System.out.println ("Before the null pointer");
+					//List<ComputeNode> tempNodeList = expRunner.computeNodes;
+					//System.out.println (expRunner.computeNodes);
+					//print list
+//					if (tempNodeList.isEmpty()==true){
+//						System.out.println("No Content");
+//					}
+//					else{
+//						System.out.println ("PyExperiment: Nodes in model:"+tempNodeList.size());
+//						for(int i = 0; i < tempNodeList.size(); i++) {
+//				            System.out.println(tempNodeList.get(i).toString());
+//						}
+//					}
+
+					
+				} catch (IOException e) {
+					println("Error setting up local emulated run!"+e.toString());
+					setState(State.PARTITIONED);
+					return;
+				}
+			}
+			break;
+			
+			
 			case PROTO_GENI:
 			case REMOTE_CLUSTER:
 			{

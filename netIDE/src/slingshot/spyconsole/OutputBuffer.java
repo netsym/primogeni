@@ -34,7 +34,7 @@ public class OutputBuffer extends StdoutWrapper {
 	public void flush() { ; }
 
 	public void write( String text) {
-		System.out.println("console_query_resultspyconsole.outputbuffer():"+text);
+		//System.out.println("console_query_resultspyconsole.outputbuffer():"+text);
 		_console.write(text, _stylename);
 	}
 }

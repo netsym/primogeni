@@ -131,6 +131,7 @@ public class EnvironmentPicker extends WizardPage implements Listener, ISelectio
 		);
 		environmentCombo.setInput(composite);
 		environmentCombo.add(new RuntimeEnv(EnvType.LOCAL,null));
+		environmentCombo.add(new RuntimeEnv(EnvType.LOCAL_EMULATED,null));
 		for (EnvType env : EnvType.values()) {
 			IFolder environmentFolder = configProject.getFolder(env.str);
 
@@ -214,6 +215,17 @@ public class EnvironmentPicker extends WizardPage implements Listener, ISelectio
 				return false;
 			}
 			break;
+		case LOCAL_EMULATED:
+//			if(modelEmuCount()!=0) {
+//				setErrorMessage("The environment '"+sel_env.name+"' does not support emulated hosts and the model requires "+modelEmuCount()+" of them.");
+//				return false;
+//			}
+			if(modelPortalCount()!=0) {
+				setErrorMessage("The environment '"+sel_env.name+"' does not support portals and the model requires "+modelPortalCount()+" of them.");
+				return false;
+			}
+			
+			break;					
 		default:
 			throw new RuntimeException("Unknown enviornment!");
 		}

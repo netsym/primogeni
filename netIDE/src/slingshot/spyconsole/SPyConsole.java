@@ -500,7 +500,7 @@ public class SPyConsole extends InteractiveConsole implements Runnable, KeyListe
         }
 
         public void runShell() {
-        		System.out.println("SpyConsole.runShell()");
+        		//System.out.println("SpyConsole.runShell()");//zzz
                 if (firstConsole) {
                         firstConsole = false;
                         capturePythonOutput();

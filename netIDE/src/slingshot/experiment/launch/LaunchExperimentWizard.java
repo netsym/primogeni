@@ -30,6 +30,7 @@ public class LaunchExperimentWizard extends Wizard implements INewWizard  {
 	private EnvironmentPicker envPicker=null; 
 	private SymbolsPage symbolsPage=null;
 	private LocalEnvPage localEnvPage=null;
+	private LocalEmulatedEnvPage localEmulatedEnvPage=null; //zzz
 	private ProtoGeniEnvPage protoGeniEnvPage=null;
 	private RemoteEnvPage remoteEnvPage=null;
 	private PortalIfaceLinker portalIfaceLinker=null;
@@ -57,12 +58,14 @@ public class LaunchExperimentWizard extends Wizard implements INewWizard  {
 		envPicker = new EnvironmentPicker(WIZARD_NAME, exp, configProject);
 		symbolsPage = new SymbolsPage(WIZARD_NAME,exp);
 		localEnvPage = new LocalEnvPage(WIZARD_NAME);
+		localEmulatedEnvPage  = new LocalEmulatedEnvPage(WIZARD_NAME); //zzz
 		protoGeniEnvPage = new ProtoGeniEnvPage(WIZARD_NAME,exp);
 		remoteEnvPage = new RemoteEnvPage(WIZARD_NAME,exp);
 		portalIfaceLinker = new PortalIfaceLinker(WIZARD_NAME, exp);
 		addPage(envPicker);
 		addPage(symbolsPage);
 		addPage(localEnvPage);
+		addPage(localEmulatedEnvPage);   //zzz
 		addPage(protoGeniEnvPage);
 		addPage(remoteEnvPage);
 		addPage(portalIfaceLinker);
@@ -93,6 +96,9 @@ public class LaunchExperimentWizard extends Wizard implements INewWizard  {
 		else if(page == localEnvPage) {
 			return symbolsPage;
 		}
+		else if(page == localEmulatedEnvPage) {    //zzz
+			return symbolsPage;
+		}		
 		else if(page == protoGeniEnvPage) {
 			return symbolsPage;
 		}
@@ -106,9 +112,9 @@ public class LaunchExperimentWizard extends Wizard implements INewWizard  {
 			case REMOTE_CLUSTER:
 				return remoteEnvPage;
 			case LOCAL:
-				throw new RuntimeException("how did this happen?");
+				throw new RuntimeException("Expt launch: how did this happen?");
 			default:
-				throw new RuntimeException("how did this happen?");
+				throw new RuntimeException("Expt Launch: how did this happen?");
 			}
 		}
 		throw new RuntimeException("how did this happen?");
@@ -118,6 +124,8 @@ public class LaunchExperimentWizard extends Wizard implements INewWizard  {
 		switch(env.type) {
 		case LOCAL:
 			return localEnvPage;
+		case LOCAL_EMULATED:
+			return localEmulatedEnvPage;
 		case PROTO_GENI:
 			return protoGeniEnvPage;
 		case REMOTE_CLUSTER:
@@ -149,6 +157,9 @@ public class LaunchExperimentWizard extends Wizard implements INewWizard  {
 			//fall through
 		}
 		else if(page == localEnvPage) {
+			return null;
+		}
+		else if(page == localEmulatedEnvPage) {
 			return null;
 		}
 		else if(page == protoGeniEnvPage) {

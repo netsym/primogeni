@@ -1,4 +1,5 @@
-package slingshot.environment;
+
+package slingshot.environment.configuration;
 
 /*
  * Copyright (c) 2011 Florida International University.
@@ -27,56 +28,48 @@ package slingshot.environment;
  * You can find our research at http://www.primessf.net/.
  */
 
-import java.util.HashMap;
+
+import java.util.List;
+
+import jprime.util.ComputeNode;
+import slingshot.environment.EnvType;
 
 /**
- * An enumeration of all the types of environments we can deploy exerpiments to.
  * 
- * @author Nathanael Van Vorst
+ * A local environment configuration.
+ * 
+ * @author M Abu Obaida
+ *
  */
-public enum EnvType {
+public class LocalEmulatedConfiguration extends EnvironmentConfiguration {
+
 	/**
-	 * A Linux/Unix cluster with MPI and the Meta-Controller 
+	 * @param name
+	 * @param runtime
+	 * @param emuRatio
+	 * @param model
+	 * @param viz
 	 */
-	REMOTE_CLUSTER("Remote Cluster"),
+	public LocalEmulatedConfiguration(Integer runtime, Integer numProcs, Double emuRatio) {
+		super("-- no name --");
+		this.runtime = runtime;
+		this.emuRatio = emuRatio;
+		this.numMachines = 1;
+		this.numProcs = numProcs;
+	}
+
+	/* (non-Javadoc)
+	 * @see slingshot.environment.configuration.EnvironmentConfiguration#getType()
+	 */
+	public EnvType getType() {
+		return EnvType.LOCAL_EMULATED;
+	}
 	
-	/**
-	 * For use with generic ProtoGENI manifest
+	/* (non-Javadoc)
+	 * @see slingshot.environment.configuration.EnvironmentConfiguration#getComputeNodes()
 	 */
-//	/PROTO_GENI("ProtoGENI"),
-	PROTO_GENI("Geni Slices"),
-	/**
-	 * Use local sim -- restricted functionality
-	 */
-	LOCAL("Local Simulator"),
-    LOCAL_EMULATED("Local Emulated")
-	;
-	public final String str;
-	private EnvType(String str) {
-		this.str=str;
+	public List<ComputeNode> getComputeNodes() {
+		return null; 
 	}
-	private final static HashMap<String,EnvType> types=new HashMap<String, EnvType>();
-	public static final String[] strings;
-	static {
-		strings = new String[values().length];
-		int i=0;
-		for(EnvType e : values()) {
-			types.put(e.str,e);
-			strings[i]=e.str;
-			i++;
-		}
-	}
-	/**
-	 * Get environment enum from its string name.
-	 * 
-	 * @param str
-	 * @return
-	 */
-	public static EnvType fromString(String str) {
-		EnvType rv = types.get(str);
-		if(rv == null) {
-			throw new RuntimeException("Invalid type:"+str);
-		}
-		return rv;
-	}
+
 }

@@ -11,6 +11,7 @@ import slingshot.environment.EnvType;
 import slingshot.environment.EnvironmentFileModel;
 import slingshot.environment.configuration.EnvironmentConfiguration;
 import slingshot.environment.configuration.LocalConfiguration;
+import slingshot.environment.configuration.LocalEmulatedConfiguration; //zzz
 import slingshot.environment.configuration.ProtoGENIConfiguration;
 import slingshot.environment.configuration.RemoteClusterConfiguration;
 
@@ -55,6 +56,9 @@ public class RuntimeEnv {
 				break;
 			case LOCAL:
 				env = new LocalConfiguration(null, null, null);
+				break;
+			case LOCAL_EMULATED:   ////zzz_LOCAL_EMULATED
+				env = new LocalEmulatedConfiguration(null, null, 1.0);
 				break;
 			default:
 				throw new RuntimeException("Unknown enviornment!");
