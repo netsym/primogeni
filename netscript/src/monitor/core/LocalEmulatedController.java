@@ -87,7 +87,8 @@ public class LocalEmulatedController  extends Thread implements IController, IPr
 	private static int base_port = Utils.PRIME_PORT;
 	private final PartTlvPair parting;
 	private final IExpListenter listener;
-	private final String cmd;
+	private  String cmd;//zzz removed final because will modify in two steps
+	private boolean isEmulated=false;
 	private final Experiment exp;
 	private final Map<String,String> runtimeSymbols;
 	private boolean running=false,stop=false,failure=false;
@@ -224,6 +225,7 @@ public class LocalEmulatedController  extends Thread implements IController, IPr
 		//find the emulated hosts...
 		HashMap<Long, IHost> vms = new HashMap<Long,IHost>();
 		for(IEmulationProtocol p : exp.getEmuProtocols()) {
+			isEmulated=true;
 			if(p instanceof ITrafficPortal) {
 				IHost h = (IHost)p.getParent().getParent();
 				for(IModelNode c : h.getAllChildren()) {
@@ -347,6 +349,9 @@ public class LocalEmulatedController  extends Thread implements IController, IPr
 			//zzz_end emulated hosts created
 			
 			
+			//if (isEmulated==true)
+			//	this.cmd = "gksudo "+cmd;
+			
 			p = r.exec(cmd);
 			exp.setState(jprime.State.RUNNING);
 
@@ -355,7 +360,10 @@ public class LocalEmulatedController  extends Thread implements IController, IPr
 			// a BufferedReader to readLine() what the program writes out.
 			stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			//System.out.println("stdout:"+stdout);
+			//System.out.println("stderr:"+stdout);
 			while(running && !stop) {
+				//System.out.println("LOOP>");//zzz
 				try {
 					int rv = p.exitValue();
 					if(rv != 0)
@@ -382,6 +390,7 @@ public class LocalEmulatedController  extends Thread implements IController, IPr
 					}
 				}
 				if(m!=null)
+					System.out.println(m);
 					listener.println(m);
 				Thread.sleep(1000);
 			}
@@ -391,6 +400,7 @@ public class LocalEmulatedController  extends Thread implements IController, IPr
 			failure=true;
 		}
 		finally {
+			System.out.println("CLOSING simulator...");
 			running=false;
 			close();
 		}

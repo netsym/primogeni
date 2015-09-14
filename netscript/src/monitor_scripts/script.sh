@@ -27,7 +27,16 @@ host_if=$2
 host_mac=$5
 
 echo "args to configure emulated host: cont_id=$cont_id cont_if=$cont_if cont_ip=$cont_ip cont_mac=$cont_mac and host: host_if=$host_if host_mac=$host_mac\n"
-echo "Status: 10 steps total"
+echo "Existing duplicate containers will be deleted. Status: 11 steps total"
+
+ip netns del $cont_id
+if ( $? != 0 )
+then
+  echo "command failed: ip netns del $cont_id\n"
+  exit 1
+else 
+	echo "0>"
+fi
 
 ip link add $cont_if type veth peer name $host_if
 if ( $? != 0 )
