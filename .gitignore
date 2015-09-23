@@ -5,6 +5,7 @@
 **/.settings
 *.o
 *.oo
+*.m.extracted
 netIDE/bin/*
 doc/Makefile
 doc/*.doxyfile
