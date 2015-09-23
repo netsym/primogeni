@@ -3,6 +3,8 @@
 **/.project
 **/.classpath
 **/.settings
+*.o
+*.oo
 netIDE/bin/*
 doc/Makefile
 doc/*.doxyfile

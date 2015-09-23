@@ -27,6 +27,10 @@ package jprime.Host;
  * You can find our research at http://www.primessf.net/.
  */
 
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -163,6 +167,84 @@ public class Host extends jprime.gen.Host implements jprime.Host.IHost {
 			}
 		}
 		return false;
+	}
+	/*
+	 * @author Obaida
+	 * Obaida added this host method to execute shell commands from spy console inj slingshot
+	 * */
+	//zzz
+	public List<String> sh(String shCommand) {
+		//String[] parts = shCommand.split(" ");
+		//String part1 = parts[0]; // 004
+		ArrayList<String> rv = new ArrayList<String>();
+		//rv=null;
+		if(!hasEmulationProtocol())
+		{
+			rv.add("!Error. Select an emulated host.");
+			throw new RuntimeException("Error! Select a emulated host to run this method!");
+		}
+		else if (getUID()==0)
+		{
+			rv.add("!Error. Model is not compiled. getUID() returned 0.");
+			throw new RuntimeException("Error! Compile model!");
+		}
+		else
+		{	
+			String shNsExists = "sudo ip netns list";
+			System.out.println("Checking if netns \"h"+ getUID()+"\" exists.");
+			String shOutput = executeCommand(shNsExists);
+			String lines[] = shOutput.split("\\r?\\n");
+			System.out.println("Got total "+lines.length+" netns.");
+			boolean vmExists=false; 
+			String vm = "h"+getUID()+"";
+			for (int vms=0; vms<lines.length;vms++)
+				{
+				System.out.println((vms+1)+": "+lines[vms]);
+				if(lines[vms].equals(vm))
+					{
+						vmExists=true;
+						break;
+					}
+				}
+			if(vmExists==false)//exp.RUNNING
+			{
+				System.out.println("Nonexistent VM. "+vm);
+				throw new RuntimeException("Error! Namespace doesn't exist!");
+			}
+			else{
+				rv.add("user@host#"+shCommand);
+				rv.add("Output:");
+				//if ()//background
+				
+				String shCommandFull = "sudo ip netns exec h"+ getUID() +" "+shCommand +"";
+				System.out.println(shCommandFull);
+				String shOutput2 = executeCommand(shCommandFull);
+				//System.out.println(shOutput);
+				rv.add(shOutput2);
+			}
+		}
+		return rv;
+	}
+	
+	public static String executeCommand(String command) {
+		System.out.println("Ececuting Command: "+command);
+		StringBuffer output = new StringBuffer();
+		Process p;
+		try {
+			p = Runtime.getRuntime().exec(command);
+			p.waitFor();
+			BufferedReader reader = 
+                            new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+                        String line = "";			
+			while ((line = reader.readLine())!= null) {
+				output.append(line + "\n");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return output.toString();
 	}
 	
 	/* (non-Javadoc)
